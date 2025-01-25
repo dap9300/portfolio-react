@@ -34,18 +34,25 @@ const projectsData: Record<string, Project> = {
       it: "Magazzino sul Po - Strategia di Marketing Digitale"
     },
     description: {
-      en: `Led the digital transformation and social media growth for Magazzino sul Po, a cultural association dedicated to promoting artistic and musical events. As Digital Marketing & Communications Specialist, I developed and executed comprehensive strategies that significantly increased online visibility and engagement.
+      en: `As Digital Marketing & Communications Specialist, I led the digital transformation and social media growth for Magazzino sul Po, a cultural association dedicated to promoting artistic and musical events. I developed and executed comprehensive strategies that significantly increased online visibility and engagement.
+
 Key Achievements:
 • Achieved 400% monthly growth in user engagement
 • Grew social media following from 5,000 to 13,000+ followers
 • Enhanced event promotion effectiveness through targeted campaigns
-• Implemented data-driven marketing strategies using analytics`,
-      it: `Ho guidato la trasformazione digitale e la crescita sui social media per Magazzino sul Po, un'associazione culturale dedicata alla promozione di eventi artistici e musicali. Come Digital Marketing & Communications Specialist, ho sviluppato ed eseguito strategie complete che hanno aumentato significativamente la visibilità e il coinvolgimento online.
+• Implemented data-driven marketing strategies using analytics
+• Generated €17,771 in online ticket revenue across 85 events in 2023
+• Successfully managed a crowdfunding campaign raising €5,597 with 300+ supporters`,
+
+      it: `Come Digital Marketing & Communications Specialist, ho guidato la trasformazione digitale e la crescita sui social media per Magazzino sul Po, un'associazione culturale dedicata alla promozione di eventi artistici e musicali. Ho sviluppato ed eseguito strategie complete che hanno aumentato significativamente la visibilità e il coinvolgimento online.
+
 Risultati Chiave:
 • Ottenuto una crescita mensile del 400% nel coinvolgimento degli utenti
 • Aumentato i follower sui social media da 5.000 a oltre 13.000
 • Migliorato l'efficacia della promozione eventi attraverso campagne mirate
-• Implementato strategie di marketing basate sui dati utilizzando analytics`
+• Implementato strategie di marketing basate sui dati utilizzando analytics
+• Generato €17.771 di ricavi da biglietteria online su 85 eventi nel 2023
+• Gestito con successo una campagna di crowdfunding raccogliendo €5.597 con oltre 300 sostenitori`
     },
     image: "https://images.unsplash.com/photo-1514525253161-7a46d19cd819?q=80&w=2574&auto=format&fit=crop",
     technologies: ["Social Media Strategy", "Content Creation", "Analytics", "Event Marketing", "Community Management", "Email Marketing"],
@@ -125,7 +132,6 @@ Risultati Chiave:
   }
 };
 
-// Updated metrics with proper Lordicon names
 const projectMetrics: Record<string, any[]> = {
   "1": [
     {
@@ -140,8 +146,8 @@ const projectMetrics: Record<string, any[]> = {
     },
     {
       icon: "mzjnwzka", // calendar icon
-      value: "150+",
-      label: { en: "Events Promoted", it: "Eventi Promossi" }
+      value: "85+",
+      label: { en: "Events in 2023", it: "Eventi nel 2023" }
     }
   ],
   "2": [
@@ -215,7 +221,6 @@ export function ProjectDetails({ language }: ProjectDetailsProps) {
       exit={{ opacity: 0 }}
       className="min-h-screen bg-background"
     >
-      {/* Hero Section with Parallax */}
       <motion.div 
         className="h-[60vh] relative overflow-hidden"
         initial={{ opacity: 0 }}
@@ -272,13 +277,17 @@ export function ProjectDetails({ language }: ProjectDetailsProps) {
           animate="visible"
           className="grid gap-12"
         >
-          {/* Key Metrics */}
           <motion.div variants={fadeInUp} className="grid grid-cols-1 md:grid-cols-3 gap-6">
             {metrics.map((metric, index) => (
               <Card key={index} className="border-2">
                 <CardContent className="pt-6">
                   <div className="flex items-center justify-between mb-2">
-                    <LordIcon icon={metric.icon} />
+                    <LordIcon 
+                      icon={metric.icon} 
+                      trigger="hover"
+                      colors="primary:#121331,secondary:#121331"
+                      size={32}
+                    />
                     <ArrowUpRight className="w-5 h-5 text-green-500" />
                   </div>
                   <p className="text-3xl font-bold">{metric.value}</p>
@@ -288,7 +297,6 @@ export function ProjectDetails({ language }: ProjectDetailsProps) {
             ))}
           </motion.div>
 
-          {/* Project Overview */}
           <motion.div variants={fadeInUp} className="grid md:grid-cols-3 gap-8">
             <div className="md:col-span-2">
               <h2 className="text-2xl font-semibold mb-4">
@@ -326,7 +334,155 @@ export function ProjectDetails({ language }: ProjectDetailsProps) {
 
           {id === "1" && (
             <>
-              {/* Analytics Screenshots */}
+              <motion.div variants={fadeInUp}>
+                <h2 className="text-2xl font-semibold mb-6">
+                  {language === 'en' ? 'Editorial Strategy' : 'Strategia Editoriale'}
+                </h2>
+                <div className="grid md:grid-cols-2 gap-6">
+                  <Card className="p-6">
+                    <h3 className="font-semibold mb-4">
+                      {language === 'en' ? 'Content Planning' : 'Pianificazione Contenuti'}
+                    </h3>
+                    <ul className="space-y-2 text-muted-foreground">
+                      <li>• {language === 'en' ? 
+                        'Developed monthly editorial calendar for Instagram and Facebook' : 
+                        'Sviluppato calendario editoriale mensile per Instagram e Facebook'}
+                      </li>
+                      <li>• {language === 'en' ?
+                        'Implemented content categorization system' :
+                        'Implementato sistema di categorizzazione dei contenuti'}
+                      </li>
+                      <li>• {language === 'en' ?
+                        'Managed multi-platform communication strategy' :
+                        'Gestito strategia di comunicazione multipiattaforma'}
+                      </li>
+                    </ul>
+                  </Card>
+                  <Card className="p-6">
+                    <h3 className="font-semibold mb-4">
+                      {language === 'en' ? 'Performance & Analytics' : 'Performance e Analytics'}
+                    </h3>
+                    <ul className="space-y-2 text-muted-foreground">
+                      <li>• {language === 'en' ?
+                        'Monitored and analyzed content performance' :
+                        'Monitorato e analizzato performance dei contenuti'}
+                      </li>
+                      <li>• {language === 'en' ?
+                        'Optimized hashtag strategy for organic reach' :
+                        'Ottimizzato strategia hashtag per portata organica'}
+                      </li>
+                      <li>• {language === 'en' ?
+                        'Implemented content workflow via Asana' :
+                        'Implementato workflow contenuti tramite Asana'}
+                      </li>
+                    </ul>
+                  </Card>
+                </div>
+              </motion.div>
+
+              <motion.div variants={fadeInUp}>
+                <h2 className="text-2xl font-semibold mb-6">
+                  {language === 'en' ? 'Advertising Campaigns' : 'Campagne Pubblicitarie'}
+                </h2>
+                <div className="grid md:grid-cols-3 gap-6">
+                  <Card className="p-6">
+                    <h3 className="font-semibold mb-4">2023 Performance</h3>
+                    <ul className="space-y-2 text-muted-foreground">
+                      <li>• {language === 'en' ?
+                        'Budget optimization: €71 to €337/month' :
+                        'Ottimizzazione budget: da €71 a €337/mese'}
+                      </li>
+                      <li>• {language === 'en' ?
+                        'Total reach: 296,973 users' :
+                        'Copertura totale: 296.973 utenti'}
+                      </li>
+                      <li>• CPC: €0.10 - €0.29</li>
+                    </ul>
+                  </Card>
+                  <Card className="p-6">
+                    <h3 className="font-semibold mb-4">
+                      {language === 'en' ? 'Growth Metrics' : 'Metriche di Crescita'}
+                    </h3>
+                    <ul className="space-y-2 text-muted-foreground">
+                      <li>• Instagram: +536.5%</li>
+                      <li>• Facebook: +164.4%</li>
+                      <li>• {language === 'en' ?
+                        'Web traffic: +140%' :
+                        'Traffico web: +140%'}
+                      </li>
+                    </ul>
+                  </Card>
+                  <Card className="p-6">
+                    <h3 className="font-semibold mb-4">ROI</h3>
+                    <ul className="space-y-2 text-muted-foreground">
+                      <li>• {language === 'en' ?
+                        'Ticket sales growth: 200%' :
+                        'Crescita vendite biglietti: 200%'}
+                      </li>
+                      <li>• {language === 'en' ?
+                        'Average session duration: 42s' :
+                        'Durata media sessione: 42s'}
+                      </li>
+                      <li>• {language === 'en' ?
+                        'Checkout page in top 10' :
+                        'Pagina checkout in top 10'}
+                      </li>
+                    </ul>
+                  </Card>
+                </div>
+              </motion.div>
+
+              <motion.div variants={fadeInUp}>
+                <h2 className="text-2xl font-semibold mb-6">
+                  {language === 'en' ? 'Crowdfunding Campaign' : 'Campagna Crowdfunding'}
+                </h2>
+                <Card className="p-6">
+                  <div className="grid md:grid-cols-2 gap-6">
+                    <div>
+                      <h3 className="font-semibold mb-4">FIUMEDENTRO</h3>
+                      <p className="text-muted-foreground mb-4">
+                        {language === 'en' ?
+                          'A successful crowdfunding campaign to regenerate the Murazzi area, transforming abandoned spaces into an inclusive public space.' :
+                          'Una campagna di crowdfunding di successo per rigenerare l\'area dei Murazzi, trasformando spazi abbandonati in uno spazio pubblico inclusivo.'}
+                      </p>
+                      <div className="flex items-center gap-4 mb-4">
+                        <div>
+                          <p className="text-2xl font-bold">€5,597</p>
+                          <p className="text-sm text-muted-foreground">
+                            {language === 'en' ? 'Funds Raised' : 'Fondi Raccolti'}
+                          </p>
+                        </div>
+                        <div>
+                          <p className="text-2xl font-bold">300+</p>
+                          <p className="text-sm text-muted-foreground">
+                            {language === 'en' ? 'Supporters' : 'Sostenitori'}
+                          </p>
+                        </div>
+                      </div>
+                    </div>
+                    <div>
+                      <h4 className="font-semibold mb-2">
+                        {language === 'en' ? 'Campaign Highlights' : 'Punti Salienti'}
+                      </h4>
+                      <ul className="space-y-2 text-muted-foreground">
+                        <li>• {language === 'en' ?
+                          'Integrated digital & offline strategy' :
+                          'Strategia integrata digitale e offline'}
+                        </li>
+                        <li>• {language === 'en' ?
+                          'Custom rewards program' :
+                          'Programma ricompense personalizzato'}
+                        </li>
+                        <li>• {language === 'en' ?
+                          'Community engagement events' :
+                          'Eventi di coinvolgimento community'}
+                        </li>
+                      </ul>
+                    </div>
+                  </div>
+                </Card>
+              </motion.div>
+
               <motion.div variants={fadeInUp}>
                 <h2 className="text-2xl font-semibold mb-6">
                   {language === 'en' ? 'Growth & Analytics' : 'Crescita e Analytics'}
@@ -359,7 +515,6 @@ export function ProjectDetails({ language }: ProjectDetailsProps) {
                 </div>
               </motion.div>
 
-              {/* Social Media Examples */}
               <motion.div variants={fadeInUp}>
                 <h2 className="text-2xl font-semibold mb-6">
                   {language === 'en' ? 'Social Media Content' : 'Contenuti Social Media'}

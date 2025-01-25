@@ -46,17 +46,25 @@ export function Navigation({ language, onSectionClick }: NavigationProps) {
   }, [sections]);
 
   useEffect(() => {
-    const activeItem = itemsRef.current.get(activeSection);
-    if (activeItem && navRef.current) {
-      const navRect = navRef.current.getBoundingClientRect();
-      const itemRect = activeItem.getBoundingClientRect();
+    // Update dimensions whenever language or active section changes
+    const updateDimensions = () => {
+      const activeItem = itemsRef.current.get(activeSection);
+      if (activeItem && navRef.current) {
+        const navRect = navRef.current.getBoundingClientRect();
+        const itemRect = activeItem.getBoundingClientRect();
 
-      setDimensions({
-        width: itemRect.width,
-        left: itemRect.left - navRect.left,
-      });
-    }
-  }, [activeSection]);
+        setDimensions({
+          width: itemRect.width + 20, // Make bubble wider than text
+          left: itemRect.left - navRect.left - 10, // Center the wider bubble
+        });
+      }
+    };
+
+    updateDimensions();
+    // Add resize listener to handle window size changes
+    window.addEventListener('resize', updateDimensions);
+    return () => window.removeEventListener('resize', updateDimensions);
+  }, [activeSection, language]); // Add language as dependency
 
   return (
     <motion.nav 
@@ -89,13 +97,13 @@ export function Navigation({ language, onSectionClick }: NavigationProps) {
             ))}
           </div>
           <div
-            className="absolute -z-10 bottom-0 h-8 transition-all duration-300 ease-spring"
+            className="absolute -z-10 bottom-1 h-6 transition-all duration-300 ease-spring"
             style={{
               width: `${dimensions.width}px`,
               left: `${dimensions.left}px`,
             }}
           >
-            <div className="absolute inset-0 -bottom-2 bg-primary/10 rounded-full transform scale-110" />
+            <div className="absolute inset-0 bg-primary/10 rounded-full transform scale-110" />
           </div>
         </div>
       </div>
