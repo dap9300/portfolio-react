@@ -2,13 +2,29 @@ import { motion } from "framer-motion";
 import { useLocation, useParams } from "wouter";
 import { Project, Language } from "@/types";
 import { Button } from "@/components/ui/button";
-import { ArrowLeft, BarChart3, Users, Calendar, ArrowUpRight, Globe, TrendingUp } from "lucide-react";
+import { ArrowLeft, ArrowUpRight } from "lucide-react";
 import { fadeInUp, staggerContainer } from "@/lib/animations";
 import { Card, CardContent } from "@/components/ui/card";
 
 interface ProjectDetailsProps {
   language: Language;
 }
+
+interface LordIconProps {
+  icon: string;
+  colors?: string;
+  trigger?: string;
+  size?: number;
+}
+
+const LordIcon = ({ icon, colors = "primary:#121331", trigger = "hover", size = 32 }: LordIconProps) => (
+  <lord-icon
+    src={`https://cdn.lordicon.com/${icon}.json`}
+    trigger={trigger}
+    colors={colors}
+    style={{ width: `${size}px`, height: `${size}px` }}
+  />
+);
 
 const projectsData: Record<string, Project> = {
   "1": {
@@ -19,14 +35,12 @@ const projectsData: Record<string, Project> = {
     },
     description: {
       en: `Led the digital transformation and social media growth for Magazzino sul Po, a cultural association dedicated to promoting artistic and musical events. As Digital Marketing & Communications Specialist, I developed and executed comprehensive strategies that significantly increased online visibility and engagement.
-
 Key Achievements:
 • Achieved 400% monthly growth in user engagement
 • Grew social media following from 5,000 to 13,000+ followers
 • Enhanced event promotion effectiveness through targeted campaigns
 • Implemented data-driven marketing strategies using analytics`,
       it: `Ho guidato la trasformazione digitale e la crescita sui social media per Magazzino sul Po, un'associazione culturale dedicata alla promozione di eventi artistici e musicali. Come Digital Marketing & Communications Specialist, ho sviluppato ed eseguito strategie complete che hanno aumentato significativamente la visibilità e il coinvolgimento online.
-
 Risultati Chiave:
 • Ottenuto una crescita mensile del 400% nel coinvolgimento degli utenti
 • Aumentato i follower sui social media da 5.000 a oltre 13.000
@@ -45,14 +59,12 @@ Risultati Chiave:
     },
     description: {
       en: `Developed and executed comprehensive social media campaigns for a leading fashion e-commerce brand. Created engaging content and implemented targeted advertising strategies that drove significant growth in sales and engagement.
-
 Key Achievements:
 • Increased social media-driven sales by 250%
 • Achieved 45% growth in follower engagement
 • Optimized ad spend with 3.2x ROAS
 • Created viral UGC campaigns with over 1M views`,
       it: `Sviluppato ed eseguito campagne social media complete per un brand leader nell'e-commerce fashion. Creato contenuti coinvolgenti e implementato strategie pubblicitarie mirate che hanno portato a una crescita significativa nelle vendite e nel coinvolgimento.
-
 Risultati Chiave:
 • Aumentato le vendite da social del 250%
 • Ottenuto una crescita del 45% nel coinvolgimento dei follower
@@ -71,14 +83,12 @@ Risultati Chiave:
     },
     description: {
       en: `Implemented comprehensive LinkedIn marketing strategy for a B2B tech company, achieving 180% increase in lead generation and 300% growth in profile visits. Managed end-to-end campaign creation and optimization.
-
 Key Achievements:
 • Generated 150+ qualified leads through LinkedIn campaigns
 • Increased profile engagement by 300%
 • Optimized content strategy with 45% higher CTR
 • Developed thought leadership content program`,
       it: `Implementato una strategia di marketing LinkedIn completa per un'azienda tech B2B, ottenendo un aumento del 180% nella generazione di lead e del 300% nelle visite al profilo. Gestito la creazione e l'ottimizzazione delle campagne end-to-end.
-
 Risultati Chiave:
 • Generati oltre 150 lead qualificati attraverso campagne LinkedIn
 • Aumentato l'engagement del profilo del 300%
@@ -97,14 +107,12 @@ Risultati Chiave:
     },
     description: {
       en: `Revamped digital presence for a high-end restaurant chain, increasing online reservations by 200% and achieving 150% growth in social media engagement. Implemented comprehensive local SEO and review management strategy.
-
 Key Achievements:
 • Increased online reservations by 200%
 • Improved local search visibility by 180%
 • Achieved 4.8/5 average rating across platforms
 • Generated 300+ positive reviews in 6 months`,
       it: `Rinnovato la presenza digitale per una catena di ristoranti di alta fascia, aumentando le prenotazioni online del 200% e ottenendo una crescita del 150% nel coinvolgimento sui social media. Implementato una strategia completa di SEO locale e gestione delle recensioni.
-
 Risultati Chiave:
 • Aumentato le prenotazioni online del 200%
 • Migliorato la visibilità nelle ricerche locali del 180%
@@ -117,39 +125,74 @@ Risultati Chiave:
   }
 };
 
+// Updated metrics with proper Lordicon names
 const projectMetrics: Record<string, any[]> = {
   "1": [
     {
-      icon: Users,
+      icon: "rjzlcjqi",  // people icon
       value: "13,000+",
       label: { en: "Social Media Followers", it: "Follower Social Media" }
     },
     {
-      icon: BarChart3,
+      icon: "gkosxwgv", // trending up icon
       value: "400%",
       label: { en: "Monthly Growth", it: "Crescita Mensile" }
     },
     {
-      icon: Calendar,
+      icon: "mzjnwzka", // calendar icon
       value: "150+",
       label: { en: "Events Promoted", it: "Eventi Promossi" }
     }
   ],
   "2": [
     {
-      icon: TrendingUp,
+      icon: "gkosxwgv", // trending up icon
       value: "250%",
       label: { en: "Sales Increase", it: "Aumento Vendite" }
     },
     {
-      icon: Users,
+      icon: "rjzlcjqi", // people icon
       value: "45%",
       label: { en: "Engagement Growth", it: "Crescita Engagement" }
     },
     {
-      icon: Globe,
+      icon: "ehdfdiha", // globe icon
       value: "1M+",
       label: { en: "Campaign Views", it: "Visualizzazioni Campagne" }
+    }
+  ],
+  "3": [
+    {
+      icon: "rjzlcjqi", // people icon
+      value: "150+",
+      label: { en: "Qualified Leads", it: "Lead Qualificati" }
+    },
+    {
+      icon: "gkosxwgv", // trending up icon
+      value: "300%",
+      label: { en: "Profile Growth", it: "Crescita Profilo" }
+    },
+    {
+      icon: "lupuorrc", // target icon
+      value: "45%",
+      label: { en: "Higher CTR", it: "CTR Superiore" }
+    }
+  ],
+  "4": [
+    {
+      icon: "mzjnwzka", // calendar icon
+      value: "200%",
+      label: { en: "Reservation Growth", it: "Crescita Prenotazioni" }
+    },
+    {
+      icon: "msoeawqm", // search icon
+      value: "180%",
+      label: { en: "SEO Visibility", it: "Visibilità SEO" }
+    },
+    {
+      icon: "yqoxyxia", // star icon
+      value: "4.8/5",
+      label: { en: "Average Rating", it: "Valutazione Media" }
     }
   ]
 };
@@ -160,7 +203,7 @@ export function ProjectDetails({ language }: ProjectDetailsProps) {
   const projectData = projectsData[id];
   const metrics = projectMetrics[id];
 
-  if (!projectData) {
+  if (!projectData || !metrics) {
     setLocation("/");
     return null;
   }
@@ -184,7 +227,8 @@ export function ProjectDetails({ language }: ProjectDetailsProps) {
           style={{
             backgroundImage: `url(${projectData.image})`,
             backgroundSize: 'cover',
-            backgroundPosition: 'center'
+            backgroundPosition: 'center',
+            backgroundAttachment: 'fixed'
           }}
           initial={{ scale: 1.1 }}
           animate={{ scale: 1 }}
@@ -234,7 +278,7 @@ export function ProjectDetails({ language }: ProjectDetailsProps) {
               <Card key={index} className="border-2">
                 <CardContent className="pt-6">
                   <div className="flex items-center justify-between mb-2">
-                    <metric.icon className="w-8 h-8 text-primary" />
+                    <LordIcon icon={metric.icon} />
                     <ArrowUpRight className="w-5 h-5 text-green-500" />
                   </div>
                   <p className="text-3xl font-bold">{metric.value}</p>

@@ -8,6 +8,7 @@ import { Education } from "@/components/sections/Education";
 import { Contact } from "@/components/sections/Contact";
 import { Navigation } from "@/components/shared/Navigation";
 import { LanguageSwitch } from "@/components/shared/LanguageSwitch";
+import { ThemeToggle } from "@/components/shared/ThemeToggle";
 
 export default function Home() {
   const [language, setLanguage] = useState<Language>("en");
@@ -25,6 +26,7 @@ export default function Home() {
         language={language}
         onSectionClick={scrollToSection}
       />
+      <ThemeToggle />
       <LanguageSwitch
         currentLanguage={language}
         onLanguageChange={setLanguage}
