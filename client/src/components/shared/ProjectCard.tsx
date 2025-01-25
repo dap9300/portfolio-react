@@ -4,6 +4,7 @@ import { Project, Language } from "@/types";
 import { motion } from "framer-motion";
 import { fadeInUp } from "@/lib/animations";
 import { ExternalLink } from "lucide-react";
+import { useLocation } from "wouter";
 
 interface ProjectCardProps {
   project: Project;
@@ -11,12 +12,15 @@ interface ProjectCardProps {
 }
 
 export function ProjectCard({ project, language }: ProjectCardProps) {
+  const [, setLocation] = useLocation();
+
   return (
     <motion.div
       variants={fadeInUp}
-      className="h-full"
+      className="h-full cursor-pointer"
+      onClick={() => setLocation(`/project/${project.id}`)}
     >
-      <Card className="h-full flex flex-col">
+      <Card className="h-full flex flex-col transform transition-transform hover:scale-[1.02] duration-300">
         <CardHeader className="p-0">
           <img
             src={project.image}
@@ -26,7 +30,7 @@ export function ProjectCard({ project, language }: ProjectCardProps) {
         </CardHeader>
         <CardContent className="flex-1 p-6">
           <h3 className="text-xl font-semibold mb-2">{project.title[language]}</h3>
-          <p className="text-muted-foreground mb-4">{project.description[language]}</p>
+          <p className="text-muted-foreground mb-4">{project.description[language].split('\n')[0]}</p>
           <div className="flex flex-wrap gap-2 mb-4">
             {project.technologies.map((tech) => (
               <span
@@ -41,7 +45,10 @@ export function ProjectCard({ project, language }: ProjectCardProps) {
             <Button
               variant="outline"
               className="w-full"
-              onClick={() => window.open(project.link, '_blank')}
+              onClick={(e) => {
+                e.stopPropagation();
+                window.open(project.link, '_blank');
+              }}
             >
               <ExternalLink className="w-4 h-4 mr-2" />
               {language === 'en' ? 'View Project' : 'Vedi Progetto'}
