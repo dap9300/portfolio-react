@@ -5,12 +5,26 @@ import { Button } from "@/components/ui/button";
 import { ArrowLeft, ArrowUpRight } from "lucide-react";
 import { fadeInUp, staggerContainer } from "@/lib/animations";
 import { Card, CardContent } from "@/components/ui/card";
-import oldsocial1 from "./attached_assets/oldsocial1.png";
-import oldsocial2 from "./attached_assets/oldsocial2.png";
-import sitoEventi1 from "./attached_assets/sito-eventi-1.png";
 
-// Poi usarle così:
-const images = [oldsocial1, oldsocial2, sitoEventi1];
+declare global {
+  namespace JSX {
+    interface IntrinsicElements {
+      'lord-icon': React.DetailedHTMLProps<React.HTMLAttributes<HTMLElement>, HTMLElement> & {
+        src: string;
+        trigger: string;
+        colors: string;
+        style?: React.CSSProperties;
+      };
+    }
+  }
+}
+
+// Immagini statiche
+const images = [
+  "/assets/oldsocial1.png",
+  "/assets/oldsocial2.png",
+  "/assets/sito-eventi-1.png"
+];
 
 interface ProjectDetailsProps {
   language: Language;
@@ -526,16 +540,12 @@ export function ProjectDetails({ language }: ProjectDetailsProps) {
                   {language === 'en' ? 'Social Media Content' : 'Contenuti Social Media'}
                 </h2>
                 <div className="grid md:grid-cols-3 gap-4">
-                      {[
-                        oldsocial1,
-                        oldsocial2,
-                        sitoEventi1
-                      ].map((image, index) => (
-                        <motion.div
-                          key={index}
-                          variants={fadeInUp}
-                          className="relative aspect-square"
-                        >
+                  {images.map((image, index) => (
+                    <motion.div
+                      key={index}
+                      variants={fadeInUp}
+                      className="relative aspect-square"
+                    >
                       <img
                         src={image}
                         alt={`Social Media Content ${index + 1}`}
