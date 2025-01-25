@@ -24,8 +24,7 @@ Key Achievements:
 • Achieved 400% monthly growth in user engagement
 • Grew social media following from 5,000 to 13,000+ followers
 • Enhanced event promotion effectiveness through targeted campaigns
-• Implemented data-driven marketing strategies using analytics
-`,
+• Implemented data-driven marketing strategies using analytics`,
       it: `Ho guidato la trasformazione digitale e la crescita sui social media per Magazzino sul Po, un'associazione culturale dedicata alla promozione di eventi artistici e musicali. Come Digital Marketing & Communications Specialist, ho sviluppato ed eseguito strategie complete che hanno aumentato significativamente la visibilità e il coinvolgimento online.
 
 Risultati Chiave:
@@ -62,6 +61,58 @@ Risultati Chiave:
     },
     image: "https://images.unsplash.com/photo-1557821552-17105176677c?q=80&w=2574&auto=format&fit=crop",
     technologies: ["Social Media Advertising", "Content Strategy", "E-commerce", "Analytics"],
+    link: "#"
+  },
+  "3": {
+    id: 3,
+    title: {
+      en: "B2B LinkedIn Growth Strategy",
+      it: "Strategia di Crescita LinkedIn B2B"
+    },
+    description: {
+      en: `Implemented comprehensive LinkedIn marketing strategy for a B2B tech company, achieving 180% increase in lead generation and 300% growth in profile visits. Managed end-to-end campaign creation and optimization.
+
+Key Achievements:
+• Generated 150+ qualified leads through LinkedIn campaigns
+• Increased profile engagement by 300%
+• Optimized content strategy with 45% higher CTR
+• Developed thought leadership content program`,
+      it: `Implementato una strategia di marketing LinkedIn completa per un'azienda tech B2B, ottenendo un aumento del 180% nella generazione di lead e del 300% nelle visite al profilo. Gestito la creazione e l'ottimizzazione delle campagne end-to-end.
+
+Risultati Chiave:
+• Generati oltre 150 lead qualificati attraverso campagne LinkedIn
+• Aumentato l'engagement del profilo del 300%
+• Ottimizzato la strategia dei contenuti con CTR superiore del 45%
+• Sviluppato un programma di contenuti thought leadership`
+    },
+    image: "https://images.unsplash.com/photo-1560472355-536de3962603?q=80&w=2574&auto=format&fit=crop",
+    technologies: ["LinkedIn Marketing", "B2B Strategy", "Content Marketing", "Lead Generation"],
+    link: "#"
+  },
+  "4": {
+    id: 4,
+    title: {
+      en: "Restaurant Digital Presence Optimization",
+      it: "Ottimizzazione Presenza Digitale Ristorante"
+    },
+    description: {
+      en: `Revamped digital presence for a high-end restaurant chain, increasing online reservations by 200% and achieving 150% growth in social media engagement. Implemented comprehensive local SEO and review management strategy.
+
+Key Achievements:
+• Increased online reservations by 200%
+• Improved local search visibility by 180%
+• Achieved 4.8/5 average rating across platforms
+• Generated 300+ positive reviews in 6 months`,
+      it: `Rinnovato la presenza digitale per una catena di ristoranti di alta fascia, aumentando le prenotazioni online del 200% e ottenendo una crescita del 150% nel coinvolgimento sui social media. Implementato una strategia completa di SEO locale e gestione delle recensioni.
+
+Risultati Chiave:
+• Aumentato le prenotazioni online del 200%
+• Migliorato la visibilità nelle ricerche locali del 180%
+• Raggiunto una valutazione media di 4.8/5 su tutte le piattaforme
+• Generato oltre 300 recensioni positive in 6 mesi`
+    },
+    image: "https://images.unsplash.com/photo-1517248135467-4c7edcad34c4?q=80&w=2574&auto=format&fit=crop",
+    technologies: ["Local SEO", "Social Media Marketing", "Review Management", "Content Strategy"],
     link: "#"
   }
 };
