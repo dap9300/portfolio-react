@@ -26,11 +26,13 @@ export default function Home() {
         language={language}
         onSectionClick={scrollToSection}
       />
-      <ThemeToggle />
-      <LanguageSwitch
-        currentLanguage={language}
-        onLanguageChange={setLanguage}
-      />
+      <div className="fixed top-4 right-4 z-50 flex items-center gap-2">
+        <LanguageSwitch
+          currentLanguage={language}
+          onLanguageChange={setLanguage}
+        />
+        <ThemeToggle />
+      </div>
       <Hero
         language={language}
         onContactClick={() => scrollToSection("contact")}
