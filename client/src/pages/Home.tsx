@@ -9,8 +9,6 @@ import { Contact } from "@/components/sections/Contact";
 import { Navigation } from "@/components/shared/Navigation";
 import { LanguageSwitch } from "@/components/shared/LanguageSwitch";
 import { ThemeToggle } from "@/components/shared/ThemeToggle";
-import { ProjectDetails } from "@/components/sections/ProjectDetails";
-import { Route } from "wouter";
 
 interface HomeProps {
   language: Language;
@@ -18,16 +16,6 @@ interface HomeProps {
 }
 
 export default function Home({ language, onLanguageChange }: HomeProps) {
-  //const [language, setLanguage] = useState<Language>(() => {
-  //  const savedLanguage = localStorage.getItem('selectedLanguage');
-  //  return (savedLanguage === 'en' || savedLanguage === 'it') ? savedLanguage : 'it';
-  //});
-
-  //const handleLanguageChange = (lang: Language) => {
-  //  setLanguage(lang);
-  //  localStorage.setItem('selectedLanguage', lang);
-  //};
-
   const scrollToSection = (sectionId: string) => {
     const element = document.getElementById(sectionId);
     if (element) {
@@ -41,16 +29,12 @@ export default function Home({ language, onLanguageChange }: HomeProps) {
         language={language}
         onSectionClick={scrollToSection}
       />
-      <div className="fixed top-4 right-4 z-50 flex items-center">
-        <div className="mr-4">
-          <ThemeToggle />
-        </div>
-        <div className="min-w-[40px]">
-          <LanguageSwitch
-            currentLanguage={language}
-            onLanguageChange={onLanguageChange}
-          />
-        </div>
+      <div className="fixed top-4 right-4 z-50 flex items-center gap-4">
+        <ThemeToggle />
+        <LanguageSwitch
+          currentLanguage={language}
+          onLanguageChange={onLanguageChange}
+        />
       </div>
       <Hero
         language={language}
