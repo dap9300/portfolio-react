@@ -13,7 +13,6 @@ const images = [
   "/assets/oldsocial1.png",
   "/assets/oldsocial2.png",
   "/assets/sito-eventi-1.png",
-  "assets/hrx-banner1.jpg"
 ];
 
 interface ProjectDetailsProps {
@@ -49,7 +48,7 @@ Risultati Chiave:
 • Generato €17.771 di ricavi da biglietteria online su 85 eventi nel 2023
 • Gestito con successo una campagna di crowdfunding raccogliendo €5.597 con oltre 300 sostenitori`
     },
-    image: "/assets/hrx-banner1.jpg",
+    image: "/assets/banner-magazzino.webp",
     technologies: ["Social Media Strategy", "Content Creation", "Analytics", "Event Marketing", "Community Management", "Email Marketing"],
     link: "#"
   },

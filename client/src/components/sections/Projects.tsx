@@ -57,7 +57,7 @@ const projects = [
       en: "Led digital transformation and social media growth for a cultural venue, achieving 400% monthly growth in engagement and expanding social media following to 13,000+ followers.",
       it: "Guidato la trasformazione digitale e la crescita sui social media per un centro culturale, ottenendo una crescita mensile del 400% nel coinvolgimento e espandendo i follower a oltre 13.000."
     },
-    image: "https://images.unsplash.com/photo-1514525253161-7a46d19cd819?q=80&w=2574&auto=format&fit=crop",
+    image: "/assets/banner-magazzino.webp",
     technologies: ["Social Media Strategy", "Social Media Management", "Content Creation", "Creazione Sito Web", "Gestione Sito Web", "Social Media Analytics", "Google Analytics", "Event Marketing"],
     link: "/project/1"
   },
