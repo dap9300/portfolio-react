@@ -241,7 +241,9 @@ export function ProjectDetails({ language, onLanguageChange }: ProjectDetailsPro
       className="min-h-screen bg-background"
     >
       <div className="fixed top-4 right-4 z-50 flex items-center gap-4">
-        <ThemeToggle />
+        <div className="fixed top-4 right-[100px]">
+          <ThemeToggle />
+        </div>
         <LanguageSwitch currentLanguage={language} onLanguageChange={onLanguageChange} />
       </div>
       <motion.div
