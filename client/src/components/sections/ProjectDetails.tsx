@@ -7,12 +7,6 @@ import { fadeInUp, staggerContainer } from "@/lib/animations";
 import { Card, CardContent } from "@/components/ui/card";
 import { LordIcon } from "@/components/shared/LordIcon";
 import { useEffect } from "react";
-import "lord-icon-element";
-import lottie from "lottie-web";
-import { defineElement } from "lord-icon-element";
-
-// Initialize Lord Icon element
-defineElement(lottie.loadAnimation);
 
 // Static images with proper paths
 const images = [
