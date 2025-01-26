@@ -1,9 +1,8 @@
-import { motion } from "framer-motion";
+
 import { translations } from "@/lib/translations";
 import { Language } from "@/types";
 import { SectionTitle } from "@/components/shared/SectionTitle";
 import { Card, CardContent } from "@/components/ui/card";
-import { staggerContainer } from "@/lib/animations";
 import { ChartBar, Code2, PenTool, Brain, Languages, Heart } from "lucide-react";
 
 interface SkillsProps {
@@ -13,7 +12,7 @@ interface SkillsProps {
 interface SkillCategory {
   title: { en: string; it: string };
   icon: any;
-  skills: { en: string[]; it: string[] }; // Modified to include Italian translations
+  skills: { en: string[]; it: string[] };
 }
 
 const leftSkillCategories: SkillCategory[] = [
@@ -133,11 +132,7 @@ export function Skills({ language }: SkillsProps) {
 
   return (
     <section id="skills" className="min-h-screen relative flex items-center py-20 px-4">
-      <motion.div
-        className="absolute inset-0 bg-gradient-to-b from-background to-muted/30 -z-10"
-        initial={{ opacity: 1 }}
-        viewport={{ once: true }}
-      />
+      <div className="absolute inset-0 bg-gradient-to-b from-background to-muted/30 -z-10" />
       <div className="container mx-auto">
         <SectionTitle
           title={t.title}
