@@ -6,6 +6,7 @@ import { ArrowLeft, ArrowUpRight } from "lucide-react";
 import { fadeInUp, staggerContainer } from "@/lib/animations";
 import { Card, CardContent } from "@/components/ui/card";
 import { LordIcon } from "@/components/shared/LordIcon";
+import { useEffect } from "react";
 
 // Static images with proper paths
 const images = [
@@ -216,6 +217,10 @@ export function ProjectDetails({ language }: ProjectDetailsProps) {
   const { id = "1" } = useParams();
   const projectData = projectsData[id];
   const metrics = projectMetrics[id];
+
+  useEffect(() => {
+    window.scrollTo(0, 0);
+  }, []);
 
   if (!projectData || !metrics) {
     setLocation("/");
@@ -532,7 +537,7 @@ export function ProjectDetails({ language }: ProjectDetailsProps) {
                   <Card className="overflow-hidden">
                     <div className="aspect-video relative">
                       <img
-                        src="/attached_assets/crescitafollower1.png"
+                        src="/assets/growth.png"
                         alt="Follower Growth Chart"
                         className="w-full h-full object-cover"
                         loading="lazy"
@@ -547,7 +552,7 @@ export function ProjectDetails({ language }: ProjectDetailsProps) {
                   <Card className="overflow-hidden">
                     <div className="aspect-video relative">
                       <img
-                        src="/attached_assets/analytics_maga3.png"
+                        src="/assets/engagement.png"
                         alt="User Engagement Analytics"
                         className="w-full h-full object-cover"
                         loading="lazy"
