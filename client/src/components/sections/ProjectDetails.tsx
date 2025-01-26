@@ -5,6 +5,12 @@ import { Button } from "@/components/ui/button";
 import { ArrowLeft, ArrowUpRight, Users, TrendingUp, Calendar, Globe, Target, Search, Star, FileEdit, BarChart3, Wrench, Trophy, PiggyBank } from "lucide-react";
 import { fadeInUp, staggerContainer } from "@/lib/animations";
 import { Card, CardContent } from "@/components/ui/card";
+import {
+  Accordion,
+  AccordionContent,
+  AccordionItem,
+  AccordionTrigger,
+} from "@/components/ui/accordion";
 import { 
   Carousel,
   CarouselContent,
@@ -347,256 +353,274 @@ export function ProjectDetails({ language }: ProjectDetailsProps) {
 
           {id === "1" && (
             <>
-              <motion.div variants={fadeInUp}>
-                <SectionHeader
-                  title={language === "en" ? "Editorial Strategy" : "Strategia Editoriale"}
-                  icon={FileEdit}
-                />
-                <div className="grid md:grid-cols-2 gap-6">
-                  <Card className="p-6">
-                    <h3 className="font-semibold mb-4">
-                      {language === "en" ? "Content Planning" : "Pianificazione Contenuti"}
-                    </h3>
-                    <ul className="space-y-2 text-muted-foreground">
-                      <li>
-                        •{" "}
-                        {language === "en"
-                          ? "Developed monthly editorial calendar for Instagram and Facebook"
-                          : "Sviluppato calendario editoriale mensile per Instagram e Facebook"}
-                      </li>
-                      <li>
-                        •{" "}
-                        {language === "en"
-                          ? "Implemented content categorization system"
-                          : "Implementato sistema di categorizzazione dei contenuti"}
-                      </li>
-                      <li>
-                        •{" "}
-                        {language === "en"
-                          ? "Managed multi-platform communication strategy"
-                          : "Gestito strategia di comunicazione multipiattaforma"}
-                      </li>
-                    </ul>
-                  </Card>
-                  <Card className="p-6">
-                    <h3 className="font-semibold mb-4">
-                      {language === "en" ? "Performance & Analytics" : "Performance e Analytics"}
-                    </h3>
-                    <ul className="space-y-2 text-muted-foreground">
-                      <li>
-                        •{" "}
-                        {language === "en"
-                          ? "Monitored and analyzed content performance"
-                          : "Monitorato e analizzato performance dei contenuti"}
-                      </li>
-                      <li>
-                        •{" "}
-                        {language === "en"
-                          ? "Optimized hashtag strategy for organic reach"
-                          : "Ottimizzato strategia hashtag per portata organica"}
-                      </li>
-                      <li>
-                        •{" "}
-                        {language === "en"
-                          ? "Implemented content workflow via Asana"
-                          : "Implementato workflow contenuti tramite Asana"}
-                      </li>
-                    </ul>
-                  </Card>
-                </div>
-              </motion.div>
+              <Accordion type="single" collapsible className="space-y-4">
+                <AccordionItem value="editorial-strategy" className="border rounded-lg hover:bg-accent/50 transition-colors">
+                  <AccordionTrigger className="px-4">
+                    <div className="flex items-center gap-3">
+                      <FileEdit className="w-5 h-5 text-primary" />
+                      <h2 className="text-xl font-semibold">
+                        {language === "en" ? "Editorial Strategy" : "Strategia Editoriale"}
+                      </h2>
+                    </div>
+                  </AccordionTrigger>
+                  <AccordionContent className="px-4">
+                    <div className="grid md:grid-cols-2 gap-6 pt-4">
+                      <Card className="p-6">
+                        <h3 className="font-semibold mb-4">
+                          {language === "en" ? "Content Planning" : "Pianificazione Contenuti"}
+                        </h3>
+                        <ul className="space-y-2 text-muted-foreground">
+                          <li>
+                            • {language === "en"
+                              ? "Developed monthly editorial calendar for Instagram and Facebook"
+                              : "Sviluppato calendario editoriale mensile per Instagram e Facebook"}
+                          </li>
+                          <li>
+                            • {language === "en"
+                              ? "Implemented content categorization system"
+                              : "Implementato sistema di categorizzazione dei contenuti"}
+                          </li>
+                          <li>
+                            • {language === "en"
+                              ? "Managed multi-platform communication strategy"
+                              : "Gestito strategia di comunicazione multipiattaforma"}
+                          </li>
+                        </ul>
+                      </Card>
+                      <Card className="p-6">
+                        <h3 className="font-semibold mb-4">
+                          {language === "en" ? "Performance & Analytics" : "Performance e Analytics"}
+                        </h3>
+                        <ul className="space-y-2 text-muted-foreground">
+                          <li>
+                            • {language === "en"
+                              ? "Monitored and analyzed content performance"
+                              : "Monitorato e analizzato performance dei contenuti"}
+                          </li>
+                          <li>
+                            • {language === "en"
+                              ? "Optimized hashtag strategy for organic reach"
+                              : "Ottimizzato strategia hashtag per portata organica"}
+                          </li>
+                          <li>
+                            • {language === "en"
+                              ? "Implemented content workflow via Asana"
+                              : "Implementato workflow contenuti tramite Asana"}
+                          </li>
+                        </ul>
+                      </Card>
+                    </div>
+                  </AccordionContent>
+                </AccordionItem>
 
-              <motion.div variants={fadeInUp}>
-                <SectionHeader
-                  title={language === "en" ? "Advertising Campaigns" : "Campagne Pubblicitarie"}
-                  icon={BarChart3}
-                />
-                <div className="grid md:grid-cols-3 gap-6">
-                  <Card className="p-6">
-                    <h3 className="font-semibold mb-4">2023 Performance</h3>
-                    <ul className="space-y-2 text-muted-foreground">
-                      <li>
-                        •{" "}
-                        {language === "en"
-                          ? "Budget optimization: €71 to €337/month"
-                          : "Ottimizzazione budget: da €71 a €337/mese"}
-                      </li>
-                      <li>
-                        •{" "}
-                        {language === "en"
-                          ? "Total reach: 296,973 users"
-                          : "Copertura totale: 296.973 utenti"}
-                      </li>
-                      <li>• CPC: €0.10 - €0.29</li>
-                    </ul>
-                  </Card>
-                  <Card className="p-6">
-                    <h3 className="font-semibold mb-4">
-                      {language === "en" ? "Growth Metrics" : "Metriche di Crescita"}
-                    </h3>
-                    <ul className="space-y-2 text-muted-foreground">
-                      <li>• Instagram: +536.5%</li>
-                      <li>• Facebook: +164.4%</li>
-                      <li>
-                        •{" "}
-                        {language === "en"
-                          ? "Web traffic: +140%"
-                          : "Traffico web: +140%"}
-                      </li>
-                    </ul>
-                  </Card>
-                  <Card className="p-6">
-                    <h3 className="font-semibold mb-4">ROI</h3>
-                    <ul className="space-y-2 text-muted-foreground">
-                      <li>
-                        •{" "}
-                        {language === "en"
-                          ? "Ticket sales growth: 200%"
-                          : "Crescita vendite biglietti: 200%"}
-                      </li>
-                      <li>
-                        •{" "}
-                        {language === "en"
-                          ? "Average session duration: 42s"
-                          : "Durata media sessione: 42s"}
-                      </li>
-                      <li>
-                        •{" "}
-                        {language === "en"
-                          ? "Checkout page in top 10"
-                          : "Pagina checkout in top 10"}
-                      </li>
-                    </ul>
-                  </Card>
-                </div>
-              </motion.div>
+                <AccordionItem value="advertising-campaigns" className="border rounded-lg hover:bg-accent/50 transition-colors">
+                  <AccordionTrigger className="px-4">
+                    <div className="flex items-center gap-3">
+                      <BarChart3 className="w-5 h-5 text-primary" />
+                      <h2 className="text-xl font-semibold">
+                        {language === "en" ? "Advertising Campaigns" : "Campagne Pubblicitarie"}
+                      </h2>
+                    </div>
+                  </AccordionTrigger>
+                  <AccordionContent className="px-4">
+                    <div className="grid md:grid-cols-3 gap-6 pt-4">
+                      <Card className="p-6">
+                        <h3 className="font-semibold mb-4">2023 Performance</h3>
+                        <ul className="space-y-2 text-muted-foreground">
+                          <li>
+                            • {language === "en"
+                              ? "Budget optimization: €71 to €337/month"
+                              : "Ottimizzazione budget: da €71 a €337/mese"}
+                          </li>
+                          <li>
+                            • {language === "en"
+                              ? "Total reach: 296,973 users"
+                              : "Copertura totale: 296.973 utenti"}
+                          </li>
+                          <li>• CPC: €0.10 - €0.29</li>
+                        </ul>
+                      </Card>
+                      <Card className="p-6">
+                        <h3 className="font-semibold mb-4">
+                          {language === "en" ? "Growth Metrics" : "Metriche di Crescita"}
+                        </h3>
+                        <ul className="space-y-2 text-muted-foreground">
+                          <li>• Instagram: +536.5%</li>
+                          <li>• Facebook: +164.4%</li>
+                          <li>
+                            • {language === "en"
+                              ? "Web traffic: +140%"
+                              : "Traffico web: +140%"}
+                          </li>
+                        </ul>
+                      </Card>
+                      <Card className="p-6">
+                        <h3 className="font-semibold mb-4">ROI</h3>
+                        <ul className="space-y-2 text-muted-foreground">
+                          <li>
+                            • {language === "en"
+                              ? "Ticket sales growth: 200%"
+                              : "Crescita vendite biglietti: 200%"}
+                          </li>
+                          <li>
+                            • {language === "en"
+                              ? "Average session duration: 42s"
+                              : "Durata media sessione: 42s"}
+                          </li>
+                          <li>
+                            • {language === "en"
+                              ? "Checkout page in top 10"
+                              : "Pagina checkout in top 10"}
+                          </li>
+                        </ul>
+                      </Card>
+                    </div>
+                  </AccordionContent>
+                </AccordionItem>
 
-              <motion.div variants={fadeInUp}>
-                <SectionHeader
-                  title={language === "en" ? "Crowdfunding Campaign" : "Campagna Crowdfunding"}
-                  icon={PiggyBank}
-                />
-                <Card className="p-6">
-                  <div className="grid md:grid-cols-2 gap-6">
-                    <div>
-                      <h3 className="font-semibold mb-4">FIUMEDENTRO</h3>
-                      <p className="text-muted-foreground mb-4">
-                        {language === "en"
-                          ? "A successful crowdfunding campaign to regenerate the Murazzi area, transforming abandoned spaces into an inclusive public space."
-                          : "Una campagna di crowdfunding di successo per rigenerare l'area dei Murazzi, trasformando spazi abbandonati in uno spazio pubblico inclusivo."}
-                      </p>
-                      <div className="flex items-center gap-4 mb-4">
+                <AccordionItem value="crowdfunding" className="border rounded-lg hover:bg-accent/50 transition-colors">
+                  <AccordionTrigger className="px-4">
+                    <div className="flex items-center gap-3">
+                      <PiggyBank className="w-5 h-5 text-primary" />
+                      <h2 className="text-xl font-semibold">
+                        {language === "en" ? "Crowdfunding Campaign" : "Campagna Crowdfunding"}
+                      </h2>
+                    </div>
+                  </AccordionTrigger>
+                  <AccordionContent className="px-4">
+                    <Card className="p-6 mt-4">
+                      <div className="grid md:grid-cols-2 gap-6">
                         <div>
-                          <p className="text-2xl font-bold">€5,597</p>
-                          <p className="text-sm text-muted-foreground">
-                            {language === "en" ? "Funds Raised" : "Fondi Raccolti"}
+                          <h3 className="font-semibold mb-4">FIUMEDENTRO</h3>
+                          <p className="text-muted-foreground mb-4">
+                            {language === "en"
+                              ? "A successful crowdfunding campaign to regenerate the Murazzi area, transforming abandoned spaces into an inclusive public space."
+                              : "Una campagna di crowdfunding di successo per rigenerare l'area dei Murazzi, trasformando spazi abbandonati in uno spazio pubblico inclusivo."}
                           </p>
+                          <div className="flex items-center gap-4 mb-4">
+                            <div>
+                              <p className="text-2xl font-bold">€5,597</p>
+                              <p className="text-sm text-muted-foreground">
+                                {language === "en" ? "Funds Raised" : "Fondi Raccolti"}
+                              </p>
+                            </div>
+                            <div>
+                              <p className="text-2xl font-bold">300+</p>
+                              <p className="text-sm text-muted-foreground">
+                                {language === "en" ? "Supporters" : "Sostenitori"}
+                              </p>
+                            </div>
+                          </div>
                         </div>
                         <div>
-                          <p className="text-2xl font-bold">300+</p>
-                          <p className="text-sm text-muted-foreground">
-                            {language === "en" ? "Supporters" : "Sostenitori"}
-                          </p>
+                          <h4 className="font-semibold mb-2">
+                            {language === "en" ? "Campaign Highlights" : "Punti Salienti"}
+                          </h4>
+                          <ul className="space-y-2 text-muted-foreground">
+                            <li>
+                              • {language === "en"
+                                ? "Integrated digital & offline strategy"
+                                : "Strategia integrata digitale e offline"}
+                            </li>
+                            <li>
+                              • {language === "en"
+                                ? "Custom rewards program"
+                                : "Programma ricompense personalizzato"}
+                            </li>
+                            <li>
+                              • {language === "en"
+                                ? "Community engagement events"
+                                : "Eventi di coinvolgimento community"}
+                            </li>
+                          </ul>
                         </div>
                       </div>
-                    </div>
-                    <div>
-                      <h4 className="font-semibold mb-2">
-                        {language === "en" ? "Campaign Highlights" : "Punti Salienti"}
-                      </h4>
-                      <ul className="space-y-2 text-muted-foreground">
-                        <li>
-                          •{" "}
-                          {language === "en"
-                            ? "Integrated digital & offline strategy"
-                            : "Strategia integrata digitale e offline"}
-                        </li>
-                        <li>
-                          •{" "}
-                          {language === "en"
-                            ? "Custom rewards program"
-                            : "Programma ricompense personalizzato"}
-                        </li>
-                        <li>
-                          •{" "}
-                          {language === "en"
-                            ? "Community engagement events"
-                            : "Eventi di coinvolgimento community"}
-                        </li>
-                      </ul>
-                    </div>
-                  </div>
-                </Card>
-              </motion.div>
+                    </Card>
+                  </AccordionContent>
+                </AccordionItem>
 
-              <motion.div variants={fadeInUp}>
-                <SectionHeader
-                  title={language === "en" ? "Growth & Analytics" : "Crescita e Analytics"}
-                  icon={TrendingUp}
-                />
-                <div className="grid md:grid-cols-2 gap-6">
-                  <Card className="overflow-hidden">
-                    <div className="aspect-video relative">
-                      <img
-                        src="/assets/growth.png"
-                        alt="Follower Growth Chart"
-                        className="w-full h-full object-cover"
-                        loading="lazy"
-                      />
+                <AccordionItem value="growth-analytics" className="border rounded-lg hover:bg-accent/50 transition-colors">
+                  <AccordionTrigger className="px-4">
+                    <div className="flex items-center gap-3">
+                      <TrendingUp className="w-5 h-5 text-primary" />
+                      <h2 className="text-xl font-semibold">
+                        {language === "en" ? "Growth & Analytics" : "Crescita e Analytics"}
+                      </h2>
                     </div>
-                    <CardContent className="p-4">
-                      <h3 className="font-semibold">
-                        {language === "en" ? "Follower Growth" : "Crescita Follower"}
-                      </h3>
-                    </CardContent>
-                  </Card>
-                  <Card className="overflow-hidden">
-                    <div className="aspect-video relative">
-                      <img
-                        src="/assets/engagement.png"
-                        alt="User Engagement Analytics"
-                        className="w-full h-full object-cover"
-                        loading="lazy"
-                      />
-                    </div>
-                    <CardContent className="p-4">
-                      <h3 className="font-semibold">
-                        {language === "en" ? "User Engagement" : "Coinvolgimento Utenti"}
-                      </h3>
-                    </CardContent>
-                  </Card>
-                </div>
-              </motion.div>
-
-              <motion.div variants={fadeInUp}>
-                <SectionHeader
-                  title={language === "en" ? "Social Media Content" : "Contenuti Social Media"}
-                  icon={Users}
-                />
-
-                <Carousel className="w-full max-w-5xl mx-auto">
-                  <CarouselContent>
-                    {images.map((image, index) => (
-                      <CarouselItem key={index}>
-                        <div className="p-1">
-                          <Card className="overflow-hidden">
-                            <div className="aspect-[16/9]">
-                              <img
-                                src={image}
-                                alt={`Social Media Content ${index + 1}`}
-                                className="w-full h-full object-cover"
-                                loading="lazy"
-                              />
-                            </div>
-                          </Card>
+                  </AccordionTrigger>
+                  <AccordionContent className="px-4">
+                    <div className="grid md:grid-cols-2 gap-6 pt-4">
+                      <Card className="overflow-hidden">
+                        <div className="aspect-video relative">
+                          <img
+                            src="/assets/growth.png"
+                            alt="Follower Growth Chart"
+                            className="w-full h-full object-cover"
+                            loading="lazy"
+                          />
                         </div>
-                      </CarouselItem>
-                    ))}
-                  </CarouselContent>
-                  <CarouselPrevious />
-                  <CarouselNext />
-                </Carousel>
-              </motion.div>
+                        <CardContent className="p-4">
+                          <h3 className="font-semibold">
+                            {language === "en" ? "Follower Growth" : "Crescita Follower"}
+                          </h3>
+                        </CardContent>
+                      </Card>
+                      <Card className="overflow-hidden">
+                        <div className="aspect-video relative">
+                          <img
+                            src="/assets/engagement.png"
+                            alt="User Engagement Analytics"
+                            className="w-full h-full object-cover"
+                            loading="lazy"
+                          />
+                        </div>
+                        <CardContent className="p-4">
+                          <h3 className="font-semibold">
+                            {language === "en" ? "User Engagement" : "Coinvolgimento Utenti"}
+                          </h3>
+                        </CardContent>
+                      </Card>
+                    </div>
+                  </AccordionContent>
+                </AccordionItem>
+
+                <AccordionItem value="social-media" className="border rounded-lg hover:bg-accent/50 transition-colors">
+                  <AccordionTrigger className="px-4">
+                    <div className="flex items-center gap-3">
+                      <Users className="w-5 h-5 text-primary" />
+                      <h2 className="text-xl font-semibold">
+                        {language === "en" ? "Social Media Content" : "Contenuti Social Media"}
+                      </h2>
+                    </div>
+                  </AccordionTrigger>
+                  <AccordionContent className="px-4">
+                    <div className="pt-4">
+                      <Carousel className="w-full max-w-5xl mx-auto">
+                        <CarouselContent>
+                          {images.map((image, index) => (
+                            <CarouselItem key={index}>
+                              <div className="p-1">
+                                <Card className="overflow-hidden">
+                                  <div className="aspect-[16/9]">
+                                    <img
+                                      src={image}
+                                      alt={`Social Media Content ${index + 1}`}
+                                      className="w-full h-full object-cover"
+                                      loading="lazy"
+                                    />
+                                  </div>
+                                </Card>
+                              </div>
+                            </CarouselItem>
+                          ))}
+                        </CarouselContent>
+                        <CarouselPrevious />
+                        <CarouselNext />
+                      </Carousel>
+                    </div>
+                  </AccordionContent>
+                </AccordionItem>
+              </Accordion>
             </>
           )}
         </motion.div>
