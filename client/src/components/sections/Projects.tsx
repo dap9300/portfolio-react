@@ -88,29 +88,41 @@ const projects = [
   {
     id: 3,
     title: {
-      en: "B2B LinkedIn Growth Strategy",
-      it: "Strategia di Crescita LinkedIn B2B"
+      en: "Studi Fisioterapici Manunta - Website & SEO Optimization | Social Media",
+      it: "Studi Fisioterapici Manunta - Sito Web & Ottimizzazione SEO | Social Media"
     },
     description: {
-      en: "Implemented comprehensive LinkedIn marketing strategy for a B2B tech company, achieving 180% increase in lead generation and 300% growth in profile visits.",
-      it: "Implementato una strategia di marketing LinkedIn completa per un'azienda tech B2B, ottenendo un aumento del 180% nella generazione di lead e 300% di crescita nelle visite al profilo."
+      en: "Management of digital marketing strategies for a physiotherapy clinic, focusing on Facebook, Instagram, and Google Ads campaigns to increase online bookings and local brand awareness.",
+      it: "Gestione delle strategie di marketing digitale per uno studio di fisioterapia, con focus su campagne Facebook, Instagram e Google Ads per aumentare le prenotazioni online e la brand awareness locale"
     },
-    image: "https://images.unsplash.com/photo-1560472355-536de3962603?q=80&w=2574&auto=format&fit=crop",
-    technologies: ["LinkedIn Marketing", "B2B Strategy", "Content Marketing", "Lead Generation"],
+    image: "https://images.unsplash.com/photo-1576091160550-2173dba999ef?q=80&w=2574&auto=format&fit=crop",
+    technologies: [
+      "Creazione e ottimizzazione Sito Web",
+      "Content Creation",
+      "Google Analytics"
+    ],
     link: "/project/3"
   },
   {
     id: 4,
     title: {
-      en: "Restaurant Digital Presence Optimization",
-      it: "Ottimizzazione Presenza Digitale Ristorante"
+      en: "Digital Trade Capital - Content Strategy & Editorial Management | Technical SEO & Website Optimization | Lead Generation & Contact Management",
+      it: "Digital Trade Capital - Content Strategy & Editorial Management | Technical SEO & Website Optimization | Lead Generation & Contact Management"
     },
     description: {
-      en: "Revamped digital presence for a high-end restaurant chain, increasing online reservations by 200% and achieving 150% growth in social media engagement.",
-      it: "Rinnovato la presenza digitale per una catena di ristoranti di alta fascia, aumentando le prenotazioni online del 200% e ottenendo una crescita del 150% nel coinvolgimento sui social media."
+      en: "Managed strategic and operational coordination in a fintech organization, focusing on developing integrated digital strategies, performance optimization, and cross-functional team management.",
+      it: "Ho gestito il coordinamento strategico e operativo in un'organizzazione fintech, con un focus sullo sviluppo di strategie digitali integrate, sull'ottimizzazione delle performance e sulla gestione di team cross-funzionali"
     },
-    image: "https://images.unsplash.com/photo-1517248135467-4c7edcad34c4?q=80&w=2574&auto=format&fit=crop",
-    technologies: ["Local SEO", "Social Media Marketing", "Review Management", "Content Strategy"],
+    image: "https://images.unsplash.com/photo-1551288049-bebda4e38f71?q=80&w=2574&auto=format&fit=crop",
+    technologies: [
+      "Team Management",
+      "Editorial Management",
+      "Content Strategy",
+      "Technical SEO",
+      "Google Analytics",
+      "Email Marketing",
+      "Cross-functional Collaboration"
+    ],
     link: "/project/4"
   }
 ];
