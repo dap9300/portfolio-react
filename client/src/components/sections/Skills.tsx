@@ -97,8 +97,8 @@ export function Skills({ language }: SkillsProps) {
           title={t.title} 
           icon="Brain"
         />
-        <div className="grid md:grid-cols-2 gap-8 auto-rows-fr">
-          <div className="space-y-8 grid auto-rows-fr">
+        <div className="grid md:grid-cols-2 gap-8">
+          <div className="space-y-8">
             {leftSkillCategories.map((category, index) => (
               <Card key={index} className="h-full">
                 <CardContent className="p-6 h-full">
@@ -122,9 +122,9 @@ export function Skills({ language }: SkillsProps) {
               </Card>
             ))}
           </div>
-          <div className="space-y-8 grid auto-rows-fr">
+          <div className="space-y-8">
             {rightSkillCategories.map((category, index) => (
-              <Card key={index} className="h-full">
+              <Card key={index} className={`${index === 1 ? "!mt-[calc(100%-184px)]" : index === 2 ? "!mt-[calc(100%-136px)]" : ""}`}>
                 <CardContent className="p-6 h-full">
                   <div className="flex items-center gap-4 mb-4">
                     <category.icon className="w-8 h-8 text-primary" />
