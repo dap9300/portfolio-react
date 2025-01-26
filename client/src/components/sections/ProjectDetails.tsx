@@ -298,7 +298,8 @@ export function ProjectDetails({ language, onLanguageChange }: ProjectDetailsPro
       initial={{ opacity: 0 }}
       animate={{ opacity: 1 }}
       exit={{ opacity: 0 }}
-      className="min-h-screen bg-background"
+      transition={{ duration: 0.3 }}
+      className="min-h-screen bg-background overflow-auto"
     >
       <div className="fixed top-4 right-4 z-50 flex items-center gap-4">
         <div className="fixed top-4 right-[100px]">
