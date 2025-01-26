@@ -26,12 +26,16 @@ export default function Home() {
         language={language}
         onSectionClick={scrollToSection}
       />
-      <div className="fixed top-4 right-4 z-50 flex items-center gap-2">
-        <ThemeToggle />
-        <LanguageSwitch
-          currentLanguage={language}
-          onLanguageChange={setLanguage}
-        />
+      <div className="fixed top-4 right-4 z-50 flex items-center">
+        <div className="mr-4">
+          <ThemeToggle />
+        </div>
+        <div className="min-w-[40px]">
+          <LanguageSwitch
+            currentLanguage={language}
+            onLanguageChange={setLanguage}
+          />
+        </div>
       </div>
       <Hero
         language={language}
