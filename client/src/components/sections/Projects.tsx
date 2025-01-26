@@ -1,6 +1,12 @@
 import { motion } from "framer-motion";
 import { useState } from "react";
 import { Card, CardContent } from "@/components/ui/card";
+import { Language } from "@/types";
+import { fadeInUp, staggerContainer } from "@/lib/animations";
+
+interface ProjectsProps {
+  language: Language;
+}
 
 interface Project {
   id: number;
@@ -25,7 +31,7 @@ const sampleProjects: Project[] = [
   }
 ];
 
-export function Projects() {
+export function Projects({ language }: ProjectsProps) {
   const [selectedProject, setSelectedProject] = useState<number | null>(null);
 
   const containerVariants = {
@@ -58,7 +64,7 @@ export function Projects() {
           animate={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.5 }}
         >
-          Featured Projects
+          {language === 'en' ? 'Featured Projects' : 'Progetti in Evidenza'}
         </motion.h2>
 
         <motion.div 
