@@ -229,21 +229,6 @@ export function ProjectDetails({ language, onLanguageChange }: ProjectDetailsPro
   const { ThemeToggle } = require("@/components/shared/ThemeToggle");
   const { LanguageSwitch } = require("@/components/shared/LanguageSwitch");
 
-  return (
-    <motion.div
-      initial={{ opacity: 0 }}
-      animate={{ opacity: 1 }}
-      exit={{ opacity: 0 }}
-      className="min-h-screen bg-background"
-    >
-      <div className="fixed top-4 right-4 z-50 flex items-center gap-4">
-        <ThemeToggle />
-        <LanguageSwitch
-          currentLanguage={language}
-          onLanguageChange={onLanguageChange}
-        />
-      </div>
-
   if (!projectData || !metrics) {
     setLocation("/");
     return null;
