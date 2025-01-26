@@ -289,19 +289,20 @@ export function ProjectDetails({ language, onLanguageChange }: ProjectDetailsPro
   }
 
   return (
-    <div className="min-h-screen bg-background">
+    <motion.div
+      initial={{ opacity: 0 }}
+      animate={{ opacity: 1 }}
+      exit={{ opacity: 0 }}
+      transition={{ duration: 0.3 }}
+      className="min-h-screen bg-background"
+      key={id}
+    >
       <div className="fixed top-4 right-4 z-50 flex items-center gap-4">
         <ThemeToggle />
         <LanguageSwitch currentLanguage={language} onLanguageChange={onLanguageChange} />
       </div>
 
-      <motion.div
-        initial={{ opacity: 0 }}
-        animate={{ opacity: 1 }}
-        exit={{ opacity: 0 }}
-        transition={{ duration: 0.3 }}
-        className="relative"
-      >
+      <div className="relative">
         <div className="h-[60vh] relative">
           <div
             className="absolute inset-0 bg-cover bg-center"
@@ -706,10 +707,6 @@ export function ProjectDetails({ language, onLanguageChange }: ProjectDetailsPro
                                   ? "Monitored and analyzed content performance"
                                   : "Monitorato e analizzato performance dei contenuti"}
                               </li>
-
-```
-
-```typescript
                               <li>
                                 • {language === "en"
                                   ? "Optimized hashtag strategy for organic reach"
@@ -907,8 +904,8 @@ export function ProjectDetails({ language, onLanguageChange }: ProjectDetailsPro
             )}
           </motion.div>
         </div>
-      </motion.div>
-    </div>
+      </div>
+    </motion.div>
   );
 }
 

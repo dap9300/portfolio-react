@@ -6,53 +6,27 @@ import NotFound from "@/pages/not-found";
 import Home from "@/pages/Home";
 import { ProjectDetails } from "@/components/sections/ProjectDetails";
 import { useState } from 'react';
-import { AnimatePresence, motion } from "framer-motion";
-
-// Page transition variants
-const pageVariants = {
-  initial: {
-    opacity: 0,
-  },
-  enter: {
-    opacity: 1,
-    transition: {
-      duration: 0.3,
-      ease: "easeInOut",
-    },
-  },
-  exit: {
-    opacity: 0,
-    transition: {
-      duration: 0.2,
-      ease: "easeInOut",
-    },
-  },
-};
+import { AnimatePresence } from "framer-motion";
+import { Language } from "@/types";
 
 function Router() {
-  const [language, setLanguage] = useState<'en' | 'it'>('it');
+  const [language, setLanguage] = useState<Language>('it');
   const [location] = useLocation();
 
   return (
     <div className="max-w-[1200px] mx-auto px-8">
-      <AnimatePresence mode="wait">
-        <motion.div
-          key={location}
-          initial="initial"
-          animate="enter"
-          exit="exit"
-          variants={pageVariants}
-        >
-          <Switch>
-            <Route path="/">
-              {() => <Home language={language} onLanguageChange={setLanguage} />}
-            </Route>
-            <Route path="/project/:id">
-              {(params) => <ProjectDetails language={language} onLanguageChange={setLanguage} />}
-            </Route>
-            <Route component={NotFound} />
-          </Switch>
-        </motion.div>
+      <AnimatePresence mode="wait" initial={false}>
+        <Switch location={location} key={location}>
+          <Route path="/">
+            {() => <Home language={language} onLanguageChange={setLanguage} />}
+          </Route>
+          <Route path="/project/:id">
+            {(params) => (
+              <ProjectDetails language={language} onLanguageChange={setLanguage} />
+            )}
+          </Route>
+          <Route component={NotFound} />
+        </Switch>
       </AnimatePresence>
     </div>
   );

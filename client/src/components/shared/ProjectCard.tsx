@@ -3,6 +3,7 @@ import { Button } from "@/components/ui/button";
 import { Project, Language } from "@/types";
 import { ExternalLink } from "lucide-react";
 import { useLocation } from "wouter";
+import { motion } from "framer-motion";
 
 interface ProjectCardProps {
   project: Project;
@@ -13,7 +14,11 @@ export function ProjectCard({ project, language }: ProjectCardProps) {
   const [, setLocation] = useLocation();
 
   return (
-    <div
+    <motion.div
+      initial={{ opacity: 0 }}
+      animate={{ opacity: 1 }}
+      exit={{ opacity: 0 }}
+      transition={{ duration: 0.3 }}
       className="h-full cursor-pointer"
       onClick={() => setLocation(`/project/${project.id}`)}
     >
@@ -53,6 +58,6 @@ export function ProjectCard({ project, language }: ProjectCardProps) {
           )}
         </CardContent>
       </Card>
-    </div>
+    </motion.div>
   );
 }
