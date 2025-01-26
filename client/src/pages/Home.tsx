@@ -11,7 +11,7 @@ import { LanguageSwitch } from "@/components/shared/LanguageSwitch";
 import { ThemeToggle } from "@/components/shared/ThemeToggle";
 
 export default function Home() {
-  const [language, setLanguage] = useState<Language>("en");
+  const [language, setLanguage] = useState<Language>("it");
 
   const scrollToSection = (sectionId: string) => {
     const element = document.getElementById(sectionId);
@@ -27,11 +27,11 @@ export default function Home() {
         onSectionClick={scrollToSection}
       />
       <div className="fixed top-4 right-4 z-50 flex items-center gap-2">
+        <ThemeToggle />
         <LanguageSwitch
           currentLanguage={language}
           onLanguageChange={setLanguage}
         />
-        <ThemeToggle />
       </div>
       <Hero
         language={language}
