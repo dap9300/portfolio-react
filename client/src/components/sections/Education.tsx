@@ -17,6 +17,7 @@ interface EducationProps {
 
 const education = [
   {
+    id: 1,
     period: "2015 - 2018",
     degree: {
       en: "Master's Degree in ICT and Media Communication",
@@ -43,6 +44,7 @@ const education = [
     }
   },
   {
+    id: 2,
     period: "2012 - 2015",
     degree: {
       en: "Bachelor's Degree in Philosophy",
@@ -65,7 +67,7 @@ export function Education({ language }: EducationProps) {
   const t = translations[language].education;
 
   return (
-    <section 
+    <motion.section 
       id="education" 
       className="min-h-screen relative flex items-center py-20 px-4 bg-muted/30"
     >
@@ -88,14 +90,14 @@ export function Education({ language }: EducationProps) {
           viewport={{ once: true }}
           className="max-w-3xl mx-auto"
         >
-          {education.map((item, index) => (
+          {education.map((item) => (
             <motion.div
-              key={index}
+              key={item.id}
               variants={fadeInUp}
               className="mb-6 last:mb-0"
             >
               <Accordion type="single" collapsible>
-                <AccordionItem value={`item-${index}`}>
+                <AccordionItem value={`item-${item.id}`}>
                   <Card>
                     <CardContent className="p-6">
                       <AccordionTrigger className="hover:no-underline">
@@ -153,6 +155,6 @@ export function Education({ language }: EducationProps) {
           ))}
         </motion.div>
       </div>
-    </section>
+    </motion.section>
   );
 }
