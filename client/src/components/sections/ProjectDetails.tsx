@@ -14,8 +14,15 @@ import {
   AccordionTrigger,
 } from "@/components/ui/accordion";
 import { useEffect, useMemo } from "react";
+import useEmblaCarousel from 'embla-carousel-react';
 
-// Project data definition remains the same...
+// Update the images array to use absolute paths
+const images = [
+  "/assets/oldsocial1.png",
+  "/assets/oldsocial2.png",
+  "/assets/sito-eventi-1.png",
+];
+
 const projectsData: Record<string, Project> = {
   "1": {
     id: 1,
@@ -258,12 +265,6 @@ const SectionHeader = ({ title, icon: Icon }: { title: string; icon: any }) => (
   </div>
 );
 
-// Update the images array to use absolute paths
-const images = [
-  "/assets/oldsocial1.png",
-  "/assets/oldsocial2.png",
-  "/assets/sito-eventi-1.png",
-];
 
 interface ProjectDetailsProps {
   language: Language;
@@ -275,16 +276,13 @@ export function ProjectDetails({ language, onLanguageChange }: ProjectDetailsPro
   const params = useParams();
   const id = params?.id ?? "1";
 
-  // Memoize project data to prevent unnecessary re-renders
   const projectData = useMemo(() => projectsData[id], [id]);
   const metrics = useMemo(() => projectMetrics[id], [id]);
 
   useEffect(() => {
-    // Scroll to top when component mounts or id changes
     window.scrollTo(0, 0);
   }, [id]);
 
-  // Redirect to home if project not found
   if (!projectData || !metrics) {
     setLocation("/");
     return null;
@@ -304,7 +302,6 @@ export function ProjectDetails({ language, onLanguageChange }: ProjectDetailsPro
         transition={{ duration: 0.3 }}
         className="relative"
       >
-        {/* Hero Section */}
         <div className="h-[60vh] relative">
           <div
             className="absolute inset-0 bg-cover bg-center"
@@ -330,7 +327,6 @@ export function ProjectDetails({ language, onLanguageChange }: ProjectDetailsPro
           </div>
         </div>
 
-        {/* Content Section */}
         <div className="container mx-auto max-w-6xl py-12 px-4">
           <motion.button
             variants={fadeInUp}
@@ -343,18 +339,16 @@ export function ProjectDetails({ language, onLanguageChange }: ProjectDetailsPro
             {language === "en" ? "Back to Projects" : "Torna ai Progetti"}
           </motion.button>
 
-          {/* Project Details */}
-          <motion.div 
+          <motion.div
             variants={staggerContainer}
             initial="hidden"
             animate="visible"
             className="grid gap-8"
           >
-            {/* Metrics */}
             <motion.div variants={fadeInUp} className="grid grid-cols-1 md:grid-cols-3 gap-6">
               {metrics.map((metric, index) => {
                 let Icon;
-                switch(metric.icon) {
+                switch (metric.icon) {
                   case "rjzlcjqi": Icon = Users; break;
                   case "gkosxwgv": Icon = TrendingUp; break;
                   case "mzjnwzka": Icon = Calendar; break;
@@ -380,7 +374,6 @@ export function ProjectDetails({ language, onLanguageChange }: ProjectDetailsPro
               })}
             </motion.div>
 
-            {/* Description */}
             <motion.div variants={fadeInUp} className="grid md:grid-cols-3 gap-8">
               <div className="md:col-span-2">
                 <div className="flex items-center gap-3 mb-6">
@@ -389,7 +382,7 @@ export function ProjectDetails({ language, onLanguageChange }: ProjectDetailsPro
                     {language === "en" ? "Project Overview" : "Panoramica del Progetto"}
                   </h2>
                 </div>
-                <div 
+                <div
                   className="text-muted-foreground whitespace-pre-line"
                   dangerouslySetInnerHTML={{
                     __html: projectData.description[language]
@@ -398,7 +391,6 @@ export function ProjectDetails({ language, onLanguageChange }: ProjectDetailsPro
                 />
               </div>
 
-              {/* Tools & Platforms */}
               <div>
                 <div className="flex items-center gap-3 mb-6">
                   <Wrench className="w-8 h-8 text-primary" />
@@ -420,7 +412,6 @@ export function ProjectDetails({ language, onLanguageChange }: ProjectDetailsPro
             {id === "1" && (
               <>
                 <Accordion type="single" collapsible className="space-y-4">
-                  {/* ...Accordion Items remain the same... */}
                   <AccordionItem value="overview" className="border rounded-lg hover:bg-accent/50 transition-colors">
                     <AccordionTrigger className="px-4">
                       <div className="flex items-center gap-3">
@@ -715,42 +706,27 @@ export function ProjectDetails({ language, onLanguageChange }: ProjectDetailsPro
                                   ? "Monitored and analyzed content performance"
                                   : "Monitorato e analizzato performance dei contenuti"}
                               </li>
+
+```
+
+```typescript
                               <li>
                                 • {language === "en"
                                   ? "Optimized hashtag strategy for organic reach"
                                   : "Ottimizzato strategia hashtag per portata organica"}
                               </li>
-                              <li>
-                                • {language === "en"
-                                  ? "Implemented content workflow via Asana"
-                                  : "Implementato workflow contenuti tramite Asana"}
-                              </li>
                             </ul>
                           </Card>
                         </div>
-                        <div>
-                          <Carousel className="w-full max-w-5xl mx-auto">
-                            <CarouselContent>
-                              {images.map((image, index) => (
-                                <CarouselItem key={index}>
-                                  <div className="p-1">
-                                    <Card className="overflow-hidden">
-                                      <div className="aspect-[16/9]">
-                                        <img
-                                          src={image}
-                                          alt={`Social Media Content ${index + 1}`}
-                                          className="w-full h-full object-cover"
-                                          loading="lazy"
-                                        />
-                                      </div>
-                                    </Card>
-                                  </div>
-                                </CarouselItem>
-                              ))}
-                            </CarouselContent>
-                            <CarouselPrevious />
-                            <CarouselNext />
-                          </Carousel>
+
+                        {/* Image Gallery */}
+                        <div className="mt-8">
+                          <Card className="p-6">
+                            <h3 className="font-semibold mb-4">
+                              {language === "en" ? "Project Gallery" : "Galleria del Progetto"}
+                            </h3>
+                            <ImageCarousel images={images} />
+                          </Card>
                         </div>
                       </div>
                     </AccordionContent>
@@ -932,6 +908,44 @@ export function ProjectDetails({ language, onLanguageChange }: ProjectDetailsPro
           </motion.div>
         </div>
       </motion.div>
+    </div>
+  );
+}
+
+function ImageCarousel({ images }: { images: string[] }) {
+  const [emblaRef, emblaApi] = useEmblaCarousel({ loop: true });
+
+  return (
+    <div className="overflow-hidden" ref={emblaRef}>
+      <div className="flex">
+        {images.map((image, index) => (
+          <div key={index} className="flex-[0_0_100%] min-w-0 relative">
+            <img
+              src={image}
+              alt={`Gallery image ${index + 1}`}
+              className="w-full h-64 object-cover rounded-lg"
+            />
+          </div>
+        ))}
+      </div>
+      <div className="flex justify-center gap-2 mt-4">
+        <Button
+          variant="outline"
+          size="sm"
+          onClick={() => emblaApi?.scrollPrev()}
+          className="px-3 py-2"
+        >
+          Previous
+        </Button>
+        <Button
+          variant="outline"
+          size="sm"
+          onClick={() => emblaApi?.scrollNext()}
+          className="px-3 py-2"
+        >
+          Next
+        </Button>
+      </div>
     </div>
   );
 }
