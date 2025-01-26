@@ -296,10 +296,7 @@ export function ProjectDetails({ language }: ProjectDetailsProps) {
                     <LordIcon
                       src={`https://cdn.lordicon.com/${metric.icon}.json`}
                       trigger="hover"
-                      colors={{
-                        primary: "#121331",
-                        secondary: "#121331"
-                      }}
+                      colors="primary:#121331,secondary:#121331"
                       size={32}
                     />
                     <ArrowUpRight className="w-5 h-5 text-green-500" />

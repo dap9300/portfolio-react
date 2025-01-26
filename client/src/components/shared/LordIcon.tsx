@@ -3,7 +3,7 @@ import { useEffect, useRef } from 'react';
 import lottie from "lottie-web";
 import { defineElement } from "lord-icon-element";
 
-// Initialize lord-icon element only once
+// Initialize lord-icon element if it hasn't been initialized yet
 if (typeof window !== 'undefined' && !customElements.get('lord-icon')) {
   defineElement(lottie.loadAnimation);
 }
@@ -26,26 +26,30 @@ export function LordIcon({
   size = 32,
   delay = 0,
   colors = {
-    primary: "#121331",
-    secondary: "#121331"
+    primary: "var(--primary)",
+    secondary: "var(--primary)"
   },
   className = ""
 }: LordIconProps) {
   const iconRef = useRef<HTMLElement>(null);
 
   useEffect(() => {
-    if (iconRef.current) {
-      const element = iconRef.current;
-      element.setAttribute("src", src);
-      element.setAttribute("trigger", trigger);
-      element.setAttribute("colors", `primary:${colors.primary},secondary:${colors.secondary}`);
-      element.setAttribute("delay", delay.toString());
-    }
-  }, [src, trigger, colors, delay]);
+    const loadIcon = async () => {
+      if (iconRef.current) {
+        iconRef.current.setAttribute("colors", `primary:${colors.primary},secondary:${colors.secondary}`);
+      }
+    };
+    
+    loadIcon();
+  }, [colors, src]);
 
   return (
     <lord-icon
       ref={iconRef}
+      src={src}
+      trigger={trigger}
+      delay={delay}
+      colors={`primary:${colors.primary},secondary:${colors.secondary}`}
       style={{ width: size, height: size }}
       className={className}
     />
