@@ -33,6 +33,7 @@ export function Overview({ language }: OverviewProps) {
       <div className="container mx-auto">
         <SectionTitle 
           title={language === 'en' ? 'Overview' : 'Panoramica'} 
+          icon="https://cdn.lordicon.com/xcxzayqr.json"
         />
         <motion.div
           variants={staggerContainer}
