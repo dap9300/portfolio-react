@@ -8,20 +8,37 @@ interface Project {
   description: string;
   technologies: string[];
   image?: string;
+  link?: string;
 }
 
-const sampleProjects: Project[] = [
+const projects: Project[] = [
   {
     id: 1,
-    title: "Digital Marketing Campaign",
-    description: "Led a comprehensive digital marketing campaign resulting in 150% increase in engagement",
-    technologies: ["Google Analytics", "Social Media Marketing", "Content Strategy"]
+    title: "Magazzino sul Po",
+    description: "Web platform development for Turin's historic music venue to showcase events, history, and cultural impact",
+    technologies: ["Next.js", "Tailwind CSS", "Prisma", "PostgreSQL"],
+    link: "https://magazzinosulpo.com"
   },
   {
     id: 2,
-    title: "Brand Development",
-    description: "Developed brand identity and guidelines for tech startup",
-    technologies: ["Branding", "Visual Design", "Strategy"]
+    title: "The Good Burger",
+    description: "E-commerce and delivery platform for a premium burger restaurant chain in Turin",
+    technologies: ["React", "Node.js", "Express", "MongoDB"],
+    link: "https://thegoodburger.it"
+  },
+  {
+    id: 3,
+    title: "Easycondo",
+    description: "Property management platform streamlining condo administration and resident communication",
+    technologies: ["Vue.js", "Firebase", "Cloud Functions", "Material UI"],
+    link: "https://easycondo.it"
+  },
+  {
+    id: 4,
+    title: "Off Topic",
+    description: "Digital presence development for Turin's cultural hub, featuring events, workshops, and artistic initiatives",
+    technologies: ["WordPress", "PHP", "MySQL", "Custom Theme"],
+    link: "https://offtopictorino.it"
   }
 ];
 
@@ -67,7 +84,7 @@ export function Projects() {
           initial="hidden"
           animate="visible"
         >
-          {sampleProjects.map((project) => (
+          {projects.map((project) => (
             <motion.div 
               key={project.id}
               variants={projectVariants}
@@ -91,6 +108,16 @@ export function Projects() {
                       </span>
                     ))}
                   </div>
+                  {project.link && (
+                    <a 
+                      href={project.link}
+                      target="_blank"
+                      rel="noopener noreferrer"
+                      className="mt-4 inline-block text-primary hover:underline"
+                    >
+                      Visit Project →
+                    </a>
+                  )}
                 </CardContent>
               </Card>
             </motion.div>
