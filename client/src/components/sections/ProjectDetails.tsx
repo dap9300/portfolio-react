@@ -762,9 +762,7 @@ export function ProjectDetails({ language, onLanguageChange }: ProjectDetailsPro
                     </div>
                   </AccordionContent>
                 </AccordionItem>
-              </Accordion>
-
-                <AccordionItem value="advertising-campaigns" className="border rounded-lg hover:bg-accent/50 transition-colors">
+              <AccordionItem value="advertising-campaigns" className="border rounded-lg hover:bg-accent/50 transition-colors">
                   <AccordionTrigger className="px-4">
                     <div className="flex items-center gap-3">
                       <BarChart3 className="w-5 h-5 text-primary" />
@@ -934,8 +932,6 @@ export function ProjectDetails({ language, onLanguageChange }: ProjectDetailsPro
                     </div>
                   </AccordionContent>
                 </AccordionItem>
-
-                
               </Accordion>
             </>
           )}
