@@ -8,10 +8,8 @@ export function useTheme() {
     const savedTheme = localStorage.getItem('theme') as Theme;
     if (savedTheme) return savedTheme;
 
-    // If no saved theme, check system preference
-    if (window.matchMedia('(prefers-color-scheme: dark)').matches) {
-      return 'dark';
-    }
+    // Always return light as default theme
+    return 'light';
 
     return 'light';
   });
