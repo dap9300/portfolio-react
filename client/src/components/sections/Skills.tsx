@@ -4,7 +4,7 @@ import { translations } from "@/lib/translations";
 import { Language } from "@/types";
 import { SectionTitle } from "@/components/shared/SectionTitle";
 import { Card, CardContent } from "@/components/ui/card";
-import { fadeInUp, staggerContainer } from "@/lib/animations";
+import { staggerContainer } from "@/lib/animations";
 import { ChartBar, Code2, PenTool, Brain, Languages, Heart } from "lucide-react";
 
 interface SkillsProps {
@@ -89,76 +89,64 @@ export function Skills({ language }: SkillsProps) {
     <section id="skills" className="min-h-screen relative flex items-center py-20 px-4">
       <motion.div
         className="absolute inset-0 bg-gradient-to-b from-background to-muted/30 -z-10"
-        initial={{ opacity: 0 }}
-        whileInView={{ opacity: 1 }}
+        initial={{ opacity: 1 }}
         viewport={{ once: true }}
-        transition={{ duration: 1 }}
       />
       <div className="container mx-auto">
         <SectionTitle 
           title={t.title} 
           icon="Brain"
         />
-        <motion.div
-          variants={staggerContainer}
-          initial="hidden"
-          whileInView="visible"
-          viewport={{ once: true }}
-          className="grid md:grid-cols-2 gap-8"
-        >
-          <div className="space-y-8">
+        <div className="grid md:grid-cols-2 gap-8 auto-rows-fr">
+          <div className="space-y-8 grid auto-rows-fr">
             {leftSkillCategories.map((category, index) => (
-              <motion.div key={index} variants={fadeInUp}>
-                <Card className="overflow-hidden">
-                  <CardContent className="p-6">
-                    <div className="flex items-center gap-4 mb-4">
-                      <category.icon className="w-8 h-8 text-primary" />
-                      <h3 className="text-xl font-semibold">
-                        {category.title[language]}
-                      </h3>
-                    </div>
-                    <ul className="space-y-2">
-                      {category.skills.map((skill, skillIndex) => (
-                        <li
-                          key={skillIndex}
-                          className="text-muted-foreground"
-                        >
-                          {skill}
-                        </li>
-                      ))}
-                    </ul>
-                  </CardContent>
-                </Card>
-              </motion.div>
+              <Card key={index} className="h-full">
+                <CardContent className="p-6 h-full">
+                  <div className="flex items-center gap-4 mb-4">
+                    <category.icon className="w-8 h-8 text-primary" />
+                    <h3 className="text-xl font-semibold">
+                      {category.title[language]}
+                    </h3>
+                  </div>
+                  <ul className="space-y-2">
+                    {category.skills.map((skill, skillIndex) => (
+                      <li
+                        key={skillIndex}
+                        className="text-muted-foreground"
+                      >
+                        {skill}
+                      </li>
+                    ))}
+                  </ul>
+                </CardContent>
+              </Card>
             ))}
           </div>
-          <div className="space-y-8">
+          <div className="space-y-8 grid auto-rows-fr">
             {rightSkillCategories.map((category, index) => (
-              <motion.div key={index} variants={fadeInUp}>
-                <Card className="overflow-hidden">
-                  <CardContent className="p-6">
-                    <div className="flex items-center gap-4 mb-4">
-                      <category.icon className="w-8 h-8 text-primary" />
-                      <h3 className="text-xl font-semibold">
-                        {category.title[language]}
-                      </h3>
-                    </div>
-                    <ul className="space-y-2">
-                      {category.skills.map((skill, skillIndex) => (
-                        <li
-                          key={skillIndex}
-                          className="text-muted-foreground"
-                        >
-                          {skill}
-                        </li>
-                      ))}
-                    </ul>
-                  </CardContent>
-                </Card>
-              </motion.div>
+              <Card key={index} className="h-full">
+                <CardContent className="p-6 h-full">
+                  <div className="flex items-center gap-4 mb-4">
+                    <category.icon className="w-8 h-8 text-primary" />
+                    <h3 className="text-xl font-semibold">
+                      {category.title[language]}
+                    </h3>
+                  </div>
+                  <ul className="space-y-2">
+                    {category.skills.map((skill, skillIndex) => (
+                      <li
+                        key={skillIndex}
+                        className="text-muted-foreground"
+                      >
+                        {skill}
+                      </li>
+                    ))}
+                  </ul>
+                </CardContent>
+              </Card>
             ))}
           </div>
-        </motion.div>
+        </div>
       </div>
     </section>
   );
