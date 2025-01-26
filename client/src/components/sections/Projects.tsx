@@ -1,131 +1,120 @@
 import { motion } from "framer-motion";
-import { useState } from "react";
-import { Card, CardContent } from "@/components/ui/card";
+import { translations } from "@/lib/translations";
+import { Language } from "@/types";
+import { SectionTitle } from "@/components/shared/SectionTitle";
+import { ProjectCard } from "@/components/shared/ProjectCard";
+import { staggerContainer, sectionVariants } from "@/lib/animations";
 
-interface Project {
-  id: number;
-  title: string;
-  description: string;
-  technologies: string[];
-  image?: string;
-  link?: string;
+interface ProjectsProps {
+  language: Language;
 }
 
-const projects: Project[] = [
-  {
-    id: 1,
-    title: "Magazzino sul Po",
-    description: "Web platform development for Turin's historic music venue to showcase events, history, and cultural impact",
-    technologies: ["Next.js", "Tailwind CSS", "Prisma", "PostgreSQL"],
-    link: "https://magazzinosulpo.com"
-  },
-  {
-    id: 2,
-    title: "The Good Burger",
-    description: "E-commerce and delivery platform for a premium burger restaurant chain in Turin",
-    technologies: ["React", "Node.js", "Express", "MongoDB"],
-    link: "https://thegoodburger.it"
-  },
-  {
-    id: 3,
-    title: "Easycondo",
-    description: "Property management platform streamlining condo administration and resident communication",
-    technologies: ["Vue.js", "Firebase", "Cloud Functions", "Material UI"],
-    link: "https://easycondo.it"
-  },
-  {
-    id: 4,
-    title: "Off Topic",
-    description: "Digital presence development for Turin's cultural hub, featuring events, workshops, and artistic initiatives",
-    technologies: ["WordPress", "PHP", "MySQL", "Custom Theme"],
-    link: "https://offtopictorino.it"
-  }
-];
-
-export function Projects() {
-  const [selectedProject, setSelectedProject] = useState<number | null>(null);
-
-  const containerVariants = {
-    hidden: { opacity: 0 },
-    visible: {
-      opacity: 1,
-      transition: {
-        staggerChildren: 0.2
-      }
-    }
-  };
-
-  const projectVariants = {
-    hidden: { y: 20, opacity: 0 },
-    visible: {
-      y: 0,
-      opacity: 1,
-      transition: {
-        duration: 0.5
-      }
-    }
-  };
+export function Projects({ language }: ProjectsProps) {
+  const t = translations[language].projects;
 
   return (
-    <section className="py-16 bg-background" id="projects">
-      <div className="container mx-auto px-4">
-        <motion.h2 
-          className="text-4xl font-bold mb-12 text-center"
-          initial={{ opacity: 0, y: -20 }}
-          animate={{ opacity: 1, y: 0 }}
-          transition={{ duration: 0.5 }}
-        >
-          Featured Projects
-        </motion.h2>
-
-        <motion.div 
-          className="grid grid-cols-1 md:grid-cols-2 gap-6"
-          variants={containerVariants}
+    <motion.section 
+      id="projects" 
+      className="min-h-screen py-20 px-4 bg-muted/30"
+      variants={sectionVariants}
+      initial="hidden"
+      whileInView="visible"
+      viewport={{ once: true, amount: 0.3 }}
+    >
+      <div className="container mx-auto">
+        <SectionTitle 
+          title={t.title}
+          icon="https://cdn.lordicon.com/iltqorsz.json"
+        />
+        <motion.div
+          variants={staggerContainer}
           initial="hidden"
-          animate="visible"
+          whileInView="visible"
+          viewport={{ once: true }}
+          className="grid grid-cols-1 md:grid-cols-2 gap-8"
         >
           {projects.map((project) => (
-            <motion.div 
+            <ProjectCard
               key={project.id}
-              variants={projectVariants}
-              whileHover={{ scale: 1.02 }}
-              className="h-full"
-            >
-              <Card 
-                className="h-full cursor-pointer transition-colors hover:bg-muted/50"
-                onClick={() => setSelectedProject(project.id)}
-              >
-                <CardContent className="p-6">
-                  <h3 className="text-xl font-semibold mb-3">{project.title}</h3>
-                  <p className="text-muted-foreground mb-4">{project.description}</p>
-                  <div className="flex flex-wrap gap-2">
-                    {project.technologies.map((tech, index) => (
-                      <span 
-                        key={index}
-                        className="px-3 py-1 bg-primary/10 text-primary rounded-full text-sm"
-                      >
-                        {tech}
-                      </span>
-                    ))}
-                  </div>
-                  {project.link && (
-                    <a 
-                      href={project.link}
-                      target="_blank"
-                      rel="noopener noreferrer"
-                      className="mt-4 inline-block text-primary hover:underline"
-                    >
-                      Visit Project →
-                    </a>
-                  )}
-                </CardContent>
-              </Card>
-            </motion.div>
+              project={project}
+              language={language}
+            />
           ))}
         </motion.div>
       </div>
-    </section>
+    </motion.section>
   );
 }
 
-export default Projects;
+const projects = [
+  {
+    id: 1,
+    title: {
+      en: "Magazzino sul Po - Digital Marketing Strategy",
+      it: "Magazzino sul Po - Strategia di Marketing Digitale"
+    },
+    description: {
+      en: "Led digital transformation and social media growth for a cultural venue, achieving 400% monthly growth in engagement and expanding social media following to 13,000+ followers.",
+      it: "Guidato la trasformazione digitale e la crescita sui social media per un centro culturale, ottenendo una crescita mensile del 400% nel coinvolgimento e espandendo i follower a oltre 13.000."
+    },
+    image: "/assets/banner-magazzino.webp",
+    technologies: ["Social Media Strategy", "Social Media Management", "Content Creation", "Creazione Sito Web", "Gestione Sito Web", "Social Media Analytics", "Google Analytics", "Event Marketing"],
+    link: "/project/1"
+  },
+  {
+    id: 2,
+    title: {
+      en: "HRX Srl - Digital Marketing | Social Media | Ecommerce optimization",
+      it: "HRX Srl - Digital Marketing | Social Media | Ottimizzazione Ecommerce"
+    },
+    description: {
+      en: "Managed digital marketing strategies in the automotive sector, focusing on direct sales through Facebook, Instagram, Google Ads, and email marketing campaigns. Optimized the company's e-commerce for SEO to improve organic positioning and conversions.",
+      it: "Ho gestito strategie di marketing digitale nel settore automotive, con focus sulla vendita diretta tramite campagne Facebook, Instagram, Google Ads ed email marketing. Ho ottimizzato l' e-commerce dell'azienda in ottica SEO per migliorare posizionamento organico e conversioni."
+    },
+    image: "/assets/hrx-banner1.jpg",
+    technologies: ["Social Media Advertising","Social Media Strategy","Social Media Management","Content Creation",
+      "Social Media Analytics","Google Analytics","Email Marketing","Ottimizzazione SEO","Ottimizzazione Ecommerce"
+    ],
+    link: "/project/2"
+  },
+  {
+    id: 3,
+    title: {
+      en: "Studi Fisioterapici Manunta - Website & SEO Optimization | Social Media",
+      it: "Studi Fisioterapici Manunta - Sito Web & Ottimizzazione SEO | Social Media"
+    },
+    description: {
+      en: "Management of digital marketing strategies for a physiotherapy clinic, focusing on Facebook, Instagram, and Google Ads campaigns to increase online bookings and local brand awareness.",
+      it: "Gestione delle strategie di marketing digitale per uno studio di fisioterapia, con focus su campagne Facebook, Instagram e Google Ads per aumentare le prenotazioni online e la brand awareness locale"
+    },
+    image: "/assets/manunta-banner.jpg",
+    technologies: [
+      "Creazione e ottimizzazione Sito Web",
+      "Content Creation",
+      "Google Analytics"
+    ],
+    link: "/project/3"
+  },
+  {
+    id: 4,
+    title: {
+      en: "Digital Trade Capital - Content Strategy & Editorial Management | Technical SEO & Website Optimization | Lead Generation & Contact Management",
+      it: "Digital Trade Capital - Content Strategy & Editorial Management | Technical SEO & Website Optimization | Lead Generation & Contact Management"
+    },
+    description: {
+      en: "Managed strategic and operational coordination in a fintech organization, focusing on developing integrated digital strategies, performance optimization, and cross-functional team management.",
+      it: "Ho gestito il coordinamento strategico e operativo in un'organizzazione fintech, con un focus sullo sviluppo di strategie digitali integrate, sull'ottimizzazione delle performance e sulla gestione di team cross-funzionali"
+    },
+    image: "/assets/dtc-banner.jpg",
+    technologies: [
+      "Team Management",
+      "Editorial Management",
+      "Content Strategy",
+      "Technical SEO",
+      "Google Analytics",
+      "Email Marketing",
+      "Cross-functional Collaboration"
+    ],
+    link: "/project/4"
+  }
+];
