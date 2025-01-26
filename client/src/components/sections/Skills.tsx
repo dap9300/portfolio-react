@@ -1,10 +1,11 @@
+
 import { motion } from "framer-motion";
 import { translations } from "@/lib/translations";
 import { Language } from "@/types";
 import { SectionTitle } from "@/components/shared/SectionTitle";
 import { Card, CardContent } from "@/components/ui/card";
 import { fadeInUp, staggerContainer } from "@/lib/animations";
-import { LordIcon } from "@/components/shared/LordIcon";
+import { ChartBar, Code2, PenTool, Brain, Languages, Heart } from "lucide-react";
 
 interface SkillsProps {
   language: Language;
@@ -12,14 +13,14 @@ interface SkillsProps {
 
 interface SkillCategory {
   title: { en: string; it: string };
-  icon: string;
+  icon: any;
   skills: string[];
 }
 
-const skillCategories: SkillCategory[] = [
+const leftSkillCategories: SkillCategory[] = [
   {
     title: { en: "Digital Marketing & Analytics", it: "Digital Marketing & Analytics" },
-    icon: "gkosxwgv",
+    icon: ChartBar,
     skills: [
       "Performance Marketing (Meta Ads, Google Ads, Amazon Ads)",
       "Web & Marketing Analytics (Meta Business Suite, Google Analytics, Google Search Console, Google Tag Manager, Looker Studio)",
@@ -30,7 +31,7 @@ const skillCategories: SkillCategory[] = [
   },
   {
     title: { en: "IT & Web", it: "IT & Web" },
-    icon: "rjzlcjqi",
+    icon: Code2,
     skills: [
       "Programming & CMS (HTML5, CSS, WordPress, WooCommerce, Shopify)",
       "Operating Systems (Windows, MacOS)",
@@ -38,8 +39,20 @@ const skillCategories: SkillCategory[] = [
     ]
   },
   {
+    title: { en: "Content Creation & Media Editing", it: "Content Creation & Media Editing" },
+    icon: PenTool,
+    skills: [
+      "Graphic Design (Adobe Creative Suite, Canva)",
+      "Video/Audio Editing (DaVinci Resolve, CapCut, Audacity)",
+      "AI Tools (ChatGPT, Claude, MidJourney, Cursor, ElevenLabs)"
+    ]
+  }
+];
+
+const rightSkillCategories: SkillCategory[] = [
+  {
     title: { en: "Soft Skills", it: "Soft Skill" },
-    icon: "mzjnwzka",
+    icon: Brain,
     skills: [
       "Analytical and data-driven thinking",
       "Priority and deadline management",
@@ -51,24 +64,15 @@ const skillCategories: SkillCategory[] = [
   },
   {
     title: { en: "Languages", it: "Lingue" },
-    icon: "ehdfdiha",
+    icon: Languages,
     skills: [
       "Italian: Native",
       "English: Fluent"
     ]
   },
   {
-    title: { en: "Content Creation & Media Editing", it: "Content Creation & Media Editing" },
-    icon: "xltxtfvt",
-    skills: [
-      "Graphic Design (Adobe Creative Suite, Canva)",
-      "Video/Audio Editing (DaVinci Resolve, CapCut, Audacity)",
-      "AI Tools (ChatGPT, Claude, MidJourney, Cursor, ElevenLabs)"
-    ]
-  },
-  {
     title: { en: "Hobbies & Interests", it: "Hobby & Interessi" },
-    icon: "lupuorrc",
+    icon: Heart,
     skills: [
       "Experimentation with AI Tools and new technologies",
       "Sport Climbing",
@@ -93,47 +97,67 @@ export function Skills({ language }: SkillsProps) {
       <div className="container mx-auto">
         <SectionTitle 
           title={t.title} 
-          icon="https://cdn.lordicon.com/xcxzayqr.json"
+          icon="Brain"
         />
         <motion.div
           variants={staggerContainer}
           initial="hidden"
           whileInView="visible"
           viewport={{ once: true }}
-          className="grid gap-8"
+          className="grid md:grid-cols-2 gap-8"
         >
-          {skillCategories.map((category, index) => (
-            <motion.div key={index} variants={fadeInUp}>
-              <Card className="overflow-hidden">
-                <CardContent className="p-6">
-                  <div className="flex items-center gap-4 mb-4">
-                    <LordIcon
-                      src={`https://cdn.lordicon.com/${category.icon}.json`}
-                      trigger="hover"
-                      size={32}
-                      colors={{
-                        primary: "var(--primary)",
-                        secondary: "var(--primary)"
-                      }}
-                    />
-                    <h3 className="text-xl font-semibold">
-                      {category.title[language]}
-                    </h3>
-                  </div>
-                  <ul className="space-y-2">
-                    {category.skills.map((skill, skillIndex) => (
-                      <li
-                        key={skillIndex}
-                        className="text-muted-foreground"
-                      >
-                        {skill}
-                      </li>
-                    ))}
-                  </ul>
-                </CardContent>
-              </Card>
-            </motion.div>
-          ))}
+          <div className="space-y-8">
+            {leftSkillCategories.map((category, index) => (
+              <motion.div key={index} variants={fadeInUp}>
+                <Card className="overflow-hidden">
+                  <CardContent className="p-6">
+                    <div className="flex items-center gap-4 mb-4">
+                      <category.icon className="w-8 h-8 text-primary" />
+                      <h3 className="text-xl font-semibold">
+                        {category.title[language]}
+                      </h3>
+                    </div>
+                    <ul className="space-y-2">
+                      {category.skills.map((skill, skillIndex) => (
+                        <li
+                          key={skillIndex}
+                          className="text-muted-foreground"
+                        >
+                          {skill}
+                        </li>
+                      ))}
+                    </ul>
+                  </CardContent>
+                </Card>
+              </motion.div>
+            ))}
+          </div>
+          <div className="space-y-8">
+            {rightSkillCategories.map((category, index) => (
+              <motion.div key={index} variants={fadeInUp}>
+                <Card className="overflow-hidden">
+                  <CardContent className="p-6">
+                    <div className="flex items-center gap-4 mb-4">
+                      <category.icon className="w-8 h-8 text-primary" />
+                      <h3 className="text-xl font-semibold">
+                        {category.title[language]}
+                      </h3>
+                    </div>
+                    <ul className="space-y-2">
+                      {category.skills.map((skill, skillIndex) => (
+                        <li
+                          key={skillIndex}
+                          className="text-muted-foreground"
+                        >
+                          {skill}
+                        </li>
+                      ))}
+                    </ul>
+                  </CardContent>
+                </Card>
+              </motion.div>
+            ))}
+          </div>
         </motion.div>
       </div>
     </section>
