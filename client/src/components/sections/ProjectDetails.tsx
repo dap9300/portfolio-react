@@ -226,8 +226,8 @@ export function ProjectDetails({ language, onLanguageChange }: ProjectDetailsPro
     window.scrollTo(0, 0);
   }, []);
 
-  const { ThemeToggle } = require("@/components/shared/ThemeToggle");
-  const { LanguageSwitch } = require("@/components/shared/LanguageSwitch");
+  import { ThemeToggle } from "@/components/shared/ThemeToggle";
+  import { LanguageSwitch } from "@/components/shared/LanguageSwitch";
 
   if (!projectData || !metrics) {
     setLocation("/");
