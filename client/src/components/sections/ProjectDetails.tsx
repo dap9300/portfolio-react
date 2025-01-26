@@ -2,7 +2,7 @@ import { motion } from "framer-motion";
 import { useLocation, useParams } from "wouter";
 import { Project, Language } from "@/types";
 import { Button } from "@/components/ui/button";
-import { ArrowLeft, ArrowUpRight, Users, TrendingUp, Calendar, Globe, Target, Search, Star, FileEdit, BarChart3, Tool, Trophy, PiggyBank } from "lucide-react";
+import { ArrowLeft, ArrowUpRight, Users, TrendingUp, Calendar, Globe, Target, Search, Star, FileEdit, BarChart3, Wrench, Trophy, PiggyBank } from "lucide-react";
 import { fadeInUp, staggerContainer } from "@/lib/animations";
 import { Card, CardContent } from "@/components/ui/card";
 import { 
@@ -322,7 +322,7 @@ export function ProjectDetails({ language }: ProjectDetailsProps) {
             <div className="space-y-4">
               <SectionHeader
                 title={language === "en" ? "Tools & Platforms" : "Strumenti e Piattaforme"}
-                icon={Tool}
+                icon={Wrench}
               />
               <div className="space-y-2">
                 <Card className="p-4">
