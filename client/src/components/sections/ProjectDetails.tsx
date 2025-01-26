@@ -2,6 +2,8 @@ import { motion } from "framer-motion";
 import { useLocation, useParams } from "wouter";
 import { Project, Language } from "@/types";
 import { Button } from "@/components/ui/button";
+import { ThemeToggle } from "@/components/shared/ThemeToggle";
+import { LanguageSwitch } from "@/components/shared/LanguageSwitch";
 import { ArrowLeft, ArrowUpRight, Users, TrendingUp, Calendar, Globe, Target, Search, Star, FileEdit, BarChart3, Wrench, Trophy, PiggyBank } from "lucide-react";
 import { fadeInUp, staggerContainer } from "@/lib/animations";
 import { Card, CardContent } from "@/components/ui/card";
@@ -225,9 +227,6 @@ export function ProjectDetails({ language, onLanguageChange }: ProjectDetailsPro
   useEffect(() => {
     window.scrollTo(0, 0);
   }, []);
-
-  import { ThemeToggle } from "@/components/shared/ThemeToggle";
-  import { LanguageSwitch } from "@/components/shared/LanguageSwitch";
 
   if (!projectData || !metrics) {
     setLocation("/");
