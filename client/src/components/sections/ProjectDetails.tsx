@@ -12,7 +12,8 @@ import { useEffect } from "react";
 const images = [
   "/assets/oldsocial1.png",
   "/assets/oldsocial2.png",
-  "/assets/sito-eventi-1.png"
+  "/assets/sito-eventi-1.png",
+  "assets/hrx-banner1.jpg"
 ];
 
 interface ProjectDetailsProps {
