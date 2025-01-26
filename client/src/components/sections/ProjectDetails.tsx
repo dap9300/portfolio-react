@@ -5,21 +5,9 @@ import { Button } from "@/components/ui/button";
 import { ArrowLeft, ArrowUpRight } from "lucide-react";
 import { fadeInUp, staggerContainer } from "@/lib/animations";
 import { Card, CardContent } from "@/components/ui/card";
+import { LordIcon } from "@/components/shared/LordIcon";
 
-declare global {
-  namespace JSX {
-    interface IntrinsicElements {
-      'lord-icon': React.DetailedHTMLProps<React.HTMLAttributes<HTMLElement>, HTMLElement> & {
-        src: string;
-        trigger: string;
-        colors: string;
-        style?: React.CSSProperties;
-      };
-    }
-  }
-}
-
-// Immagini statiche
+// Static images with proper paths
 const images = [
   "/assets/oldsocial1.png",
   "/assets/oldsocial2.png",
@@ -30,22 +18,7 @@ interface ProjectDetailsProps {
   language: Language;
 }
 
-interface LordIconProps {
-  icon: string;
-  colors?: string;
-  trigger?: string;
-  size?: number;
-}
-
-const LordIcon = ({ icon, colors = "primary:#121331", trigger = "hover", size = 32 }: LordIconProps) => (
-  <lord-icon
-    src={`https://cdn.lordicon.com/${icon}.json`}
-    trigger={trigger}
-    colors={colors}
-    style={{ width: `${size}px`, height: `${size}px` }}
-  />
-);
-
+// Project data remains unchanged...
 const projectsData: Record<string, Project> = {
   "1": {
     id: 1,
@@ -223,6 +196,21 @@ const projectMetrics: Record<string, any[]> = {
   ]
 };
 
+const SectionHeader = ({ title, icon }: { title: string; icon: string }) => (
+  <div className="flex items-center gap-3 mb-6">
+    <LordIcon
+      src={`https://cdn.lordicon.com/${icon}.json`}
+      trigger="hover"
+      size={32}
+      colors={{
+        primary: "var(--primary)",
+        secondary: "var(--primary)"
+      }}
+    />
+    <h2 className="text-2xl font-semibold">{title}</h2>
+  </div>
+);
+
 export function ProjectDetails({ language }: ProjectDetailsProps) {
   const [, setLocation] = useLocation();
   const { id = "1" } = useParams();
@@ -241,7 +229,7 @@ export function ProjectDetails({ language }: ProjectDetailsProps) {
       exit={{ opacity: 0 }}
       className="min-h-screen bg-background"
     >
-      <motion.div 
+      <motion.div
         className="h-[60vh] relative overflow-hidden"
         initial={{ opacity: 0 }}
         animate={{ opacity: 1 }}
@@ -251,9 +239,9 @@ export function ProjectDetails({ language }: ProjectDetailsProps) {
           className="absolute inset-0"
           style={{
             backgroundImage: `url(${projectData.image})`,
-            backgroundSize: 'cover',
-            backgroundPosition: 'center',
-            backgroundAttachment: 'fixed'
+            backgroundSize: "cover",
+            backgroundPosition: "center",
+            backgroundAttachment: "fixed"
           }}
           initial={{ scale: 1.1 }}
           animate={{ scale: 1 }}
@@ -267,10 +255,7 @@ export function ProjectDetails({ language }: ProjectDetailsProps) {
             </h1>
             <div className="flex flex-wrap gap-2 justify-center">
               {projectData.technologies.map((tech) => (
-                <span
-                  key={tech}
-                  className="px-3 py-1 bg-white/10 rounded-full text-sm"
-                >
+                <span key={tech} className="px-3 py-1 bg-white/10 rounded-full text-sm">
                   {tech}
                 </span>
               ))}
@@ -288,7 +273,7 @@ export function ProjectDetails({ language }: ProjectDetailsProps) {
           className="flex items-center text-muted-foreground hover:text-foreground transition-colors mb-8"
         >
           <ArrowLeft className="w-4 h-4 mr-2" />
-          {language === 'en' ? 'Back to Projects' : 'Torna ai Progetti'}
+          {language === "en" ? "Back to Projects" : "Torna ai Progetti"}
         </motion.button>
 
         <motion.div
@@ -302,8 +287,8 @@ export function ProjectDetails({ language }: ProjectDetailsProps) {
               <Card key={index} className="border-2">
                 <CardContent className="pt-6">
                   <div className="flex items-center justify-between mb-2">
-                    <LordIcon 
-                      icon={metric.icon} 
+                    <LordIcon
+                      src={`https://cdn.lordicon.com/${metric.icon}.json`}
                       trigger="hover"
                       colors="primary:#121331,secondary:#121331"
                       size={32}
@@ -319,18 +304,20 @@ export function ProjectDetails({ language }: ProjectDetailsProps) {
 
           <motion.div variants={fadeInUp} className="grid md:grid-cols-3 gap-8">
             <div className="md:col-span-2">
-              <h2 className="text-2xl font-semibold mb-4">
-                {language === 'en' ? 'Project Overview' : 'Panoramica del Progetto'}
-              </h2>
+              <SectionHeader
+                title={language === "en" ? "Project Overview" : "Panoramica del Progetto"}
+                icon="ddwuidbp"
+              />
               <p className="text-muted-foreground whitespace-pre-line">
                 {projectData.description[language]}
               </p>
             </div>
 
             <div className="space-y-4">
-              <h2 className="text-2xl font-semibold">
-                {language === 'en' ? 'Tools & Platforms' : 'Strumenti e Piattaforme'}
-              </h2>
+              <SectionHeader
+                title={language === "en" ? "Tools & Platforms" : "Strumenti e Piattaforme"}
+                icon="wlwpsfhh"
+              />
               <div className="space-y-2">
                 <Card className="p-4">
                   <h3 className="font-semibold mb-2">Analytics & Tracking</h3>
@@ -355,45 +342,58 @@ export function ProjectDetails({ language }: ProjectDetailsProps) {
           {id === "1" && (
             <>
               <motion.div variants={fadeInUp}>
-                <h2 className="text-2xl font-semibold mb-6">
-                  {language === 'en' ? 'Editorial Strategy' : 'Strategia Editoriale'}
-                </h2>
+                <SectionHeader
+                  title={language === "en" ? "Editorial Strategy" : "Strategia Editoriale"}
+                  icon="twkbpwbw"
+                />
                 <div className="grid md:grid-cols-2 gap-6">
                   <Card className="p-6">
                     <h3 className="font-semibold mb-4">
-                      {language === 'en' ? 'Content Planning' : 'Pianificazione Contenuti'}
+                      {language === "en" ? "Content Planning" : "Pianificazione Contenuti"}
                     </h3>
                     <ul className="space-y-2 text-muted-foreground">
-                      <li>• {language === 'en' ? 
-                        'Developed monthly editorial calendar for Instagram and Facebook' : 
-                        'Sviluppato calendario editoriale mensile per Instagram e Facebook'}
+                      <li>
+                        •{" "}
+                        {language === "en"
+                          ? "Developed monthly editorial calendar for Instagram and Facebook"
+                          : "Sviluppato calendario editoriale mensile per Instagram e Facebook"}
                       </li>
-                      <li>• {language === 'en' ?
-                        'Implemented content categorization system' :
-                        'Implementato sistema di categorizzazione dei contenuti'}
+                      <li>
+                        •{" "}
+                        {language === "en"
+                          ? "Implemented content categorization system"
+                          : "Implementato sistema di categorizzazione dei contenuti"}
                       </li>
-                      <li>• {language === 'en' ?
-                        'Managed multi-platform communication strategy' :
-                        'Gestito strategia di comunicazione multipiattaforma'}
+                      <li>
+                        •{" "}
+                        {language === "en"
+                          ? "Managed multi-platform communication strategy"
+                          : "Gestito strategia di comunicazione multipiattaforma"}
                       </li>
                     </ul>
                   </Card>
                   <Card className="p-6">
                     <h3 className="font-semibold mb-4">
-                      {language === 'en' ? 'Performance & Analytics' : 'Performance e Analytics'}
+                      {language === "en" ? "Performance & Analytics" : "Performance e Analytics"}
                     </h3>
                     <ul className="space-y-2 text-muted-foreground">
-                      <li>• {language === 'en' ?
-                        'Monitored and analyzed content performance' :
-                        'Monitorato e analizzato performance dei contenuti'}
+                      <li>
+                        •{" "}
+                        {language === "en"
+                          ? "Monitored and analyzed content performance"
+                          : "Monitorato e analizzato performance dei contenuti"}
                       </li>
-                      <li>• {language === 'en' ?
-                        'Optimized hashtag strategy for organic reach' :
-                        'Ottimizzato strategia hashtag per portata organica'}
+                      <li>
+                        •{" "}
+                        {language === "en"
+                          ? "Optimized hashtag strategy for organic reach"
+                          : "Ottimizzato strategia hashtag per portata organica"}
                       </li>
-                      <li>• {language === 'en' ?
-                        'Implemented content workflow via Asana' :
-                        'Implementato workflow contenuti tramite Asana'}
+                      <li>
+                        •{" "}
+                        {language === "en"
+                          ? "Implemented content workflow via Asana"
+                          : "Implementato workflow contenuti tramite Asana"}
                       </li>
                     </ul>
                   </Card>
@@ -401,51 +401,64 @@ export function ProjectDetails({ language }: ProjectDetailsProps) {
               </motion.div>
 
               <motion.div variants={fadeInUp}>
-                <h2 className="text-2xl font-semibold mb-6">
-                  {language === 'en' ? 'Advertising Campaigns' : 'Campagne Pubblicitarie'}
-                </h2>
+                <SectionHeader
+                  title={language === "en" ? "Advertising Campaigns" : "Campagne Pubblicitarie"}
+                  icon="gkosxwgv"
+                />
                 <div className="grid md:grid-cols-3 gap-6">
                   <Card className="p-6">
                     <h3 className="font-semibold mb-4">2023 Performance</h3>
                     <ul className="space-y-2 text-muted-foreground">
-                      <li>• {language === 'en' ?
-                        'Budget optimization: €71 to €337/month' :
-                        'Ottimizzazione budget: da €71 a €337/mese'}
+                      <li>
+                        •{" "}
+                        {language === "en"
+                          ? "Budget optimization: €71 to €337/month"
+                          : "Ottimizzazione budget: da €71 a €337/mese"}
                       </li>
-                      <li>• {language === 'en' ?
-                        'Total reach: 296,973 users' :
-                        'Copertura totale: 296.973 utenti'}
+                      <li>
+                        •{" "}
+                        {language === "en"
+                          ? "Total reach: 296,973 users"
+                          : "Copertura totale: 296.973 utenti"}
                       </li>
                       <li>• CPC: €0.10 - €0.29</li>
                     </ul>
                   </Card>
                   <Card className="p-6">
                     <h3 className="font-semibold mb-4">
-                      {language === 'en' ? 'Growth Metrics' : 'Metriche di Crescita'}
+                      {language === "en" ? "Growth Metrics" : "Metriche di Crescita"}
                     </h3>
                     <ul className="space-y-2 text-muted-foreground">
                       <li>• Instagram: +536.5%</li>
                       <li>• Facebook: +164.4%</li>
-                      <li>• {language === 'en' ?
-                        'Web traffic: +140%' :
-                        'Traffico web: +140%'}
+                      <li>
+                        •{" "}
+                        {language === "en"
+                          ? "Web traffic: +140%"
+                          : "Traffico web: +140%"}
                       </li>
                     </ul>
                   </Card>
                   <Card className="p-6">
                     <h3 className="font-semibold mb-4">ROI</h3>
                     <ul className="space-y-2 text-muted-foreground">
-                      <li>• {language === 'en' ?
-                        'Ticket sales growth: 200%' :
-                        'Crescita vendite biglietti: 200%'}
+                      <li>
+                        •{" "}
+                        {language === "en"
+                          ? "Ticket sales growth: 200%"
+                          : "Crescita vendite biglietti: 200%"}
                       </li>
-                      <li>• {language === 'en' ?
-                        'Average session duration: 42s' :
-                        'Durata media sessione: 42s'}
+                      <li>
+                        •{" "}
+                        {language === "en"
+                          ? "Average session duration: 42s"
+                          : "Durata media sessione: 42s"}
                       </li>
-                      <li>• {language === 'en' ?
-                        'Checkout page in top 10' :
-                        'Pagina checkout in top 10'}
+                      <li>
+                        •{" "}
+                        {language === "en"
+                          ? "Checkout page in top 10"
+                          : "Pagina checkout in top 10"}
                       </li>
                     </ul>
                   </Card>
@@ -453,49 +466,56 @@ export function ProjectDetails({ language }: ProjectDetailsProps) {
               </motion.div>
 
               <motion.div variants={fadeInUp}>
-                <h2 className="text-2xl font-semibold mb-6">
-                  {language === 'en' ? 'Crowdfunding Campaign' : 'Campagna Crowdfunding'}
-                </h2>
+                <SectionHeader
+                  title={language === "en" ? "Crowdfunding Campaign" : "Campagna Crowdfunding"}
+                  icon="pimqfqvv"
+                />
                 <Card className="p-6">
                   <div className="grid md:grid-cols-2 gap-6">
                     <div>
                       <h3 className="font-semibold mb-4">FIUMEDENTRO</h3>
                       <p className="text-muted-foreground mb-4">
-                        {language === 'en' ?
-                          'A successful crowdfunding campaign to regenerate the Murazzi area, transforming abandoned spaces into an inclusive public space.' :
-                          'Una campagna di crowdfunding di successo per rigenerare l\'area dei Murazzi, trasformando spazi abbandonati in uno spazio pubblico inclusivo.'}
+                        {language === "en"
+                          ? "A successful crowdfunding campaign to regenerate the Murazzi area, transforming abandoned spaces into an inclusive public space."
+                          : "Una campagna di crowdfunding di successo per rigenerare l'area dei Murazzi, trasformando spazi abbandonati in uno spazio pubblico inclusivo."}
                       </p>
                       <div className="flex items-center gap-4 mb-4">
                         <div>
                           <p className="text-2xl font-bold">€5,597</p>
                           <p className="text-sm text-muted-foreground">
-                            {language === 'en' ? 'Funds Raised' : 'Fondi Raccolti'}
+                            {language === "en" ? "Funds Raised" : "Fondi Raccolti"}
                           </p>
                         </div>
                         <div>
                           <p className="text-2xl font-bold">300+</p>
                           <p className="text-sm text-muted-foreground">
-                            {language === 'en' ? 'Supporters' : 'Sostenitori'}
+                            {language === "en" ? "Supporters" : "Sostenitori"}
                           </p>
                         </div>
                       </div>
                     </div>
                     <div>
                       <h4 className="font-semibold mb-2">
-                        {language === 'en' ? 'Campaign Highlights' : 'Punti Salienti'}
+                        {language === "en" ? "Campaign Highlights" : "Punti Salienti"}
                       </h4>
                       <ul className="space-y-2 text-muted-foreground">
-                        <li>• {language === 'en' ?
-                          'Integrated digital & offline strategy' :
-                          'Strategia integrata digitale e offline'}
+                        <li>
+                          •{" "}
+                          {language === "en"
+                            ? "Integrated digital & offline strategy"
+                            : "Strategia integrata digitale e offline"}
                         </li>
-                        <li>• {language === 'en' ?
-                          'Custom rewards program' :
-                          'Programma ricompense personalizzato'}
+                        <li>
+                          •{" "}
+                          {language === "en"
+                            ? "Custom rewards program"
+                            : "Programma ricompense personalizzato"}
                         </li>
-                        <li>• {language === 'en' ?
-                          'Community engagement events' :
-                          'Eventi di coinvolgimento community'}
+                        <li>
+                          •{" "}
+                          {language === "en"
+                            ? "Community engagement events"
+                            : "Eventi di coinvolgimento community"}
                         </li>
                       </ul>
                     </div>
@@ -504,31 +524,38 @@ export function ProjectDetails({ language }: ProjectDetailsProps) {
               </motion.div>
 
               <motion.div variants={fadeInUp}>
-                <h2 className="text-2xl font-semibold mb-6">
-                  {language === 'en' ? 'Growth & Analytics' : 'Crescita e Analytics'}
-                </h2>
+                <SectionHeader
+                  title={language === "en" ? "Growth & Analytics" : "Crescita e Analytics"}
+                  icon="ehdfdiha"
+                />
                 <div className="grid md:grid-cols-2 gap-6">
                   <Card className="overflow-hidden">
-                    <img
-                      src="/attached_assets/crescitafollower1.png"
-                      alt="Follower Growth Chart"
-                      className="w-full h-auto object-cover"
-                    />
+                    <div className="aspect-video relative">
+                      <img
+                        src="/attached_assets/crescitafollower1.png"
+                        alt="Follower Growth Chart"
+                        className="w-full h-full object-cover"
+                        loading="lazy"
+                      />
+                    </div>
                     <CardContent className="p-4">
                       <h3 className="font-semibold">
-                        {language === 'en' ? 'Follower Growth' : 'Crescita Follower'}
+                        {language === "en" ? "Follower Growth" : "Crescita Follower"}
                       </h3>
                     </CardContent>
                   </Card>
                   <Card className="overflow-hidden">
-                    <img
-                      src="/attached_assets/analytics_maga3.png"
-                      alt="User Engagement Analytics"
-                      className="w-full h-auto object-cover"
-                    />
+                    <div className="aspect-video relative">
+                      <img
+                        src="/attached_assets/analytics_maga3.png"
+                        alt="User Engagement Analytics"
+                        className="w-full h-full object-cover"
+                        loading="lazy"
+                      />
+                    </div>
                     <CardContent className="p-4">
                       <h3 className="font-semibold">
-                        {language === 'en' ? 'User Engagement' : 'Coinvolgimento Utenti'}
+                        {language === "en" ? "User Engagement" : "Coinvolgimento Utenti"}
                       </h3>
                     </CardContent>
                   </Card>
@@ -536,9 +563,10 @@ export function ProjectDetails({ language }: ProjectDetailsProps) {
               </motion.div>
 
               <motion.div variants={fadeInUp}>
-                <h2 className="text-2xl font-semibold mb-6">
-                  {language === 'en' ? 'Social Media Content' : 'Contenuti Social Media'}
-                </h2>
+                <SectionHeader
+                  title={language === "en" ? "Social Media Content" : "Contenuti Social Media"}
+                  icon="rjzlcjqi"
+                />
                 <div className="grid md:grid-cols-3 gap-4">
                   {images.map((image, index) => (
                     <motion.div
@@ -550,6 +578,7 @@ export function ProjectDetails({ language }: ProjectDetailsProps) {
                         src={image}
                         alt={`Social Media Content ${index + 1}`}
                         className="w-full h-full object-cover rounded-lg shadow-md"
+                        loading="lazy"
                       />
                     </motion.div>
                   ))}
