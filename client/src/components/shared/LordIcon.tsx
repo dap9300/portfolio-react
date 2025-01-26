@@ -4,7 +4,7 @@ import lottie from "lottie-web";
 import { defineElement } from "lord-icon-element";
 
 // Initialize lord-icon element if it hasn't been initialized yet
-if (typeof window !== 'undefined' && !customElements.get('lord-icon')) {
+if (typeof window !== 'undefined') {
   defineElement(lottie.loadAnimation);
 }
 
@@ -34,22 +34,17 @@ export function LordIcon({
   const iconRef = useRef<HTMLElement>(null);
 
   useEffect(() => {
-    const loadIcon = async () => {
-      if (iconRef.current) {
-        iconRef.current.setAttribute("colors", `primary:${colors.primary},secondary:${colors.secondary}`);
-      }
-    };
-    
-    loadIcon();
-  }, [colors, src]);
+    if (iconRef.current) {
+      iconRef.current.setAttribute("colors", `primary:${colors.primary},secondary:${colors.secondary}`);
+      iconRef.current.setAttribute("src", src);
+      iconRef.current.setAttribute("trigger", trigger);
+      iconRef.current.setAttribute("delay", delay.toString());
+    }
+  }, [colors, src, trigger, delay]);
 
   return (
     <lord-icon
       ref={iconRef}
-      src={src}
-      trigger={trigger}
-      delay={delay}
-      colors={`primary:${colors.primary},secondary:${colors.secondary}`}
       style={{ width: size, height: size }}
       className={className}
     />
