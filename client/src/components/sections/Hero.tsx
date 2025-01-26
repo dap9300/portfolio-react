@@ -28,7 +28,7 @@ export function Hero({ language, onContactClick }: HeroProps) {
       />
       <div>
         <motion.img
-          src="https://images.unsplash.com/photo-1573496799515-eebbb63814f2"
+          src="/assets/foto-bio.webp"
           alt="Alessandro d'Apolito"
           className="w-32 h-32 rounded-full mx-auto mb-8 object-cover border-2 border-primary/20"
           variants={fadeInUp}
@@ -38,7 +38,7 @@ export function Hero({ language, onContactClick }: HeroProps) {
           className="max-w-3xl mx-auto"
         >
           <h1 className="text-4xl md:text-6xl font-bold mb-4">
-            Hi, I'm <span className="text-primary">Alessandro d'Apolito</span>
+            Hi, I'm <span className="text-primary">Alessandro</span>
           </h1>
           <p className="text-xl md:text-2xl text-muted-foreground mb-8">
             Digital Marketing Specialist & Web Strategist
