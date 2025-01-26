@@ -328,9 +328,13 @@ export function ProjectDetails({ language, onLanguageChange }: ProjectDetailsPro
                 title={language === "en" ? "Project Overview" : "Panoramica del Progetto"}
                 icon={FileEdit}
               />
-              <p className="text-muted-foreground whitespace-pre-line">
-                {projectData.description[language]}
-              </p>
+              <p 
+                className="text-muted-foreground whitespace-pre-line"
+                dangerouslySetInnerHTML={{
+                  __html: projectData.description[language]
+                    .replace(/\*\*(.*?)\*\*/g, '<strong>$1</strong>')
+                }}
+              />
             </div>
 
             <div className="space-y-4">
