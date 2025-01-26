@@ -216,7 +216,7 @@ const SectionHeader = ({ title, icon: Icon }: { title: string; icon: any }) => (
   </div>
 );
 
-export function ProjectDetails({ language }: ProjectDetailsProps) {
+export function ProjectDetails({ language, onLanguageChange }: ProjectDetailsProps & { onLanguageChange: (lang: Language) => void }) {
   const [, setLocation] = useLocation();
   const { id = "1" } = useParams();
   const projectData = projectsData[id];
@@ -225,6 +225,24 @@ export function ProjectDetails({ language }: ProjectDetailsProps) {
   useEffect(() => {
     window.scrollTo(0, 0);
   }, []);
+
+  const { ThemeToggle } = require("@/components/shared/ThemeToggle");
+  const { LanguageSwitch } = require("@/components/shared/LanguageSwitch");
+
+  return (
+    <motion.div
+      initial={{ opacity: 0 }}
+      animate={{ opacity: 1 }}
+      exit={{ opacity: 0 }}
+      className="min-h-screen bg-background"
+    >
+      <div className="fixed top-4 right-4 z-50 flex items-center gap-4">
+        <ThemeToggle />
+        <LanguageSwitch
+          currentLanguage={language}
+          onLanguageChange={onLanguageChange}
+        />
+      </div>
 
   if (!projectData || !metrics) {
     setLocation("/");

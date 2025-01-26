@@ -9,6 +9,8 @@ import { Contact } from "@/components/sections/Contact";
 import { Navigation } from "@/components/shared/Navigation";
 import { LanguageSwitch } from "@/components/shared/LanguageSwitch";
 import { ThemeToggle } from "@/components/shared/ThemeToggle";
+import { ProjectDetails } from "@/components/sections/ProjectDetails";
+import { Route } from "wouter";
 
 export default function Home() {
   const [language, setLanguage] = useState<Language>("it");
