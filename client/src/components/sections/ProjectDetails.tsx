@@ -42,25 +42,85 @@ const projectsData: Record<string, Project> = {
       it: "Magazzino sul Po - Strategia di Marketing Digitale"
     },
     description: {
-      en: `As **Digital Marketing & Communications Specialist**, I led the **digital transformation** and **social media growth** for Magazzino sul Po, a cultural association dedicated to promoting artistic and musical events. I developed and executed **comprehensive strategies** that significantly increased **online visibility** and **engagement**.
+      en: `As **Digital Marketing & Communications Specialist**, I led the digital transformation of one of Turin's main cultural venues, managing integrated communication and marketing strategies to promote cultural and musical events.
 
-Key Achievements:
-• Achieved **400% monthly growth** in user engagement
-• Grew social media following from 5,000 to **13,000+ followers**
-• Enhanced **event promotion effectiveness** through **targeted campaigns**
-• Implemented **data-driven marketing strategies** using analytics
-• Generated **€17,771** in online ticket revenue across **85 events** in 2023
-• Successfully managed a **crowdfunding campaign** raising **€5,597** with **300+ supporters**`,
+**Key Results 2023:**
 
-      it: `Come **Digital Marketing & Communications Specialist**, ho guidato la **trasformazione digitale** e la **crescita sui social media** per Magazzino sul Po, un'associazione culturale dedicata alla promozione di eventi artistici e musicali. Ho sviluppato ed eseguito **strategie complete** che hanno aumentato significativamente la **visibilità** e il **coinvolgimento online**.
+**Social Media Performance:**
+• Facebook: 31,203 followers (+3.1% YoY)
+- Reach: 545,960 (+97.6%)
+- Visits: 91,723 (+90.6%)
+• Instagram: 12,911 followers (+44.2% YoY)
+- Reach: 502,784 (+550.6%)
+- Visits: 66,153 (+93.9%)
 
-Risultati Chiave:
-• Ottenuto una **crescita mensile del 400%** nel coinvolgimento degli utenti
-• Aumentato i follower sui social media da 5.000 a oltre **13.000**
-• Migliorato l'**efficacia della promozione eventi** attraverso **campagne mirate**
-• Implementato **strategie di marketing basate sui dati** utilizzando analytics
-• Generato **€17.771** di ricavi da biglietteria online su **85 eventi** nel 2023
-• Gestito con successo una **campagna di crowdfunding** raccogliendo **€5.597** con oltre **300 sostenitori**`
+**Website Performance:**
+• 37,455 annual users (+88.2% YoY)
+• 3,121 average monthly users
+• Main traffic sources:
+- Social Media: 8,500+ users
+- Organic Search: 5,800+ users
+- Direct Access: 4,950+ users
+
+**E-commerce & Newsletter:**
+• €15,583 online ticket revenue
+• 2,915 tickets sold (+134% YoY)
+• 44,514 newsletter subscribers (+54%)
+• 32% average newsletter open rate
+
+**Special Projects:**
+• **FIUMEDENTRO Crowdfunding:**
+- €5,597 raised
+- 300+ supporters
+- Multichannel communication strategy
+
+**Digital Advertising:**
+• Budget managed: €3,097
+• Q3 2023 Performance:
+- Average CPC: €0.10
+- CPM: €1.57
+- Average CTR: 0.74%
+- Campaign ROI: 2.46x`,
+
+      it: `Come **Digital Marketing & Communications Specialist**, ho guidato la trasformazione digitale di uno dei principali luoghi di aggregazione culturale di Torino, gestendo strategie integrate di comunicazione e marketing per promuovere eventi culturali e musicali.
+
+**Risultati Chiave 2023:**
+
+**Performance Social Media:**
+• Facebook: 31.203 follower (+3,1% YoY)
+- Copertura: 545.960 (+97,6%)
+- Visite: 91.723 (+90,6%)
+• Instagram: 12.911 follower (+44,2% YoY)
+- Copertura: 502.784 (+550,6%)
+- Visite: 66.153 (+93,9%)
+
+**Performance Sito Web:**
+• 37.455 utenti annuali (+88,2% YoY)
+• 3.121 utenti mensili medi
+• Principale provenienza traffico:
+- Social Media: 8.500+ utenti
+- Ricerca organica: 5.800+ utenti
+- Accesso diretto: 4.950+ utenti
+
+**E-commerce & Newsletter:**
+• €15.583 ricavi da biglietteria online
+• 2.915 biglietti venduti (+134% YoY)
+• 44.514 iscritti newsletter (+54%)
+• 32% tasso medio di apertura newsletter
+
+**Progetti Speciali:**
+• **Crowdfunding "FIUMEDENTRO":**
+- €5.597 raccolti
+- 300+ sostenitori
+- Strategia comunicazione multicanale
+
+**Advertising Digitale:**
+• Budget gestito: €3.097
+• Performance Q3 2023:
+- CPC medio: €0,10
+- CPM: €1,57
+- CTR medio: 0,74%
+- ROI campagne: 2,46x`
     },
     image: "/assets/banner-magazzino.webp",
     technologies: ["Social Media Strategy", "Content Creation", "Analytics", "Event Marketing", "Community Management", "Email Marketing"],
@@ -144,18 +204,18 @@ const projectMetrics: Record<string, any[]> = {
   "1": [
     {
       icon: "rjzlcjqi",  // people icon
-      value: "13,000+",
-      label: { en: "Social Media Followers", it: "Follower Social Media" }
+      value: "44,114",
+      label: { en: "Total Social Followers", it: "Follower Social Totali" }
     },
     {
       icon: "gkosxwgv", // trending up icon
-      value: "400%",
-      label: { en: "Monthly Growth", it: "Crescita Mensile" }
+      value: "+550%",
+      label: { en: "Instagram Growth", it: "Crescita Instagram" }
     },
     {
       icon: "mzjnwzka", // calendar icon
-      value: "85+",
-      label: { en: "Events in 2023", it: "Eventi nel 2023" }
+      value: "37,455",
+      label: { en: "Annual Users", it: "Utenti Annuali" }
     }
   ],
   "2": [
