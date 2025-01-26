@@ -22,7 +22,7 @@ import {
 } from "@/components/ui/carousel";
 import { useEffect } from "react";
 
-// Static images with proper paths
+// Update the images array to use absolute paths
 const images = [
   "/assets/oldsocial1.png",
   "/assets/oldsocial2.png",
@@ -762,7 +762,7 @@ export function ProjectDetails({ language, onLanguageChange }: ProjectDetailsPro
                     </div>
                   </AccordionContent>
                 </AccordionItem>
-              <AccordionItem value="advertising-campaigns" className="border rounded-lg hover:bg-accent/50 transition-colors">
+                <AccordionItem value="advertising-campaigns" className="border rounded-lg hover:bg-accent/50 transition-colors">
                   <AccordionTrigger className="px-4">
                     <div className="flex items-center gap-3">
                       <BarChart3 className="w-5 h-5 text-primary" />
