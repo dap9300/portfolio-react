@@ -64,15 +64,25 @@ const projects = [
   {
     id: 2,
     title: {
-      en: "E-commerce Social Media Campaign",
-      it: "Campagna Social Media E-commerce"
+      en: "HRX Srl - Digital Marketing | Social Media | Ecommerce optimization",
+      it: "HRX Srl - Digital Marketing | Social Media | Ottimizzazione Ecommerce"
     },
     description: {
-      en: "Developed and executed social media campaigns for a fashion e-commerce brand, resulting in 250% increase in social media-driven sales and 45% growth in follower engagement.",
-      it: "Sviluppato ed eseguito campagne social media per un brand di e-commerce fashion, ottenendo un aumento del 250% nelle vendite da social e 45% di crescita nel coinvolgimento dei follower."
+      en: "Managed digital marketing strategies in the automotive sector, focusing on direct sales through Facebook, Instagram, Google Ads, and email marketing campaigns. Optimized the company's e-commerce for SEO to improve organic positioning and conversions.",
+      it: "Ho gestito strategie di marketing digitale nel settore automotive, con focus sulla vendita diretta tramite campagne Facebook, Instagram, Google Ads ed email marketing. Ho ottimizzato l' e-commerce dell'azienda in ottica SEO per migliorare posizionamento organico e conversioni."
     },
-    image: "https://images.unsplash.com/photo-1557821552-17105176677c?q=80&w=2574&auto=format&fit=crop",
-    technologies: ["Social Media Advertising", "Content Strategy", "E-commerce", "Analytics"],
+    image: "https://images.unsplash.com/photo-1600191763437-4b7293b393c1?q=80&w=2574&auto=format&fit=crop",
+    technologies: [
+      "Social Media Advertising",
+      "Social Media Strategy",
+      "Social Media Management",
+      "Content Creation",
+      "Social Media Analytics",
+      "Google Analytics",
+      "Email Marketing",
+      "Ottimizzazione SEO",
+      "Ottimizzazione Ecommerce"
+    ],
     link: "/project/2"
   },
   {
