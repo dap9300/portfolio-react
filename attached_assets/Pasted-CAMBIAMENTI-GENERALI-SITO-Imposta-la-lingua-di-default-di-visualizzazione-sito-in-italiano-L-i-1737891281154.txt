@@ -1,0 +1,119 @@
+CAMBIAMENTI GENERALI SITO
+- Imposta la lingua di default di visualizzazione sito in italiano
+- L'icona con la luna svg per switchare dark e light mode si sovrappone a quella di cambio lingua EN/IT. Dagli più margine e mettila a sinistra del cambio lingua.
+- Il toggle dark/light non funziona.
+- Aggiungi al sito un footer stilizzato professionalemente con un semplice testo "© Alessandro d’Apolito – 2025 | Cookie Policy |  Privacy Policy" Crea e linka delle pagine Cookie policy e privacy policy per questo sito considerando che userò google analytics e strumenti di invio modulo. Scrivile di conseguenza in accordo a questo. 
+
+CAMBIAMENTI HERO SECTION
+- Cambia la foto dell'hero section con client/public/assets/foto-bio.webp
+- Cambia descrizione da "Hi, I'm Alessandro d'Apolito" a "Hi, I'm Alessandro"
+
+
+CAMBIAMENTI SEZIONE OVERVIEW:
+- Aggiungi un'icona appropriata a sinistra del titolo "overview". L'icona deve essere lord icon statica e deve animarsi all'hover del mouse sul titolo o sull'icona.
+
+CAMBIAMENTI SEZIONE PROJECTS:
+- Aggiungi un'icona appropriata a sinistra del titolo "projects". L'icona deve essere lord icon statica e deve animarsi all'hover del mouse sul titolo o sull'icona.
+
+- Cambia titolo italiano su overview magazzino sul po da "Magazzino sul Po - Digital Marketing Strategy" a "Magazzino sul Po - Digital Marketing | Social Media | Sito Web" e crea traduzione in inglese 
+- Cambia ordine pulsanti e aggiungine di nuovi su overview magazzino sul po: Social Media Strategy, Social Media Management, Content Creation, Social Media Analytics, Google Analytics, Email Marketing, Creazione e ottimizzazione Sito Web
+- Quando si apre il progetto "magazzino sul po" la navigazione utente deve iniziare dall'inizio pagina
+
+-Cambia titolo secondo progetto da "E-commerce social media campaign" a "HRX Srl - Digital Marketing | Social Media | Ecommerce optimization"
+- Cambia descrizione in Ho gestito strategie di marketing digitale nel settore automotive, con focus sulla vendita diretta tramite campagne Facebook, Instagram, Google Ads ed email marketing. Ho ottimizzato l’ e-commerce dell’azienda in ottica SEO per migliorare posizionamento organico e conversioni.
+- Cambia ordine pulsanti e aggiungine di nuovi: Social Media Advertising, Social Media Strategy, Social Media Management, Content Creation, Social Media Analytics, Google Analytics, Email Marketing, Ottimizzazione SEO, Ottimizzazione Ecommerce
+- Cambia immagine progetto in una più appropriata al contesto (contesto: HRX Srl è un'azienda italiana specializzata nella produzione su misura di abbigliamento ignifugo, accessori e tecnologie per il motorsport.)
+
+-Cambia titolo terzo progetto da "B2B Linkedin growth strategy" in "Studi Fisioterapici Manunta - Sito Web & Ottimizzazione SEO | Social Media 
+- Cambia descrizione in "Gestione delle strategie di marketing digitale per uno studio di fisioterapia, con focus su campagne Facebook, Instagram e Google Ads per aumentare le prenotazioni online e la brand awareness locale".
+- Cambia ordine pulsanti e aggiungine di nuovi: Creazione e ottimizzazione Sito Web, Content Creation, Google Analytics
+- Cambia immagine progetto in una più appropriata al contesto
+
+-Cambia titolo quarto progetto da "Restaurant Digital Presence Optimization" a "Digital Trade Capital - Content Strategy & Editorial Management | Technical SEO & Website Optimization | Lead Generation & Contact Management
+- Cambia descrizione in "Ho gestito il coordinamento strategico e operativo in un'organizzazione fintech, con un focus sullo sviluppo di strategie digitali integrate, sull'ottimizzazione delle performance e sulla gestione di team cross-funzionali".
+- Cambia ordine pulsanti e aggiungine di nuovi: Team Management, Editorial Management, Content Strategy, Technical SEO, Google Analytics, Email Marketing, Cross-functional Collaboration
+
+CAMBIAMENTO SEZIONE PROGETTO MAGAZZINO SUL PO (https://4537662a-f129-484e-a445-6e437c3a47c5-00-2ypdx2swfmqm1.kirk.replit.dev/project/1):
+
+- Le icone lord icon per social media followers, monthly growth e events non si visualizzano, risolvi.
+- Aggiungi un'icona appropriata su ogni titolo sezione, quindi "Project Overview, Editorial Strategy, Advertising Campaigns, Tools & Platforms, Crowdfunding Campaign, Growth & Analytics"
+- In Growth & Analytics risolvi il problema di Follower Growth e User Engagement, le immagini non si visualizzano.
+
+
+CAMBIAMENTI SEZIONE SKILLS & COMPETENCIES:
+Aggiungi un'icona appropriata a sinistra del titolo "skills & competencies". L'icona deve essere lord icon statica e deve animarsi all'hover del mouse sul titolo o sull'icona.
+
+Riorganizza le skills in queste sezioni. Ogni sezione avrà un'icona lord icon statica e deve animarsi all'hover del mouse sul titolo o sull'icona.
+
+Digital Marketing & Analytics
+Performance Marketing
+(Meta Ads, Google Ads, Amazon Ads)
+Web & Marketing Analytics (Meta Business Suite, Google Analytics, Google Search Console, Google Tag Manager, Looker Studio)
+Email Marketing & Marketing Automation (Mailchimp, MailUp, ConvertKit, MailerLite, Drip)
+SEO & Optimization (SEO on-page, SEO on-site, Technical SEO, Screaming Frog, Semrush, Rank Math)
+
+Social Media (Meta Business Suite, Editorial Strategy & Planning, Community Management)
+
+IT & Web
+Programming & CMS (HTML5, CSS, WordPress, WooCommerce, Shopify)
+Sistemi Operativi (Windows, MacOS)
+Office Productivity (Office Suite, Google Workspace, Slack, Asana, Trello)
+
+Soft Skill
+Pensiero analitico e data-driven
+Gestione priorità e deadline
+Cross-functional collaboration
+Customer-centric approach
+Capacità di tradurre concetti tecnici per audience non tecniche
+Capacità di apprendimento rapido
+
+Lingue
+Italiano: Madrelingua
+Inglese: Fluente
+Content Creation & Media Editing
+Graphic Design (Adobe Creative Suite, Canva)
+Video/Audio Editing (DaVinci Resolve, CapCut, Audacity)
+AI Tools (ChatGPT, Claude, MidJourney, Cursor, ElevenLabs)
+
+
+
+Hobby & Interessi
+Sperimentazione con AI Tools e nuove tecnologie
+Arrampicata Sportiva
+Scacchi
+Chitarra
+
+CAMBIAMENTI SEZIONE EDUCATION:
+- La sezione deve essere a piena pagina, esattamente come per le altre.
+- Aggiungi un'icona appropriata a sinistra del titolo "education". L'icona deve essere lord icon statica e deve animarsi all'hover del mouse sul titolo o sull'icona.
+- Cambia il contenuto del primo blocco education in questo modo: Laurea Magistrale in Comunicazione ICT e Media, Università degli Studi di Torino, Torino (TO), 2015 - 2018. Cliccando sul blocco si espande e fornisce dettagli aggiuntivi: 
+
+Voto: 103/110
+
+A.A. di conseguimento: 2018
+
+Materie principali: 
+Marketing
+Economia
+Tecnologie web
+Sistemi mediali e ICT
+Analisi del media
+Innovazione sociale
+Sociologia
+Titolo tesi:
+Bitcoin e blockchain tra economia, regolamentazione e informazione
+
+- Cambia il contenuto del secondo blocco education in questo modo: Laurea Triennale in Filosofia, Università degli Studi di Torino, Torino (TO), 2012 - 2015. Cliccando sul blocco si espande e fornisce dettagli aggiuntivi:
+
+Voto: 104/110
+
+A.A. di conseguimento: 2015
+
+Titolo tesi:
+La coscienza: dal problema mente-corpo alla teoria dell'informazione integrata
+
+
+CAMBIAMENTI SEZIONE CONTATTI:
+- La sezione deve essere a piena pagina, esattamente come per le altre.
+- Aggiungi un'icona appropriata a sinistra del titolo "contatti". L'icona deve essere lord icon statica e deve animarsi all'hover del mouse sul titolo o sull'icona.
+ 
