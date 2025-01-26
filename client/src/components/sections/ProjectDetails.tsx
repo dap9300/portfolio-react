@@ -298,7 +298,6 @@ export function ProjectDetails({ language, onLanguageChange }: ProjectDetailsPro
       initial={{ opacity: 0 }}
       animate={{ opacity: 1 }}
       exit={{ opacity: 0 }}
-      transition={{ duration: 0.3 }}
       className="min-h-screen bg-background"
     >
       <div className="fixed top-4 right-4 z-50 flex items-center gap-4">
@@ -311,7 +310,7 @@ export function ProjectDetails({ language, onLanguageChange }: ProjectDetailsPro
         className="h-[60vh] relative overflow-hidden"
         initial={{ opacity: 0 }}
         animate={{ opacity: 1 }}
-        transition={{ duration: 0.3, delay: 0.1 }}
+        transition={{ duration: 0.8 }}
       >
         <motion.div
           className="absolute inset-0"
