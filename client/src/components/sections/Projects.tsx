@@ -3,7 +3,7 @@ import { translations } from "@/lib/translations";
 import { Language } from "@/types";
 import { SectionTitle } from "@/components/shared/SectionTitle";
 import { ProjectCard } from "@/components/shared/ProjectCard";
-import { staggerContainer } from "@/lib/animations";
+import { staggerContainer, sectionVariants } from "@/lib/animations";
 
 interface ProjectsProps {
   language: Language;
@@ -16,10 +16,10 @@ export function Projects({ language }: ProjectsProps) {
     <motion.section 
       id="projects" 
       className="min-h-screen py-20 px-4 bg-muted/30"
-      initial={{ opacity: 0 }}
-      whileInView={{ opacity: 1 }}
-      viewport={{ once: true }}
-      transition={{ duration: 1 }}
+      variants={sectionVariants}
+      initial="hidden"
+      whileInView="visible"
+      viewport={{ once: true, margin: "-100px" }}
     >
       <div className="container mx-auto">
         <SectionTitle title={t.title} />
@@ -28,7 +28,7 @@ export function Projects({ language }: ProjectsProps) {
           initial="hidden"
           whileInView="visible"
           viewport={{ once: true }}
-          className="grid grid-cols-1 md:grid-cols-2 gap-6"
+          className="grid grid-cols-1 md:grid-cols-2 gap-8"
         >
           {projects.map((project) => (
             <ProjectCard
