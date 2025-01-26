@@ -1,3 +1,4 @@
+
 import { motion } from "framer-motion";
 import { translations } from "@/lib/translations";
 import { Language } from "@/types";
@@ -15,7 +16,7 @@ export function Overview({ language }: OverviewProps) {
     : "Digital Marketing Specialist con oltre 6 anni di esperienza nella gestione di strategie digitali integrate e nel coordinamento cross-funzionale con team creativi e tecnici. Esperto in ottimizzazione SEO, content strategy e sviluppo web, con esperienza nel monitoraggio e testing di campagne pubblicitarie. Forte interesse nell'approfondire l'advertising avanzato su piattaforme Meta Ads e Google Ads per ottimizzare il ROI delle campagne. Sviluppo siti web dinamici e creativi come questo.";
 
   return (
-    <section 
+    <motion.section 
       id="overview" 
       className="min-h-screen relative flex items-center py-20"
     >
