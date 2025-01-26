@@ -42,25 +42,25 @@ const projectsData: Record<string, Project> = {
       it: "Magazzino sul Po - Strategia di Marketing Digitale"
     },
     description: {
-      en: `As Digital Marketing & Communications Specialist, I led the digital transformation and social media growth for Magazzino sul Po, a cultural association dedicated to promoting artistic and musical events. I developed and executed comprehensive strategies that significantly increased online visibility and engagement.
+      en: `As **Digital Marketing & Communications Specialist**, I led the **digital transformation** and **social media growth** for Magazzino sul Po, a cultural association dedicated to promoting artistic and musical events. I developed and executed **comprehensive strategies** that significantly increased **online visibility** and **engagement**.
 
 Key Achievements:
-• Achieved 400% monthly growth in user engagement
-• Grew social media following from 5,000 to 13,000+ followers
-• Enhanced event promotion effectiveness through targeted campaigns
-• Implemented data-driven marketing strategies using analytics
-• Generated €17,771 in online ticket revenue across 85 events in 2023
-• Successfully managed a crowdfunding campaign raising €5,597 with 300+ supporters`,
+• Achieved **400% monthly growth** in user engagement
+• Grew social media following from 5,000 to **13,000+ followers**
+• Enhanced **event promotion effectiveness** through **targeted campaigns**
+• Implemented **data-driven marketing strategies** using analytics
+• Generated **€17,771** in online ticket revenue across **85 events** in 2023
+• Successfully managed a **crowdfunding campaign** raising **€5,597** with **300+ supporters**`,
 
-      it: `Come Digital Marketing & Communications Specialist, ho guidato la trasformazione digitale e la crescita sui social media per Magazzino sul Po, un'associazione culturale dedicata alla promozione di eventi artistici e musicali. Ho sviluppato ed eseguito strategie complete che hanno aumentato significativamente la visibilità e il coinvolgimento online.
+      it: `Come **Digital Marketing & Communications Specialist**, ho guidato la **trasformazione digitale** e la **crescita sui social media** per Magazzino sul Po, un'associazione culturale dedicata alla promozione di eventi artistici e musicali. Ho sviluppato ed eseguito **strategie complete** che hanno aumentato significativamente la **visibilità** e il **coinvolgimento online**.
 
 Risultati Chiave:
-• Ottenuto una crescita mensile del 400% nel coinvolgimento degli utenti
-• Aumentato i follower sui social media da 5.000 a oltre 13.000
-• Migliorato l'efficacia della promozione eventi attraverso campagne mirate
-• Implementato strategie di marketing basate sui dati utilizzando analytics
-• Generato €17.771 di ricavi da biglietteria online su 85 eventi nel 2023
-• Gestito con successo una campagna di crowdfunding raccogliendo €5.597 con oltre 300 sostenitori`
+• Ottenuto una **crescita mensile del 400%** nel coinvolgimento degli utenti
+• Aumentato i follower sui social media da 5.000 a oltre **13.000**
+• Migliorato l'**efficacia della promozione eventi** attraverso **campagne mirate**
+• Implementato **strategie di marketing basate sui dati** utilizzando analytics
+• Generato **€17.771** di ricavi da biglietteria online su **85 eventi** nel 2023
+• Gestito con successo una **campagna di crowdfunding** raccogliendo **€5.597** con oltre **300 sostenitori**`
     },
     image: "/assets/banner-magazzino.webp",
     technologies: ["Social Media Strategy", "Content Creation", "Analytics", "Event Marketing", "Community Management", "Email Marketing"],
