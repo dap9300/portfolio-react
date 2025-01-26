@@ -8,7 +8,6 @@ export * from "./data-display";
 
 // Export individual components that don't fit in categories
 export * from "./button";
-export * from "./calendar";
 export * from "./command";
 export * from "./toggle";
 export * from "./toggle-group";
