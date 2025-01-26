@@ -1,10 +1,12 @@
+
 import { useEffect, useRef } from 'react';
-import "lord-icon-element";
 import lottie from "lottie-web";
 import { defineElement } from "lord-icon-element";
 
-// Define the lord-icon custom element
-defineElement(lottie.loadAnimation);
+// Initialize lord-icon element if it hasn't been initialized yet
+if (typeof window !== 'undefined' && !customElements.get('lord-icon')) {
+  defineElement(lottie.loadAnimation);
+}
 
 interface LordIconProps {
   src: string;
@@ -32,10 +34,14 @@ export function LordIcon({
   const iconRef = useRef<HTMLElement>(null);
 
   useEffect(() => {
-    if (iconRef.current) {
-      iconRef.current.setAttribute("colors", `primary:${colors.primary},secondary:${colors.secondary}`);
-    }
-  }, [colors]);
+    const loadIcon = async () => {
+      if (iconRef.current) {
+        iconRef.current.setAttribute("colors", `primary:${colors.primary},secondary:${colors.secondary}`);
+      }
+    };
+    
+    loadIcon();
+  }, [colors, src]);
 
   return (
     <lord-icon
