@@ -240,6 +240,10 @@ export function ProjectDetails({ language, onLanguageChange }: ProjectDetailsPro
       exit={{ opacity: 0 }}
       className="min-h-screen bg-background"
     >
+      <div className="fixed top-4 right-4 z-50 flex items-center gap-4">
+        <ThemeToggle />
+        <LanguageSwitch currentLanguage={language} onLanguageChange={onLanguageChange} />
+      </div>
       <motion.div
         className="h-[60vh] relative overflow-hidden"
         initial={{ opacity: 0 }}
