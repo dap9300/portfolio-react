@@ -30,9 +30,19 @@ export function Contact({ language }: ContactProps) {
   };
 
   return (
-    <section id="contact" className="py-20 px-4">
+    <section id="contact" className="min-h-screen relative flex items-center py-20 px-4">
+      <motion.div
+        className="absolute inset-0 bg-gradient-to-b from-background to-muted/30 -z-10"
+        initial={{ opacity: 0 }}
+        whileInView={{ opacity: 1 }}
+        viewport={{ once: true }}
+        transition={{ duration: 1.2 }}
+      />
       <div className="container mx-auto">
-        <SectionTitle title={t.title} />
+        <SectionTitle 
+          title={t.title} 
+          icon="https://cdn.lordicon.com/diihvcfp.json"
+        />
         <motion.div
           variants={staggerContainer}
           initial="hidden"
