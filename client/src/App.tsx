@@ -8,10 +8,12 @@ import { ProjectDetails } from "@/components/sections/ProjectDetails";
 import { useState } from 'react';
 
 function Router() {
-  const [language, setLanguage] = useState('en'); // Added state for language
+  const [language, setLanguage] = useState('it');
   return (
     <Switch>
-      <Route path="/" component={Home} />
+      <Route path="/">
+        {() => <Home language={language} onLanguageChange={setLanguage} />}
+      </Route>
       <Route path="/project/:id">
         {(params) => <ProjectDetails language={language} onLanguageChange={setLanguage} />}
       </Route>

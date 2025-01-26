@@ -12,16 +12,21 @@ import { ThemeToggle } from "@/components/shared/ThemeToggle";
 import { ProjectDetails } from "@/components/sections/ProjectDetails";
 import { Route } from "wouter";
 
-export default function Home() {
-  const [language, setLanguage] = useState<Language>(() => {
-    const savedLanguage = localStorage.getItem('selectedLanguage');
-    return (savedLanguage === 'en' || savedLanguage === 'it') ? savedLanguage : 'it';
-  });
+interface HomeProps {
+  language: Language;
+  onLanguageChange: (lang: Language) => void;
+}
 
-  const handleLanguageChange = (lang: Language) => {
-    setLanguage(lang);
-    localStorage.setItem('selectedLanguage', lang);
-  };
+export default function Home({ language, onLanguageChange }: HomeProps) {
+  //const [language, setLanguage] = useState<Language>(() => {
+  //  const savedLanguage = localStorage.getItem('selectedLanguage');
+  //  return (savedLanguage === 'en' || savedLanguage === 'it') ? savedLanguage : 'it';
+  //});
+
+  //const handleLanguageChange = (lang: Language) => {
+  //  setLanguage(lang);
+  //  localStorage.setItem('selectedLanguage', lang);
+  //};
 
   const scrollToSection = (sectionId: string) => {
     const element = document.getElementById(sectionId);
@@ -43,7 +48,7 @@ export default function Home() {
         <div className="min-w-[40px]">
           <LanguageSwitch
             currentLanguage={language}
-            onLanguageChange={handleLanguageChange}
+            onLanguageChange={onLanguageChange}
           />
         </div>
       </div>
