@@ -2,10 +2,16 @@ import { motion } from "framer-motion";
 import { useLocation, useParams } from "wouter";
 import { Project, Language } from "@/types";
 import { Button } from "@/components/ui/button";
-import { ArrowLeft, ArrowUpRight } from "lucide-react";
+import { ArrowLeft, ArrowUpRight, Users, TrendingUp, Calendar, Globe, Target, Search, Star, FileEdit, BarChart3, Tool, Trophy, PiggyBank } from "lucide-react";
 import { fadeInUp, staggerContainer } from "@/lib/animations";
 import { Card, CardContent } from "@/components/ui/card";
-import { LordIcon } from "@/components/shared/LordIcon";
+import { 
+  Carousel,
+  CarouselContent,
+  CarouselItem,
+  CarouselNext,
+  CarouselPrevious,
+} from "@/components/ui/carousel";
 import { useEffect } from "react";
 
 // Static images with proper paths
@@ -197,17 +203,9 @@ const projectMetrics: Record<string, any[]> = {
   ]
 };
 
-const SectionHeader = ({ title, icon }: { title: string; icon: string }) => (
+const SectionHeader = ({ title, icon: Icon }: { title: string; icon: any }) => (
   <div className="flex items-center gap-3 mb-6">
-    <LordIcon
-      src={`https://cdn.lordicon.com/${icon}.json`}
-      trigger="hover"
-      size={32}
-      colors={{
-        primary: "var(--primary)",
-        secondary: "var(--primary)"
-      }}
-    />
+    <Icon className="w-8 h-8 text-primary" />
     <h2 className="text-2xl font-semibold">{title}</h2>
   </div>
 );
@@ -281,37 +279,40 @@ export function ProjectDetails({ language }: ProjectDetailsProps) {
           {language === "en" ? "Back to Projects" : "Torna ai Progetti"}
         </motion.button>
 
-        <motion.div
-          variants={staggerContainer}
-          initial="hidden"
-          animate="visible"
-          className="grid gap-12"
-        >
+        <motion.div variants={staggerContainer} initial="hidden" animate="visible" className="grid gap-12">
           <motion.div variants={fadeInUp} className="grid grid-cols-1 md:grid-cols-3 gap-6">
-            {metrics.map((metric, index) => (
-              <Card key={index} className="border-2">
-                <CardContent className="pt-6">
-                  <div className="flex items-center justify-between mb-2">
-                    <LordIcon
-                      src={`https://cdn.lordicon.com/${metric.icon}.json`}
-                      trigger="hover"
-                      colors="primary:#121331,secondary:#121331"
-                      size={32}
-                    />
-                    <ArrowUpRight className="w-5 h-5 text-green-500" />
-                  </div>
-                  <p className="text-3xl font-bold">{metric.value}</p>
-                  <p className="text-muted-foreground">{metric.label[language]}</p>
-                </CardContent>
-              </Card>
-            ))}
+            {metrics.map((metric, index) => {
+              let Icon = Users;
+              switch(metric.icon) {
+                case "rjzlcjqi": Icon = Users; break;
+                case "gkosxwgv": Icon = TrendingUp; break;
+                case "mzjnwzka": Icon = Calendar; break;
+                case "ehdfdiha": Icon = Globe; break;
+                case "lupuorrc": Icon = Target; break;
+                case "msoeawqm": Icon = Search; break;
+                case "yqoxyxia": Icon = Star; break;
+              }
+
+              return (
+                <Card key={index} className="border-2">
+                  <CardContent className="pt-6">
+                    <div className="flex items-center justify-between mb-2">
+                      <Icon className="w-8 h-8 text-primary" />
+                      <ArrowUpRight className="w-5 h-5 text-green-500" />
+                    </div>
+                    <p className="text-3xl font-bold">{metric.value}</p>
+                    <p className="text-muted-foreground">{metric.label[language]}</p>
+                  </CardContent>
+                </Card>
+              );
+            })}
           </motion.div>
 
           <motion.div variants={fadeInUp} className="grid md:grid-cols-3 gap-8">
             <div className="md:col-span-2">
               <SectionHeader
                 title={language === "en" ? "Project Overview" : "Panoramica del Progetto"}
-                icon="ddwuidbp"
+                icon={FileEdit}
               />
               <p className="text-muted-foreground whitespace-pre-line">
                 {projectData.description[language]}
@@ -321,7 +322,7 @@ export function ProjectDetails({ language }: ProjectDetailsProps) {
             <div className="space-y-4">
               <SectionHeader
                 title={language === "en" ? "Tools & Platforms" : "Strumenti e Piattaforme"}
-                icon="wlwpsfhh"
+                icon={Tool}
               />
               <div className="space-y-2">
                 <Card className="p-4">
@@ -349,7 +350,7 @@ export function ProjectDetails({ language }: ProjectDetailsProps) {
               <motion.div variants={fadeInUp}>
                 <SectionHeader
                   title={language === "en" ? "Editorial Strategy" : "Strategia Editoriale"}
-                  icon="twkbpwbw"
+                  icon={FileEdit}
                 />
                 <div className="grid md:grid-cols-2 gap-6">
                   <Card className="p-6">
@@ -408,7 +409,7 @@ export function ProjectDetails({ language }: ProjectDetailsProps) {
               <motion.div variants={fadeInUp}>
                 <SectionHeader
                   title={language === "en" ? "Advertising Campaigns" : "Campagne Pubblicitarie"}
-                  icon="gkosxwgv"
+                  icon={BarChart3}
                 />
                 <div className="grid md:grid-cols-3 gap-6">
                   <Card className="p-6">
@@ -473,7 +474,7 @@ export function ProjectDetails({ language }: ProjectDetailsProps) {
               <motion.div variants={fadeInUp}>
                 <SectionHeader
                   title={language === "en" ? "Crowdfunding Campaign" : "Campagna Crowdfunding"}
-                  icon="pimqfqvv"
+                  icon={PiggyBank}
                 />
                 <Card className="p-6">
                   <div className="grid md:grid-cols-2 gap-6">
@@ -531,7 +532,7 @@ export function ProjectDetails({ language }: ProjectDetailsProps) {
               <motion.div variants={fadeInUp}>
                 <SectionHeader
                   title={language === "en" ? "Growth & Analytics" : "Crescita e Analytics"}
-                  icon="ehdfdiha"
+                  icon={TrendingUp}
                 />
                 <div className="grid md:grid-cols-2 gap-6">
                   <Card className="overflow-hidden">
@@ -570,24 +571,31 @@ export function ProjectDetails({ language }: ProjectDetailsProps) {
               <motion.div variants={fadeInUp}>
                 <SectionHeader
                   title={language === "en" ? "Social Media Content" : "Contenuti Social Media"}
-                  icon="rjzlcjqi"
+                  icon={Users}
                 />
-                <div className="grid md:grid-cols-3 gap-4">
-                  {images.map((image, index) => (
-                    <motion.div
-                      key={index}
-                      variants={fadeInUp}
-                      className="relative aspect-square"
-                    >
-                      <img
-                        src={image}
-                        alt={`Social Media Content ${index + 1}`}
-                        className="w-full h-full object-cover rounded-lg shadow-md"
-                        loading="lazy"
-                      />
-                    </motion.div>
-                  ))}
-                </div>
+
+                <Carousel className="w-full max-w-5xl mx-auto">
+                  <CarouselContent>
+                    {images.map((image, index) => (
+                      <CarouselItem key={index}>
+                        <div className="p-1">
+                          <Card className="overflow-hidden">
+                            <div className="aspect-[16/9]">
+                              <img
+                                src={image}
+                                alt={`Social Media Content ${index + 1}`}
+                                className="w-full h-full object-cover"
+                                loading="lazy"
+                              />
+                            </div>
+                          </Card>
+                        </div>
+                      </CarouselItem>
+                    ))}
+                  </CarouselContent>
+                  <CarouselPrevious />
+                  <CarouselNext />
+                </Carousel>
               </motion.div>
             </>
           )}
