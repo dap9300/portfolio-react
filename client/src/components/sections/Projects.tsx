@@ -58,7 +58,7 @@ const projects = [
       it: "Guidato la trasformazione digitale e la crescita sui social media per un centro culturale, ottenendo una crescita mensile del 400% nel coinvolgimento e espandendo i follower a oltre 13.000."
     },
     image: "https://images.unsplash.com/photo-1514525253161-7a46d19cd819?q=80&w=2574&auto=format&fit=crop",
-    technologies: ["Social Media Strategy", "Content Creation", "Analytics", "Event Marketing"],
+    technologies: ["Social Media Strategy", "Social Media Management", "Content Creation", "Creazione Sito Web", "Gestione Sito Web", "Social Media Analytics", "Google Analytics", "Event Marketing"],
     link: "/project/1"
   },
   {
@@ -71,17 +71,9 @@ const projects = [
       en: "Managed digital marketing strategies in the automotive sector, focusing on direct sales through Facebook, Instagram, Google Ads, and email marketing campaigns. Optimized the company's e-commerce for SEO to improve organic positioning and conversions.",
       it: "Ho gestito strategie di marketing digitale nel settore automotive, con focus sulla vendita diretta tramite campagne Facebook, Instagram, Google Ads ed email marketing. Ho ottimizzato l' e-commerce dell'azienda in ottica SEO per migliorare posizionamento organico e conversioni."
     },
-    image: "https://images.unsplash.com/photo-1539281358105-021846343570?q=80&w=2574&auto=format&fit=crop",
-    technologies: [
-      "Social Media Advertising",
-      "Social Media Strategy",
-      "Social Media Management",
-      "Content Creation",
-      "Social Media Analytics",
-      "Google Analytics",
-      "Email Marketing",
-      "Ottimizzazione SEO",
-      "Ottimizzazione Ecommerce"
+    image: "/assets/hrx-banner1.jpg",
+    technologies: ["Social Media Advertising","Social Media Strategy","Social Media Management","Content Creation",
+      "Social Media Analytics","Google Analytics","Email Marketing","Ottimizzazione SEO","Ottimizzazione Ecommerce"
     ],
     link: "/project/2"
   },
@@ -95,7 +87,7 @@ const projects = [
       en: "Management of digital marketing strategies for a physiotherapy clinic, focusing on Facebook, Instagram, and Google Ads campaigns to increase online bookings and local brand awareness.",
       it: "Gestione delle strategie di marketing digitale per uno studio di fisioterapia, con focus su campagne Facebook, Instagram e Google Ads per aumentare le prenotazioni online e la brand awareness locale"
     },
-    image: "https://images.unsplash.com/photo-1576091160550-2173dba999ef?q=80&w=2574&auto=format&fit=crop",
+    image: "/assets/manunta-banner.jpg",
     technologies: [
       "Creazione e ottimizzazione Sito Web",
       "Content Creation",
