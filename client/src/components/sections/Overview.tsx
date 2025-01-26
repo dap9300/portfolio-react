@@ -18,11 +18,6 @@ export function Overview({ language }: OverviewProps) {
     <motion.section 
       id="overview" 
       className="min-h-screen relative flex items-center py-20 px-4"
-      style={{
-        backgroundImage: "url('/assets/hrx-banner1.jpg')",
-        backgroundSize: "cover",
-        backgroundPosition: "center"
-      }}
       variants={sectionVariants}
       initial="hidden"
       whileInView="visible"
