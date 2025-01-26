@@ -48,7 +48,7 @@ Risultati Chiave:
 • Generato €17.771 di ricavi da biglietteria online su 85 eventi nel 2023
 • Gestito con successo una campagna di crowdfunding raccogliendo €5.597 con oltre 300 sostenitori`
     },
-    image: "https://images.unsplash.com/photo-1514525253161-7a46d19cd819?q=80&w=2574&auto=format&fit=crop",
+    image: "/assets/hrx-banner1.jpg",
     technologies: ["Social Media Strategy", "Content Creation", "Analytics", "Event Marketing", "Community Management", "Email Marketing"],
     link: "#"
   },
