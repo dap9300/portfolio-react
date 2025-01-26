@@ -1,4 +1,3 @@
-
 import { motion } from "framer-motion";
 import { translations } from "@/lib/translations";
 import { Language } from "@/types";
@@ -14,38 +13,61 @@ interface SkillsProps {
 interface SkillCategory {
   title: { en: string; it: string };
   icon: any;
-  skills: string[];
+  skills: { en: string[]; it: string[] }; // Modified to include Italian translations
 }
 
 const leftSkillCategories: SkillCategory[] = [
   {
     title: { en: "Digital Marketing & Analytics", it: "Digital Marketing & Analytics" },
     icon: ChartBar,
-    skills: [
-      "Performance Marketing (Meta Ads, Google Ads, Amazon Ads)",
-      "Web & Marketing Analytics (Meta Business Suite, Google Analytics, Google Search Console, Google Tag Manager, Looker Studio)",
-      "Email Marketing & Marketing Automation (Mailchimp, MailUp, ConvertKit, MailerLite, Drip)",
-      "SEO & Optimization (SEO on-page, SEO on-site, Technical SEO, Screaming Frog, Semrush, Rank Math)",
-      "Social Media (Meta Business Suite, Editorial Strategy & Planning, Community Management)"
-    ]
+    skills: {
+      en: [
+        "Performance Marketing (Meta Ads, Google Ads, Amazon Ads)",
+        "Web & Marketing Analytics (Meta Business Suite, Google Analytics, Google Search Console, Google Tag Manager, Looker Studio)",
+        "Email Marketing & Marketing Automation (Mailchimp, MailUp, ConvertKit, MailerLite, Drip)",
+        "SEO & Optimization (SEO on-page, SEO on-site, Technical SEO, Screaming Frog, Semrush, Rank Math)",
+        "Social Media (Meta Business Suite, Editorial Strategy & Planning, Community Management)"
+      ],
+      it: [
+        "Performance Marketing (Meta Ads, Google Ads, Amazon Ads)",
+        "Web & Marketing Analytics (Meta Business Suite, Google Analytics, Google Search Console, Google Tag Manager, Looker Studio)",
+        "Email Marketing & Marketing Automation (Mailchimp, MailUp, ConvertKit, MailerLite, Drip)",
+        "SEO & Optimization (SEO on-page, SEO on-site, Technical SEO, Screaming Frog, Semrush, Rank Math)",
+        "Social Media (Meta Business Suite, Editorial Strategy & Planning, Community Management)"
+      ]
+    }
   },
   {
     title: { en: "IT & Web", it: "IT & Web" },
     icon: Code2,
-    skills: [
-      "Programming & CMS (HTML5, CSS, WordPress, WooCommerce, Shopify)",
-      "Operating Systems (Windows, MacOS)",
-      "Office Productivity (Office Suite, Google Workspace, Slack, Asana, Trello)"
-    ]
+    skills: {
+      en: [
+        "Programming & CMS (HTML5, CSS, WordPress, WooCommerce, Shopify)",
+        "Operating Systems (Windows, MacOS)",
+        "Office Productivity (Office Suite, Google Workspace, Slack, Asana, Trello)"
+      ],
+      it: [
+        "Programmazione & CMS (HTML5, CSS, WordPress, WooCommerce, Shopify)",
+        "Sistemi Operativi (Windows, MacOS)",
+        "Produttività Office (Office Suite, Google Workspace, Slack, Asana, Trello)"
+      ]
+    }
   },
   {
     title: { en: "Content Creation & Media Editing", it: "Content Creation & Media Editing" },
     icon: PenTool,
-    skills: [
-      "Graphic Design (Adobe Creative Suite, Canva)",
-      "Video/Audio Editing (DaVinci Resolve, CapCut, Audacity)",
-      "AI Tools (ChatGPT, Claude, MidJourney, Cursor, ElevenLabs)"
-    ]
+    skills: {
+      en: [
+        "Graphic Design (Adobe Creative Suite, Canva)",
+        "Video/Audio Editing (DaVinci Resolve, CapCut, Audacity)",
+        "AI Tools (ChatGPT, Claude, MidJourney, Cursor, ElevenLabs)"
+      ],
+      it: [
+        "Graphic Design (Adobe Creative Suite, Canva)",
+        "Video/Audio Editing (DaVinci Resolve, CapCut, Audacity)",
+        "Strumenti AI (ChatGPT, Claude, MidJourney, Cursor, ElevenLabs)"
+      ]
+    }
   }
 ];
 
@@ -53,32 +75,56 @@ const rightSkillCategories: SkillCategory[] = [
   {
     title: { en: "Soft Skills", it: "Soft Skill" },
     icon: Brain,
-    skills: [
-      "Analytical and data-driven thinking",
-      "Priority and deadline management",
-      "Cross-functional collaboration",
-      "Customer-centric approach",
-      "Ability to translate technical concepts for non-technical audiences",
-      "Quick learning ability"
-    ]
+    skills: {
+      en: [
+        "Analytical and data-driven thinking",
+        "Priority and deadline management",
+        "Cross-functional collaboration",
+        "Customer-centric approach",
+        "Ability to translate technical concepts for non-technical audiences",
+        "Quick learning ability"
+      ],
+      it: [
+        "Pensiero analitico e basato sui dati",
+        "Gestione delle priorità e delle scadenze",
+        "Collaborazione interfunzionale",
+        "Approccio incentrato sul cliente",
+        "Capacità di tradurre concetti tecnici per un pubblico non tecnico",
+        "Capacità di apprendimento rapido"
+      ]
+    }
   },
   {
     title: { en: "Languages", it: "Lingue" },
     icon: Languages,
-    skills: [
-      "Italian: Native",
-      "English: Fluent"
-    ]
+    skills: {
+      en: [
+        "Italian: Native",
+        "English: Fluent"
+      ],
+      it: [
+        "Italiano: Madrelingua",
+        "Inglese: Fluente"
+      ]
+    }
   },
   {
     title: { en: "Hobbies & Interests", it: "Hobby & Interessi" },
     icon: Heart,
-    skills: [
-      "Experimentation with AI Tools and new technologies",
-      "Sport Climbing",
-      "Chess",
-      "Guitar"
-    ]
+    skills: {
+      en: [
+        "Experimentation with AI Tools and new technologies",
+        "Sport Climbing",
+        "Chess",
+        "Guitar"
+      ],
+      it: [
+        "Sperimentazione con strumenti AI e nuove tecnologie",
+        "Arrampicata sportiva",
+        "Scacchi",
+        "Chitarra"
+      ]
+    }
   }
 ];
 
@@ -93,8 +139,8 @@ export function Skills({ language }: SkillsProps) {
         viewport={{ once: true }}
       />
       <div className="container mx-auto">
-        <SectionTitle 
-          title={t.title} 
+        <SectionTitle
+          title={t.title}
           icon="Brain"
         />
         <div className="grid md:grid-cols-2 gap-8 auto-rows-fr">
@@ -109,7 +155,7 @@ export function Skills({ language }: SkillsProps) {
                     </h3>
                   </div>
                   <ul className="space-y-2">
-                    {category.skills.map((skill, skillIndex) => (
+                    {category.skills[language].map((skill, skillIndex) => ( // Corrected mapping
                       <li
                         key={skillIndex}
                         className="text-muted-foreground"
@@ -133,7 +179,7 @@ export function Skills({ language }: SkillsProps) {
                     </h3>
                   </div>
                   <ul className="space-y-2">
-                    {category.skills.map((skill, skillIndex) => (
+                    {category.skills[language].map((skill, skillIndex) => ( // Corrected mapping
                       <li
                         key={skillIndex}
                         className="text-muted-foreground"
