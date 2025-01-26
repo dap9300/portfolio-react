@@ -19,7 +19,7 @@ export function Projects({ language }: ProjectsProps) {
       variants={sectionVariants}
       initial="hidden"
       whileInView="visible"
-      viewport={{ once: true, margin: "-100px" }}
+      viewport={{ once: true, amount: 0.3 }}
     >
       <div className="container mx-auto">
         <SectionTitle 
