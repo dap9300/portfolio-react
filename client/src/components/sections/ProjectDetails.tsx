@@ -226,6 +226,9 @@ export function ProjectDetails({ language, onLanguageChange }: ProjectDetailsPro
 
   useEffect(() => {
     window.scrollTo(0, 0);
+    if (language === 'en') {
+      onLanguageChange('it');
+    }
   }, []);
 
   if (!projectData || !metrics) {
