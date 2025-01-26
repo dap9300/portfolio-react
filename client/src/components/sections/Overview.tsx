@@ -21,7 +21,7 @@ export function Overview({ language }: OverviewProps) {
       variants={sectionVariants}
       initial="hidden"
       whileInView="visible"
-      viewport={{ once: true, margin: "-100px" }}
+      viewport={{ once: true, amount: 0.3 }}
     >
       <motion.div
         className="absolute inset-0 bg-gradient-to-b from-background to-muted/30 -z-10"
@@ -39,7 +39,7 @@ export function Overview({ language }: OverviewProps) {
           variants={staggerContainer}
           initial="hidden"
           whileInView="visible"
-          viewport={{ once: true, margin: "-100px" }}
+          viewport={{ once: true, amount: 0.3 }}
         >
           <Card className="backdrop-blur-sm bg-background/80 transform transition-all duration-500 hover:scale-[1.02]">
             <CardContent className="p-8 md:p-10">
