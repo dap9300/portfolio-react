@@ -22,7 +22,10 @@ export function Projects({ language }: ProjectsProps) {
       viewport={{ once: true, margin: "-100px" }}
     >
       <div className="container mx-auto">
-        <SectionTitle title={t.title} />
+        <SectionTitle 
+          title={t.title}
+          icon="https://cdn.lordicon.com/iltqorsz.json"
+        />
         <motion.div
           variants={staggerContainer}
           initial="hidden"
