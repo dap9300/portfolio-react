@@ -17,7 +17,7 @@ export function Overview({ language }: OverviewProps) {
   return (
     <motion.section 
       id="overview" 
-      className="min-h-screen relative flex items-center py-20 px-4"
+      className="min-h-screen relative flex items-center py-20"
       variants={sectionVariants}
       initial="hidden"
       whileInView="visible"
@@ -30,7 +30,7 @@ export function Overview({ language }: OverviewProps) {
         viewport={{ once: true }}
         transition={{ duration: 1.2 }}
       />
-      <div className="container mx-auto">
+      <div className="container max-w-5xl mx-auto px-8">
         <SectionTitle 
           title={language === 'en' ? 'Overview' : 'Panoramica'} 
           icon="https://cdn.lordicon.com/xcxzayqr.json"
@@ -42,10 +42,10 @@ export function Overview({ language }: OverviewProps) {
           viewport={{ once: true, margin: "-100px" }}
         >
           <Card className="backdrop-blur-sm bg-background/80 transform transition-all duration-500 hover:scale-[1.02]">
-            <CardContent className="p-6 md:p-8">
+            <CardContent className="p-8 md:p-10">
               <motion.p
                 variants={fadeInUp}
-                className="text-lg text-center max-w-4xl mx-auto leading-relaxed"
+                className="text-lg text-center max-w-3xl mx-auto leading-relaxed"
               >
                 {content}
               </motion.p>

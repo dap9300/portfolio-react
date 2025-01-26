@@ -12,22 +12,19 @@ import { AnimatePresence, motion } from "framer-motion";
 const pageVariants = {
   initial: {
     opacity: 0,
-    y: 20,
   },
   enter: {
     opacity: 1,
-    y: 0,
     transition: {
       duration: 0.5,
-      ease: [0.645, 0.045, 0.355, 1.0],
+      ease: "easeInOut",
     },
   },
   exit: {
     opacity: 0,
-    y: -20,
     transition: {
       duration: 0.3,
-      ease: [0.645, 0.045, 0.355, 1.0],
+      ease: "easeInOut",
     },
   },
 };
@@ -37,25 +34,27 @@ function Router() {
   const [location] = useLocation();
 
   return (
-    <AnimatePresence mode="wait">
-      <motion.div
-        key={location}
-        initial="initial"
-        animate="enter"
-        exit="exit"
-        variants={pageVariants}
-      >
-        <Switch>
-          <Route path="/">
-            {() => <Home language={language} onLanguageChange={setLanguage} />}
-          </Route>
-          <Route path="/project/:id">
-            {(params) => <ProjectDetails language={language} onLanguageChange={setLanguage} />}
-          </Route>
-          <Route component={NotFound} />
-        </Switch>
-      </motion.div>
-    </AnimatePresence>
+    <div className="max-w-[1200px] mx-auto px-8">
+      <AnimatePresence mode="wait">
+        <motion.div
+          key={location}
+          initial="initial"
+          animate="enter"
+          exit="exit"
+          variants={pageVariants}
+        >
+          <Switch>
+            <Route path="/">
+              {() => <Home language={language} onLanguageChange={setLanguage} />}
+            </Route>
+            <Route path="/project/:id">
+              {(params) => <ProjectDetails language={language} onLanguageChange={setLanguage} />}
+            </Route>
+            <Route component={NotFound} />
+          </Switch>
+        </motion.div>
+      </AnimatePresence>
+    </div>
   );
 }
 
