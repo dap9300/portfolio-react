@@ -71,7 +71,7 @@ const projects = [
       en: "Managed digital marketing strategies in the automotive sector, focusing on direct sales through Facebook, Instagram, Google Ads, and email marketing campaigns. Optimized the company's e-commerce for SEO to improve organic positioning and conversions.",
       it: "Ho gestito strategie di marketing digitale nel settore automotive, con focus sulla vendita diretta tramite campagne Facebook, Instagram, Google Ads ed email marketing. Ho ottimizzato l' e-commerce dell'azienda in ottica SEO per migliorare posizionamento organico e conversioni."
     },
-    image: "https://images.unsplash.com/photo-1600191763437-4b7293b393c1?q=80&w=2574&auto=format&fit=crop",
+    image: "https://images.unsplash.com/photo-1539281358105-021846343570?q=80&w=2574&auto=format&fit=crop",
     technologies: [
       "Social Media Advertising",
       "Social Media Strategy",
