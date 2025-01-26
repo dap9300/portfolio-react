@@ -367,56 +367,82 @@ export function ProjectDetails({ language, onLanguageChange }: ProjectDetailsPro
                     <div className="flex items-center gap-3">
                       <FileEdit className="w-5 h-5 text-primary" />
                       <h2 className="text-xl font-semibold">
-                        {language === "en" ? "Editorial Strategy" : "Strategia Editoriale"}
+                        {language === "en" ? "Editorial Strategy & Social Media" : "Strategia Editoriale & Social Media"}
                       </h2>
                     </div>
                   </AccordionTrigger>
                   <AccordionContent className="px-4">
-                    <div className="grid md:grid-cols-2 gap-6 pt-4">
-                      <Card className="p-6">
-                        <h3 className="font-semibold mb-4">
-                          {language === "en" ? "Content Planning" : "Pianificazione Contenuti"}
-                        </h3>
-                        <ul className="space-y-2 text-muted-foreground">
-                          <li>
-                            • {language === "en"
-                              ? "Developed monthly editorial calendar for Instagram and Facebook"
-                              : "Sviluppato calendario editoriale mensile per Instagram e Facebook"}
-                          </li>
-                          <li>
-                            • {language === "en"
-                              ? "Implemented content categorization system"
-                              : "Implementato sistema di categorizzazione dei contenuti"}
-                          </li>
-                          <li>
-                            • {language === "en"
-                              ? "Managed multi-platform communication strategy"
-                              : "Gestito strategia di comunicazione multipiattaforma"}
-                          </li>
-                        </ul>
-                      </Card>
-                      <Card className="p-6">
-                        <h3 className="font-semibold mb-4">
-                          {language === "en" ? "Performance & Analytics" : "Performance e Analytics"}
-                        </h3>
-                        <ul className="space-y-2 text-muted-foreground">
-                          <li>
-                            • {language === "en"
-                              ? "Monitored and analyzed content performance"
-                              : "Monitorato e analizzato performance dei contenuti"}
-                          </li>
-                          <li>
-                            • {language === "en"
-                              ? "Optimized hashtag strategy for organic reach"
-                              : "Ottimizzato strategia hashtag per portata organica"}
-                          </li>
-                          <li>
-                            • {language === "en"
-                              ? "Implemented content workflow via Asana"
-                              : "Implementato workflow contenuti tramite Asana"}
-                          </li>
-                        </ul>
-                      </Card>
+                    <div className="space-y-6 pt-4">
+                      <div className="grid md:grid-cols-2 gap-6">
+                        <Card className="p-6">
+                          <h3 className="font-semibold mb-4">
+                            {language === "en" ? "Content Planning" : "Pianificazione Contenuti"}
+                          </h3>
+                          <ul className="space-y-2 text-muted-foreground">
+                            <li>
+                              • {language === "en"
+                                ? "Developed monthly editorial calendar for Instagram and Facebook"
+                                : "Sviluppato calendario editoriale mensile per Instagram e Facebook"}
+                            </li>
+                            <li>
+                              • {language === "en"
+                                ? "Implemented content categorization system"
+                                : "Implementato sistema di categorizzazione dei contenuti"}
+                            </li>
+                            <li>
+                              • {language === "en"
+                                ? "Managed multi-platform communication strategy"
+                                : "Gestito strategia di comunicazione multipiattaforma"}
+                            </li>
+                          </ul>
+                        </Card>
+                        <Card className="p-6">
+                          <h3 className="font-semibold mb-4">
+                            {language === "en" ? "Performance & Analytics" : "Performance e Analytics"}
+                          </h3>
+                          <ul className="space-y-2 text-muted-foreground">
+                            <li>
+                              • {language === "en"
+                                ? "Monitored and analyzed content performance"
+                                : "Monitorato e analizzato performance dei contenuti"}
+                            </li>
+                            <li>
+                              • {language === "en"
+                                ? "Optimized hashtag strategy for organic reach"
+                                : "Ottimizzato strategia hashtag per portata organica"}
+                            </li>
+                            <li>
+                              • {language === "en"
+                                ? "Implemented content workflow via Asana"
+                                : "Implementato workflow contenuti tramite Asana"}
+                            </li>
+                          </ul>
+                        </Card>
+                      </div>
+                      <div>
+                        <Carousel className="w-full max-w-5xl mx-auto">
+                          <CarouselContent>
+                            {images.map((image, index) => (
+                              <CarouselItem key={index}>
+                                <div className="p-1">
+                                  <Card className="overflow-hidden">
+                                    <div className="aspect-[16/9]">
+                                      <img
+                                        src={image}
+                                        alt={`Social Media Content ${index + 1}`}
+                                        className="w-full h-full object-cover"
+                                        loading="lazy"
+                                      />
+                                    </div>
+                                  </Card>
+                                </div>
+                              </CarouselItem>
+                            ))}
+                          </CarouselContent>
+                          <CarouselPrevious />
+                          <CarouselNext />
+                        </Carousel>
+                      </div>
                     </div>
                   </AccordionContent>
                 </AccordionItem>
@@ -592,42 +618,7 @@ export function ProjectDetails({ language, onLanguageChange }: ProjectDetailsPro
                   </AccordionContent>
                 </AccordionItem>
 
-                <AccordionItem value="social-media" className="border rounded-lg hover:bg-accent/50 transition-colors">
-                  <AccordionTrigger className="px-4">
-                    <div className="flex items-center gap-3">
-                      <Users className="w-5 h-5 text-primary" />
-                      <h2 className="text-xl font-semibold">
-                        {language === "en" ? "Social Media Content" : "Contenuti Social Media"}
-                      </h2>
-                    </div>
-                  </AccordionTrigger>
-                  <AccordionContent className="px-4">
-                    <div className="pt-4">
-                      <Carousel className="w-full max-w-5xl mx-auto">
-                        <CarouselContent>
-                          {images.map((image, index) => (
-                            <CarouselItem key={index}>
-                              <div className="p-1">
-                                <Card className="overflow-hidden">
-                                  <div className="aspect-[16/9]">
-                                    <img
-                                      src={image}
-                                      alt={`Social Media Content ${index + 1}`}
-                                      className="w-full h-full object-cover"
-                                      loading="lazy"
-                                    />
-                                  </div>
-                                </Card>
-                              </div>
-                            </CarouselItem>
-                          ))}
-                        </CarouselContent>
-                        <CarouselPrevious />
-                        <CarouselNext />
-                      </Carousel>
-                    </div>
-                  </AccordionContent>
-                </AccordionItem>
+                
               </Accordion>
             </>
           )}
