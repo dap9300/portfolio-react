@@ -123,7 +123,7 @@ const projectsData: Record<string, Project> = {
 - ROI campagne: 2,46x`
     },
     image: "/assets/banner-magazzino.webp",
-    technologies: ["Social Media Strategy", "Content Creation", "Analytics", "Event Marketing", "Community Management", "Email Marketing"],
+    technologies: ["Social Media Strategy", "Web Development & Analytics", "Content Creation", "Event & Email Marketing"],
     link: "#"
   },
   "2": {
