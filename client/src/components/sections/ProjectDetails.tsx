@@ -677,7 +677,16 @@ export function ProjectDetails({ language, onLanguageChange }: ProjectDetailsPro
                     </Card>
                   </AccordionContent>
                 </AccordionItem>
-              </Accordion>
+
+                <AccordionItem value="content-planning" className="border rounded-lg hover:bg-accent/50 transition-colors">
+                  <AccordionTrigger className="px-4">
+                    <div className="flex items-center gap-3">
+                      <FileEdit className="w-5 h-5 text-primary" />
+                      <h2 className="text-xl font-semibold">
+                        {language === "en" ? "Content Planning" : "Pianificazione Contenuti"}
+                      </h2>
+                    </div>
+                  </AccordionTrigger>
                   <AccordionContent className="px-4">
                     <div className="space-y-6 pt-4">
                       <div className="grid md:grid-cols-2 gap-6">
@@ -753,6 +762,7 @@ export function ProjectDetails({ language, onLanguageChange }: ProjectDetailsPro
                     </div>
                   </AccordionContent>
                 </AccordionItem>
+              </Accordion>
 
                 <AccordionItem value="advertising-campaigns" className="border rounded-lg hover:bg-accent/50 transition-colors">
                   <AccordionTrigger className="px-4">
