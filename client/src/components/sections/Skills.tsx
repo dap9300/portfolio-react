@@ -22,11 +22,11 @@ const leftSkillCategories: SkillCategory[] = [
     icon: ChartBar,
     skills: {
       en: [
-        "Performance Marketing (Meta Ads, Google Ads, Amazon Ads)",
-        "Web & Marketing Analytics (Meta Business Suite, Google Analytics, Google Search Console, Google Tag Manager, Looker Studio)",
-        "Email Marketing & Marketing Automation (Mailchimp, MailUp, ConvertKit, MailerLite, Drip)",
-        "SEO & Optimization (SEO on-page, SEO on-site, Technical SEO, Screaming Frog, Semrush, Rank Math)",
-        "Social Media (Meta Business Suite, Editorial Strategy & Planning, Community Management)"
+        "**Performance Marketing**: Meta Ads, Google Ads, Amazon Ads",
+        "**Web & Marketing Analytics**: Meta Business Suite, Google Analytics, Google Search Console, Google Tag Manager, Looker Studio",
+        "**Email Marketing & Marketing Automation**: Mailchimp, MailUp, ConvertKit, MailerLite, Drip",
+        "**SEO & Optimization**: SEO on-page, SEO on-site, Technical SEO, Screaming Frog, Semrush, Rank Math",
+        "**Social Media**: Meta Business Suite, Editorial Strategy & Planning, Community Management"
       ],
       it: [
         "Performance Marketing (Meta Ads, Google Ads, Amazon Ads)",
@@ -155,14 +155,21 @@ export function Skills({ language }: SkillsProps) {
                     </h3>
                   </div>
                   <ul className="space-y-2">
-                    {category.skills[language].map((skill, skillIndex) => ( // Corrected mapping
-                      <li
-                        key={skillIndex}
-                        className="text-muted-foreground"
-                      >
-                        {skill}
-                      </li>
-                    ))}
+                    {category.skills[language].map((skill, skillIndex) => {
+                      const formattedSkill = skill
+                        .replace(/(.+?)\s*\((.*?)\)/g, "**$1**: $2")
+                        .replace(/\s*\((.*?)\)/g, ", $1");
+
+                      return (
+                        <li
+                          key={skillIndex}
+                          className="text-muted-foreground"
+                          dangerouslySetInnerHTML={{
+                            __html: formattedSkill.replace(/\*\*(.*?)\*\*/g, '<strong>$1</strong>')
+                          }}
+                        />
+                      );
+                    })}
                   </ul>
                 </CardContent>
               </Card>
@@ -179,14 +186,21 @@ export function Skills({ language }: SkillsProps) {
                     </h3>
                   </div>
                   <ul className="space-y-2">
-                    {category.skills[language].map((skill, skillIndex) => ( // Corrected mapping
-                      <li
-                        key={skillIndex}
-                        className="text-muted-foreground"
-                      >
-                        {skill}
-                      </li>
-                    ))}
+                    {category.skills[language].map((skill, skillIndex) => {
+                      const formattedSkill = skill
+                        .replace(/(.+?)\s*\((.*?)\)/g, "**$1**: $2")
+                        .replace(/\s*\((.*?)\)/g, ", $1");
+
+                      return (
+                        <li
+                          key={skillIndex}
+                          className="text-muted-foreground"
+                          dangerouslySetInnerHTML={{
+                            __html: formattedSkill.replace(/\*\*(.*?)\*\*/g, '<strong>$1</strong>')
+                          }}
+                        />
+                      );
+                    })}
                   </ul>
                 </CardContent>
               </Card>
