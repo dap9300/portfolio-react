@@ -426,15 +426,258 @@ export function ProjectDetails({ language, onLanguageChange }: ProjectDetailsPro
           {id === "1" && (
             <>
               <Accordion type="single" collapsible className="space-y-4">
-                <AccordionItem value="editorial-strategy" className="border rounded-lg hover:bg-accent/50 transition-colors">
+                <AccordionItem value="overview" className="border rounded-lg hover:bg-accent/50 transition-colors">
                   <AccordionTrigger className="px-4">
                     <div className="flex items-center gap-3">
                       <FileEdit className="w-5 h-5 text-primary" />
                       <h2 className="text-xl font-semibold">
-                        {language === "en" ? "Editorial Strategy & Social Media" : "Strategia Editoriale & Social Media"}
+                        {language === "en" ? "1. Overview" : "1. Overview"}
                       </h2>
                     </div>
                   </AccordionTrigger>
+                  <AccordionContent className="px-4">
+                    <Card className="p-6 mt-4">
+                      <div className="grid md:grid-cols-2 gap-6">
+                        <div>
+                          <h3 className="font-semibold mb-4">
+                            {language === "en" ? "Project Background" : "Background del Progetto"}
+                          </h3>
+                          <p className="text-muted-foreground mb-4">
+                            {language === "en"
+                              ? "Digital transformation and communication strategy for one of Turin's main cultural venues."
+                              : "Trasformazione digitale e strategia di comunicazione per uno dei principali luoghi culturali di Torino."}
+                          </p>
+                        </div>
+                        <div className="aspect-video relative">
+                          <img
+                            src="/assets/growth.png"
+                            alt="Overview"
+                            className="w-full h-full object-cover rounded-lg"
+                          />
+                        </div>
+                      </div>
+                    </Card>
+                  </AccordionContent>
+                </AccordionItem>
+
+                <AccordionItem value="objectives" className="border rounded-lg hover:bg-accent/50 transition-colors">
+                  <AccordionTrigger className="px-4">
+                    <div className="flex items-center gap-3">
+                      <Target className="w-5 h-5 text-primary" />
+                      <h2 className="text-xl font-semibold">
+                        {language === "en" ? "2. Main Objectives" : "2. Obiettivi Principali"}
+                      </h2>
+                    </div>
+                  </AccordionTrigger>
+                  <AccordionContent className="px-4">
+                    <div className="grid md:grid-cols-2 gap-6 pt-4">
+                      <Card className="p-6">
+                        <h3 className="font-semibold mb-4">
+                          {language === "en" ? "Strategic Goals" : "Obiettivi Strategici"}
+                        </h3>
+                        <ul className="space-y-2 text-muted-foreground">
+                          <li>• {language === "en" ? "Digital Transformation" : "Trasformazione Digitale"}</li>
+                          <li>• {language === "en" ? "Community Growth" : "Crescita Community"}</li>
+                          <li>• {language === "en" ? "Brand Awareness" : "Brand Awareness"}</li>
+                        </ul>
+                      </Card>
+                      <div className="aspect-video relative">
+                        <img
+                          src="/assets/growth.png"
+                          alt="Objectives"
+                          className="w-full h-full object-cover rounded-lg"
+                        />
+                      </div>
+                    </div>
+                  </AccordionContent>
+                </AccordionItem>
+
+                <AccordionItem value="key-results" className="border rounded-lg hover:bg-accent/50 transition-colors">
+                  <AccordionTrigger className="px-4">
+                    <div className="flex items-center gap-3">
+                      <BarChart3 className="w-5 h-5 text-primary" />
+                      <h2 className="text-xl font-semibold">
+                        {language === "en" ? "3. Key Results (2023)" : "3. Risultati Chiave (2023)"}
+                      </h2>
+                    </div>
+                  </AccordionTrigger>
+                  <AccordionContent className="px-4">
+                    <div className="space-y-6 pt-4">
+                      <Card className="p-6">
+                        <div className="grid md:grid-cols-2 gap-6">
+                          <div>
+                            <h3 className="font-semibold mb-4">3.1 Social Media Performance</h3>
+                            <div className="space-y-4">
+                              <div>
+                                <h4 className="font-medium mb-2">3.1.1 Facebook</h4>
+                                <ul className="space-y-1 text-muted-foreground">
+                                  <li>• 31,203 followers (+3.1% YoY)</li>
+                                  <li>• Reach: 545,960 (+97.6%)</li>
+                                  <li>• Visits: 91,723 (+90.6%)</li>
+                                </ul>
+                              </div>
+                              <div>
+                                <h4 className="font-medium mb-2">3.1.2 Instagram</h4>
+                                <ul className="space-y-1 text-muted-foreground">
+                                  <li>• 12,911 followers (+44.2% YoY)</li>
+                                  <li>• Reach: 502,784 (+550.6%)</li>
+                                  <li>• Visits: 66,153 (+93.9%)</li>
+                                </ul>
+                              </div>
+                            </div>
+                          </div>
+                          <div className="aspect-video relative">
+                            <img
+                              src="/assets/growth.png"
+                              alt="Social Media Growth"
+                              className="w-full h-full object-cover rounded-lg"
+                            />
+                          </div>
+                        </div>
+                      </Card>
+
+                      <Card className="p-6">
+                        <div className="grid md:grid-cols-2 gap-6">
+                          <div>
+                            <h3 className="font-semibold mb-4">3.2 Website Performance</h3>
+                            <ul className="space-y-2 text-muted-foreground">
+                              <li>• 37,455 annual users (+88.2% YoY)</li>
+                              <li>• 3,121 average monthly users</li>
+                              <li>• Main traffic sources:
+                                <ul className="ml-4 mt-1">
+                                  <li>- Social Media: 8,500+ users</li>
+                                  <li>- Organic Search: 5,800+ users</li>
+                                  <li>- Direct Access: 4,950+ users</li>
+                                </ul>
+                              </li>
+                            </ul>
+                          </div>
+                          <div className="aspect-video relative">
+                            <img
+                              src="/assets/growth.png"
+                              alt="Website Analytics"
+                              className="w-full h-full object-cover rounded-lg"
+                            />
+                          </div>
+                        </div>
+                      </Card>
+
+                      <Card className="p-6">
+                        <div className="grid md:grid-cols-2 gap-6">
+                          <div>
+                            <h3 className="font-semibold mb-4">3.3 E-commerce & Newsletter</h3>
+                            <ul className="space-y-2 text-muted-foreground">
+                              <li>• €15,583 online ticket revenue</li>
+                              <li>• 2,915 tickets sold (+134% YoY)</li>
+                              <li>• 44,514 newsletter subscribers (+54%)</li>
+                              <li>• 32% average newsletter open rate</li>
+                            </ul>
+                          </div>
+                          <div className="aspect-video relative">
+                            <img
+                              src="/assets/growth.png"
+                              alt="E-commerce Performance"
+                              className="w-full h-full object-cover rounded-lg"
+                            />
+                          </div>
+                        </div>
+                      </Card>
+                    </div>
+                  </AccordionContent>
+                </AccordionItem>
+
+                <AccordionItem value="strategies" className="border rounded-lg hover:bg-accent/50 transition-colors">
+                  <AccordionTrigger className="px-4">
+                    <div className="flex items-center gap-3">
+                      <FileEdit className="w-5 h-5 text-primary" />
+                      <h2 className="text-xl font-semibold">
+                        {language === "en" ? "4. Strategies & Projects" : "4. Strategie & Progetti"}
+                      </h2>
+                    </div>
+                  </AccordionTrigger>
+                  <AccordionContent className="px-4">
+                    <div className="space-y-6 pt-4">
+                      <Card className="p-6">
+                        <div className="grid md:grid-cols-2 gap-6">
+                          <div>
+                            <h3 className="font-semibold mb-4">4.1 Integrated Digital Marketing</h3>
+                            <ul className="space-y-2 text-muted-foreground">
+                              <li>• Multi-channel communication strategy</li>
+                              <li>• Content planning and creation</li>
+                              <li>• Community management</li>
+                            </ul>
+                          </div>
+                          <div className="aspect-video relative">
+                            <img
+                              src="/assets/growth.png"
+                              alt="Digital Marketing Strategy"
+                              className="w-full h-full object-cover rounded-lg"
+                            />
+                          </div>
+                        </div>
+                      </Card>
+
+                      <Card className="p-6">
+                        <div className="grid md:grid-cols-2 gap-6">
+                          <div>
+                            <h3 className="font-semibold mb-4">4.2 Advertising Campaigns</h3>
+                            <div className="space-y-4">
+                              <div>
+                                <h4 className="font-medium mb-2">4.2.1 Q3 2023 Performance</h4>
+                                <ul className="space-y-1 text-muted-foreground">
+                                  <li>• Average CPC: €0.10</li>
+                                  <li>• CPM: €1.57</li>
+                                  <li>• Average CTR: 0.74%</li>
+                                  <li>• Campaign ROI: 2.46x</li>
+                                </ul>
+                              </div>
+                            </div>
+                          </div>
+                          <div className="aspect-video relative">
+                            <img
+                              src="/assets/growth.png"
+                              alt="Advertising Performance"
+                              className="w-full h-full object-cover rounded-lg"
+                            />
+                          </div>
+                        </div>
+                      </Card>
+                    </div>
+                  </AccordionContent>
+                </AccordionItem>
+
+                <AccordionItem value="special-projects" className="border rounded-lg hover:bg-accent/50 transition-colors">
+                  <AccordionTrigger className="px-4">
+                    <div className="flex items-center gap-3">
+                      <Trophy className="w-5 h-5 text-primary" />
+                      <h2 className="text-xl font-semibold">
+                        {language === "en" ? "5. Special Projects" : "5. Progetti Speciali"}
+                      </h2>
+                    </div>
+                  </AccordionTrigger>
+                  <AccordionContent className="px-4">
+                    <Card className="p-6 mt-4">
+                      <div className="grid md:grid-cols-2 gap-6">
+                        <div>
+                          <h3 className="font-semibold mb-4">5.1 FIUMEDENTRO Crowdfunding</h3>
+                          <ul className="space-y-2 text-muted-foreground">
+                            <li>• €5,597 raised</li>
+                            <li>• 300+ supporters</li>
+                            <li>• Multichannel communication strategy</li>
+                          </ul>
+                        </div>
+                        <div className="aspect-video relative">
+                          <img
+                            src="/assets/growth.png"
+                            alt="Crowdfunding Campaign"
+                            className="w-full h-full object-cover rounded-lg"
+                          />
+                        </div>
+                      </div>
+                    </Card>
+                  </AccordionContent>
+                </AccordionItem>
+              </Accordion>
                   <AccordionContent className="px-4">
                     <div className="space-y-6 pt-4">
                       <div className="grid md:grid-cols-2 gap-6">
