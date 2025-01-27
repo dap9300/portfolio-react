@@ -209,13 +209,51 @@ export function ProjectDetails({ language, onLanguageChange }: ProjectDetailsPro
                     </p>
                   </div>
                 </div>
-                <div className="grid grid-cols-2 md:grid-cols-3 gap-3">
-                  {projectData.technologies.map((tech, index) => (
-                    <Card key={index} className="group relative px-4 py-3 border border-border/50 hover:border-primary/50 transition-all duration-300 hover:shadow-lg hover:shadow-primary/5">
-                      <div className="absolute inset-0 bg-gradient-to-r from-primary/5 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300" />
-                      <h3 className="font-medium relative z-10">{tech}</h3>
-                    </Card>
-                  ))}
+                <div className="space-y-6">
+                  {/* Analytics Tools */}
+                  <div>
+                    <h3 className="text-lg font-semibold mb-3 text-primary">Analytics</h3>
+                    <div className="grid grid-cols-2 md:grid-cols-3 gap-3">
+                      {projectData.technologies
+                        .filter(tech => ["Google Analytics", "Meta Business Suite", "Google Tag Manager", "Google Search Console"].includes(tech))
+                        .map((tech, index) => (
+                          <Card key={index} className="group relative px-4 py-3 border border-border/50 hover:border-primary/50 transition-all duration-300 hover:shadow-lg hover:shadow-primary/5">
+                            <div className="absolute inset-0 bg-gradient-to-r from-primary/5 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300" />
+                            <h3 className="font-medium relative z-10">{tech}</h3>
+                          </Card>
+                        ))}
+                    </div>
+                  </div>
+                  
+                  {/* Social Media Tools */}
+                  <div>
+                    <h3 className="text-lg font-semibold mb-3 text-primary">Social Media</h3>
+                    <div className="grid grid-cols-2 md:grid-cols-3 gap-3">
+                      {projectData.technologies
+                        .filter(tech => ["Meta Ads", "Social Media Strategy", "Social Media Management", "Content Creation", "Social Media Analytics"].includes(tech))
+                        .map((tech, index) => (
+                          <Card key={index} className="group relative px-4 py-3 border border-border/50 hover:border-primary/50 transition-all duration-300 hover:shadow-lg hover:shadow-primary/5">
+                            <div className="absolute inset-0 bg-gradient-to-r from-primary/5 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300" />
+                            <h3 className="font-medium relative z-10">{tech}</h3>
+                          </Card>
+                        ))}
+                    </div>
+                  </div>
+
+                  {/* Website Tools */}
+                  <div>
+                    <h3 className="text-lg font-semibold mb-3 text-primary">Website</h3>
+                    <div className="grid grid-cols-2 md:grid-cols-3 gap-3">
+                      {projectData.technologies
+                        .filter(tech => ["WordPress", "WooCommerce", "Technical SEO", "Email Marketing", "DICE"].includes(tech))
+                        .map((tech, index) => (
+                          <Card key={index} className="group relative px-4 py-3 border border-border/50 hover:border-primary/50 transition-all duration-300 hover:shadow-lg hover:shadow-primary/5">
+                            <div className="absolute inset-0 bg-gradient-to-r from-primary/5 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300" />
+                            <h3 className="font-medium relative z-10">{tech}</h3>
+                          </Card>
+                        ))}
+                    </div>
+                  </div>
                 </div>
               </div>
             </motion.div>
