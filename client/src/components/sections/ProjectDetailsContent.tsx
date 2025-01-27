@@ -90,7 +90,70 @@ Advertising Digitale:
     technologies: ["Social Media Strategy", "Web Development & Analytics", "Content Creation", "Event & Email Marketing"],
     link: "#"
   },
-  // ... other project data remains the same
+  "2": {
+    id: 2,
+    title: {
+      en: "HRX Srl - Digital Marketing | Social Media | Ecommerce optimization",
+      it: "HRX Srl - Digital Marketing | Social Media | Ottimizzazione Ecommerce"
+    },
+    description: {
+      en: `Managed digital marketing strategies in the automotive sector, focusing on direct sales through Facebook, Instagram, Google Ads, and email marketing campaigns. Optimized the company's e-commerce for SEO to improve organic positioning and conversions.`,
+      it: `Ho gestito strategie di marketing digitale nel settore automotive, con focus sulla vendita diretta tramite campagne Facebook, Instagram, Google Ads ed email marketing. Ho ottimizzato l' e-commerce dell'azienda in ottica SEO per migliorare posizionamento organico e conversioni.`
+    },
+    image: "/assets/hrx-banner1.jpg",
+    technologies: [
+      "Social Media Advertising",
+      "Social Media Strategy",
+      "Social Media Management",
+      "Content Creation",
+      "Social Media Analytics",
+      "Google Analytics",
+      "Email Marketing",
+      "Ottimizzazione SEO",
+      "Ottimizzazione Ecommerce"
+    ],
+    link: "#"
+  },
+  "3": {
+    id: 3,
+    title: {
+      en: "Studi Fisioterapici Manunta - Website & SEO Optimization | Social Media",
+      it: "Studi Fisioterapici Manunta - Sito Web & Ottimizzazione SEO | Social Media"
+    },
+    description: {
+      en: "Management of digital marketing strategies for a physiotherapy clinic, focusing on Facebook, Instagram, and Google Ads campaigns to increase online bookings and local brand awareness.",
+      it: "Gestione delle strategie di marketing digitale per uno studio di fisioterapia, con focus su campagne Facebook, Instagram e Google Ads per aumentare le prenotazioni online e la brand awareness locale"
+    },
+    image: "/assets/manunta-banner.jpg",
+    technologies: [
+      "Creazione e ottimizzazione Sito Web",
+      "Content Creation",
+      "Google Analytics"
+    ],
+    link: "#"
+  },
+  "4": {
+    id: 4,
+    title: {
+      en: "Digital Trade Capital - Content Strategy & Editorial Management | Technical SEO & Website Optimization | Lead Generation & Contact Management",
+      it: "Digital Trade Capital - Content Strategy & Editorial Management | Technical SEO & Website Optimization | Lead Generation & Contact Management"
+    },
+    description: {
+      en: "Managed strategic and operational coordination in a fintech organization, focusing on developing integrated digital strategies, performance optimization, and cross-functional team management.",
+      it: "Ho gestito il coordinamento strategico e operativo in un'organizzazione fintech, con un focus sullo sviluppo di strategie digitali integrate, sull'ottimizzazione delle performance e sulla gestione di team cross-funzionali"
+    },
+    image: "/assets/dtc-banner.jpg",
+    technologies: [
+      "Team Management",
+      "Editorial Management",
+      "Content Strategy",
+      "Technical SEO",
+      "Google Analytics",
+      "Email Marketing",
+      "Cross-functional Collaboration"
+    ],
+    link: "#"
+  }
 };
 
 // Project metrics
@@ -116,7 +179,57 @@ export const projectMetrics: Record<string, Array<{
       label: { en: "Annual Users", it: "Utenti Annuali" }
     }
   ],
-  // ... other metrics remain the same
+  "2": [
+    {
+      icon: "gkosxwgv",
+      value: "+200%",
+      label: { en: "Sales Growth", it: "Crescita Vendite" }
+    },
+    {
+      icon: "rjzlcjqi",
+      value: "15K+",
+      label: { en: "Monthly Visitors", it: "Visitatori Mensili" }
+    },
+    {
+      icon: "lupuorrc",
+      value: "3.2x",
+      label: { en: "ROAS", it: "ROAS" }
+    }
+  ],
+  "3": [
+    {
+      icon: "mzjnwzka",
+      value: "+150%",
+      label: { en: "Bookings Growth", it: "Crescita Prenotazioni" }
+    },
+    {
+      icon: "msoeawqm",
+      value: "+80%",
+      label: { en: "Local SEO Visibility", it: "Visibilità SEO Locale" }
+    },
+    {
+      icon: "gkosxwgv",
+      value: "+120%",
+      label: { en: "Social Engagement", it: "Engagement Social" }
+    }
+  ],
+  "4": [
+    {
+      icon: "rjzlcjqi",
+      value: "50K+",
+      label: { en: "Monthly Reach", it: "Reach Mensile" }
+    },
+    {
+      icon: "lupuorrc",
+      value: "+180%",
+      label: { en: "Lead Generation", it: "Generazione Lead" }
+    },
+    {
+      icon: "msoeawqm",
+      value: "+90%",
+      label: { en: "Organic Traffic", it: "Traffico Organico" }
+    }
+  ]
 };
 
 // Gallery images
@@ -154,6 +267,32 @@ export const translations = {
     next: {
       en: "Next",
       it: "Successivo"
+    }
+  },
+  projectDetails: {
+    overview: {
+      en: "1. Overview",
+      it: "1. Overview"
+    },
+    objectives: {
+      en: "2. Main Objectives",
+      it: "2. Obiettivi Principali"
+    },
+    keyResults: {
+      en: "3. Key Results (2023)",
+      it: "3. Risultati Chiave (2023)"
+    },
+    strategies: {
+      en: "4. Strategies & Projects",
+      it: "4. Strategie & Progetti"
+    },
+    specialProjects: {
+      en: "5. Special Projects",
+      it: "5. Progetti Speciali"
+    },
+    contentPlanning: {
+      en: "Content Planning",
+      it: "Pianificazione Contenuti"
     }
   }
 };

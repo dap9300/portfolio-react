@@ -210,6 +210,126 @@ export function ProjectDetails({ language, onLanguageChange }: ProjectDetailsPro
               </div>
             </motion.div>
 
+            {/* Detailed Sections (Only for Project 1 - Magazzino sul Po) */}
+            {id === "1" && (
+              <motion.div variants={fadeInUp}>
+                <Accordion type="single" collapsible className="space-y-4">
+                  <AccordionItem value="overview" className="border rounded-lg hover:bg-accent/50 transition-colors">
+                    <AccordionTrigger className="px-4">
+                      <div className="flex items-center gap-3">
+                        <FileEdit className="w-5 h-5 text-primary" />
+                        <h2 className="text-xl font-semibold">
+                          {translations.projectDetails.overview[language]}
+                        </h2>
+                      </div>
+                    </AccordionTrigger>
+                    <AccordionContent className="px-4">
+                      <Card className="p-6 mt-4">
+                        <div className="grid md:grid-cols-2 gap-6">
+                          <div>
+                            <h3 className="font-semibold mb-4">
+                              {language === "en" ? "Project Background" : "Background del Progetto"}
+                            </h3>
+                            <p className="text-muted-foreground mb-4">
+                              {language === "en"
+                                ? "Digital transformation and communication strategy for one of Turin's main cultural venues."
+                                : "Trasformazione digitale e strategia di comunicazione per uno dei principali luoghi culturali di Torino."}
+                            </p>
+                          </div>
+                          <div className="aspect-video relative">
+                            <img
+                              src="/assets/growth.png"
+                              alt="Overview"
+                              className="w-full h-full object-cover rounded-lg"
+                            />
+                          </div>
+                        </div>
+                      </Card>
+                    </AccordionContent>
+                  </AccordionItem>
+
+                  <AccordionItem value="key-results" className="border rounded-lg hover:bg-accent/50 transition-colors">
+                    <AccordionTrigger className="px-4">
+                      <div className="flex items-center gap-3">
+                        <BarChart3 className="w-5 h-5 text-primary" />
+                        <h2 className="text-xl font-semibold">
+                          {translations.projectDetails.keyResults[language]}
+                        </h2>
+                      </div>
+                    </AccordionTrigger>
+                    <AccordionContent className="px-4">
+                      <div className="space-y-6 pt-4">
+                        <Card className="p-6">
+                          <div className="grid md:grid-cols-2 gap-6">
+                            <div>
+                              <h3 className="font-semibold mb-4">Social Media Performance</h3>
+                              <div className="space-y-4">
+                                <div>
+                                  <h4 className="font-medium mb-2">Facebook</h4>
+                                  <ul className="space-y-1 text-muted-foreground">
+                                    <li>• 31,203 followers (+3.1% YoY)</li>
+                                    <li>• Reach: 545,960 (+97.6%)</li>
+                                    <li>• Visits: 91,723 (+90.6%)</li>
+                                  </ul>
+                                </div>
+                                <div>
+                                  <h4 className="font-medium mb-2">Instagram</h4>
+                                  <ul className="space-y-1 text-muted-foreground">
+                                    <li>• 12,911 followers (+44.2% YoY)</li>
+                                    <li>• Reach: 502,784 (+550.6%)</li>
+                                    <li>• Visits: 66,153 (+93.9%)</li>
+                                  </ul>
+                                </div>
+                              </div>
+                            </div>
+                            <div className="aspect-video relative">
+                              <img
+                                src="/assets/growth.png"
+                                alt="Social Media Growth"
+                                className="w-full h-full object-cover rounded-lg"
+                              />
+                            </div>
+                          </div>
+                        </Card>
+                      </div>
+                    </AccordionContent>
+                  </AccordionItem>
+
+                  <AccordionItem value="special-projects" className="border rounded-lg hover:bg-accent/50 transition-colors">
+                    <AccordionTrigger className="px-4">
+                      <div className="flex items-center gap-3">
+                        <Trophy className="w-5 h-5 text-primary" />
+                        <h2 className="text-xl font-semibold">
+                          {translations.projectDetails.specialProjects[language]}
+                        </h2>
+                      </div>
+                    </AccordionTrigger>
+                    <AccordionContent className="px-4">
+                      <Card className="p-6 mt-4">
+                        <div className="grid md:grid-cols-2 gap-6">
+                          <div>
+                            <h3 className="font-semibold mb-4">FIUMEDENTRO Crowdfunding</h3>
+                            <ul className="space-y-2 text-muted-foreground">
+                              <li>• €5,597 raised</li>
+                              <li>• 300+ supporters</li>
+                              <li>• Multichannel communication strategy</li>
+                            </ul>
+                          </div>
+                          <div className="aspect-video relative">
+                            <img
+                              src="/assets/growth.png"
+                              alt="Crowdfunding Campaign"
+                              className="w-full h-full object-cover rounded-lg"
+                            />
+                          </div>
+                        </div>
+                      </Card>
+                    </AccordionContent>
+                  </AccordionItem>
+                </Accordion>
+              </motion.div>
+            )}
+
             {/* Image Gallery */}
             {images.length > 0 && (
               <motion.div variants={fadeInUp}>
