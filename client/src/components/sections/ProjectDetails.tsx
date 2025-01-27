@@ -114,7 +114,7 @@ export function ProjectDetails({ language, onLanguageChange }: ProjectDetailsPro
 
       <div className="relative">
         {/* Hero Section */}
-        <div className="h-[60vh] relative">
+        <div className="h-[60vh] relative w-full"> {/* Added w-full */}
           <div
             className="absolute inset-0 bg-cover bg-center"
             style={{

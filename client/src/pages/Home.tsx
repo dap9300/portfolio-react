@@ -29,8 +29,10 @@ export default function Home({ language, onLanguageChange }: HomeProps) {
         language={language}
         onSectionClick={scrollToSection}
       />
-      <div className="fixed top-4 right-4 z-50 flex items-center gap-4">
-        <ThemeToggle />
+      <div className="fixed top-4 right-4 z-50 flex items-center">
+        <div className="mr-12">
+          <ThemeToggle />
+        </div>
         <LanguageSwitch
           currentLanguage={language}
           onLanguageChange={onLanguageChange}
