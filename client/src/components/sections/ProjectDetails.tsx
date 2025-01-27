@@ -106,10 +106,10 @@ export function ProjectDetails({ language, onLanguageChange }: ProjectDetailsPro
       key={id}
     >
       <div className="fixed top-4 right-4 z-50 flex items-center gap-4">
-        <div className="flex items-center space-x-6">
           <ThemeToggle />
-          <LanguageSwitch currentLanguage={language} onLanguageChange={onLanguageChange} />
-        </div>
+          <div className="ml-4">
+            <LanguageSwitch currentLanguage={language} onLanguageChange={onLanguageChange} />
+          </div>
       </div>
 
       <div className="relative">
