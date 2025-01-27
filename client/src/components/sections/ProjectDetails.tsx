@@ -105,11 +105,11 @@ export function ProjectDetails({ language, onLanguageChange }: ProjectDetailsPro
       className="min-h-screen bg-background"
       key={id}
     >
-      <div className="fixed top-4 right-4 z-50 flex items-center gap-4">
+      <div className="fixed top-4 right-16 z-50">
           <ThemeToggle />
-          <div className="ml-4">
-            <LanguageSwitch currentLanguage={language} onLanguageChange={onLanguageChange} />
-          </div>
+      </div>
+      <div className="fixed top-4 right-4 z-50">
+          <LanguageSwitch currentLanguage={language} onLanguageChange={onLanguageChange} />
       </div>
 
       <div className="relative">
