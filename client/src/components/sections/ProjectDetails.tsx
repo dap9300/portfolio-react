@@ -104,6 +104,7 @@ export function ProjectDetails({ language, onLanguageChange }: ProjectDetailsPro
       transition={{ duration: 0.3 }}
       className="min-h-screen bg-background"
       key={id}
+      className="w-full"
     >
       <div className="fixed top-4 right-16 z-50">
           <ThemeToggle />
@@ -112,7 +113,7 @@ export function ProjectDetails({ language, onLanguageChange }: ProjectDetailsPro
           <LanguageSwitch currentLanguage={language} onLanguageChange={onLanguageChange} />
       </div>
 
-      <div className="relative">
+      <div className="relative w-full">
         {/* Hero Section */}
         <div className="h-[60vh] relative w-full"> {/* Added w-full */}
           <div

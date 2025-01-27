@@ -14,7 +14,7 @@ function Router() {
   const [location] = useLocation();
 
   return (
-    <div className="max-w-[1200px] mx-auto px-8">
+    <div className="w-full">
       <AnimatePresence mode="wait" initial={false}>
         <Switch location={location} key={location}>
           <Route path="/">
