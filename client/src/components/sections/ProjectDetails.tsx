@@ -15,7 +15,7 @@ import {
 } from "@/components/ui/accordion";
 import { useEffect, useMemo } from "react";
 import useEmblaCarousel from 'embla-carousel-react';
-import { projectsData, projectMetrics, projectImages, translations } from "./ProjectDetailsContent";
+import { projectsData, projectMetrics, projectImages, translations, detailedSections } from "./ProjectDetailsContent"; // Assuming detailedSections is defined here
 
 interface ProjectDetailsProps {
   language: Language;
@@ -106,8 +106,10 @@ export function ProjectDetails({ language, onLanguageChange }: ProjectDetailsPro
       key={id}
     >
       <div className="fixed top-4 right-4 z-50 flex items-center gap-4">
-        <ThemeToggle />
-        <LanguageSwitch currentLanguage={language} onLanguageChange={onLanguageChange} />
+        <div className="flex items-center space-x-6">
+          <ThemeToggle />
+          <LanguageSwitch currentLanguage={language} onLanguageChange={onLanguageChange} />
+        </div>
       </div>
 
       <div className="relative">
@@ -193,16 +195,22 @@ export function ProjectDetails({ language, onLanguageChange }: ProjectDetailsPro
                 />
               </div>
 
+              {/* Tools & Platforms Section */}
               <div>
                 <div className="flex items-center gap-3 mb-6">
                   <Wrench className="w-8 h-8 text-primary" />
-                  <h2 className="text-2xl font-semibold">
-                    {translations.tools[language]}
-                  </h2>
+                  <div>
+                    <h2 className="text-2xl font-semibold">
+                      {translations.tools[language]}
+                    </h2>
+                    <p className="text-sm text-muted-foreground">
+                      {translations.tools.subtitle[language]}
+                    </p>
+                  </div>
                 </div>
-                <div className="space-y-4">
+                <div className="grid grid-cols-2 md:grid-cols-3 gap-3">
                   {projectData.technologies.map((tech, index) => (
-                    <Card key={index} className="p-4">
+                    <Card key={index} className="p-4 hover:bg-accent/50 transition-colors">
                       <h3 className="font-medium">{tech}</h3>
                     </Card>
                   ))}
@@ -240,6 +248,40 @@ export function ProjectDetails({ language, onLanguageChange }: ProjectDetailsPro
                             <img
                               src="/assets/growth.png"
                               alt="Overview"
+                              className="w-full h-full object-cover rounded-lg"
+                            />
+                          </div>
+                        </div>
+                      </Card>
+                    </AccordionContent>
+                  </AccordionItem>
+
+                  <AccordionItem value="objectives" className="border rounded-lg hover:bg-accent/50 transition-colors">
+                    <AccordionTrigger className="px-4">
+                      <div className="flex items-center gap-3">
+                        <Target className="w-5 h-5 text-primary" />
+                        <h2 className="text-xl font-semibold">
+                          {translations.projectDetails.objectives[language]}
+                        </h2>
+                      </div>
+                    </AccordionTrigger>
+                    <AccordionContent className="px-4">
+                      <Card className="p-6 mt-4">
+                        <div className="grid md:grid-cols-2 gap-6">
+                          <div>
+                            <h3 className="font-semibold mb-4">
+                              {language === "en" ? "Strategic Goals" : "Obiettivi Strategici"}
+                            </h3>
+                            <ul className="space-y-2 text-muted-foreground">
+                              {detailedSections.objectives[language].map((objective, index) => (
+                                <li key={index}>• {objective}</li>
+                              ))}
+                            </ul>
+                          </div>
+                          <div className="aspect-video relative">
+                            <img
+                              src="/assets/growth.png"
+                              alt="Objectives"
                               className="w-full h-full object-cover rounded-lg"
                             />
                           </div>
@@ -308,11 +350,13 @@ export function ProjectDetails({ language, onLanguageChange }: ProjectDetailsPro
                       <Card className="p-6 mt-4">
                         <div className="grid md:grid-cols-2 gap-6">
                           <div>
-                            <h3 className="font-semibold mb-4">FIUMEDENTRO Crowdfunding</h3>
+                            <h3 className="font-semibold mb-4">
+                              {translations.projectDetails.crowdfunding[language]}
+                            </h3>
                             <ul className="space-y-2 text-muted-foreground">
-                              <li>• €5,597 raised</li>
-                              <li>• 300+ supporters</li>
-                              <li>• Multichannel communication strategy</li>
+                              {translations.projectDetails.crowdfunding.results[language].map((result, index) => (
+                                <li key={index}>• {result}</li>
+                              ))}
                             </ul>
                           </div>
                           <div className="aspect-video relative">
@@ -324,6 +368,43 @@ export function ProjectDetails({ language, onLanguageChange }: ProjectDetailsPro
                           </div>
                         </div>
                       </Card>
+                    </AccordionContent>
+                  </AccordionItem>
+
+                  <AccordionItem value="content-planning" className="border rounded-lg hover:bg-accent/50 transition-colors">
+                    <AccordionTrigger className="px-4">
+                      <div className="flex items-center gap-3">
+                        <FileEdit className="w-5 h-5 text-primary" />
+                        <h2 className="text-xl font-semibold">
+                          {translations.projectDetails.contentPlanning[language]}
+                        </h2>
+                      </div>
+                    </AccordionTrigger>
+                    <AccordionContent className="px-4">
+                      <div className="space-y-6 pt-4">
+                        <div className="grid md:grid-cols-2 gap-6">
+                          <Card className="p-6">
+                            <h3 className="font-semibold mb-4">
+                              {translations.projectDetails.contentPlanning[language]}
+                            </h3>
+                            <ul className="space-y-2 text-muted-foreground">
+                              {detailedSections.strategies.contentPlanning[language].map((item, index) => (
+                                <li key={index}>• {item}</li>
+                              ))}
+                            </ul>
+                          </Card>
+                          <Card className="p-6">
+                            <h3 className="font-semibold mb-4">
+                              {language === "en" ? "Performance & Analytics" : "Performance e Analytics"}
+                            </h3>
+                            <ul className="space-y-2 text-muted-foreground">
+                              {detailedSections.strategies.analytics[language].map((item, index) => (
+                                <li key={index}>• {item}</li>
+                              ))}
+                            </ul>
+                          </Card>
+                        </div>
+                      </div>
                     </AccordionContent>
                   </AccordionItem>
                 </Accordion>

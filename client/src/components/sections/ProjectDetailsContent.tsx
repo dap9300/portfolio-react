@@ -59,7 +59,7 @@ Performance Social Media:
 - Visite: 66.153 (+93,9%)
 
 Performance Sito Web:
-• 37.455 utenti annuali (+88,2% YoY)
+• 37.455 utenti annuali (+88.2% YoY)
 • 3.121 utenti mensili medi
 • Principale provenienza traffico:
 - Social Media: 8.500+ utenti
@@ -87,7 +87,19 @@ Advertising Digitale:
 - ROI campagne: 2,46x`
     },
     image: "/assets/banner-magazzino.webp",
-    technologies: ["Social Media Strategy", "Web Development & Analytics", "Content Creation", "Event & Email Marketing"],
+    technologies: [
+      "Meta Business Suite",
+      "Google Analytics",
+      "MailerLite",
+      "WordPress",
+      "Meta Ads",
+      "Google Ads",
+      "Meta Creator Studio",
+      "Canva",
+      "Adobe Creative Suite",
+      "DICE",
+      "WooCommerce"
+    ],
     link: "#"
   },
   "2": {
@@ -241,6 +253,60 @@ export const projectImages = {
   ]
 };
 
+// Section data for Magazzino sul Po
+export const detailedSections = {
+  objectives: {
+    en: [
+      "Increase social media presence and engagement",
+      "Improve website traffic and user experience",
+      "Boost online ticket sales",
+      "Enhance brand awareness",
+      "Develop effective email marketing strategy"
+    ],
+    it: [
+      "Aumentare presenza e coinvolgimento sui social media",
+      "Migliorare il traffico del sito web e l'esperienza utente",
+      "Incrementare le vendite online dei biglietti",
+      "Migliorare la brand awareness",
+      "Sviluppare una strategia efficace di email marketing"
+    ]
+  },
+  strategies: {
+    contentPlanning: {
+      en: [
+        "Developed monthly editorial calendar",
+        "Implemented content categorization system",
+        "Created diverse content formats",
+        "Optimized posting schedules",
+        "Integrated multi-platform strategy"
+      ],
+      it: [
+        "Sviluppato calendario editoriale mensile",
+        "Implementato sistema di categorizzazione contenuti",
+        "Creato formati di contenuto diversificati",
+        "Ottimizzato programmazione dei post",
+        "Integrato strategia multipiattaforma"
+      ]
+    },
+    analytics: {
+      en: [
+        "Monitored KPIs across platforms",
+        "Analyzed content performance",
+        "Optimized hashtag strategy",
+        "Tracked conversion rates",
+        "Generated monthly reports"
+      ],
+      it: [
+        "Monitorato KPI su tutte le piattaforme",
+        "Analizzato performance dei contenuti",
+        "Ottimizzato strategia hashtag",
+        "Tracciato tassi di conversione",
+        "Generato report mensili"
+      ]
+    }
+  }
+};
+
 // Section translations
 export const translations = {
   back: {
@@ -253,7 +319,11 @@ export const translations = {
   },
   tools: {
     en: "Tools & Platforms",
-    it: "Strumenti e Piattaforme"
+    it: "Strumenti e Piattaforme",
+    subtitle: {
+      en: "Technologies and platforms used in this project",
+      it: "Tecnologie e piattaforme utilizzate in questo progetto"
+    }
   },
   gallery: {
     en: "Project Gallery",
@@ -293,6 +363,26 @@ export const translations = {
     contentPlanning: {
       en: "Content Planning",
       it: "Pianificazione Contenuti"
+    },
+    crowdfunding: {
+      en: "FIUMEDENTRO Crowdfunding Campaign",
+      it: "Campagna Crowdfunding FIUMEDENTRO",
+      results: {
+        en: [
+          "€5,597 total funds raised",
+          "300+ individual supporters",
+          "Multichannel promotion strategy",
+          "Community engagement campaign",
+          "Social media awareness drive"
+        ],
+        it: [
+          "€5.597 fondi totali raccolti",
+          "300+ sostenitori individuali",
+          "Strategia promozionale multicanale",
+          "Campagna di coinvolgimento community",
+          "Campagna di sensibilizzazione social"
+        ]
+      }
     }
   }
 };
