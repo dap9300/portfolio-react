@@ -22,7 +22,12 @@ interface ProjectDetailsProps {
   onLanguageChange: (lang: Language) => void;
 }
 
-function ImageCarousel({ images }: { images: string[] }) {
+interface ImageCarouselProps {
+  images: string[];
+  language: Language;
+}
+
+function ImageCarousel({ images, language }: ImageCarouselProps) {
   const [emblaRef, emblaApi] = useEmblaCarousel({ loop: true });
 
   return (
@@ -212,7 +217,7 @@ export function ProjectDetails({ language, onLanguageChange }: ProjectDetailsPro
                   <h3 className="font-semibold mb-4">
                     {translations.gallery[language]}
                   </h3>
-                  <ImageCarousel images={images} />
+                  <ImageCarousel images={images} language={language} />
                 </Card>
               </motion.div>
             )}
