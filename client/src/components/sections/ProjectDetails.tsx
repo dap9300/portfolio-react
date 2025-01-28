@@ -279,9 +279,22 @@ export function ProjectDetails({ language, onLanguageChange }: ProjectDetailsPro
                             </h3>
                             <p className="text-muted-foreground mb-4">
                               {language === "en"
-                                ? "Digital transformation and communication strategy for one of Turin's main cultural venues."
-                                : "Trasformazione digitale e strategia di comunicazione per uno dei principali luoghi culturali di Torino."}
+                                ? `Digital transformation and communication strategy for one of Turin's main cultural venues.`
+                                : `Trasformazione digitale e strategia di comunicazione per uno dei principali luoghi culturali di Torino.
+
+                            Sviluppato calendario editoriale mensile
+                            • Implementato sistema di categorizzazione contenuti
+                            • Creato formati di contenuto diversificati
+                            • Ottimizzato programmazione dei post
+                            • Integrato strategia multipiattaforma
+                            • E-commerce & Newsletter:
+                              • €15.583 ricavi da biglietteria online
+                              • 2.915 biglietti venduti (+134% YoY)
+                              • 44.514 iscritti newsletter (+54%)
+                              • 32% tasso medio di apertura newsletter`}
                             </p>
+
+
                           </div>
                           <div className="aspect-video relative">
                             <img

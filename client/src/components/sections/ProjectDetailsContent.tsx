@@ -9,8 +9,23 @@ export const projectsData: Record<string, Project> = {
       it: "Magazzino sul Po - Strategia di Marketing Digitale"
     },
     description: {
-      en: `As **Digital Marketing & Communications Specialist**, I led the digital transformation of one of Turin's main cultural venues, managing integrated communication and marketing strategies to promote cultural and musical events.`,
-      it: `Come **Digital Marketing & Communications Specialist**, ho guidato la trasformazione digitale di uno dei principali luoghi di aggregazione culturale di Torino, gestendo strategie integrate di comunicazione e marketing per promuovere eventi culturali e musicali.`
+      en: `Digital transformation and communication strategy for one of Turin's main cultural venues.
+      Facebook: 31,203 followers (+3.1% YoY)
+      Coverage: 545,960 (+97.6%)
+      Visits: 91,723 (+90.6%)
+
+      Instagram: 12,911 followers (+44.2% YoY)
+      Coverage: 502,784 (+550.6%)
+      Visits: 66,153 (+93.9%)`,
+
+      it: `Facebook: 31.203 follower (+3,1% YoY)
+      Copertura: 545.960 (+97,6%)
+      Visite: 91.723 (+90,6%)
+
+      Instagram: 12.911 follower (+44,2% YoY)
+      Copertura: 502.784 (+550,6%)
+      Visite: 66.153 (+93,9%)`
+
     },
     image: "/assets/banner-magazzino.webp",
     technologies: [
