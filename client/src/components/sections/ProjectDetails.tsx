@@ -102,9 +102,8 @@ export function ProjectDetails({ language, onLanguageChange }: ProjectDetailsPro
       animate={{ opacity: 1 }}
       exit={{ opacity: 0 }}
       transition={{ duration: 0.3 }}
-      className="min-h-screen bg-background"
+      className="min-h-screen bg-background w-full"
       key={id}
-      className="w-full"
     >
       <div className="fixed top-4 right-16 z-50">
           <ThemeToggle />
