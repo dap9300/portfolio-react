@@ -255,6 +255,30 @@ export const projectImages = {
 
 // Section data for Magazzino sul Po
 export const detailedSections = {
+  overview: {
+    en: {
+      title: "Social Media Performance",
+      metrics: [
+        "Facebook: 31,203 followers (+3.1% YoY)",
+        "- Reach: 545,960 (+97.6%)",
+        "- Visits: 91,723 (+90.6%)",
+        "Instagram: 12,911 followers (+44.2% YoY)",
+        "- Reach: 502,784 (+550.6%)",
+        "- Visits: 66,153 (+93.9%)"
+      ]
+    },
+    it: {
+      title: "Performance Social Media",
+      metrics: [
+        "Facebook: 31.203 follower (+3,1% YoY)",
+        "- Copertura: 545.960 (+97,6%)",
+        "- Visite: 91.723 (+90,6%)",
+        "Instagram: 12.911 follower (+44,2% YoY)",
+        "- Copertura: 502.784 (+550,6%)",
+        "- Visite: 66.153 (+93,9%)"
+      ]
+    }
+  },
   objectives: {
     en: [
       "Increase social media presence and engagement",
