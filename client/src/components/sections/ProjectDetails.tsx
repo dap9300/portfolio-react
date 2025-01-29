@@ -244,7 +244,7 @@ export function ProjectDetails({
                 />
               </div>
               {/* Tools & Platforms Section */}
-              <div className="col-span-full">
+              <div className="md:col-span-2">
                 <div className="flex items-center gap-3 mb-6">
                   <Wrench className="w-8 h-8 text-primary" />
                   <div>
