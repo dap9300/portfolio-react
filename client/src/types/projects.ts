@@ -25,17 +25,14 @@ export interface DetailedSections {
   };
 }
 
-export interface ProjectDetails {
+export interface Project {
   id: number;
   title: LocalizedContent<string>;
   description: LocalizedContent<string>;
   image: string;
-  technologies: ProjectTechnology;
+  technologies: string[] | ProjectTechnology;
   metrics: ProjectMetric[];
   detailedSections?: DetailedSections;
-}
-
-export interface Project extends ProjectDetails {
   gallery?: string[];
   link?: string;
 }
