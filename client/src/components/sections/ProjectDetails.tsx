@@ -320,15 +320,6 @@ export function ProjectDetails({
                       ))}
                     </div>
                   </div>
-                        >
-                          <div className="absolute inset-0 bg-gradient-to-r from-primary/5 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300" />
-                          <h3 className="font-medium relative z-10">
-                            {tech}
-                          </h3>
-                        </Card>
-                      ))}
-                    </div>
-                  </div>
                 </div>
               </div>
             </motion.div>
