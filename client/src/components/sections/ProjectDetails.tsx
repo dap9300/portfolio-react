@@ -226,7 +226,7 @@ export function ProjectDetails({
               variants={fadeInUp}
               className="flex flex-col md:flex-row gap-8"
             >
-              <div className="md:col-span-2">
+              <div className="md:w-1/2">
                 <div className="flex items-center gap-3 mb-6">
                   <FileEdit className="w-8 h-8 text-primary" />
                   <h2 className="text-2xl font-semibold">
@@ -244,7 +244,7 @@ export function ProjectDetails({
                 />
               </div>
               {/* Tools & Platforms Section */}
-              <div className="md:col-span-2">
+              <div className="md:w-1/2">
                 <div className="flex items-center gap-3 mb-6">
                   <Wrench className="w-8 h-8 text-primary" />
                   <div>
