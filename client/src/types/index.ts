@@ -1,14 +1,20 @@
 export type Language = 'en' | 'it';
 
-export interface LocalizedString {
-  en: string;
-  it: string;
+export interface LocalizedContent<T> {
+  en: T;
+  it: T;
+}
+
+export interface ProjectAssets {
+  banner: string;
+  gallery?: string[];
+  analytics?: string[];
 }
 
 export interface ProjectMetric {
   icon: string;
   value: string;
-  label: LocalizedString;
+  label: LocalizedContent<string>;
 }
 
 export interface ProjectTechnology {
@@ -18,19 +24,23 @@ export interface ProjectTechnology {
 }
 
 export interface ProjectSection {
-  title: LocalizedString;
-  content: LocalizedString;
+  title: LocalizedContent<string>;
+  content: LocalizedContent<string>;
+}
+
+export interface ProjectContent {
+  title: LocalizedContent<string>;
+  description: LocalizedContent<string>;
+  objectives?: LocalizedContent<string[]>;
+  results?: LocalizedContent<string[]>;
 }
 
 export interface Project {
   id: number;
-  title: LocalizedString;
-  description: LocalizedString;
-  image: string;
+  content: ProjectContent;
+  assets: ProjectAssets;
   technologies: string[] | ProjectTechnology;
-  link?: string;
   metrics?: ProjectMetric[];
-  gallery?: string[];
   sections?: {
     overview?: ProjectSection;
     objectives?: string[];
@@ -88,5 +98,5 @@ export interface TranslationKeys {
 
 export interface Section {
   id: string;
-  title: LocalizedString;
+  title: LocalizedContent<string>;
 }
