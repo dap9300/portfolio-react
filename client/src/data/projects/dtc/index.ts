@@ -1,5 +1,4 @@
 import { Project } from '@/types/projects';
-import { PROJECT_ASSETS } from '@/constants/assets';
 
 export const project: Project = {
   id: 4,
@@ -11,7 +10,7 @@ export const project: Project = {
     en: "Managed strategic and operational coordination in a fintech organization, focusing on developing integrated digital strategies, performance optimization, and cross-functional team management.",
     it: "Ho gestito il coordinamento strategico e operativo in un'organizzazione fintech, con un focus sullo sviluppo di strategie digitali integrate, sull'ottimizzazione delle performance e sulla gestione di team cross-funzionali"
   },
-  image: PROJECT_ASSETS.DTC.BANNER,
+  image: '/assets/dtc-banner.jpg',
   technologies: [
     "Team Management",
     "Editorial Management",

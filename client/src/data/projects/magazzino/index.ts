@@ -1,5 +1,4 @@
 import { Project } from '@/types/projects';
-import { ASSET_PATHS } from '@/lib/constants';
 import { metrics } from './metrics';
 import { gallery } from './gallery';
 import { detailedSections } from './sections';
@@ -21,7 +20,7 @@ export const project: Project = {
     Visits: 66,153 (+93.9%)`,
     it: `In qualità di Digital Marketing & Communications Specialist presso Magazzino sul Po, ho guidato la trasformazione digitale di uno dei principali luoghi di aggregazione culturale di Torino, gestendo strategie integrate di comunicazione e marketing per promuovere eventi culturali e musicali.`
   },
-  image: ASSET_PATHS.MAGAZZINO.BANNER,
+  image: '/assets/banner-magazzino.webp',
   technologies: {
     social: [
       'Meta Business Suite',
@@ -45,10 +44,10 @@ export const project: Project = {
   gallery,
   detailedSections,
   assets: {
-    banner: ASSET_PATHS.MAGAZZINO.BANNER,
+    banner: '/assets/banner-magazzino.webp',
     analytics: [
-      ASSET_PATHS.MAGAZZINO.ANALYTICS,
-      ASSET_PATHS.MAGAZZINO.GROWTH
+      '/assets/analytics_maga1.png',
+      '/assets/growth.png'
     ]
   }
 };

@@ -5,7 +5,6 @@ import { Project } from "@/types/projects";
 import { Card } from "@/components/ui/card";
 import { FileEdit, Target, BarChart3, Trophy, Wrench, Mail, BookOpen } from "lucide-react";
 import { projectDetailsTranslations as t } from "@/data/translations/projectDetails";
-import { ASSET_PATHS } from "@/lib/constants";
 import {
   Accordion,
   AccordionContent,
@@ -21,9 +20,9 @@ import {
 } from "@/components/ui/carousel";
 
 const socialImages = [
-  ASSET_PATHS.MAGAZZINO.SOCIAL.OLD1,
-  ASSET_PATHS.MAGAZZINO.SOCIAL.OLD2,
-  ASSET_PATHS.MAGAZZINO.SOCIAL.EVENTS
+  '/assets/oldsocial1.png',
+  '/assets/oldsocial2.png',
+  '/assets/sito-eventi-1.png'
 ];
 
 interface ProjectContentProps {

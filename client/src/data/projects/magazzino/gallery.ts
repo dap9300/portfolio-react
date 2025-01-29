@@ -1,7 +1,5 @@
-import { ASSET_PATHS } from '@/lib/constants';
-
 export const gallery = [
-  ASSET_PATHS.MAGAZZINO.SOCIAL.OLD1,
-  ASSET_PATHS.MAGAZZINO.SOCIAL.OLD2,
-  ASSET_PATHS.MAGAZZINO.SOCIAL.EVENTS
+  '/assets/oldsocial1.png',
+  '/assets/oldsocial2.png',
+  '/assets/sito-eventi-1.png'
 ];
