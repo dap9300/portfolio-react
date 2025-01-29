@@ -3,10 +3,9 @@ import { motion } from "framer-motion";
 import { Language } from "@/types";
 import { Project } from "@/types/projects";
 import { Card } from "@/components/ui/card";
-import { FileEdit, Target, BarChart3, Trophy, Wrench, Mail, BookOpen, Award } from "lucide-react";
+import { FileEdit, Target, BarChart3, Trophy, Wrench, Mail, BookOpen, Award, Globe } from "lucide-react";
 import { projectDetailsTranslations as t } from "@/data/translations/projectDetails";
 import {
-  IconBrandWordPress,
   IconBrandTelegram,
   IconBrandMeta,
   IconBrandInstagram,
@@ -30,7 +29,7 @@ interface ProjectContentProps {
 }
 
 const toolIcons: Record<string, JSX.Element> = {
-  'WordPress': <IconBrandWordPress className="w-5 h-5" />,
+  'WordPress': <Globe className="w-5 h-5" />,
   'Telegram': <IconBrandTelegram className="w-5 h-5" />,
   'Meta Business Suite': <IconBrandMeta className="w-5 h-5" />,
   'Instagram': <IconBrandInstagram className="w-5 h-5" />,
