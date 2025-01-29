@@ -295,13 +295,19 @@ export function ProjectDetails({
                   </div>
                 </div>
                 <div className="space-y-6">
-                  {/* Social Media & Content Creation */}
+                  {/* Technologies */}
                   <div>
                     <h3 className="text-lg font-semibold mb-3 text-primary">
-                      Social Media & Content Creation
+                      Technologies & Tools
                     </h3>
                     <div className="grid grid-cols-2 md:grid-cols-3 gap-3">
-                      {projectData.technologies.social.map((tech, index) => (
+                      {(Array.isArray(projectData.technologies) 
+                        ? projectData.technologies 
+                        : [
+                            ...(projectData.technologies.social || []),
+                            ...(projectData.technologies.web || []),
+                            ...(projectData.technologies.email || [])
+                          ]).map((tech, index) => (
                         <Card
                           key={index}
                           className="group relative px-4 py-3 border border-border/50 hover:border-primary/50 transition-all duration-300 hover:shadow-lg hover:shadow-primary/5"
@@ -314,32 +320,6 @@ export function ProjectDetails({
                       ))}
                     </div>
                   </div>
-                  {/* Website & Analytics */}
-                  <div>
-                    <h3 className="text-lg font-semibold mb-3 text-primary">
-                      Website & Analytics
-                    </h3>
-                    <div className="grid grid-cols-2 md:grid-cols-3 gap-3">
-                      {projectData.technologies.web.map((tech, index) => (
-                        <Card
-                          key={index}
-                          className="group relative px-4 py-3 border border-border/50 hover:border-primary/50 transition-all duration-300 hover:shadow-lg hover:shadow-primary/5"
-                        >
-                          <div className="absolute inset-0 bg-gradient-to-r from-primary/5 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300" />
-                          <h3 className="font-medium relative z-10">
-                            {tech}
-                          </h3>
-                        </Card>
-                      ))}
-                    </div>
-                  </div>
-                  {/* Email Marketing */}
-                  <div>
-                    <h3 className="text-lg font-semibold mb-3 text-primary">
-                      Email Marketing
-                    </h3>
-                    <div className="grid grid-cols-2 md:grid-cols-3 gap-3">
-                      {projectData.technologies.email.map((tech, index) => (
                         <Card
                           key={index}
                           className="group relative px-4 py-3 border border-border/50 hover:border-primary/50 transition-all duration-300 hover:shadow-lg hover:shadow-primary/5"
