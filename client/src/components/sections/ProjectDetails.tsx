@@ -218,8 +218,8 @@ export function ProjectDetails({ language, onLanguageChange }: ProjectDetailsPro
                         .map((tech, index) => (
                           <Card key={index} className="group relative border border-border/50 hover:border-primary/50 transition-all duration-300 hover:shadow-lg hover:shadow-primary/5 w-full overflow-hidden">
                             <div className="absolute inset-0 bg-gradient-to-r from-primary/5 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300" />
-                            <div className="px-4 py-3">
-                              <h3 className="font-medium relative z-10 text-center truncate">{tech}</h3>
+                            <div className="px-4 py-3 flex justify-center items-center">
+                              <h3 className="font-medium relative z-10 whitespace-nowrap text-center">{tech}</h3>
                             </div>
                           </Card>
                         ))}
