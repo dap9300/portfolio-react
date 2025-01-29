@@ -244,104 +244,74 @@ export function ProjectDetails({
                 />
               </div>
               {/* Tools & Platforms Section */}
-              <div>
+              <div className="col-span-full">
                 <div className="flex items-center gap-3 mb-6">
                   <Wrench className="w-8 h-8 text-primary" />
                   <div>
                     <h2 className="text-2xl font-semibold">
-                      {translations.tools[language]}
+                      Strumenti e Piattaforme
                     </h2>
                     <p className="text-sm text-muted-foreground">
-                      {translations.tools.subtitle[language]}
+                      Tecnologie e piattaforme utilizzate in questo progetto
                     </p>
                   </div>
                 </div>
                 <div className="space-y-6">
-                  {/* Analytics Tools */}
+                  {/* Social Media & Content Creation */}
                   <div>
                     <h3 className="text-lg font-semibold mb-3 text-primary">
-                      Analytics
-                    </h3>
-                    <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
-                      {projectData.technologies
-                        .filter((tech) =>
-                          [
-                            'Google Analytics',
-                            'Meta Business Suite',
-                            'Google Tag Manager',
-                            'Google Search Console',
-                          ].includes(tech)
-                        )
-                        .map((tech, index) => (
-                          <Card
-                            key={index}
-                            className="group relative border border-border/50 hover:border-primary/50 transition-all duration-300 hover:shadow-lg hover:shadow-primary/5 w-fit"
-                          >
-                            <div className="px-4 py-3 justify-center">
-                              <h3 className="font-medium relative z-10 whitespace-nowrap text-center">
-                                {tech}
-                              </h3>
-                            </div>
-                          </Card>
-                        ))}
-                    </div>
-                  </div>
-                  {/* Social Media Tools */}
-                  <div>
-                    <h3 className="text-lg font-semibold mb-3 text-primary">
-                      Social Media
+                      Social Media & Content Creation
                     </h3>
                     <div className="grid grid-cols-2 md:grid-cols-3 gap-3">
-                      {projectData.technologies
-                        .filter((tech) =>
-                          [
-                            'Meta Ads',
-                            'Social Media Strategy',
-                            'Social Media Management',
-                            'Content Creation',
-                            'Social Media Analytics',
-                          ].includes(tech)
-                        )
-                        .map((tech, index) => (
-                          <Card
-                            key={index}
-                            className="group relative px-4 py-3 border border-border/50 hover:border-primary/50 transition-all duration-300 hover:shadow-lg hover:shadow-primary/5 w-fit"
-                          >
-                            <div className="absolute inset-0 bg-gradient-to-r from-primary/5 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300" />
-                            <h3 className="font-medium relative z-10">
-                              {tech}
-                            </h3>
-                          </Card>
-                        ))}
+                      {projectData.technologies.social.map((tech, index) => (
+                        <Card
+                          key={index}
+                          className="group relative px-4 py-3 border border-border/50 hover:border-primary/50 transition-all duration-300 hover:shadow-lg hover:shadow-primary/5"
+                        >
+                          <div className="absolute inset-0 bg-gradient-to-r from-primary/5 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300" />
+                          <h3 className="font-medium relative z-10">
+                            {tech}
+                          </h3>
+                        </Card>
+                      ))}
                     </div>
                   </div>
-                  {/* Website Tools */}
+                  {/* Website & Analytics */}
                   <div>
                     <h3 className="text-lg font-semibold mb-3 text-primary">
-                      Website
+                      Website & Analytics
                     </h3>
-                    <div className="grid grid-cols-2 md:grid-cols-3 grid-gap-2">
-                      {projectData.technologies
-                        .filter((tech) =>
-                          [
-                            'WordPress',
-                            'WooCommerce',
-                            'Technical SEO',
-                            'Email Marketing',
-                            'DICE',
-                          ].includes(tech)
-                        )
-                        .map((tech, index) => (
-                          <Card
-                            key={index}
-                            className="group relative px-4 py-3 border border-border/50 hover:border-primary/50 transition-all duration-300 hover:shadow-lg hover:shadow-primary/5 w-fit"
-                          >
-                            <div className="absolute inset-0 bg-gradient-to-r from-primary/5 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300" />
-                            <h3 className="font-medium relative z-10">
-                              {tech}
-                            </h3>
-                          </Card>
-                        ))}
+                    <div className="grid grid-cols-2 md:grid-cols-3 gap-3">
+                      {projectData.technologies.web.map((tech, index) => (
+                        <Card
+                          key={index}
+                          className="group relative px-4 py-3 border border-border/50 hover:border-primary/50 transition-all duration-300 hover:shadow-lg hover:shadow-primary/5"
+                        >
+                          <div className="absolute inset-0 bg-gradient-to-r from-primary/5 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300" />
+                          <h3 className="font-medium relative z-10">
+                            {tech}
+                          </h3>
+                        </Card>
+                      ))}
+                    </div>
+                  </div>
+                  {/* Email Marketing */}
+                  <div>
+                    <h3 className="text-lg font-semibold mb-3 text-primary">
+                      Email Marketing
+                    </h3>
+                    <div className="grid grid-cols-2 md:grid-cols-3 gap-3">
+                      {projectData.technologies.email.map((tech, index) => (
+                        <Card
+                          key={index}
+                          className="group relative px-4 py-3 border border-border/50 hover:border-primary/50 transition-all duration-300 hover:shadow-lg hover:shadow-primary/5"
+                        >
+                          <div className="absolute inset-0 bg-gradient-to-r from-primary/5 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300" />
+                          <h3 className="font-medium relative z-10">
+                            {tech}
+                          </h3>
+                        </Card>
+                      ))}
                     </div>
                   </div>
                 </div>
