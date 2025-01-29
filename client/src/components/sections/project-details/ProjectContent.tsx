@@ -3,14 +3,14 @@ import { motion } from "framer-motion";
 import { Language } from "@/types";
 import { Project } from "@/types/projects";
 import { Card } from "@/components/ui/card";
+import { FileEdit, Target, BarChart3, Trophy, Wrench, Mail, BookOpen } from "lucide-react";
+import { projectDetailsTranslations as t } from "@/data/translations/projectDetails";
 import {
   Accordion,
   AccordionContent,
   AccordionItem,
   AccordionTrigger,
 } from "@/components/ui/accordion";
-import { FileEdit, Target, BarChart3, Trophy, Wrench, Mail, BookOpen } from "lucide-react";
-import { projectDetailsTranslations as t } from "@/data/translations/projectDetails";
 
 interface ProjectContentProps {
   project: Project;
@@ -50,7 +50,7 @@ export const ProjectContent: FC<ProjectContentProps> = ({ project, language }) =
                 {project.detailedSections.tools.items.map((tool) => (
                   <div
                     key={tool}
-                    className="group relative border border-border/50 hover:border-primary/50 transition-all duration-300 hover:shadow-lg hover:shadow-primary/5 w-fit"
+                    className="group relative border border-border/50 hover:border-primary/50 transition-all duration-300 hover:shadow-lg hover:shadow-primary/5 w-fit rounded-xl overflow-hidden"
                   >
                     <div className="absolute inset-0 bg-gradient-to-r from-primary/5 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300" />
                     <div className="px-4 py-3 justify-center">

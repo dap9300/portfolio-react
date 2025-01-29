@@ -18,18 +18,25 @@ export const ProjectHeader: FC<ProjectHeaderProps> = ({ project, language }) => 
       ];
 
   return (
-    <div className="h-[60vh] relative w-full mb-12">
+    <motion.div
+      className="h-[60vh] relative w-full mb-12"
+      initial={{ opacity: 0 }}
+      animate={{ opacity: 1 }}
+      transition={{ duration: 0.3, ease: "easeInOut" }}
+      layout="position"
+    >
       <motion.div
         className="absolute inset-0"
         initial={{ opacity: 0 }}
         animate={{ opacity: 1 }}
         transition={{ duration: 0.3 }}
+        layout="position"
       >
         <div
           className="absolute inset-0 bg-cover bg-center"
           style={{
             backgroundImage: `url(${project.image})`,
-            backgroundAttachment: 'fixed',
+            backgroundPosition: 'center',
           }}
         />
         <div className="absolute inset-0 bg-black/50" />
@@ -62,6 +69,6 @@ export const ProjectHeader: FC<ProjectHeaderProps> = ({ project, language }) => 
           </motion.div>
         </div>
       </div>
-    </div>
+    </motion.div>
   );
 };

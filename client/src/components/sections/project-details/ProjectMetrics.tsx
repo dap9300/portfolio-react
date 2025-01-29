@@ -31,7 +31,7 @@ export const ProjectMetrics: FC<ProjectMetricsProps> = ({ metrics, language }) =
       {metrics.map((metric, index) => (
         <motion.div
           key={metric.icon}
-          className="bg-card p-6 rounded-lg shadow-sm"
+          className="bg-white dark:bg-card border border-border/50 hover:border-primary/50 p-6 rounded-xl shadow-sm hover:shadow-lg transition-all duration-300"
           initial={{ opacity: 0, y: 20 }}
           animate={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.5, delay: index * 0.1 }}
