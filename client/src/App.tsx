@@ -4,7 +4,7 @@ import { queryClient } from "./lib/queryClient";
 import { Toaster } from "@/components/ui/toaster";
 import NotFound from "@/pages/not-found";
 import Home from "@/pages/Home";
-import { ProjectDetails } from "@/components/sections/project-details";
+import { ProjectDetails } from "@/components/sections/ProjectDetails";
 import { useState } from 'react';
 import { Language } from "@/types";
 

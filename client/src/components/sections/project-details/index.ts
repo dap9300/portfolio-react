@@ -1,5 +1,7 @@
-export * from './ProjectLayout';
-export * from './ProjectHeader';
-export * from './ProjectMetrics';
-export * from './ProjectContent';
-export * from './ProjectGallery';
+
+export { ProjectGallery } from './ProjectGallery';
+export { ProjectHeader } from './ProjectHeader';
+export { ProjectLayout } from './ProjectLayout';
+export { ProjectMetrics } from './ProjectMetrics';
+export { ProjectContent } from './ProjectContent';
+export { ProjectDetails } from '../ProjectDetails';
