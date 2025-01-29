@@ -224,7 +224,7 @@ export function ProjectDetails({
             {/* Overview and Tools */}
             <motion.div
               variants={fadeInUp}
-              className="grid md:grid-cols-3 gap-8"
+              className="flex flex-col md:flex-row gap-8"
             >
               <div className="md:col-span-2">
                 <div className="flex items-center gap-3 mb-6">
