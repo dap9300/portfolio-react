@@ -212,13 +212,15 @@ export function ProjectDetails({ language, onLanguageChange }: ProjectDetailsPro
                   {/* Analytics Tools */}
                   <div>
                     <h3 className="text-lg font-semibold mb-3 text-primary">Analytics</h3>
-                    <div className="grid grid-cols-2 md:grid-cols-3 gap-3">
+                    <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
                       {projectData.technologies
                         .filter(tech => ["Google Analytics", "Meta Business Suite", "Google Tag Manager", "Google Search Console"].includes(tech))
                         .map((tech, index) => (
-                          <Card key={index} className="group relative px-4 py-3 border border-border/50 hover:border-primary/50 transition-all duration-300 hover:shadow-lg hover:shadow-primary/5">
+                          <Card key={index} className="group relative border border-border/50 hover:border-primary/50 transition-all duration-300 hover:shadow-lg hover:shadow-primary/5 w-full overflow-hidden">
                             <div className="absolute inset-0 bg-gradient-to-r from-primary/5 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300" />
-                            <h3 className="font-medium relative z-10">{tech}</h3>
+                            <div className="px-4 py-3 flex justify-center items-center">
+                              <h3 className="font-medium relative z-10 whitespace-nowrap text-center">{tech}</h3>
+                            </div>
                           </Card>
                         ))}
                     </div>
@@ -277,22 +279,23 @@ export function ProjectDetails({ language, onLanguageChange }: ProjectDetailsPro
                             <h3 className="font-semibold mb-4">
                               {language === "en" ? "Project Background" : "Background del Progetto"}
                             </h3>
-                            <p className="text-muted-foreground mb-4">
-                              {language === "en"
-                                ? `Digital transformation and communication strategy for one of Turin's main cultural venues.`
-                                : `Trasformazione digitale e strategia di comunicazione per uno dei principali luoghi culturali di Torino.
+                            <p className="text-muted-foreground mb-4" 
+                               dangerouslySetInnerHTML={{
+                                 __html: language === "en"
+                                   ? `Digital transformation and communication strategy for one of Turin's main cultural venues.`
+                                   : `Trasformazione digitale e strategia di comunicazione per uno dei principali luoghi culturali di Torino.<br /><br />
+                                       Sviluppato calendario editoriale mensile<br />
+                                       • Implementato sistema di categorizzazione contenuti<br />
+                                       • Creato formati di contenuto diversificati<br />
+                                       • Ottimizzato programmazione dei post<br />
+                                       • Integrato strategia multipiattaforma<br />
+                                       • E-commerce & Newsletter:<br />
+                                       • €15.583 ricavi da biglietteria online<br />
+                                       • 2.915 biglietti venduti (+134% YoY)<br />
+                                       • 44.514 iscritti newsletter (+54%)<br />
+                                       • 32% tasso medio di apertura newsletter`
+                               }} />
 
-                            Sviluppato calendario editoriale mensile
-                            • Implementato sistema di categorizzazione contenuti
-                            • Creato formati di contenuto diversificati
-                            • Ottimizzato programmazione dei post
-                            • Integrato strategia multipiattaforma
-                            • E-commerce & Newsletter:
-                              • €15.583 ricavi da biglietteria online
-                              • 2.915 biglietti venduti (+134% YoY)
-                              • 44.514 iscritti newsletter (+54%)
-                              • 32% tasso medio di apertura newsletter`}
-                            </p>
 
 
                           </div>
@@ -356,29 +359,31 @@ export function ProjectDetails({ language, onLanguageChange }: ProjectDetailsPro
                         <Card className="p-6">
                           <div className="grid md:grid-cols-2 gap-6">
                             <div>
-                              <h3 className="font-semibold mb-4">Social Media Performance</h3>
+                              <h3 className="font-semibold mb-4">Sito web ((ProjectsDetails.tsx))</h3>
                               <div className="space-y-4">
                                 <div>
-                                  <h4 className="font-medium mb-2">Facebook</h4>
+                                  <h4 className="font-medium mb-2">Sezione1 Sito Web</h4>
                                   <ul className="space-y-1 text-muted-foreground">
-                                    <li>• 31,203 followers (+3.1% YoY)</li>
-                                    <li>• Reach: 545,960 (+97.6%)</li>
-                                    <li>• Visits: 91,723 (+90.6%)</li>
+                                    <li>•Integrazione sistema di biglietteria online)</li>
+                                    <li>• €15.583 ricavi da biglietteria online</li>
+                                    <li>• Altra cosa</li>
                                   </ul>
                                 </div>
                                 <div>
-                                  <h4 className="font-medium mb-2">Instagram</h4>
+                                  <h4 className="font-medium mb-2">Analytics</h4>
                                   <ul className="space-y-1 text-muted-foreground">
-                                    <li>• 12,911 followers (+44.2% YoY)</li>
-                                    <li>• Reach: 502,784 (+550.6%)</li>
-                                    <li>• Visits: 66,153 (+93.9%)</li>
+                                    <li>• Reportistica e Monitoraggio Sito</li>
+                                    <li>• Ampliamento contatti modulo</li>
+                                    <li>• Nuovi utenti: 55,456 (+550.6%)</li>
+                                    <li>• Visite totali al sito: 66,153 (+93.9%)</li>
+                                    <li>• Visite totali al sito: 66,153 (+93.9%)</li>
                                   </ul>
                                 </div>
                               </div>
                             </div>
                             <div className="aspect-video relative">
                               <img
-                                src="/assets/growth.png"
+                                src="/assets/analytics_maga1.png"
                                 alt="Social Media Growth"
                                 className="w-full h-full object-cover rounded-lg"
                               />
@@ -447,7 +452,7 @@ export function ProjectDetails({ language, onLanguageChange }: ProjectDetailsPro
                           </Card>
                           <Card className="p-6">
                             <h3 className="font-semibold mb-4">
-                              {language === "en" ? "Performance & Analytics" : "Performance e Analytics"}
+                              {language === "en" ? "Performance & Analytics" : "Email Marketing 2"}
                             </h3>
                             <ul className="space-y-2 text-muted-foreground">
                               {detailedSections.strategies.analytics[language].map((item, index) => (

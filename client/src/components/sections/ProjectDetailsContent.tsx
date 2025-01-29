@@ -200,7 +200,7 @@ export const detailedSections = {
     en: {
       title: "Project Overview",
       metrics: [
-        "Facebook: 31,203 followers (+3.1% YoY)",
+        "Facebook: Sviluppato calendario editoriale mensile",
         "- Reach: 545,960 (+97.6%)",
         "- Visits: 91,723 (+90.6%)",
         "Instagram: 12,911 followers (+44.2% YoY)",
@@ -211,7 +211,7 @@ export const detailedSections = {
     it: {
       title: "Panoramica del Progetto",
       metrics: [
-        "Facebook: 31.203 follower (+3,1% YoY)",
+        "Facebook: Sviluppato calendario editoriale mensile",
         "- Copertura: 545.960 (+97,6%)",
         "- Visite: 91.723 (+90,6%)",
         "Instagram: 12.911 follower (+44,2% YoY)",
@@ -229,11 +229,11 @@ export const detailedSections = {
       "Develop effective email marketing strategy"
     ],
     it: [
-      "Aumentare presenza e coinvolgimento sui social media",
-      "Migliorare il traffico del sito web e l'esperienza utente",
-      "Incrementare le vendite online dei biglietti",
-      "Migliorare la brand awareness",
-      "Sviluppare una strategia efficace di email marketing"
+      "Budget gestito - XXX€",
+      "CPC MEDIO - 0.10€",
+      "CPM - 1.57€",
+      "CTR MEDIO - 0.74%",
+      "ROI CAMPAGNE - 2.46%"
     ]
   },
   strategies: {
@@ -246,11 +246,11 @@ export const detailedSections = {
         "Integrated multi-platform strategy"
       ],
       it: [
-        "Sviluppato calendario editoriale mensile",
-        "Implementato sistema di categorizzazione contenuti",
-        "Creato formati di contenuto diversificati",
-        "Ottimizzato programmazione dei post",
-        "Integrato strategia multipiattaforma"
+        "Newsletter settimanale a oltre 40.000 iscritti",
+        "CTR medio (5%) Tasso di Apertura (10%)",
+        "Invio notifiche push circuito Arci",
+        "Segmentazione utenza e liste per interessi",
+        "Integrazione con strategie online dedicate"
       ]
     },
     analytics: {
@@ -306,28 +306,28 @@ export const translations = {
   },
   projectDetails: {
     overview: {
-      en: "1. Overview",
-      it: "1. Overview"
+      en: "Social Media & Content Creation",
+      it: "Social Media & Content Creation"
     },
     objectives: {
-      en: "2. Main Objectives",
-      it: "2. Obiettivi Principali"
+      en: "Advertising & Analytics",
+      it: "Advertising & Analytics"
     },
     keyResults: {
-      en: "3. Key Results (2023)",
-      it: "3. Risultati Chiave (2023)"
+      en: "Sito Web",
+      it: "Sito Web"
     },
     strategies: {
-      en: "4. Strategies & Projects",
+      en: "Campagna Crowdfunding",
       it: "4. Strategie & Progetti"
     },
     specialProjects: {
-      en: "5. Special Projects",
-      it: "5. Progetti Speciali"
+      en: "Campagna Crowdfunding",
+      it: "Campagna Crowdfunding"
     },
     contentPlanning: {
-      en: "Content Planning",
-      it: "Pianificazione Contenuti"
+      en: "Email Marketing",
+      it: "Email Marketing"
     },
     crowdfunding: {
       en: "FIUMEDENTRO Crowdfunding Campaign",
