@@ -165,7 +165,12 @@ export function ProjectDetails({
                 {projectData.title[language]}
               </h1>
               <div className="flex flex-wrap gap-2 justify-center">
-                {[...projectData.technologies.social, ...projectData.technologies.web, ...projectData.technologies.email].map((tech) => (
+                {(Array.isArray(projectData.technologies)
+                  ? projectData.technologies
+                  : [...(projectData.technologies.social || []),
+                      ...(projectData.technologies.web || []),
+                      ...(projectData.technologies.email || [])]
+                ).map((tech) => (
                   <span
                     key={tech}
                     className="px-3 py-1 bg-white/10 rounded-full text-sm"
