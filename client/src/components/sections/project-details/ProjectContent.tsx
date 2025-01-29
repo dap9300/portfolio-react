@@ -19,75 +19,49 @@ interface ProjectContentProps {
 
 export const ProjectContent: FC<ProjectContentProps> = ({ project, language }) => {
   return (
-    <div className="space-y-8 mt-8">
+    <div className="space-y-8">
+      {/* Overview and Tools Section */}
+      <div className="grid md:grid-cols-3 gap-6">
+        {/* Overview Section - 1/3 width */}
+        <div className="space-y-4">
+          <h2 className="text-2xl font-semibold">{t.projectDetails.overview[language]}</h2>
+          <Card className="p-6">
+            <p className="text-muted-foreground whitespace-pre-line">
+              {project.description[language]}
+            </p>
+          </Card>
+        </div>
+
+        {/* Tools Section - 2/3 width */}
+        {project.detailedSections?.tools && (
+          <div className="md:col-span-2 space-y-4">
+            <h2 className="text-2xl font-semibold">{project.detailedSections.tools.title[language]}</h2>
+            <Card className="p-6">
+              <p className="text-muted-foreground mb-6">
+                {project.detailedSections.tools.description[language]}
+              </p>
+              <div className="grid grid-cols-2 md:grid-cols-3 gap-3">
+                {project.detailedSections.tools.items.map((tool) => (
+                  <span
+                    key={tool}
+                    className="px-3 py-2 bg-primary/10 text-primary rounded text-sm"
+                  >
+                    {tool}
+                  </span>
+                ))}
+              </div>
+            </Card>
+          </div>
+        )}
+      </div>
+
+      {/* Accordion Sections */}
       <motion.div
         initial={{ opacity: 0 }}
         animate={{ opacity: 1 }}
         transition={{ duration: 0.5 }}
       >
         <Accordion type="single" collapsible className="space-y-4">
-          {/* Overview Section */}
-          <AccordionItem value="overview" className="border rounded-lg hover:bg-accent/50 transition-colors">
-            <AccordionTrigger className="px-4">
-              <div className="flex items-center gap-3">
-                <FileEdit className="w-5 h-5 text-primary" />
-                <h2 className="text-xl font-semibold">{t.projectDetails.overview[language]}</h2>
-              </div>
-            </AccordionTrigger>
-            <AccordionContent className="px-4">
-              <Card className="p-6 mt-4">
-                <div className="grid md:grid-cols-2 gap-6">
-                  <div>
-                    <h3 className="font-semibold mb-4">
-                      {language === 'en' ? 'Project Background' : 'Background del Progetto'}
-                    </h3>
-                    <p className="text-muted-foreground mb-4 whitespace-pre-line">
-                      {project.description[language]}
-                    </p>
-                  </div>
-                  {project.assets?.analytics && project.assets.analytics[0] && (
-                    <div className="aspect-video relative">
-                      <img
-                        src={project.assets.analytics[0]}
-                        alt="Overview"
-                        className="w-full h-full object-cover rounded-lg"
-                      />
-                    </div>
-                  )}
-                </div>
-              </Card>
-            </AccordionContent>
-          </AccordionItem>
-
-          {/* Tools & Platforms Section */}
-          {project.detailedSections?.tools && (
-            <AccordionItem value="tools" className="border rounded-lg hover:bg-accent/50 transition-colors">
-              <AccordionTrigger className="px-4">
-                <div className="flex items-center gap-3">
-                  <Wrench className="w-5 h-5 text-primary" />
-                  <h2 className="text-xl font-semibold">{project.detailedSections.tools.title[language]}</h2>
-                </div>
-              </AccordionTrigger>
-              <AccordionContent className="px-4">
-                <Card className="p-6 mt-4">
-                  <p className="text-muted-foreground mb-4">
-                    {project.detailedSections.tools.description[language]}
-                  </p>
-                  <div className="grid grid-cols-2 md:grid-cols-3 gap-3">
-                    {project.detailedSections.tools.items.map((tool) => (
-                      <span
-                        key={tool}
-                        className="px-3 py-2 bg-primary/10 text-primary rounded text-sm"
-                      >
-                        {tool}
-                      </span>
-                    ))}
-                  </div>
-                </Card>
-              </AccordionContent>
-            </AccordionItem>
-          )}
-
           {/* Social Media Section */}
           {project.detailedSections?.strategies?.social && (
             <AccordionItem value="social" className="border rounded-lg hover:bg-accent/50 transition-colors">
@@ -101,11 +75,22 @@ export const ProjectContent: FC<ProjectContentProps> = ({ project, language }) =
               </AccordionTrigger>
               <AccordionContent className="px-4">
                 <Card className="p-6 mt-4">
-                  <ul className="space-y-2 text-muted-foreground">
-                    {project.detailedSections.strategies.social[language].map((item, index) => (
-                      <li key={index}>• {item}</li>
-                    ))}
-                  </ul>
+                  <div className="grid md:grid-cols-2 gap-6">
+                    <ul className="space-y-2 text-muted-foreground">
+                      {project.detailedSections.strategies.social[language].map((item, index) => (
+                        <li key={index}>• {item}</li>
+                      ))}
+                    </ul>
+                    {project.assets?.analytics && project.assets.analytics[0] && (
+                      <div className="aspect-video relative">
+                        <img
+                          src={project.assets.analytics[0]}
+                          alt="Social Media Analytics"
+                          className="w-full h-full object-cover rounded-lg"
+                        />
+                      </div>
+                    )}
+                  </div>
                 </Card>
               </AccordionContent>
             </AccordionItem>
@@ -124,11 +109,22 @@ export const ProjectContent: FC<ProjectContentProps> = ({ project, language }) =
               </AccordionTrigger>
               <AccordionContent className="px-4">
                 <Card className="p-6 mt-4">
-                  <ul className="space-y-2 text-muted-foreground">
-                    {project.detailedSections.strategies.email[language].map((item, index) => (
-                      <li key={index}>• {item}</li>
-                    ))}
-                  </ul>
+                  <div className="grid md:grid-cols-2 gap-6">
+                    <ul className="space-y-2 text-muted-foreground">
+                      {project.detailedSections.strategies.email[language].map((item, index) => (
+                        <li key={index}>• {item}</li>
+                      ))}
+                    </ul>
+                    {project.assets?.analytics && project.assets.analytics[1] && (
+                      <div className="aspect-video relative">
+                        <img
+                          src={project.assets.analytics[1]}
+                          alt="Email Marketing Analytics"
+                          className="w-full h-full object-cover rounded-lg"
+                        />
+                      </div>
+                    )}
+                  </div>
                 </Card>
               </AccordionContent>
             </AccordionItem>
@@ -145,33 +141,37 @@ export const ProjectContent: FC<ProjectContentProps> = ({ project, language }) =
               </AccordionTrigger>
               <AccordionContent className="px-4">
                 <Card className="p-6 mt-4">
-                  <div className="grid md:grid-cols-2 gap-6">
-                    <div>
-                      <h3 className="font-semibold mb-4">
-                        {language === 'en' ? 'Strategic Goals' : 'Obiettivi Strategici'}
-                      </h3>
-                      <ul className="space-y-2 text-muted-foreground">
-                        {project.detailedSections.objectives[language].map((objective, index) => (
-                          <li key={index}>• {objective}</li>
-                        ))}
-                      </ul>
-                    </div>
-                    {project.assets?.analytics && project.assets.analytics[1] && (
-                      <div className="aspect-video relative">
-                        <img
-                          src={project.assets.analytics[1]}
-                          alt="Objectives"
-                          className="w-full h-full object-cover rounded-lg"
-                        />
-                      </div>
-                    )}
-                  </div>
+                  <ul className="space-y-2 text-muted-foreground">
+                    {project.detailedSections.objectives[language].map((objective, index) => (
+                      <li key={index}>• {objective}</li>
+                    ))}
+                  </ul>
                 </Card>
               </AccordionContent>
             </AccordionItem>
           )}
+
+          {/* Crowdfunding Section */}
+          <AccordionItem value="crowdfunding" className="border rounded-lg hover:bg-accent/50 transition-colors">
+            <AccordionTrigger className="px-4">
+              <div className="flex items-center gap-3">
+                <Trophy className="w-5 h-5 text-primary" />
+                <h2 className="text-xl font-semibold">{t.projectDetails.crowdfunding[language]}</h2>
+              </div>
+            </AccordionTrigger>
+            <AccordionContent className="px-4">
+              <Card className="p-6 mt-4">
+                <ul className="space-y-2 text-muted-foreground">
+                  {t.projectDetails.crowdfunding.results[language].map((result, index) => (
+                    <li key={index}>• {result}</li>
+                  ))}
+                </ul>
+              </Card>
+            </AccordionContent>
+          </AccordionItem>
+
           {/* Content Planning Section */}
-          {project.detailedSections?.strategies && (
+          {project.detailedSections?.strategies?.contentPlanning && (
             <AccordionItem value="content-planning" className="border rounded-lg hover:bg-accent/50 transition-colors">
               <AccordionTrigger className="px-4">
                 <div className="flex items-center gap-3">
@@ -180,77 +180,16 @@ export const ProjectContent: FC<ProjectContentProps> = ({ project, language }) =
                 </div>
               </AccordionTrigger>
               <AccordionContent className="px-4">
-                <div className="space-y-6 pt-4">
-                  <div className="grid md:grid-cols-2 gap-6">
-                    <Card className="p-6">
-                      <h3 className="font-semibold mb-4">
-                        {t.projectDetails.contentPlanning[language]}
-                      </h3>
-                      <ul className="space-y-2 text-muted-foreground">
-                        {project.detailedSections.strategies.contentPlanning[language].map((item, index) => (
-                          <li key={index}>• {item}</li>
-                        ))}
-                      </ul>
-                    </Card>
-                    <Card className="p-6">
-                      <h3 className="font-semibold mb-4">
-                        {language === 'en' ? 'Performance & Analytics' : 'Performance & Analisi'}
-                      </h3>
-                      <ul className="space-y-2 text-muted-foreground">
-                        {project.detailedSections.strategies.analytics[language].map((item, index) => (
-                          <li key={index}>• {item}</li>
-                        ))}
-                      </ul>
-                    </Card>
-                  </div>
-                </div>
+                <Card className="p-6 mt-4">
+                  <ul className="space-y-2 text-muted-foreground">
+                    {project.detailedSections.strategies.contentPlanning[language].map((item, index) => (
+                      <li key={index}>• {item}</li>
+                    ))}
+                  </ul>
+                </Card>
               </AccordionContent>
             </AccordionItem>
           )}
-
-          {/* Key Results Section */}
-          <AccordionItem value="key-results" className="border rounded-lg hover:bg-accent/50 transition-colors">
-            <AccordionTrigger className="px-4">
-              <div className="flex items-center gap-3">
-                <BarChart3 className="w-5 h-5 text-primary" />
-                <h2 className="text-xl font-semibold">{t.projectDetails.keyResults[language]}</h2>
-              </div>
-            </AccordionTrigger>
-            <AccordionContent className="px-4">
-              <div className="space-y-6 pt-4">
-                <Card className="p-6">
-                  <div className="grid md:grid-cols-2 gap-6">
-                    <div>
-                      <h3 className="font-semibold mb-4">
-                        {language === 'en' ? 'Analytics & Performance' : 'Analytics & Performance'}
-                      </h3>
-                      <div className="space-y-4">
-                        <div>
-                          <h4 className="font-medium mb-2">
-                            {language === 'en' ? 'Website Performance' : 'Performance Sito Web'}
-                          </h4>
-                          <ul className="space-y-1 text-muted-foreground">
-                            {project.detailedSections?.strategies?.analytics[language].map((item, index) => (
-                              <li key={index}>• {item}</li>
-                            ))}
-                          </ul>
-                        </div>
-                      </div>
-                    </div>
-                    {project.assets?.analytics && (
-                      <div className="aspect-video relative">
-                        <img
-                          src={project.assets.analytics[0]}
-                          alt="Analytics"
-                          className="w-full h-full object-cover rounded-lg"
-                        />
-                      </div>
-                    )}
-                  </div>
-                </Card>
-              </div>
-            </AccordionContent>
-          </AccordionItem>
         </Accordion>
       </motion.div>
     </div>
