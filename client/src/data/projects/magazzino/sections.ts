@@ -62,6 +62,61 @@ export const detailedSections: DetailedSections = {
         'Iscritti newsletter: 44.514 (+54%)',
         'Tasso medio di apertura newsletter: 32%'
       ]
+    },
+    social: {
+      en: [
+        'Facebook: 31,203 followers (+3.1% YoY)',
+        'Facebook Coverage: 545,960 (+97.6%)',
+        'Facebook Visits: 91,723 (+90.6%)',
+        'Instagram: 12,911 followers (+44.2% YoY)',
+        'Instagram Coverage: 502,784 (+550.6%)',
+        'Instagram Visits: 66,153 (+93.9%)'
+      ],
+      it: [
+        'Facebook: 31.203 follower (+3,1% YoY)',
+        'Copertura Facebook: 545.960 (+97,6%)',
+        'Visite Facebook: 91.723 (+90,6%)',
+        'Instagram: 12.911 follower (+44,2% YoY)',
+        'Copertura Instagram: 502.784 (+550,6%)',
+        'Visite Instagram: 66.153 (+93,9%)'
+      ]
+    },
+    email: {
+      en: [
+        'Newsletter Subscribers: 44,514 (+54%)',
+        'Average Open Rate: 32%',
+        'Click-through Rate: 12%',
+        'Campaign Performance: +28% YoY'
+      ],
+      it: [
+        'Iscritti Newsletter: 44.514 (+54%)',
+        'Tasso di Apertura Medio: 32%',
+        'Tasso di Click: 12%',
+        'Performance Campagne: +28% YoY'
+      ]
     }
+  },
+  tools: {
+    title: {
+      en: 'Tools & Platforms',
+      it: 'Strumenti e Piattaforme'
+    },
+    description: {
+      en: 'Technologies and platforms used in this project',
+      it: 'Tecnologie e piattaforme utilizzate in questo progetto'
+    },
+    items: [
+      'Meta Business Suite',
+      'Instagram',
+      'Facebook',
+      'Telegram',
+      'Adobe Creative Suite',
+      'DaVinci Resolve',
+      'WordPress',
+      'Google Search Console',
+      'Google Analytics',
+      'Google Looker Studio',
+      'MailUp'
+    ]
   }
 };

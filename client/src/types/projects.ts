@@ -12,6 +12,12 @@ export interface ProjectMetric {
   label: LocalizedContent<string>;
 }
 
+export interface ProjectAssets {
+  banner: string;
+  gallery?: string[];
+  analytics?: string[];
+}
+
 export interface DetailedSections {
   overview: {
     title: LocalizedContent<string>;
@@ -22,6 +28,13 @@ export interface DetailedSections {
   strategies: {
     contentPlanning: LocalizedContent<string[]>;
     analytics: LocalizedContent<string[]>;
+    social?: LocalizedContent<string[]>;
+    email?: LocalizedContent<string[]>;
+  };
+  tools?: {
+    title: LocalizedContent<string>;
+    description: LocalizedContent<string>;
+    items: string[];
   };
 }
 
@@ -35,4 +48,5 @@ export interface Project {
   detailedSections?: DetailedSections;
   gallery?: string[];
   link?: string;
+  assets?: ProjectAssets;
 }

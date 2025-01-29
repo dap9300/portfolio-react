@@ -25,11 +25,12 @@ export function ProjectCard({ project, language }: ProjectCardProps) {
       initial={{ opacity: 0 }}
       animate={{ opacity: 1 }}
       exit={{ opacity: 0 }}
-      transition={{ duration: 0.3 }}
+      whileHover={{ scale: 1.02 }}
+      transition={{ duration: 0.2 }}
       className="h-full cursor-pointer"
       onClick={() => setLocation(`/project/${project.id}`)}
     >
-      <Card className="h-full flex flex-col overflow-hidden">
+      <Card className="h-full flex flex-col overflow-hidden hover:shadow-lg transition-all duration-300">
         <CardHeader className="p-0">
           <img
             src={project.image}
@@ -53,7 +54,7 @@ export function ProjectCard({ project, language }: ProjectCardProps) {
           {project.link && (
             <Button
               variant="outline"
-              className="w-full"
+              className="w-full hover:bg-primary/10"
               onClick={(e) => {
                 e.stopPropagation();
                 window.open(project.link, '_blank');
