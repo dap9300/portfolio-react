@@ -1,21 +1,41 @@
-import { motion } from "framer-motion";
-import { useLocation, useParams } from "wouter";
-import { Language } from "@/types";
-import { Button } from "@/components/ui/button";
-import { ThemeToggle } from "@/components/shared/ThemeToggle";
-import { LanguageSwitch } from "@/components/shared/LanguageSwitch";
-import { ArrowLeft, ArrowUpRight, Users, TrendingUp, Calendar, Globe, Target, Search, Star, FileEdit, BarChart3, Wrench, Trophy } from "lucide-react";
-import { fadeInUp, staggerContainer } from "@/lib/animations";
-import { Card, CardContent } from "@/components/ui/card";
+import { motion } from 'framer-motion';
+import { useLocation, useParams } from 'wouter';
+import { Language } from '@/types';
+import { Button } from '@/components/ui/button';
+import { ThemeToggle } from '@/components/shared/ThemeToggle';
+import { LanguageSwitch } from '@/components/shared/LanguageSwitch';
+import {
+  ArrowLeft,
+  ArrowUpRight,
+  Users,
+  TrendingUp,
+  Calendar,
+  Globe,
+  Target,
+  Search,
+  Star,
+  FileEdit,
+  BarChart3,
+  Wrench,
+  Trophy,
+} from 'lucide-react';
+import { fadeInUp, staggerContainer } from '@/lib/animations';
+import { Card, CardContent } from '@/components/ui/card';
 import {
   Accordion,
   AccordionContent,
   AccordionItem,
   AccordionTrigger,
-} from "@/components/ui/accordion";
-import { useEffect, useMemo } from "react";
+} from '@/components/ui/accordion';
+import { useEffect, useMemo } from 'react';
 import useEmblaCarousel from 'embla-carousel-react';
-import { projectsData, projectMetrics, projectImages, translations, detailedSections } from "./ProjectDetailsContent"; // Assuming detailedSections is defined here
+import {
+  projectsData,
+  projectMetrics,
+  projectImages,
+  translations,
+  detailedSections,
+} from './ProjectDetailsContent'; // Assuming detailedSections is defined here
 
 interface ProjectDetailsProps {
   language: Language;
@@ -65,10 +85,13 @@ function ImageCarousel({ images, language }: ImageCarouselProps) {
   );
 }
 
-export function ProjectDetails({ language, onLanguageChange }: ProjectDetailsProps) {
+export function ProjectDetails({
+  language,
+  onLanguageChange,
+}: ProjectDetailsProps) {
   const [, setLocation] = useLocation();
   const params = useParams();
-  const id = params?.id ?? "1";
+  const id = params?.id ?? '1';
 
   const projectData = useMemo(() => projectsData[id], [id]);
   const metrics = useMemo(() => projectMetrics[id], [id]);
@@ -79,20 +102,28 @@ export function ProjectDetails({ language, onLanguageChange }: ProjectDetailsPro
   }, [id]);
 
   if (!projectData || !metrics) {
-    setLocation("/");
+    setLocation('/');
     return null;
   }
 
   const getIconComponent = (iconName: string) => {
     switch (iconName) {
-      case "rjzlcjqi": return Users;
-      case "gkosxwgv": return TrendingUp;
-      case "mzjnwzka": return Calendar;
-      case "ehdfdiha": return Globe;
-      case "lupuorrc": return Target;
-      case "msoeawqm": return Search;
-      case "yqoxyxia": return Star;
-      default: return Users;
+      case 'rjzlcjqi':
+        return Users;
+      case 'gkosxwgv':
+        return TrendingUp;
+      case 'mzjnwzka':
+        return Calendar;
+      case 'ehdfdiha':
+        return Globe;
+      case 'lupuorrc':
+        return Target;
+      case 'msoeawqm':
+        return Search;
+      case 'yqoxyxia':
+        return Star;
+      default:
+        return Users;
     }
   };
 
@@ -106,20 +137,25 @@ export function ProjectDetails({ language, onLanguageChange }: ProjectDetailsPro
       key={id}
     >
       <div className="fixed top-4 right-16 z-50">
-          <ThemeToggle />
+        <ThemeToggle />
       </div>
       <div className="fixed top-4 right-4 z-50">
-          <LanguageSwitch currentLanguage={language} onLanguageChange={onLanguageChange} />
+        <LanguageSwitch
+          currentLanguage={language}
+          onLanguageChange={onLanguageChange}
+        />
       </div>
 
       <div className="relative w-full">
         {/* Hero Section */}
-        <div className="h-[60vh] relative w-full"> {/* Added w-full */}
+        <div className="h-[60vh] relative w-full">
+          {' '}
+          {/* Added w-full */}
           <div
             className="absolute inset-0 bg-cover bg-center"
             style={{
               backgroundImage: `url(${projectData.image})`,
-              backgroundAttachment: "fixed"
+              backgroundAttachment: 'fixed',
             }}
           />
           <div className="absolute inset-0 bg-black/50" />
@@ -130,7 +166,10 @@ export function ProjectDetails({ language, onLanguageChange }: ProjectDetailsPro
               </h1>
               <div className="flex flex-wrap gap-2 justify-center">
                 {projectData.technologies.map((tech) => (
-                  <span key={tech} className="px-3 py-1 bg-white/10 rounded-full text-sm">
+                  <span
+                    key={tech}
+                    className="px-3 py-1 bg-white/10 rounded-full text-sm"
+                  >
                     {tech}
                   </span>
                 ))}
@@ -145,7 +184,7 @@ export function ProjectDetails({ language, onLanguageChange }: ProjectDetailsPro
             variants={fadeInUp}
             initial="hidden"
             animate="visible"
-            onClick={() => setLocation("/")}
+            onClick={() => setLocation('/')}
             className="flex items-center text-muted-foreground hover:text-foreground transition-colors mb-8"
           >
             <ArrowLeft className="w-4 h-4 mr-2" />
@@ -159,7 +198,10 @@ export function ProjectDetails({ language, onLanguageChange }: ProjectDetailsPro
             className="grid gap-8"
           >
             {/* Metrics */}
-            <motion.div variants={fadeInUp} className="grid grid-cols-1 md:grid-cols-3 gap-6">
+            <motion.div
+              variants={fadeInUp}
+              className="grid grid-cols-1 md:grid-cols-3 gap-6"
+            >
               {metrics.map((metric, index) => {
                 const Icon = getIconComponent(metric.icon);
                 return (
@@ -170,7 +212,9 @@ export function ProjectDetails({ language, onLanguageChange }: ProjectDetailsPro
                         <ArrowUpRight className="w-5 h-5 text-green-500" />
                       </div>
                       <p className="text-3xl font-bold">{metric.value}</p>
-                      <p className="text-muted-foreground">{metric.label[language]}</p>
+                      <p className="text-muted-foreground">
+                        {metric.label[language]}
+                      </p>
                     </CardContent>
                   </Card>
                 );
@@ -178,7 +222,10 @@ export function ProjectDetails({ language, onLanguageChange }: ProjectDetailsPro
             </motion.div>
 
             {/* Overview and Tools */}
-            <motion.div variants={fadeInUp} className="grid md:grid-cols-3 gap-8">
+            <motion.div
+              variants={fadeInUp}
+              className="grid md:grid-cols-3 gap-8"
+            >
               <div className="md:col-span-2">
                 <div className="flex items-center gap-3 mb-6">
                   <FileEdit className="w-8 h-8 text-primary" />
@@ -189,12 +236,13 @@ export function ProjectDetails({ language, onLanguageChange }: ProjectDetailsPro
                 <div
                   className="text-muted-foreground whitespace-pre-line"
                   dangerouslySetInnerHTML={{
-                    __html: projectData.description[language]
-                      .replace(/\*\*(.*?)\*\*/g, '<strong>$1</strong>')
+                    __html: projectData.description[language].replace(
+                      /\*\*(.*?)\*\*/g,
+                      '<strong>$1</strong>'
+                    ),
                   }}
                 />
               </div>
-
               {/* Tools & Platforms Section */}
               <div>
                 <div className="flex items-center gap-3 mb-6">
@@ -211,46 +259,87 @@ export function ProjectDetails({ language, onLanguageChange }: ProjectDetailsPro
                 <div className="space-y-6">
                   {/* Analytics Tools */}
                   <div>
-                    <h3 className="text-lg font-semibold mb-3 text-primary">Analytics</h3>
+                    <h3 className="text-lg font-semibold mb-3 text-primary">
+                      Analytics
+                    </h3>
                     <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
                       {projectData.technologies
-                        .filter(tech => ["Google Analytics", "Meta Business Suite", "Google Tag Manager", "Google Search Console"].includes(tech))
+                        .filter((tech) =>
+                          [
+                            'Google Analytics',
+                            'Meta Business Suite',
+                            'Google Tag Manager',
+                            'Google Search Console',
+                          ].includes(tech)
+                        )
                         .map((tech, index) => (
-                          <Card key={index} className="group relative border border-border/50 hover:border-primary/50 transition-all duration-300 hover:shadow-lg hover:shadow-primary/5 w-full overflow-hidden">
-                            <div className="absolute inset-0 bg-gradient-to-r from-primary/5 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300" />
-                            <div className="px-4 py-3 flex justify-center items-center">
-                              <h3 className="font-medium relative z-10 whitespace-nowrap text-center">{tech}</h3>
+                          <Card
+                            key={index}
+                            className="group relative border border-border/50 hover:border-primary/50 transition-all duration-300 hover:shadow-lg hover:shadow-primary/5 w-fit"
+                          >
+                            <div className="px-4 py-3 justify-center">
+                              <h3 className="font-medium relative z-10 whitespace-nowrap text-center">
+                                {tech}
+                              </h3>
                             </div>
                           </Card>
                         ))}
                     </div>
                   </div>
-                  
                   {/* Social Media Tools */}
                   <div>
-                    <h3 className="text-lg font-semibold mb-3 text-primary">Social Media</h3>
+                    <h3 className="text-lg font-semibold mb-3 text-primary">
+                      Social Media
+                    </h3>
                     <div className="grid grid-cols-2 md:grid-cols-3 gap-3">
                       {projectData.technologies
-                        .filter(tech => ["Meta Ads", "Social Media Strategy", "Social Media Management", "Content Creation", "Social Media Analytics"].includes(tech))
+                        .filter((tech) =>
+                          [
+                            'Meta Ads',
+                            'Social Media Strategy',
+                            'Social Media Management',
+                            'Content Creation',
+                            'Social Media Analytics',
+                          ].includes(tech)
+                        )
                         .map((tech, index) => (
-                          <Card key={index} className="group relative px-4 py-3 border border-border/50 hover:border-primary/50 transition-all duration-300 hover:shadow-lg hover:shadow-primary/5">
+                          <Card
+                            key={index}
+                            className="group relative px-4 py-3 border border-border/50 hover:border-primary/50 transition-all duration-300 hover:shadow-lg hover:shadow-primary/5 w-fit"
+                          >
                             <div className="absolute inset-0 bg-gradient-to-r from-primary/5 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300" />
-                            <h3 className="font-medium relative z-10">{tech}</h3>
+                            <h3 className="font-medium relative z-10">
+                              {tech}
+                            </h3>
                           </Card>
                         ))}
                     </div>
                   </div>
-
                   {/* Website Tools */}
                   <div>
-                    <h3 className="text-lg font-semibold mb-3 text-primary">Website</h3>
-                    <div className="grid grid-cols-2 md:grid-cols-3 gap-3">
+                    <h3 className="text-lg font-semibold mb-3 text-primary">
+                      Website
+                    </h3>
+                    <div className="grid grid-cols-2 md:grid-cols-3 grid-gap-2">
                       {projectData.technologies
-                        .filter(tech => ["WordPress", "WooCommerce", "Technical SEO", "Email Marketing", "DICE"].includes(tech))
+                        .filter((tech) =>
+                          [
+                            'WordPress',
+                            'WooCommerce',
+                            'Technical SEO',
+                            'Email Marketing',
+                            'DICE',
+                          ].includes(tech)
+                        )
                         .map((tech, index) => (
-                          <Card key={index} className="group relative px-4 py-3 border border-border/50 hover:border-primary/50 transition-all duration-300 hover:shadow-lg hover:shadow-primary/5">
+                          <Card
+                            key={index}
+                            className="group relative px-4 py-3 border border-border/50 hover:border-primary/50 transition-all duration-300 hover:shadow-lg hover:shadow-primary/5 w-fit"
+                          >
                             <div className="absolute inset-0 bg-gradient-to-r from-primary/5 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300" />
-                            <h3 className="font-medium relative z-10">{tech}</h3>
+                            <h3 className="font-medium relative z-10">
+                              {tech}
+                            </h3>
                           </Card>
                         ))}
                     </div>
@@ -258,12 +347,14 @@ export function ProjectDetails({ language, onLanguageChange }: ProjectDetailsPro
                 </div>
               </div>
             </motion.div>
-
             {/* Detailed Sections (Only for Project 1 - Magazzino sul Po) */}
-            {id === "1" && (
+            {id === '1' && (
               <motion.div variants={fadeInUp}>
                 <Accordion type="single" collapsible className="space-y-4">
-                  <AccordionItem value="overview" className="border rounded-lg hover:bg-accent/50 transition-colors">
+                  <AccordionItem
+                    value="overview"
+                    className="border rounded-lg hover:bg-accent/50 transition-colors"
+                  >
                     <AccordionTrigger className="px-4">
                       <div className="flex items-center gap-3">
                         <FileEdit className="w-5 h-5 text-primary" />
@@ -277,27 +368,35 @@ export function ProjectDetails({ language, onLanguageChange }: ProjectDetailsPro
                         <div className="grid md:grid-cols-2 gap-6">
                           <div>
                             <h3 className="font-semibold mb-4">
-                              {language === "en" ? "Project Background" : "Background del Progetto"}
+                              {language === 'en'
+                                ? 'Project Background'
+                                : 'Background del Progetto'}
                             </h3>
-                            <p className="text-muted-foreground mb-4" 
-                               dangerouslySetInnerHTML={{
-                                 __html: language === "en"
-                                   ? `Digital transformation and communication strategy for one of Turin's main cultural venues.`
-                                   : `Trasformazione digitale e strategia di comunicazione per uno dei principali luoghi culturali di Torino.<br /><br />
+                            <p
+                              className="text-muted-foreground mb-4"
+                              dangerouslySetInnerHTML={{
+                                __html:
+                                  language === 'en'
+                                    ? `Digital transformation and communication strategy for one of Turin's main cultural venues.`
+                                    : `Trasformazione digitale e strategia di comunicazione per uno dei principali luoghi culturali di Torino.<br /><br />
                                        Sviluppato calendario editoriale mensile<br />
                                        • Implementato sistema di categorizzazione contenuti<br />
                                        • Creato formati di contenuto diversificati<br />
                                        • Ottimizzato programmazione dei post<br />
-                                       • Integrato strategia multipiattaforma<br />
+                                       • Integrato strategia multipiattaforma<br /><br />
                                        • E-commerce & Newsletter:<br />
                                        • €15.583 ricavi da biglietteria online<br />
                                        • 2.915 biglietti venduti (+134% YoY)<br />
                                        • 44.514 iscritti newsletter (+54%)<br />
-                                       • 32% tasso medio di apertura newsletter`
-                               }} />
-
-
-
+                                       • 32% tasso medio di apertura newsletter<br /><br />
+                                       Facebook: 31,203 followers (+3.1% YoY)<br />
+                                       Coverage: 545,960 (+97.6%)<br />
+                                       Visits: 91,723 (+90.6%)<br />
+                                       Instagram: 12,911 followers (+44.2% YoY)<br />
+                                       Coverage: 502,784 (+550.6%)<br />
+                                       Visits: 66,153 (+93.9%)`,
+                              }}
+                            />
                           </div>
                           <div className="aspect-video relative">
                             <img
@@ -311,7 +410,10 @@ export function ProjectDetails({ language, onLanguageChange }: ProjectDetailsPro
                     </AccordionContent>
                   </AccordionItem>
 
-                  <AccordionItem value="objectives" className="border rounded-lg hover:bg-accent/50 transition-colors">
+                  <AccordionItem
+                    value="objectives"
+                    className="border rounded-lg hover:bg-accent/50 transition-colors"
+                  >
                     <AccordionTrigger className="px-4">
                       <div className="flex items-center gap-3">
                         <Target className="w-5 h-5 text-primary" />
@@ -325,12 +427,16 @@ export function ProjectDetails({ language, onLanguageChange }: ProjectDetailsPro
                         <div className="grid md:grid-cols-2 gap-6">
                           <div>
                             <h3 className="font-semibold mb-4">
-                              {language === "en" ? "Strategic Goals" : "Obiettivi Strategici"}
+                              {language === 'en'
+                                ? 'Strategic Goals'
+                                : 'Obiettivi Strategici'}
                             </h3>
                             <ul className="space-y-2 text-muted-foreground">
-                              {detailedSections.objectives[language].map((objective, index) => (
-                                <li key={index}>• {objective}</li>
-                              ))}
+                              {detailedSections.objectives[language].map(
+                                (objective, index) => (
+                                  <li key={index}>• {objective}</li>
+                                )
+                              )}
                             </ul>
                           </div>
                           <div className="aspect-video relative">
@@ -345,7 +451,10 @@ export function ProjectDetails({ language, onLanguageChange }: ProjectDetailsPro
                     </AccordionContent>
                   </AccordionItem>
 
-                  <AccordionItem value="key-results" className="border rounded-lg hover:bg-accent/50 transition-colors">
+                  <AccordionItem
+                    value="key-results"
+                    className="border rounded-lg hover:bg-accent/50 transition-colors"
+                  >
                     <AccordionTrigger className="px-4">
                       <div className="flex items-center gap-3">
                         <BarChart3 className="w-5 h-5 text-primary" />
@@ -359,24 +468,39 @@ export function ProjectDetails({ language, onLanguageChange }: ProjectDetailsPro
                         <Card className="p-6">
                           <div className="grid md:grid-cols-2 gap-6">
                             <div>
-                              <h3 className="font-semibold mb-4">Sito web ((ProjectsDetails.tsx))</h3>
+                              <h3 className="font-semibold mb-4">
+                                Sito web ((ProjectsDetails.tsx))
+                              </h3>
                               <div className="space-y-4">
                                 <div>
-                                  <h4 className="font-medium mb-2">Sezione1 Sito Web</h4>
+                                  <h4 className="font-medium mb-2">
+                                    Sezione1 Sito Web
+                                  </h4>
                                   <ul className="space-y-1 text-muted-foreground">
-                                    <li>•Integrazione sistema di biglietteria online)</li>
-                                    <li>• €15.583 ricavi da biglietteria online</li>
+                                    <li>
+                                      •Integrazione sistema di biglietteria
+                                      online)
+                                    </li>
+                                    <li>
+                                      • €15.583 ricavi da biglietteria online
+                                    </li>
                                     <li>• Altra cosa</li>
                                   </ul>
                                 </div>
                                 <div>
-                                  <h4 className="font-medium mb-2">Analytics</h4>
+                                  <h4 className="font-medium mb-2">
+                                    Analytics
+                                  </h4>
                                   <ul className="space-y-1 text-muted-foreground">
                                     <li>• Reportistica e Monitoraggio Sito</li>
                                     <li>• Ampliamento contatti modulo</li>
                                     <li>• Nuovi utenti: 55,456 (+550.6%)</li>
-                                    <li>• Visite totali al sito: 66,153 (+93.9%)</li>
-                                    <li>• Visite totali al sito: 66,153 (+93.9%)</li>
+                                    <li>
+                                      • Visite totali al sito: 66,153 (+93.9%)
+                                    </li>
+                                    <li>
+                                      • Visite totali al sito: 66,153 (+93.9%)
+                                    </li>
                                   </ul>
                                 </div>
                               </div>
@@ -394,12 +518,19 @@ export function ProjectDetails({ language, onLanguageChange }: ProjectDetailsPro
                     </AccordionContent>
                   </AccordionItem>
 
-                  <AccordionItem value="special-projects" className="border rounded-lg hover:bg-accent/50 transition-colors">
+                  <AccordionItem
+                    value="special-projects"
+                    className="border rounded-lg hover:bg-accent/50 transition-colors"
+                  >
                     <AccordionTrigger className="px-4">
                       <div className="flex items-center gap-3">
                         <Trophy className="w-5 h-5 text-primary" />
                         <h2 className="text-xl font-semibold">
-                          {translations.projectDetails.specialProjects[language]}
+                          {
+                            translations.projectDetails.specialProjects[
+                              language
+                            ]
+                          }
                         </h2>
                       </div>
                     </AccordionTrigger>
@@ -408,10 +539,16 @@ export function ProjectDetails({ language, onLanguageChange }: ProjectDetailsPro
                         <div className="grid md:grid-cols-2 gap-6">
                           <div>
                             <h3 className="font-semibold mb-4">
-                              {translations.projectDetails.crowdfunding[language]}
+                              {
+                                translations.projectDetails.crowdfunding[
+                                  language
+                                ]
+                              }
                             </h3>
                             <ul className="space-y-2 text-muted-foreground">
-                              {translations.projectDetails.crowdfunding.results[language].map((result, index) => (
+                              {translations.projectDetails.crowdfunding.results[
+                                language
+                              ].map((result, index) => (
                                 <li key={index}>• {result}</li>
                               ))}
                             </ul>
@@ -428,12 +565,19 @@ export function ProjectDetails({ language, onLanguageChange }: ProjectDetailsPro
                     </AccordionContent>
                   </AccordionItem>
 
-                  <AccordionItem value="content-planning" className="border rounded-lg hover:bg-accent/50 transition-colors">
+                  <AccordionItem
+                    value="content-planning"
+                    className="border rounded-lg hover:bg-accent/50 transition-colors"
+                  >
                     <AccordionTrigger className="px-4">
                       <div className="flex items-center gap-3">
                         <FileEdit className="w-5 h-5 text-primary" />
                         <h2 className="text-xl font-semibold">
-                          {translations.projectDetails.contentPlanning[language]}
+                          {
+                            translations.projectDetails.contentPlanning[
+                              language
+                            ]
+                          }
                         </h2>
                       </div>
                     </AccordionTrigger>
@@ -442,20 +586,30 @@ export function ProjectDetails({ language, onLanguageChange }: ProjectDetailsPro
                         <div className="grid md:grid-cols-2 gap-6">
                           <Card className="p-6">
                             <h3 className="font-semibold mb-4">
-                              {translations.projectDetails.contentPlanning[language]}
+                              {
+                                translations.projectDetails.contentPlanning[
+                                  language
+                                ]
+                              }
                             </h3>
                             <ul className="space-y-2 text-muted-foreground">
-                              {detailedSections.strategies.contentPlanning[language].map((item, index) => (
+                              {detailedSections.strategies.contentPlanning[
+                                language
+                              ].map((item, index) => (
                                 <li key={index}>• {item}</li>
                               ))}
                             </ul>
                           </Card>
                           <Card className="p-6">
                             <h3 className="font-semibold mb-4">
-                              {language === "en" ? "Performance & Analytics" : "Email Marketing 2"}
+                              {language === 'en'
+                                ? 'Performance & Analytics'
+                                : 'Email Marketing 2'}
                             </h3>
                             <ul className="space-y-2 text-muted-foreground">
-                              {detailedSections.strategies.analytics[language].map((item, index) => (
+                              {detailedSections.strategies.analytics[
+                                language
+                              ].map((item, index) => (
                                 <li key={index}>• {item}</li>
                               ))}
                             </ul>
