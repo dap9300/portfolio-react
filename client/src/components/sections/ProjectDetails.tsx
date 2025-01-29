@@ -221,12 +221,12 @@ export function ProjectDetails({
               })}
             </motion.div>
 
-            {/* Overview and Tools */}
+            {/* Overview, Obiettivi, and Tools */}
             <motion.div
               variants={fadeInUp}
               className="flex flex-col md:flex-row gap-8"
             >
-              <div className="md:w-1/2">
+              <div className="md:w-1/3">
                 <div className="flex items-center gap-3 mb-6">
                   <FileEdit className="w-8 h-8 text-primary" />
                   <h2 className="text-2xl font-semibold">
@@ -243,8 +243,40 @@ export function ProjectDetails({
                   }}
                 />
               </div>
+              <div className="md:w-1/3">
+                <div className="flex items-center gap-3 mb-6">
+                  <Trophy className="w-8 h-8 text-primary" />
+                  <h2 className="text-2xl font-semibold">Obiettivi Raggiunti</h2>
+                </div>
+                <ul className="space-y-3">
+                  <li className="flex items-center gap-2">
+                    <svg className="w-5 h-5 text-green-500" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                      <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M5 13l4 4L19 7"></path>
+                    </svg>
+                    <span className="text-muted-foreground">Aumentare la visibilità online dell'associazione</span>
+                  </li>
+                  <li className="flex items-center gap-2">
+                    <svg className="w-5 h-5 text-green-500" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                      <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M5 13l4 4L19 7"></path>
+                    </svg>
+                    <span className="text-muted-foreground">Migliorare l'efficacia della comunicazione degli eventi</span>
+                  </li>
+                  <li className="flex items-center gap-2">
+                    <svg className="w-5 h-5 text-green-500" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                      <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M5 13l4 4L19 7"></path>
+                    </svg>
+                    <span className="text-muted-foreground">Incrementare il coinvolgimento della community</span>
+                  </li>
+                  <li className="flex items-center gap-2">
+                    <svg className="w-5 h-5 text-green-500" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                      <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M5 13l4 4L19 7"></path>
+                    </svg>
+                    <span className="text-muted-foreground">Ottimizzare la presenza digitale e le performance delle campagne</span>
+                  </li>
+                </ul>
+              </div>
               {/* Tools & Platforms Section */}
-              <div className="md:w-1/2">
+              <div className="md:w-1/3">
                 <div className="flex items-center gap-3 mb-6">
                   <Wrench className="w-8 h-8 text-primary" />
                   <div>
