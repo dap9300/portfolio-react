@@ -3,8 +3,20 @@ import { motion } from "framer-motion";
 import { Language } from "@/types";
 import { Project } from "@/types/projects";
 import { Card } from "@/components/ui/card";
-import { FileEdit, Target, BarChart3, Trophy, Wrench, Mail, BookOpen } from "lucide-react";
+import { FileEdit, Target, BarChart3, Trophy, Wrench, Mail, BookOpen, Award } from "lucide-react";
 import { projectDetailsTranslations as t } from "@/data/translations/projectDetails";
+import {
+  IconBrandWordPress,
+  IconBrandTelegram,
+  IconBrandMeta,
+  IconBrandInstagram,
+  IconBrandFacebook,
+  IconBrandAdobe,
+  IconVideo,
+  IconBrandGoogleAnalytics,
+  IconSearch,
+  IconMail
+} from '@tabler/icons-react';
 import {
   Accordion,
   AccordionContent,
@@ -16,6 +28,20 @@ interface ProjectContentProps {
   project: Project;
   language: Language;
 }
+
+const toolIcons: Record<string, JSX.Element> = {
+  'WordPress': <IconBrandWordPress className="w-5 h-5" />,
+  'Telegram': <IconBrandTelegram className="w-5 h-5" />,
+  'Meta Business Suite': <IconBrandMeta className="w-5 h-5" />,
+  'Instagram': <IconBrandInstagram className="w-5 h-5" />,
+  'Facebook': <IconBrandFacebook className="w-5 h-5" />,
+  'Adobe Creative Suite': <IconBrandAdobe className="w-5 h-5" />,
+  'DaVinci Resolve': <IconVideo className="w-5 h-5" />,
+  'Google Analytics': <IconBrandGoogleAnalytics className="w-5 h-5" />,
+  'Google Search Console': <IconSearch className="w-5 h-5" />,
+  'Google Looker Studio': <IconBrandGoogleAnalytics className="w-5 h-5" />,
+  'MailUp': <IconMail className="w-5 h-5" />,
+};
 
 export const ProjectContent: FC<ProjectContentProps> = ({ project, language }) => {
   return (
@@ -53,8 +79,9 @@ export const ProjectContent: FC<ProjectContentProps> = ({ project, language }) =
                     className="group relative border border-border/50 hover:border-primary/50 transition-all duration-300 hover:shadow-lg hover:shadow-primary/5 w-fit rounded-xl overflow-hidden"
                   >
                     <div className="absolute inset-0 bg-gradient-to-r from-primary/5 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300" />
-                    <div className="px-4 py-3 justify-center">
-                      <h3 className="font-medium relative z-10 whitespace-nowrap text-center">
+                    <div className="px-4 py-3 flex items-center gap-2">
+                      {toolIcons[tool] || <Wrench className="w-5 h-5" />}
+                      <h3 className="font-medium relative z-10 whitespace-nowrap">
                         {tool}
                       </h3>
                     </div>
@@ -66,7 +93,29 @@ export const ProjectContent: FC<ProjectContentProps> = ({ project, language }) =
         )}
       </div>
 
-      {/* Accordion Sections */}
+      {/* Achievements Section - 1/3 width */}
+      <div className="grid md:grid-cols-3 gap-6">
+        <div className="space-y-4">
+          <div className="flex items-center gap-2">
+            <Award className="w-6 h-6 text-primary" />
+            <h2 className="text-2xl font-semibold">
+              {language === 'it' ? 'Obiettivi Raggiunti' : 'Achievements'}
+            </h2>
+          </div>
+          <Card className="p-6">
+            <ul className="space-y-2 text-muted-foreground">
+              {project.detailedSections?.strategies?.analytics?.[language]?.map((metric, index) => (
+                <li key={index} className="flex items-center gap-2">
+                  <div className="w-1 h-1 rounded-full bg-primary" />
+                  {metric}
+                </li>
+              ))}
+            </ul>
+          </Card>
+        </div>
+      </div>
+
+      {/* Rest of the content (Accordion sections) */}
       <motion.div
         initial={{ opacity: 0 }}
         animate={{ opacity: 1 }}
