@@ -80,7 +80,7 @@ export const ProjectContent: FC<ProjectContentProps> = ({ project, language }) =
                 <div className="flex items-center gap-3">
                   <FileEdit className="w-5 h-5 text-primary" />
                   <h2 className="text-xl font-semibold">
-                    {language === 'en' ? 'Social Media Performance' : 'Performance Social Media'}
+                    {language === 'en' ? 'Social Media & Content Creation' : 'Social Media & Content Creation'}
                   </h2>
                 </div>
               </AccordionTrigger>

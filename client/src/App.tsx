@@ -7,6 +7,7 @@ import Home from "@/pages/Home";
 import { ProjectDetails } from "@/components/sections/ProjectDetails";
 import { useState, Suspense } from 'react';
 import { Language } from "@/types";
+import { AnimatePresence, motion } from "framer-motion";
 
 function Router() {
   const [language, setLanguage] = useState<Language>('it');
@@ -15,25 +16,37 @@ function Router() {
   return (
     <div className="w-full h-full min-h-screen bg-background">
       <Suspense fallback={<div className="flex items-center justify-center min-h-screen">Loading...</div>}>
-        <Switch location={location}>
-          <Route path="/">
-            <Home language={language} onLanguageChange={setLanguage} />
-          </Route>
-          <Route path="/project/:id">
-            {(params) => (
-              <ProjectDetails language={language} onLanguageChange={setLanguage} />
-            )}
-          </Route>
-          <Route>
-            <NotFound />
-          </Route>
-        </Switch>
+        <AnimatePresence mode="wait">
+          <motion.div
+            key={location}
+            initial={{ opacity: 0 }}
+            animate={{ opacity: 1 }}
+            exit={{ opacity: 0 }}
+            transition={{ duration: 0.2 }}
+            className="w-full h-full"
+          >
+            <Switch location={location}>
+              <Route path="/">
+                <Home language={language} onLanguageChange={setLanguage} />
+              </Route>
+              <Route path="/project/:id">
+                {(params) => (
+                  <ProjectDetails language={language} onLanguageChange={setLanguage} />
+                )}
+              </Route>
+              <Route>
+                <NotFound />
+              </Route>
+            </Switch>
+          </motion.div>
+        </AnimatePresence>
       </Suspense>
     </div>
   );
 }
 
-function App() {
+// Separate App component
+export const App = () => {
   return (
     <QueryClientProvider client={queryClient}>
       <Router />
@@ -42,4 +55,5 @@ function App() {
   );
 }
 
+// Default export
 export default App;
