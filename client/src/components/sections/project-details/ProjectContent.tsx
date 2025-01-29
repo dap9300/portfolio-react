@@ -9,7 +9,7 @@ import {
   AccordionItem,
   AccordionTrigger,
 } from "@/components/ui/accordion";
-import { FileEdit, Target, BarChart3, Trophy, Wrench, Mail } from "lucide-react";
+import { FileEdit, Target, BarChart3, Trophy, Wrench, Mail, BookOpen, Users, TrendingUp, Calendar } from "lucide-react";
 import { projectDetailsTranslations as t } from "@/data/translations/projectDetails";
 
 interface ProjectContentProps {
@@ -24,7 +24,10 @@ export const ProjectContent: FC<ProjectContentProps> = ({ project, language }) =
       <div className="grid md:grid-cols-3 gap-6">
         {/* Overview Section - 1/3 width */}
         <div className="space-y-4">
-          <h2 className="text-2xl font-semibold">{t.projectDetails.overview[language]}</h2>
+          <div className="flex items-center gap-2">
+            <BookOpen className="w-6 h-6 text-primary" />
+            <h2 className="text-2xl font-semibold">{t.projectDetails.overview[language]}</h2>
+          </div>
           <Card className="p-6">
             <p className="text-muted-foreground whitespace-pre-line">
               {project.description[language]}
@@ -35,7 +38,10 @@ export const ProjectContent: FC<ProjectContentProps> = ({ project, language }) =
         {/* Tools Section - 2/3 width */}
         {project.detailedSections?.tools && (
           <div className="md:col-span-2 space-y-4">
-            <h2 className="text-2xl font-semibold">{project.detailedSections.tools.title[language]}</h2>
+            <div className="flex items-center gap-2">
+              <Wrench className="w-6 h-6 text-primary" />
+              <h2 className="text-2xl font-semibold">{project.detailedSections.tools.title[language]}</h2>
+            </div>
             <Card className="p-6">
               <p className="text-muted-foreground mb-6">
                 {project.detailedSections.tools.description[language]}
@@ -44,7 +50,7 @@ export const ProjectContent: FC<ProjectContentProps> = ({ project, language }) =
                 {project.detailedSections.tools.items.map((tool) => (
                   <span
                     key={tool}
-                    className="px-3 py-2 bg-primary/10 text-primary rounded text-sm"
+                    className="group relative px-4 py-3 border border-border/50 hover:border-primary/50 transition-all duration-300 hover:shadow-lg hover:shadow-primary/5 w-fit rounded-lg"
                   >
                     {tool}
                   </span>
@@ -53,6 +59,29 @@ export const ProjectContent: FC<ProjectContentProps> = ({ project, language }) =
             </Card>
           </div>
         )}
+      </div>
+
+      {/* Analytics Metrics */}
+      <div className="grid grid-cols-1 md:grid-cols-3 gap-6 my-8">
+        {project.metrics?.map((metric, index) => (
+          <motion.div
+            key={metric.icon}
+            className="bg-card border-2 border-primary/20 p-6 rounded-lg shadow-lg hover:border-primary/40 transition-colors duration-300"
+            initial={{ opacity: 0, y: 20 }}
+            animate={{ opacity: 1, y: 0 }}
+            transition={{ duration: 0.5, delay: index * 0.1 }}
+          >
+            <div className="flex items-center space-x-4">
+              {getIcon(metric.icon)}
+              <div>
+                <p className="text-2xl font-bold">{metric.value}</p>
+                <p className="text-muted-foreground">
+                  {metric.label[language]}
+                </p>
+              </div>
+            </div>
+          </motion.div>
+        ))}
       </div>
 
       {/* Accordion Sections */}
@@ -194,4 +223,18 @@ export const ProjectContent: FC<ProjectContentProps> = ({ project, language }) =
       </motion.div>
     </div>
   );
+};
+
+// Helper function to get icon component
+const getIcon = (iconKey: string) => {
+  switch (iconKey) {
+    case 'rjzlcjqi':
+      return <Users className="w-10 h-10 text-primary" />;
+    case 'gkosxwgv':
+      return <TrendingUp className="w-10 h-10 text-primary" />;
+    case 'mzjnwzka':
+      return <Calendar className="w-10 h-10 text-primary" />;
+    default:
+      return null;
+  }
 };

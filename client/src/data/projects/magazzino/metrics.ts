@@ -4,7 +4,7 @@ import { ICON_KEYS } from '@/lib/constants';
 export const metrics: ProjectMetric[] = [
   {
     icon: ICON_KEYS.USERS,
-    value: '44,114',
+    value: '44,115',
     label: {
       en: 'Total Social Followers',
       it: 'Follower Social Totali'

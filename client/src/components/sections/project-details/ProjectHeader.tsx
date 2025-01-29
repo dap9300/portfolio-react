@@ -18,7 +18,13 @@ export const ProjectHeader: FC<ProjectHeaderProps> = ({ project, language }) => 
       ];
 
   return (
-    <div className="h-[40vh] relative w-full mb-12">
+    <motion.div
+      className="h-[40vh] relative w-full mb-12"
+      initial={{ height: "40vh" }}
+      animate={{ height: "40vh" }}
+      exit={{ height: "40vh" }}
+      transition={{ duration: 0 }}
+    >
       <div
         className="absolute inset-0 bg-cover bg-center"
         style={{
@@ -54,6 +60,6 @@ export const ProjectHeader: FC<ProjectHeaderProps> = ({ project, language }) => 
           </motion.div>
         </div>
       </div>
-    </div>
+    </motion.div>
   );
 };
