@@ -1,0 +1,169 @@
+C:.
+|   .prettierrc.json
+|   .replit
+|   drizzle.config.ts
+|   generated-icon.png
+|   package-lock.json
+|   package.json
+|   postcss.config.js
+|   replit.nix
+|   tailwind.config.ts
+|   theme.json
+|   tree_output.txt
+|   tsconfig.json
+|   vite.config.ts
+|   
+|       
++---client
+|   |   index.html
+|   |   
+|   +---public
+|   |           banner-magazzino.webp
+|   |           engagement.png
+|   |           foto-bio.webp
+|   |           growth.png
+|   |           hrx-banner1.jpg
+|   |           manunta-banner.jpg
+|   |           oldsocial1.png
+|   |           oldsocial2.png
+|   |           oldsocial3.png
+|   |           sito-eventi-1.png
+|   |           
+|   \---src
+|       |   App.tsx
+|       |   index.css
+|       |   main.tsx
+|       |   
+|       |       .keep
+|       |       
+|       +---components
+|       |   +---sections
+|       |   |       Contact.tsx
+|       |   |       Education.tsx
+|       |   |       Hero.tsx
+|       |   |       Overview.tsx
+|       |   |       ProjectDetails.tsx
+|       |   |       ProjectDetailsContent.tsx
+|       |   |       ProjectDetailsEn.tsx
+|       |   |       ProjectDetailsIta.tsx
+|       |   |       Projects.tsx
+|       |   |       Skills.tsx
+|       |   |       
+|       |   +---shared
+|       |   |       LanguageSwitch.tsx
+|       |   |       LordIcon.tsx
+|       |   |       Navigation.tsx
+|       |   |       ProjectCard.tsx
+|       |   |       SectionTitle.tsx
+|       |   |       ThemeToggle.tsx
+|       |   |       
+|       |   \---ui
+|       |       |   accordion.tsx
+|       |       |   alert-dialog.tsx
+|       |       |   alert.tsx
+|       |       |   aspect-ratio.tsx
+|       |       |   avatar.tsx
+|       |       |   badge.tsx
+|       |       |   button.tsx
+|       |       |   card.tsx
+|       |       |   carousel.tsx
+|       |       |   checkbox.tsx
+|       |       |   collapsible.tsx
+|       |       |   command.tsx
+|       |       |   context-menu.tsx
+|       |       |   dialog.tsx
+|       |       |   drawer.tsx
+|       |       |   dropdown-menu.tsx
+|       |       |   form.tsx
+|       |       |   hover-card.tsx
+|       |       |   index.ts
+|       |       |   input-otp.tsx
+|       |       |   input.tsx
+|       |       |   label.tsx
+|       |       |   menubar.tsx
+|       |       |   navigation-menu.tsx
+|       |       |   popover.tsx
+|       |       |   progress.tsx
+|       |       |   radio-group.tsx
+|       |       |   scroll-area.tsx
+|       |       |   select.tsx
+|       |       |   separator.tsx
+|       |       |   slider.tsx
+|       |       |   switch.tsx
+|       |       |   table.tsx
+|       |       |   tabs.tsx
+|       |       |   textarea.tsx
+|       |       |   toast.tsx
+|       |       |   toaster.tsx
+|       |       |   toggle-group.tsx
+|       |       |   toggle.tsx
+|       |       |   tooltip.tsx
+|       |       |   
+|       |       +---data-display
+|       |       |       index.ts
+|       |       |       
+|       |       +---feedback
+|       |       |       index.ts
+|       |       |       
+|       |       +---form
+|       |       |       form.tsx
+|       |       |       index.ts
+|       |       |       input.tsx
+|       |       |       
+|       |       +---layout
+|       |       |       aspect-ratio.tsx
+|       |       |       card.tsx
+|       |       |       collapsible.tsx
+|       |       |       index.ts
+|       |       |       resizable.tsx
+|       |       |       scroll-area.tsx
+|       |       |       separator.tsx
+|       |       |       sheet.tsx
+|       |       |       
+|       |       +---navigation
+|       |       |       index.ts
+|       |       |       
+|       |       \---overlay
+|       |               index.ts
+|       |               
+|       +---hooks
+|       |       use-mobile.tsx
+|       |       use-theme.ts
+|       |       use-toast.ts
+|       |       
+|       +---lib
+|       |       animations.ts
+|       |       queryClient.ts
+|       |       translations.ts
+|       |       utils.ts
+|       |       
+|       +---pages
+|       |       Home.tsx
+|       |       not-found.tsx
+|       |       
+|       \---types
+|               index.ts
+|               
++---db
+|       index.ts
+|       schema.ts
+|       
+|   |   index.js
+|   |   
+|   \---public
+|       |   index.html
+|       |   
+|               banner-magazzino.webp
+|               engagement.png
+|               foto-bio.webp
+|               growth.png
+|               hrx-banner1.jpg
+|               index-BFRm8NVl.js
+|               index-CqldsWOv.css
+|               manunta-banner.jpg
+|               oldsocial1.png
+|               oldsocial2.png
+|               oldsocial3.png
+|               sito-eventi-1.png
+|               
+|   |   .package-lock.json
