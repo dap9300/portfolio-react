@@ -1,0 +1,204 @@
+[01;34m.[0m
+├── [01;34mattached_assets[0m
+│   ├── [01;35manalytics_maga1.png[0m
+│   ├── [01;35manalytics_maga2.png[0m
+│   ├── [01;35manalytics_maga3.png[0m
+│   ├── [01;35manalytics_maga_acquisizione2.png[0m
+│   ├── [01;35mcrescitafollower1.png[0m
+│   ├── [01;35mimage_1737832516046.png[0m
+│   ├── [01;35mimage_1737967262372.png[0m
+│   ├── [01;35mimage_1738162816619.png[0m
+│   ├── [01;35mimage_1738162952515.png[0m
+│   ├── [01;35mimage_1738164040083.png[0m
+│   ├── [01;35mimage_1738164400053.png[0m
+│   ├── [01;35mimage_1738164459080.png[0m
+│   ├── [01;35mimage_1738164686910.png[0m
+│   ├── [01;35mimage_1738164820589.png[0m
+│   ├── [01;35mnewsocial2.png[0m
+│   ├── [01;35mnewsocial3.png[0m
+│   ├── [01;35moldsocial1.png[0m
+│   ├── [01;35moldsocial2.png[0m
+│   ├── Pasted-2-1-Introduzione-Magazzino-sul-Po-un-associazione-culturale-dedicata-alla-promozione-di-eventi-ar-1737800071259.txt
+│   ├── Pasted-2-2-1-PIANO-EDITORIALE-Programmazione-strategica-Ho-sviluppato-un-calendario-editorial-1737803539595.txt
+│   ├── Pasted-CAMBIAMENTI-GENERALI-SITO-Imposta-la-lingua-di-default-di-visualizzazione-sito-in-italiano-L-i-1737891281154.txt
+│   ├── Pasted-CAMBIAMENTI-GENERALI-SITO-Imposta-la-lingua-di-default-di-visualizzazione-sito-in-italiano-L-i-1737891957547.txt
+│   ├── Pasted-C-prettierrc-json-replit-drizzle-config-ts-generated-icon-png-package-l-1738170917749.txt
+│   ├── Pasted-import-motion-from-framer-motion-import-useLocation-useParams-from-wouter-import-La-1738155824272.txt
+│   ├── Pasted-Magazzino-sul-Po-Digital-Marketing-Communications-Report-2022-2023-1-Overview-2-Obiettivi-pr-1737918695198.txt
+│   ├── Pasted-Okay-the-user-is-facing-an-infinite-white-screen-with-their-React-TSX-project-on-Replit-and-there--1738171444158.txt
+│   ├── Pasted-Step-1-Create-Base-Type-System-Create-file-client-src-types-projects-ts-typescriptCopy-First-cr-1738159384178.txt
+│   ├── Pasted--Tools-Platforms-Section-div-div-className-1738164371983.txt
+│   ├── [01;35msito-eventi-1.png[0m
+│   ├── [01;35msito-eventi-2.png[0m
+│   ├── [01;35mvideo mix maga eventi.mp4[0m
+│   ├── [01;35mVIDEO SUPPA .mp4[0m
+│   └── [01;35mVIDEO_TESSERAMENTO_6_10_b.mp4[0m
+├── [01;34mclient[0m
+│   ├── index.html
+│   ├── [01;34mpublic[0m
+│   │   └── [01;34massets[0m
+│   │       ├── [01;35manalytics_maga1.png[0m
+│   │       ├── [01;35mbanner-magazzino.webp[0m
+│   │       ├── [01;35mengagement.png[0m
+│   │       ├── [01;35mfoto-bio.webp[0m
+│   │       ├── [01;35mgrowth.png[0m
+│   │       ├── [01;35mhrx-banner1.jpg[0m
+│   │       ├── [01;35mmanunta-banner.jpg[0m
+│   │       ├── [01;35mnewsocial2.png[0m
+│   │       ├── [01;35mnewsocial3.png[0m
+│   │       ├── [01;35moldsocial1.png[0m
+│   │       ├── [01;35moldsocial2.png[0m
+│   │       ├── [01;35moldsocial3.png[0m
+│   │       └── [01;35msito-eventi-1.png[0m
+│   └── [01;34msrc[0m
+│       ├── App.tsx
+│       ├── [01;34massets[0m
+│       ├── [01;34mcomponents[0m
+│       │   ├── [01;34msections[0m
+│       │   │   ├── Contact.tsx
+│       │   │   ├── Education.tsx
+│       │   │   ├── Hero.tsx
+│       │   │   ├── Overview.tsx
+│       │   │   ├── [01;34mproject-details[0m
+│       │   │   │   ├── index.ts
+│       │   │   │   ├── ProjectContent.tsx
+│       │   │   │   ├── ProjectGallery.tsx
+│       │   │   │   ├── ProjectHeader.tsx
+│       │   │   │   ├── ProjectLayout.tsx
+│       │   │   │   └── ProjectMetrics.tsx
+│       │   │   ├── ProjectDetailsContent.tsx
+│       │   │   ├── ProjectDetails.tsx
+│       │   │   ├── Projects.tsx
+│       │   │   └── Skills.tsx
+│       │   ├── [01;34mshared[0m
+│       │   │   ├── LanguageSwitch.tsx
+│       │   │   ├── LordIcon.tsx
+│       │   │   ├── Navigation.tsx
+│       │   │   ├── ProjectCard.tsx
+│       │   │   ├── SectionTitle.tsx
+│       │   │   └── ThemeToggle.tsx
+│       │   └── [01;34mui[0m
+│       │       ├── accordion.tsx
+│       │       ├── alert-dialog.tsx
+│       │       ├── alert.tsx
+│       │       ├── aspect-ratio.tsx
+│       │       ├── avatar.tsx
+│       │       ├── badge.tsx
+│       │       ├── button.tsx
+│       │       ├── card.tsx
+│       │       ├── carousel.tsx
+│       │       ├── checkbox.tsx
+│       │       ├── collapsible.tsx
+│       │       ├── command.tsx
+│       │       ├── context-menu.tsx
+│       │       ├── [01;34mdata-display[0m
+│       │       │   └── index.ts
+│       │       ├── dialog.tsx
+│       │       ├── drawer.tsx
+│       │       ├── dropdown-menu.tsx
+│       │       ├── [01;34mfeedback[0m
+│       │       │   └── index.ts
+│       │       ├── [01;34mform[0m
+│       │       │   ├── form.tsx
+│       │       │   ├── index.ts
+│       │       │   └── input.tsx
+│       │       ├── form.tsx
+│       │       ├── hover-card.tsx
+│       │       ├── index.ts
+│       │       ├── input-otp.tsx
+│       │       ├── input.tsx
+│       │       ├── label.tsx
+│       │       ├── [01;34mlayout[0m
+│       │       │   ├── aspect-ratio.tsx
+│       │       │   ├── card.tsx
+│       │       │   ├── collapsible.tsx
+│       │       │   ├── index.ts
+│       │       │   ├── resizable.tsx
+│       │       │   ├── scroll-area.tsx
+│       │       │   ├── separator.tsx
+│       │       │   └── sheet.tsx
+│       │       ├── menubar.tsx
+│       │       ├── [01;34mnavigation[0m
+│       │       │   └── index.ts
+│       │       ├── navigation-menu.tsx
+│       │       ├── [01;34moverlay[0m
+│       │       │   └── index.ts
+│       │       ├── popover.tsx
+│       │       ├── progress.tsx
+│       │       ├── radio-group.tsx
+│       │       ├── scroll-area.tsx
+│       │       ├── select.tsx
+│       │       ├── separator.tsx
+│       │       ├── slider.tsx
+│       │       ├── switch.tsx
+│       │       ├── table.tsx
+│       │       ├── tabs.tsx
+│       │       ├── textarea.tsx
+│       │       ├── toaster.tsx
+│       │       ├── toast.tsx
+│       │       ├── toggle-group.tsx
+│       │       ├── toggle.tsx
+│       │       └── tooltip.tsx
+│       ├── [01;34mconstants[0m
+│       │   ├── assets.ts
+│       │   └── icons.ts
+│       ├── [01;34mdata[0m
+│       │   ├── [01;34mprojects[0m
+│       │   │   ├── [01;34mdtc[0m
+│       │   │   │   └── index.ts
+│       │   │   ├── [01;34mhrx[0m
+│       │   │   │   └── index.ts
+│       │   │   ├── [01;34mmagazzino[0m
+│       │   │   │   ├── gallery.ts
+│       │   │   │   ├── index.ts
+│       │   │   │   ├── metrics.ts
+│       │   │   │   └── sections.ts
+│       │   │   ├── [01;34mmanunta[0m
+│       │   │   │   └── index.ts
+│       │   │   ├── project1.json
+│       │   │   ├── project2.json
+│       │   │   ├── project3.json
+│       │   │   └── project4.json
+│       │   └── [01;34mtranslations[0m
+│       │       ├── en.json
+│       │       └── projectDetails.ts
+│       ├── [01;34mhooks[0m
+│       │   ├── use-mobile.tsx
+│       │   ├── use-theme.ts
+│       │   └── use-toast.ts
+│       ├── index.css
+│       ├── [01;34mlib[0m
+│       │   ├── animations.ts
+│       │   ├── constants.ts
+│       │   ├── projectsManager.ts
+│       │   ├── queryClient.ts
+│       │   ├── translations.ts
+│       │   └── utils.ts
+│       ├── main.tsx
+│       ├── [01;34mpages[0m
+│       │   ├── Home.tsx
+│       │   └── not-found.tsx
+│       └── [01;34mtypes[0m
+│           ├── index.ts
+│           └── projects.ts
+├── [01;34mdb[0m
+│   ├── index.ts
+│   └── schema.ts
+├── drizzle.config.ts
+├── file_list.txt
+├── [01;35mgenerated-icon.png[0m
+├── package.json
+├── package-lock.json
+├── postcss.config.js
+├── replit.nix
+├── [01;34mserver[0m
+│   ├── index.ts
+│   ├── routes.ts
+│   └── vite.ts
+├── tailwind.config.ts
+├── theme.json
+├── tree_output.txt
+├── tsconfig.json
+└── vite.config.ts
+
+32 directories, 170 files
