@@ -9,7 +9,7 @@ import {
   AccordionItem,
   AccordionTrigger,
 } from "@/components/ui/accordion";
-import { FileEdit, Target, BarChart3, Trophy, Wrench, Mail, BookOpen, Users, TrendingUp, Calendar } from "lucide-react";
+import { FileEdit, Target, BarChart3, Trophy, Wrench, Mail, BookOpen } from "lucide-react";
 import { projectDetailsTranslations as t } from "@/data/translations/projectDetails";
 
 interface ProjectContentProps {
@@ -48,40 +48,22 @@ export const ProjectContent: FC<ProjectContentProps> = ({ project, language }) =
               </p>
               <div className="grid grid-cols-2 md:grid-cols-3 gap-3">
                 {project.detailedSections.tools.items.map((tool) => (
-                  <span
+                  <div
                     key={tool}
-                    className="group relative px-4 py-3 border border-border/50 hover:border-primary/50 transition-all duration-300 hover:shadow-lg hover:shadow-primary/5 w-fit rounded-lg"
+                    className="group relative border border-border/50 hover:border-primary/50 transition-all duration-300 hover:shadow-lg hover:shadow-primary/5 w-fit"
                   >
-                    {tool}
-                  </span>
+                    <div className="absolute inset-0 bg-gradient-to-r from-primary/5 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300" />
+                    <div className="px-4 py-3 justify-center">
+                      <h3 className="font-medium relative z-10 whitespace-nowrap text-center">
+                        {tool}
+                      </h3>
+                    </div>
+                  </div>
                 ))}
               </div>
             </Card>
           </div>
         )}
-      </div>
-
-      {/* Analytics Metrics */}
-      <div className="grid grid-cols-1 md:grid-cols-3 gap-6 my-8">
-        {project.metrics?.map((metric, index) => (
-          <motion.div
-            key={metric.icon}
-            className="bg-card border-2 border-primary/20 p-6 rounded-lg shadow-lg hover:border-primary/40 transition-colors duration-300"
-            initial={{ opacity: 0, y: 20 }}
-            animate={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.5, delay: index * 0.1 }}
-          >
-            <div className="flex items-center space-x-4">
-              {getIcon(metric.icon)}
-              <div>
-                <p className="text-2xl font-bold">{metric.value}</p>
-                <p className="text-muted-foreground">
-                  {metric.label[language]}
-                </p>
-              </div>
-            </div>
-          </motion.div>
-        ))}
       </div>
 
       {/* Accordion Sections */}
@@ -180,25 +162,6 @@ export const ProjectContent: FC<ProjectContentProps> = ({ project, language }) =
             </AccordionItem>
           )}
 
-          {/* Crowdfunding Section */}
-          <AccordionItem value="crowdfunding" className="border rounded-lg hover:bg-accent/50 transition-colors">
-            <AccordionTrigger className="px-4">
-              <div className="flex items-center gap-3">
-                <Trophy className="w-5 h-5 text-primary" />
-                <h2 className="text-xl font-semibold">{t.projectDetails.crowdfunding[language]}</h2>
-              </div>
-            </AccordionTrigger>
-            <AccordionContent className="px-4">
-              <Card className="p-6 mt-4">
-                <ul className="space-y-2 text-muted-foreground">
-                  {t.projectDetails.crowdfunding.results[language].map((result, index) => (
-                    <li key={index}>• {result}</li>
-                  ))}
-                </ul>
-              </Card>
-            </AccordionContent>
-          </AccordionItem>
-
           {/* Content Planning Section */}
           {project.detailedSections?.strategies?.contentPlanning && (
             <AccordionItem value="content-planning" className="border rounded-lg hover:bg-accent/50 transition-colors">
@@ -219,22 +182,27 @@ export const ProjectContent: FC<ProjectContentProps> = ({ project, language }) =
               </AccordionContent>
             </AccordionItem>
           )}
+
+          {/* Crowdfunding Section */}
+          <AccordionItem value="crowdfunding" className="border rounded-lg hover:bg-accent/50 transition-colors">
+            <AccordionTrigger className="px-4">
+              <div className="flex items-center gap-3">
+                <Trophy className="w-5 h-5 text-primary" />
+                <h2 className="text-xl font-semibold">{t.projectDetails.crowdfunding[language]}</h2>
+              </div>
+            </AccordionTrigger>
+            <AccordionContent className="px-4">
+              <Card className="p-6 mt-4">
+                <ul className="space-y-2 text-muted-foreground">
+                  {t.projectDetails.crowdfunding.results[language].map((result, index) => (
+                    <li key={index}>• {result}</li>
+                  ))}
+                </ul>
+              </Card>
+            </AccordionContent>
+          </AccordionItem>
         </Accordion>
       </motion.div>
     </div>
   );
-};
-
-// Helper function to get icon component
-const getIcon = (iconKey: string) => {
-  switch (iconKey) {
-    case 'rjzlcjqi':
-      return <Users className="w-10 h-10 text-primary" />;
-    case 'gkosxwgv':
-      return <TrendingUp className="w-10 h-10 text-primary" />;
-    case 'mzjnwzka':
-      return <Calendar className="w-10 h-10 text-primary" />;
-    default:
-      return null;
-  }
 };

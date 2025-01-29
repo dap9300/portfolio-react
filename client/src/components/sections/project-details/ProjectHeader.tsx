@@ -18,28 +18,30 @@ export const ProjectHeader: FC<ProjectHeaderProps> = ({ project, language }) => 
       ];
 
   return (
-    <motion.div
-      className="h-[40vh] relative w-full mb-12"
-      initial={{ height: "40vh" }}
-      animate={{ height: "40vh" }}
-      exit={{ height: "40vh" }}
-      transition={{ duration: 0 }}
-    >
-      <div
-        className="absolute inset-0 bg-cover bg-center"
-        style={{
-          backgroundImage: `url(${project.image})`,
-          backgroundAttachment: 'fixed',
-        }}
-      />
-      <div className="absolute inset-0 bg-black/50" />
+    <div className="h-[60vh] relative w-full mb-12">
+      <motion.div
+        className="absolute inset-0"
+        initial={{ opacity: 0 }}
+        animate={{ opacity: 1 }}
+        transition={{ duration: 0.3 }}
+      >
+        <div
+          className="absolute inset-0 bg-cover bg-center"
+          style={{
+            backgroundImage: `url(${project.image})`,
+            backgroundAttachment: 'fixed',
+          }}
+        />
+        <div className="absolute inset-0 bg-black/50" />
+      </motion.div>
+
       <div className="absolute inset-0 flex items-center justify-center text-white">
         <div className="text-center max-w-4xl px-4">
           <motion.h1
             className="text-4xl md:text-6xl font-bold mb-4"
             initial={{ opacity: 0, y: 20 }}
             animate={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.5 }}
+            transition={{ duration: 0.5, delay: 0.2 }}
           >
             {project.title[language]}
           </motion.h1>
@@ -47,7 +49,7 @@ export const ProjectHeader: FC<ProjectHeaderProps> = ({ project, language }) => 
             className="flex flex-wrap gap-2 justify-center"
             initial={{ opacity: 0 }}
             animate={{ opacity: 1 }}
-            transition={{ duration: 0.5, delay: 0.2 }}
+            transition={{ duration: 0.5, delay: 0.4 }}
           >
             {technologies.map((tech) => (
               <span
@@ -60,6 +62,6 @@ export const ProjectHeader: FC<ProjectHeaderProps> = ({ project, language }) => 
           </motion.div>
         </div>
       </div>
-    </motion.div>
+    </div>
   );
 };
