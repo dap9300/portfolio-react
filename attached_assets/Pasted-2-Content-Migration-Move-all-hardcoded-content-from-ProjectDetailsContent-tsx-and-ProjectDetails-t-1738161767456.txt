@@ -1,0 +1,173 @@
+2. Content Migration
+Move all hardcoded content from ProjectDetailsContent.tsx and ProjectDetails.tsx into organized data files:
+typescriptCopy// data/projects/index.ts
+export const projects = {
+  '1': {
+    id: 1,
+    title: {
+      en: 'Project Title',
+      it: 'Titolo Progetto'
+    },
+    // ... other project data
+  }
+};
+
+// data/translations/index.ts
+export const translations = {
+  projectDetails: {
+    back: {
+      en: 'Back to Projects',
+      it: 'Torna ai Progetti'
+    }
+    // ... other translations
+  }
+};
+
+// data/metrics/index.ts
+export const projectMetrics = {
+  '1': [
+    {
+      icon: 'icon-name',
+      value: 'metric-value',
+      label: { en: 'Label', it: 'Etichetta' }
+    }
+  ]
+};
+3. Component Breakdown
+Break down ProjectDetails.tsx into these components:
+typescriptCopy// features/projects/components/ProjectLayout.tsx
+export const ProjectLayout: React.FC<ProjectLayoutProps> = ({
+  children,
+  language
+}) => (
+  <motion.div className="min-h-screen bg-background">
+    <Header />
+    {children}
+    <Footer />
+  </motion.div>
+);
+
+// features/projects/components/ProjectHeader.tsx
+export const ProjectHeader: React.FC<ProjectHeaderProps> = ({
+  project,
+  language
+}) => (
+  <div className="relative h-[60vh]">
+    {/* Header content */}
+  </div>
+);
+
+// Similar structure for ProjectMetrics, ProjectContent, ProjectGallery
+4. Type System Enhancement
+typescriptCopy// types/project.ts
+export interface Project {
+  id: number;
+  title: LocalizedContent<string>;
+  description: LocalizedContent<string>;
+  image: string;
+  technologies: Technology[];
+  metrics?: ProjectMetric[];
+}
+
+export interface ProjectMetric {
+  icon: string;
+  value: string;
+  label: LocalizedContent<string>;
+}
+
+export type LocalizedContent<T> = {
+  en: T;
+  it: T;
+};
+5. Custom Hooks Implementation
+typescriptCopy// hooks/useProject.ts
+export function useProject(id: string) {
+  return useMemo(() => ({
+    project: projects[id],
+    metrics: projectMetrics[id],
+    translations: translations.projectDetails
+  }), [id]);
+}
+
+// hooks/useLocalization.ts
+export function useLocalization() {
+  const [language, setLanguage] = useState<'en' | 'it'>('it');
+  return { language, setLanguage };
+}
+
+Move Content Files
+
+
+Create individual project data files
+Organize translations by feature
+Separate metrics data
+Update all imports
+
+
+Break Down Components
+
+
+Create new component files
+Move relevant code sections
+Update imports and exports
+Test each component individually
+
+
+Update Main Component
+
+typescriptCopy// ProjectDetails.tsx
+export function ProjectDetails({ language }: ProjectDetailsProps) {
+  const { project, metrics } = useProject(id);
+  
+  return (
+    <ProjectLayout language={language}>
+      <ProjectHeader project={project} language={language} />
+      <ProjectMetrics metrics={metrics} language={language} />
+      <ProjectContent project={project} language={language} />
+      <ProjectGallery project={project} language={language} />
+    </ProjectLayout>
+  );
+}
+
+Error Handling
+typescriptCopy// components/ErrorBoundary.tsx
+export class ErrorBoundary extends React.Component<ErrorBoundaryProps> {
+  // Implementation
+}
+
+// Usage in components
+if (!project) {
+  return <ErrorFallback message="Project not found" />;
+}
+Testing Setup
+typescriptCopy// ProjectHeader.test.tsx
+describe('ProjectHeader', () => {
+  it('renders correctly', () => {
+    render(<ProjectHeader project={mockProject} language="en" />);
+    expect(screen.getByText(mockProject.title.en)).toBeInTheDocument();
+  });
+});
+Quality Standards
+Code Style
+
+Use PascalCase for components
+Use camelCase for functions and variables
+Use kebab-case for file names
+Follow ESLint and Prettier configurations
+
+Checklist Before Committing
+
+ All hardcoded content moved to data files
+ Components properly broken down
+ Types properly defined
+ Hooks implemented and tested
+ Error handling in place
+ Performance optimizations applied
+ Tests passing
+ Documentation updated
+ Bundle size optimized
+ No TypeScript errors
+ ESLint passing
+ Prettier formatting applied
+
+Please help implement these changes while maintaining current functionality and ensuring type safety throughout the codebase. Start with creating the directory structure and moving the project data, then proceed with breaking down the components.
