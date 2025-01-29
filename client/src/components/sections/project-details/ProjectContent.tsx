@@ -11,6 +11,20 @@ import {
   AccordionItem,
   AccordionTrigger,
 } from "@/components/ui/accordion";
+import {
+  Carousel,
+  CarouselContent,
+  CarouselItem,
+  CarouselNext,
+  CarouselPrevious,
+} from "@/components/ui/carousel";
+
+const socialImages = [
+  "/assets/projects/oldsocial1.png",
+  "/assets/projects/oldsocial2.png",
+  "/assets/projects/newsocial2.png",
+  "/assets/projects/newsocial3.png",
+];
 
 interface ProjectContentProps {
   project: Project;
@@ -92,13 +106,31 @@ export const ProjectContent: FC<ProjectContentProps> = ({ project, language }) =
                         <li key={index}>• {item}</li>
                       ))}
                     </ul>
-                    {project.assets?.analytics && project.assets.analytics[0] && (
+                    {project.assets?.analytics && (
                       <div className="aspect-video relative">
-                        <img
-                          src={project.assets.analytics[0]}
-                          alt="Social Media Analytics"
-                          className="w-full h-full object-cover rounded-lg"
-                        />
+                        <Carousel className="w-full">
+                          <CarouselContent>
+                            {socialImages.map((image, index) => (
+                              <CarouselItem key={index}>
+                                <motion.div
+                                  initial={{ opacity: 0 }}
+                                  animate={{ opacity: 1 }}
+                                  exit={{ opacity: 0 }}
+                                  transition={{ duration: 0.5 }}
+                                  className="aspect-video relative rounded-lg overflow-hidden"
+                                >
+                                  <img
+                                    src={image}
+                                    alt={`Social Media Analytics ${index + 1}`}
+                                    className="w-full h-full object-cover"
+                                  />
+                                </motion.div>
+                              </CarouselItem>
+                            ))}
+                          </CarouselContent>
+                          <CarouselPrevious />
+                          <CarouselNext />
+                        </Carousel>
                       </div>
                     )}
                   </div>
