@@ -12,6 +12,13 @@ interface ProjectCardProps {
 
 export function ProjectCard({ project, language }: ProjectCardProps) {
   const [, setLocation] = useLocation();
+  const technologies = Array.isArray(project.technologies)
+    ? project.technologies
+    : [
+        ...(project.technologies.social || []),
+        ...(project.technologies.web || []),
+        ...(project.technologies.email || [])
+      ];
 
   return (
     <motion.div
@@ -34,7 +41,7 @@ export function ProjectCard({ project, language }: ProjectCardProps) {
           <h3 className="text-xl font-semibold mb-2">{project.title[language]}</h3>
           <p className="text-muted-foreground mb-4">{project.description[language].split('\n')[0]}</p>
           <div className="flex flex-wrap gap-2 mb-4">
-            {project.technologies.map((tech) => (
+            {technologies.map((tech) => (
               <span
                 key={tech}
                 className="px-2 py-1 bg-primary/10 text-primary rounded text-sm"

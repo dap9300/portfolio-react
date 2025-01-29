@@ -4,6 +4,7 @@ import { Language } from "@/types";
 import { SectionTitle } from "@/components/shared/SectionTitle";
 import { ProjectCard } from "@/components/shared/ProjectCard";
 import { staggerContainer, sectionVariants } from "@/lib/animations";
+import { getAllProjects } from "@/lib/projectsManager";
 
 interface ProjectsProps {
   language: Language;
@@ -11,6 +12,7 @@ interface ProjectsProps {
 
 export function Projects({ language }: ProjectsProps) {
   const t = translations[language].projects;
+  const projects = getAllProjects();
 
   return (
     <motion.section 
@@ -45,76 +47,3 @@ export function Projects({ language }: ProjectsProps) {
     </motion.section>
   );
 }
-
-const projects = [
-  {
-    id: 1,
-    title: {
-      en: "Magazzino sul Po - Digital Marketing Strategy",
-      it: "Magazzino sul Po - Strategia di Marketing Digitale"
-    },
-    description: {
-      en: "Led digital transformation and social media growth for a cultural venue, achieving 400% monthly growth in engagement and expanding social media following to 13,000+ followers.",
-      it: "Guidato la trasformazione digitale e la crescita sui social media per un centro culturale, ottenendo una crescita mensile del 400% nel coinvolgimento e espandendo i follower a oltre 13.000."
-    },
-    image: "/assets/banner-magazzino.webp",
-    technologies: ["Social Media Strategy", "Social Media Management", "Content Creation", "Creazione Sito Web", "Gestione Sito Web", "Social Media Analytics", "Google Analytics", "Event Marketing"],
-    link: "/project/1"
-  },
-  {
-    id: 2,
-    title: {
-      en: "HRX Srl - Digital Marketing | Social Media | Ecommerce optimization",
-      it: "HRX Srl - Digital Marketing | Social Media | Ottimizzazione Ecommerce"
-    },
-    description: {
-      en: "Managed digital marketing strategies in the automotive sector, focusing on direct sales through Facebook, Instagram, Google Ads, and email marketing campaigns. Optimized the company's e-commerce for SEO to improve organic positioning and conversions.",
-      it: "Ho gestito strategie di marketing digitale nel settore automotive, con focus sulla vendita diretta tramite campagne Facebook, Instagram, Google Ads ed email marketing. Ho ottimizzato l' e-commerce dell'azienda in ottica SEO per migliorare posizionamento organico e conversioni."
-    },
-    image: "/assets/hrx-banner1.jpg",
-    technologies: ["Social Media Advertising","Social Media Strategy","Social Media Management","Content Creation",
-      "Social Media Analytics","Google Analytics","Email Marketing","Ottimizzazione SEO","Ottimizzazione Ecommerce"
-    ],
-    link: "/project/2"
-  },
-  {
-    id: 3,
-    title: {
-      en: "Studi Fisioterapici Manunta - Website & SEO Optimization | Social Media",
-      it: "Studi Fisioterapici Manunta - Sito Web & Ottimizzazione SEO | Social Media"
-    },
-    description: {
-      en: "Management of digital marketing strategies for a physiotherapy clinic, focusing on Facebook, Instagram, and Google Ads campaigns to increase online bookings and local brand awareness.",
-      it: "Gestione delle strategie di marketing digitale per uno studio di fisioterapia, con focus su campagne Facebook, Instagram e Google Ads per aumentare le prenotazioni online e la brand awareness locale"
-    },
-    image: "/assets/manunta-banner.jpg",
-    technologies: [
-      "Creazione e ottimizzazione Sito Web",
-      "Content Creation",
-      "Google Analytics"
-    ],
-    link: "/project/3"
-  },
-  {
-    id: 4,
-    title: {
-      en: "Digital Trade Capital - Content Strategy & Editorial Management | Technical SEO & Website Optimization | Lead Generation & Contact Management",
-      it: "Digital Trade Capital - Content Strategy & Editorial Management | Technical SEO & Website Optimization | Lead Generation & Contact Management"
-    },
-    description: {
-      en: "Managed strategic and operational coordination in a fintech organization, focusing on developing integrated digital strategies, performance optimization, and cross-functional team management.",
-      it: "Ho gestito il coordinamento strategico e operativo in un'organizzazione fintech, con un focus sullo sviluppo di strategie digitali integrate, sull'ottimizzazione delle performance e sulla gestione di team cross-funzionali"
-    },
-    image: "/assets/dtc-banner.jpg",
-    technologies: [
-      "Team Management",
-      "Editorial Management",
-      "Content Strategy",
-      "Technical SEO",
-      "Google Analytics",
-      "Email Marketing",
-      "Cross-functional Collaboration"
-    ],
-    link: "/project/4"
-  }
-];
