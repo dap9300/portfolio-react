@@ -53,25 +53,29 @@ export function ProjectDetails({
         />
       </div>
 
-      <div className="container mx-auto max-w-6xl py-12 px-4">
+      {/* Back button positioned above hero section */}
+      <div className="absolute top-4 left-4 z-50">
         <motion.button
           variants={fadeInUp}
           initial="hidden"
           animate="visible"
           onClick={() => setLocation('/')}
-          className="flex items-center text-muted-foreground hover:text-foreground transition-colors mb-8"
+          className="flex items-center text-white hover:text-white/80 transition-colors"
         >
           <ArrowLeft className="w-4 h-4 mr-2" />
           {t.back[language]}
         </motion.button>
+      </div>
 
+      <ProjectHeader project={project} language={language} />
+
+      <div className="container mx-auto max-w-6xl py-12 px-4">
         <motion.div
           variants={staggerContainer}
           initial="hidden"
           animate="visible"
           className="grid gap-8"
         >
-          <ProjectHeader project={project} language={language} />
           <ProjectMetrics metrics={project.metrics} language={language} />
           <ProjectContent project={project} language={language} />
           <ProjectGallery gallery={project.gallery} />

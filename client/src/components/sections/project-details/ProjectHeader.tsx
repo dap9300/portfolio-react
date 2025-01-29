@@ -18,7 +18,7 @@ export const ProjectHeader: FC<ProjectHeaderProps> = ({ project, language }) => 
       ];
 
   return (
-    <div className="h-[60vh] relative w-full -mt-12 mb-8">
+    <div className="h-screen relative w-full">
       <div
         className="absolute inset-0 bg-cover bg-center"
         style={{

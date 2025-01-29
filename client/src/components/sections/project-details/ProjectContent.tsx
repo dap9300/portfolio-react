@@ -2,14 +2,14 @@ import { FC } from "react";
 import { motion } from "framer-motion";
 import { Language } from "@/types";
 import { Project } from "@/types/projects";
-import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
+import { Card } from "@/components/ui/card";
 import {
   Accordion,
   AccordionContent,
   AccordionItem,
   AccordionTrigger,
 } from "@/components/ui/accordion";
-import { FileEdit, Target, BarChart3, Trophy } from "lucide-react";
+import { FileEdit, Target, BarChart3, Trophy, Wrench, Mail } from "lucide-react";
 import { projectDetailsTranslations as t } from "@/data/translations/projectDetails";
 
 interface ProjectContentProps {
@@ -59,6 +59,81 @@ export const ProjectContent: FC<ProjectContentProps> = ({ project, language }) =
             </AccordionContent>
           </AccordionItem>
 
+          {/* Tools & Platforms Section */}
+          {project.detailedSections?.tools && (
+            <AccordionItem value="tools" className="border rounded-lg hover:bg-accent/50 transition-colors">
+              <AccordionTrigger className="px-4">
+                <div className="flex items-center gap-3">
+                  <Wrench className="w-5 h-5 text-primary" />
+                  <h2 className="text-xl font-semibold">{project.detailedSections.tools.title[language]}</h2>
+                </div>
+              </AccordionTrigger>
+              <AccordionContent className="px-4">
+                <Card className="p-6 mt-4">
+                  <p className="text-muted-foreground mb-4">
+                    {project.detailedSections.tools.description[language]}
+                  </p>
+                  <div className="grid grid-cols-2 md:grid-cols-3 gap-3">
+                    {project.detailedSections.tools.items.map((tool) => (
+                      <span
+                        key={tool}
+                        className="px-3 py-2 bg-primary/10 text-primary rounded text-sm"
+                      >
+                        {tool}
+                      </span>
+                    ))}
+                  </div>
+                </Card>
+              </AccordionContent>
+            </AccordionItem>
+          )}
+
+          {/* Social Media Section */}
+          {project.detailedSections?.strategies?.social && (
+            <AccordionItem value="social" className="border rounded-lg hover:bg-accent/50 transition-colors">
+              <AccordionTrigger className="px-4">
+                <div className="flex items-center gap-3">
+                  <FileEdit className="w-5 h-5 text-primary" />
+                  <h2 className="text-xl font-semibold">
+                    {language === 'en' ? 'Social Media Performance' : 'Performance Social Media'}
+                  </h2>
+                </div>
+              </AccordionTrigger>
+              <AccordionContent className="px-4">
+                <Card className="p-6 mt-4">
+                  <ul className="space-y-2 text-muted-foreground">
+                    {project.detailedSections.strategies.social[language].map((item, index) => (
+                      <li key={index}>• {item}</li>
+                    ))}
+                  </ul>
+                </Card>
+              </AccordionContent>
+            </AccordionItem>
+          )}
+
+          {/* Email Marketing Section */}
+          {project.detailedSections?.strategies?.email && (
+            <AccordionItem value="email" className="border rounded-lg hover:bg-accent/50 transition-colors">
+              <AccordionTrigger className="px-4">
+                <div className="flex items-center gap-3">
+                  <Mail className="w-5 h-5 text-primary" />
+                  <h2 className="text-xl font-semibold">
+                    {language === 'en' ? 'Email Marketing' : 'Email Marketing'}
+                  </h2>
+                </div>
+              </AccordionTrigger>
+              <AccordionContent className="px-4">
+                <Card className="p-6 mt-4">
+                  <ul className="space-y-2 text-muted-foreground">
+                    {project.detailedSections.strategies.email[language].map((item, index) => (
+                      <li key={index}>• {item}</li>
+                    ))}
+                  </ul>
+                </Card>
+              </AccordionContent>
+            </AccordionItem>
+          )}
+
           {/* Objectives Section */}
           {project.detailedSections?.objectives && (
             <AccordionItem value="objectives" className="border rounded-lg hover:bg-accent/50 transition-colors">
@@ -95,7 +170,6 @@ export const ProjectContent: FC<ProjectContentProps> = ({ project, language }) =
               </AccordionContent>
             </AccordionItem>
           )}
-
           {/* Content Planning Section */}
           {project.detailedSections?.strategies && (
             <AccordionItem value="content-planning" className="border rounded-lg hover:bg-accent/50 transition-colors">

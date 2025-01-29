@@ -6,22 +6,16 @@ interface ProjectLayoutProps {
   children: ReactNode;
 }
 
-/**
- * ProjectLayout - Main container component for project details
- * Handles the layout and animation of project detail sections
- */
 export const ProjectLayout: FC<ProjectLayoutProps> = ({ children }) => {
   return (
     <motion.section
-      className="min-h-screen py-20 px-4"
+      className="min-h-screen w-full relative"
       variants={sectionVariants}
       initial="hidden"
       animate="visible"
       exit="exit"
     >
-      <div className="container mx-auto max-w-4xl">
-        {children}
-      </div>
+      {children}
     </motion.section>
   );
 };
