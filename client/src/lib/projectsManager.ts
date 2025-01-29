@@ -1,14 +1,9 @@
-import { Project } from '@/types';
-import project1Data from '@/data/projects/project1.json';
-import project2Data from '@/data/projects/project2.json';
-import project3Data from '@/data/projects/project3.json';
-import project4Data from '@/data/projects/project4.json';
+import { Project } from '@/types/projects';
+import { project as magazzinoProject } from '@/data/projects/magazzino';
 
-const projects: { [key: string]: Project } = {
-  '1': project1Data as Project,
-  '2': project2Data as Project,
-  '3': project3Data as Project,
-  '4': project4Data as Project,
+const projects: Record<string, Project> = {
+  '1': magazzinoProject,
+  // Other projects will be added here as they are migrated
 };
 
 export function getProject(id: string): Project | undefined {
@@ -27,4 +22,9 @@ export function getProjectMetrics(id: string) {
 export function getProjectGallery(id: string) {
   const project = projects[id];
   return project?.gallery || [];
+}
+
+export function getProjectDetailedSections(id: string) {
+  const project = projects[id];
+  return project?.detailedSections;
 }

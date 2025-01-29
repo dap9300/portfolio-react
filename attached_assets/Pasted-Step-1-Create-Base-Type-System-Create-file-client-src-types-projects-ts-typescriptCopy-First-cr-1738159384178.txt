@@ -1,0 +1,239 @@
+Step 1: Create Base Type System
+Create file: client/src/types/projects.ts
+typescriptCopy// First, create our base types
+export type Language = 'en' | 'it';
+
+export interface LocalizedContent<T> {
+  en: T;
+  it: T;
+}
+
+// Core project interfaces
+export interface ProjectOverview {
+  title: LocalizedContent<string>;
+  description: LocalizedContent<string>;
+  image: string;
+  link?: string;
+}
+
+export interface ProjectMetric {
+  icon: IconKey;
+  value: string;
+  label: LocalizedContent<string>;
+  trend?: {
+    value: number;
+    direction: 'up' | 'down';
+    timeframe: 'YoY' | 'MoM' | 'WoW';
+  };
+}
+
+export interface ProjectTechnologies {
+  social?: string[];
+  web?: string[];
+  email?: string[];
+}
+
+export interface ProjectAssets {
+  banner: string;
+  gallery?: string[];
+  analytics?: string[];
+}
+
+export interface DetailedSections {
+  overview?: {
+    title: LocalizedContent<string>;
+    content: LocalizedContent<string>;
+    metrics: string[];
+  };
+  objectives?: LocalizedContent<string[]>;
+  strategies?: {
+    contentPlanning: LocalizedContent<string[]>;
+    analytics: LocalizedContent<string[]>;
+  };
+  challenges?: LocalizedContent<string[]>;
+  solutions?: LocalizedContent<string[]>;
+}
+
+export interface Project {
+  id: number;
+  slug: string;
+  overview: ProjectOverview;
+  metrics?: ProjectMetric[];
+  technologies: ProjectTechnologies;
+  assets: ProjectAssets;
+  detailedSections?: DetailedSections;
+  featured?: boolean;
+  order?: number;
+}
+
+// Type guard
+export function isProject(obj: unknown): obj is Project {
+  const project = obj as Project;
+  return (
+    typeof project === 'object' &&
+    project !== null &&
+    typeof project.id === 'number' &&
+    typeof project.slug === 'string' &&
+    typeof project.overview === 'object'
+  );
+}
+Step 2: Create Constants Files
+Create file: client/src/constants/icons.ts
+typescriptCopyexport const ICON_KEYS = {
+  USERS: 'rjzlcjqi',
+  TRENDING: 'gkosxwgv',
+  CALENDAR: 'mzjnwzka',
+  GLOBE: 'ehdfdiha',
+  TARGET: 'lupuorrc',
+  SEARCH: 'msoeawqm',
+  STAR: 'yqoxyxia'
+} as const;
+
+export type IconKey = typeof ICON_KEYS[keyof typeof ICON_KEYS];
+
+export const ICON_MAPPING = {
+  [ICON_KEYS.USERS]: Users,
+  [ICON_KEYS.TRENDING]: TrendingUp,
+  [ICON_KEYS.CALENDAR]: Calendar,
+  [ICON_KEYS.GLOBE]: Globe,
+  [ICON_KEYS.TARGET]: Target,
+  [ICON_KEYS.SEARCH]: Search,
+  [ICON_KEYS.STAR]: Star
+} as const;
+Create file: client/src/constants/assets.ts
+typescriptCopyexport const ASSET_PATHS = {
+  MAGAZZINO: {
+    BANNER: '/assets/banner-magazzino.webp',
+    ANALYTICS: '/assets/analytics_maga1.png',
+    GROWTH: '/assets/growth.png',
+    SOCIAL: {
+      OLD1: '/assets/oldsocial1.png',
+      OLD2: '/assets/oldsocial2.png',
+      EVENTS: '/assets/sito-eventi-1.png'
+    }
+  },
+  HRX: {
+    BANNER: '/assets/hrx-banner1.jpg'
+  },
+  MANUNTA: {
+    BANNER: '/assets/manunta-banner.jpg'
+  },
+  DTC: {
+    BANNER: '/assets/dtc-banner.jpg'
+  }
+} as const;
+Step 3: Create Project Data Files
+Create file: client/src/data/projects/magazzino/index.ts
+typescriptCopyimport { Project } from '@/types/projects';
+import { ASSET_PATHS } from '@/constants/assets';
+import { ICON_KEYS } from '@/constants/icons';
+
+export const magazzinoProject: Project = {
+  id: 1,
+  slug: 'magazzino',
+  overview: {
+    title: {
+      en: 'Magazzino sul Po - Digital Marketing Strategy',
+      it: 'Magazzino sul Po - Strategia di Marketing Digitale'
+    },
+    description: {
+      en: `Digital transformation and communication strategy...`,
+      it: `In qualità di Digital Marketing & Communications Specialist...`
+    },
+    image: ASSET_PATHS.MAGAZZINO.BANNER
+  },
+  metrics: [
+    {
+      icon: ICON_KEYS.USERS,
+      value: '44,114',
+      label: {
+        en: 'Total Social Followers',
+        it: 'Follower Social Totali'
+      }
+    },
+    {
+      icon: ICON_KEYS.TRENDING,
+      value: '+550%',
+      label: {
+        en: 'Instagram Growth',
+        it: 'Crescita Instagram'
+      }
+    }
+  ],
+  technologies: {
+    social: [
+      'Meta Business Suite',
+      'Instagram',
+      'Facebook',
+      'Telegram',
+      'Adobe Creative Suite',
+      'DaVinci Resolve'
+    ],
+    web: [
+      'WordPress',
+      'Google Search Console',
+      'Google Analytics',
+      'Google Looker Studio'
+    ],
+    email: [
+      'MailUp'
+    ]
+  },
+  assets: {
+    banner: ASSET_PATHS.MAGAZZINO.BANNER,
+    gallery: [
+      ASSET_PATHS.MAGAZZINO.SOCIAL.OLD1,
+      ASSET_PATHS.MAGAZZINO.SOCIAL.OLD2,
+      ASSET_PATHS.MAGAZZINO.SOCIAL.EVENTS
+    ],
+    analytics: [
+      ASSET_PATHS.MAGAZZINO.ANALYTICS,
+      ASSET_PATHS.MAGAZZINO.GROWTH
+    ]
+  },
+  detailedSections: {
+    overview: {
+      title: {
+        en: 'Project Overview',
+        it: 'Panoramica del Progetto'
+      },
+      content: {
+        en: 'Digital transformation and communication strategy...',
+        it: 'Trasformazione digitale e strategia di comunicazione...'
+      },
+      metrics: [
+        'Facebook: 31,203 followers (+3.1% YoY)',
+        'Coverage: 545,960 (+97.6%)',
+        'Visits: 91,723 (+90.6%)'
+      ]
+    }
+  }
+};
+Step 4: Update Project Manager
+Update file: client/src/lib/projectsManager.ts
+typescriptCopyimport { Project } from '@/types/projects';
+import { magazzinoProject } from '@/data/projects/magazzino';
+// Import other projects...
+
+const projects: Record<string, Project> = {
+  [magazzinoProject.slug]: magazzinoProject,
+  // Add other projects...
+};
+
+export function getProjectBySlug(slug: string): Project | undefined {
+  return projects[slug];
+}
+
+export function getAllProjects(): Project[] {
+  return Object.values(projects);
+}
+
+export function getProjectMetrics(id: string) {
+  const project = projects[id];
+  return project?.metrics || [];
+}
+
+export function getProjectGallery(id: string) {
+  const project = projects[id];
+  return project?.assets?.gallery || [];
+}
