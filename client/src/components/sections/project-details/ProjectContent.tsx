@@ -5,6 +5,7 @@ import { Project } from "@/types/projects";
 import { Card } from "@/components/ui/card";
 import { FileEdit, Target, BarChart3, Trophy, Wrench, Mail, BookOpen } from "lucide-react";
 import { projectDetailsTranslations as t } from "@/data/translations/projectDetails";
+import { ASSET_PATHS } from "@/lib/constants";
 import {
   Accordion,
   AccordionContent,
@@ -20,10 +21,9 @@ import {
 } from "@/components/ui/carousel";
 
 const socialImages = [
-  "/assets/projects/oldsocial1.png",
-  "/assets/projects/oldsocial2.png",
-  "/assets/projects/newsocial2.png",
-  "/assets/projects/newsocial3.png",
+  ASSET_PATHS.MAGAZZINO.SOCIAL.OLD1,
+  ASSET_PATHS.MAGAZZINO.SOCIAL.OLD2,
+  ASSET_PATHS.MAGAZZINO.SOCIAL.EVENTS
 ];
 
 interface ProjectContentProps {
@@ -106,33 +106,31 @@ export const ProjectContent: FC<ProjectContentProps> = ({ project, language }) =
                         <li key={index}>• {item}</li>
                       ))}
                     </ul>
-                    {project.assets?.analytics && (
-                      <div className="aspect-video relative">
-                        <Carousel className="w-full">
-                          <CarouselContent>
-                            {socialImages.map((image, index) => (
-                              <CarouselItem key={index}>
-                                <motion.div
-                                  initial={{ opacity: 0 }}
-                                  animate={{ opacity: 1 }}
-                                  exit={{ opacity: 0 }}
-                                  transition={{ duration: 0.5 }}
-                                  className="aspect-video relative rounded-lg overflow-hidden"
-                                >
-                                  <img
-                                    src={image}
-                                    alt={`Social Media Analytics ${index + 1}`}
-                                    className="w-full h-full object-cover"
-                                  />
-                                </motion.div>
-                              </CarouselItem>
-                            ))}
-                          </CarouselContent>
-                          <CarouselPrevious />
-                          <CarouselNext />
-                        </Carousel>
-                      </div>
-                    )}
+                    <div className="aspect-video relative">
+                      <Carousel className="w-full">
+                        <CarouselContent>
+                          {socialImages.map((image, index) => (
+                            <CarouselItem key={index}>
+                              <motion.div
+                                initial={{ opacity: 0 }}
+                                animate={{ opacity: 1 }}
+                                exit={{ opacity: 0 }}
+                                transition={{ duration: 0.5 }}
+                                className="aspect-video relative rounded-lg overflow-hidden"
+                              >
+                                <img
+                                  src={image}
+                                  alt={`Social Media Image ${index + 1}`}
+                                  className="w-full h-full object-cover"
+                                />
+                              </motion.div>
+                            </CarouselItem>
+                          ))}
+                        </CarouselContent>
+                        <CarouselPrevious />
+                        <CarouselNext />
+                      </Carousel>
+                    </div>
                   </div>
                 </Card>
               </AccordionContent>
@@ -172,7 +170,6 @@ export const ProjectContent: FC<ProjectContentProps> = ({ project, language }) =
               </AccordionContent>
             </AccordionItem>
           )}
-
           {/* Objectives Section */}
           {project.detailedSections?.objectives && (
             <AccordionItem value="objectives" className="border rounded-lg hover:bg-accent/50 transition-colors">
@@ -193,7 +190,6 @@ export const ProjectContent: FC<ProjectContentProps> = ({ project, language }) =
               </AccordionContent>
             </AccordionItem>
           )}
-
           {/* Content Planning Section */}
           {project.detailedSections?.strategies?.contentPlanning && (
             <AccordionItem value="content-planning" className="border rounded-lg hover:bg-accent/50 transition-colors">
@@ -214,7 +210,6 @@ export const ProjectContent: FC<ProjectContentProps> = ({ project, language }) =
               </AccordionContent>
             </AccordionItem>
           )}
-
           {/* Crowdfunding Section */}
           <AccordionItem value="crowdfunding" className="border rounded-lg hover:bg-accent/50 transition-colors">
             <AccordionTrigger className="px-4">
