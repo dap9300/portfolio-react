@@ -15,26 +15,39 @@ function Router() {
   const [location] = useLocation();
 
   return (
-    <div className="w-full">
-      <Suspense fallback={<div>Loading...</div>}>
-        <AnimatePresence mode="wait" initial={false}>
-          <Switch location={location} key={location}>
+    <div className="w-full h-full">
+      <ErrorBoundary fallback={<div>Something went wrong</div>}>
+        <Suspense fallback={<div>Loading...</div>}>
+          <Switch location={location}>
             <Route path="/">
               <Home language={language} onLanguageChange={setLanguage} />
             </Route>
             <Route path="/project/:id">
-              {(params) => (
-                <ProjectDetails language={language} onLanguageChange={setLanguage} />
-              )}
+              <ProjectDetails language={language} onLanguageChange={setLanguage} />
             </Route>
             <Route>
               <NotFound />
             </Route>
           </Switch>
-        </AnimatePresence>
-      </Suspense>
+        </Suspense>
+      </ErrorBoundary>
     </div>
   );
+}
+
+class ErrorBoundary extends React.Component<{children: React.ReactNode, fallback: React.ReactNode}> {
+  state = { hasError: false };
+  
+  static getDerivedStateFromError() {
+    return { hasError: true };
+  }
+  
+  render() {
+    if (this.state.hasError) {
+      return this.props.fallback;
+    }
+    return this.props.children;
+  }
 }
 
 function App() {
