@@ -3,11 +3,7 @@ export const PROJECT_ASSETS = {
     BANNER: '/assets/banner-magazzino.webp',
     ANALYTICS: '/assets/analytics_maga1.png',
     GROWTH: '/assets/growth.png',
-    SOCIAL: {
-      OLD1: '/assets/oldsocial1.png',
-      OLD2: '/assets/oldsocial2.png',
-      EVENTS: '/assets/sito-eventi-1.png'
-    }
+    SOCIAL: {}
   },
   HRX: {
     BANNER: '/assets/hrx-banner1.jpg'
