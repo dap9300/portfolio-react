@@ -77,7 +77,7 @@ export const ProjectContent: FC<ProjectContentProps> = ({ project, language }) =
   return (
     <div className="space-y-8">
       {/* Overview and Tools Section */}
-        <div className="space-y-8">
+      <div className="grid md:grid-cols-3 gap-6">
         {/* Overview Section */}
         <div className="space-y-4">
           <div className="flex items-center gap-2">
@@ -120,7 +120,46 @@ export const ProjectContent: FC<ProjectContentProps> = ({ project, language }) =
             </Card>
           </div>
         )}
-        {/* Accordion Sections */}
+      </div>
+
+      {/* Image Carousel Section */}
+      <div className="w-full max-w-3xl mx-auto">
+        <Carousel className="w-full" opts={{ align: "start" }}>
+          <CarouselContent>
+            {imageDetails.map((image, index) => (
+              <CarouselItem key={index} className="basis-auto">
+                <motion.div
+                  layoutId={`image-${image.src}`}
+                  onClick={(e) => handleImageClick(image, e)}
+                  className={`relative rounded-lg overflow-hidden flex justify-center items-center bg-neutral-100 dark:bg-neutral-800 ${
+                    !selectedImage ? 'cursor-zoom-in' : 'pointer-events-none'
+                  }`}
+                >
+                  <motion.div
+                    className="absolute inset-0 bg-black/50 flex flex-col items-center justify-center opacity-0 transition-opacity duration-300"
+                    whileHover={!selectedImage ? { opacity: 1 } : undefined}
+                  >
+                    <Search className="w-12 h-12 text-white mb-2" />
+                    <div className="text-center text-white">
+                      <h3 className="font-semibold text-lg">{image.title}</h3>
+                      <p className="text-sm">{image.subtitle}</p>
+                    </div>
+                  </motion.div>
+                  <img
+                    src={image.src}
+                    alt={`Social Media Image ${index + 1}`}
+                    className="w-auto h-auto max-w-[300px] max-h-[300px] object-scale-down"
+                  />
+                </motion.div>
+              </CarouselItem>
+            ))}
+          </CarouselContent>
+          <CarouselPrevious />
+          <CarouselNext />
+        </Carousel>
+      </div>
+
+      {/* Accordion Sections */}
       <motion.div
         initial={{ opacity: 0 }}
         animate={{ opacity: 1 }}
@@ -163,47 +202,11 @@ export const ProjectContent: FC<ProjectContentProps> = ({ project, language }) =
               </AccordionTrigger>
               <AccordionContent className="px-4">
                 <Card className="p-6 mt-4">
-                  <div className="grid md:grid-cols-2 gap-6">
-                    <ul className="space-y-2 text-muted-foreground">
-                      {project.detailedSections.strategies.email[language].map((item, index) => (
-                        <li key={index}>• {item}</li>
-                      ))}
-                    </ul>
-                    {project.assets?.analytics && project.assets.analytics[1] && (
-                      <div className="relative group">
-                        <div 
-                          className="flex justify-center items-center bg-neutral-100 dark:bg-neutral-800 rounded-lg p-4 cursor-zoom-in"
-                          onClick={(e) => handleImageClick({
-                            src: project.assets.analytics[1],
-                            title: language === 'en' ? 'Email Campaign Analytics' : 'Analisi Campagna Email',
-                            subtitle: language === 'en' ? 'Performance metrics overview' : 'Panoramica metriche performance'
-                          }, e)}
-                        >
-                          <img
-                            src={project.assets.analytics[1]}
-                            alt="Email Marketing Analytics"
-                            className="w-auto h-auto max-w-[300px] max-h-[300px] object-scale-down"
-                          />
-                          <motion.div
-                            className="absolute inset-0 bg-black/50 flex flex-col items-center justify-center"
-                            initial={{ opacity: 0 }}
-                            animate={{ opacity: selectedImage ? 0 : 0 }}
-                            whileHover={!selectedImage ? { opacity: 1 } : undefined}
-                          >
-                            <Search className="w-12 h-12 text-white mb-2" />
-                            <div className="text-center text-white">
-                              <h3 className="font-semibold text-lg">
-                                {language === 'en' ? 'Email Campaign Analytics' : 'Analisi Campagna Email'}
-                              </h3>
-                              <p className="text-sm">
-                                {language === 'en' ? 'Performance metrics overview' : 'Panoramica metriche performance'}
-                              </p>
-                            </div>
-                          </motion.div>
-                        </div>
-                      </div>
-                    )}
-                  </div>
+                  <ul className="space-y-2 text-muted-foreground">
+                    {project.detailedSections.strategies.email[language].map((item, index) => (
+                      <li key={index}>• {item}</li>
+                    ))}
+                  </ul>
                 </Card>
               </AccordionContent>
             </AccordionItem>
@@ -272,83 +275,48 @@ export const ProjectContent: FC<ProjectContentProps> = ({ project, language }) =
         </Accordion>
       </motion.div>
 
-      {/* Image Carousel Section */}
-            <div className="w-full max-w-3xl mx-auto">
-              <Carousel className="w-full" opts={{ align: "start" }}>
-                <CarouselContent>
-                  {imageDetails.map((image, index) => (
-                    <CarouselItem key={index} className="basis-auto">
-                      <motion.div
-                        layoutId={`image-${image.src}`}
-                        onClick={(e) => handleImageClick(image, e)}
-                        className={`relative rounded-lg overflow-hidden flex justify-center items-center bg-neutral-100 dark:bg-neutral-800 ${
-                          !selectedImage ? 'cursor-zoom-in' : 'pointer-events-none'
-                        }`}
-                      >
-                        <motion.div
-                          className="absolute inset-0 bg-black/50 flex flex-col items-center justify-center opacity-0 transition-opacity duration-300"
-                          whileHover={!selectedImage ? { opacity: 1 } : undefined}
-                        >
-                          <Search className="w-12 h-12 text-white mb-2" />
-                          <div className="text-center text-white">
-                            <h3 className="font-semibold text-lg">{image.title}</h3>
-                            <p className="text-sm">{image.subtitle}</p>
-                          </div>
-                        </motion.div>
-                        <img
-                          src={image.src}
-                          alt={`Social Media Image ${index + 1}`}
-                          className="w-auto h-auto max-w-[300px] max-h-[300px] object-scale-down"
-                        />
-                      </motion.div>
-                    </CarouselItem>
-                  ))}
-                </CarouselContent>
-                <CarouselPrevious />
-                <CarouselNext />
-              </Carousel>
-            </div>
-
-            {/* Zoom Overlay */}
-            <AnimatePresence>
-              {selectedImage && (
-                <motion.div
-                  className="fixed inset-0 w-full h-full bg-black/90 backdrop-blur-xl z-[9999] flex items-center justify-center cursor-zoom-out"
-                  onClick={() => setSelectedImage(null)}
-                  style={{
-                    width: '100vw',
-                    height: '100vh',
-                    left: 0,
-                    top: 0,
-                    margin: 0,
-                    padding: 0
-                  }}
-                >
-                  <motion.div className="relative w-full h-full flex items-center justify-center">
-                    <div className="flex flex-col items-center gap-4">
-                      <img
-                        src={selectedImage.src}
-                        alt="Zoomed Image"
-                        className="max-w-[90vw] max-h-[70vh] object-contain"
-                      />
-                      <div className="text-center text-white">
-                        <h3 className="text-2xl font-semibold mb-1">
-                          {selectedImage.title}
-                        </h3>
-                        {selectedImage.subtitle && (
-                          <p className="text-lg text-muted-foreground">
-                            {selectedImage.subtitle}
-                          </p>
-                        )}
-                      </div>
-                    </div>
-                    <div className="absolute top-4 right-4">
-                      <X className="w-8 h-8 text-white cursor-pointer" onClick={() => setSelectedImage(null)} />
-                    </div>
-                  </motion.div>
-                </motion.div>
-              )}
-            </AnimatePresence>
-          </div>
-        );
-      };
+      {/* Zoom Overlay */}
+      <AnimatePresence>
+        {selectedImage && (
+          <motion.div
+            className="fixed inset-0 w-full h-full bg-black/90 backdrop-blur-xl z-[9999] flex items-center justify-center cursor-zoom-out"
+            onClick={() => setSelectedImage(null)}
+            style={{
+              width: '100vw',
+              height: '100vh',
+              left: 0,
+              top: 0,
+              margin: 0,
+              padding: 0
+            }}
+          >
+            <motion.div
+              className="relative w-full h-full flex items-center justify-center"
+            >
+              <div className="flex flex-col items-center gap-4">
+                <img
+                  src={selectedImage.src}
+                  alt="Zoomed Image"
+                  className="max-w-[90vw] max-h-[70vh] object-contain"
+                />
+                <div className="text-center text-white">
+                  <h3 className="text-2xl font-semibold mb-1">
+                    {selectedImage.title}
+                  </h3>
+                  {selectedImage.subtitle && (
+                    <p className="text-lg text-muted-foreground">
+                      {selectedImage.subtitle}
+                    </p>
+                  )}
+                </div>
+              </div>
+              <div className="absolute top-4 right-4">
+                <X className="w-8 h-8 text-white cursor-pointer" onClick={() => setSelectedImage(null)} />
+              </div>
+            </motion.div>
+          </motion.div>
+        )}
+      </AnimatePresence>
+    </div>
+  );
+};
