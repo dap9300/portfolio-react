@@ -1,11 +1,29 @@
 import express, { type Request, Response, NextFunction } from "express";
 import { registerRoutes } from "./routes";
 import { setupVite, serveStatic, log } from "./vite";
+import cors from "cors";
+
+// Get the Replit host from the environment
+const REPLIT_HOST = process.env.REPLIT_SLUG ? 
+  `${process.env.REPLIT_SLUG}.repl.co` : 
+  '4537662a-f129-484e-a445-6e437c3a47c5-00-2ypdx2swfmqm1.kirk.replit.dev';
 
 // Set Vite environment variables for host allowance
-process.env.VITE_ALLOW_REPLIT_HOST = '4537662a-f129-484e-a445-6e437c3a47c5-00-2ypdx2swfmqm1.kirk.replit.dev';
+process.env.VITE_ALLOW_REPLIT_HOST = REPLIT_HOST;
+process.env.VITE_FORCE_DEV_SERVER = 'true';
 
 const app = express();
+
+// Configure CORS
+app.use(cors({
+  origin: [
+    `https://${REPLIT_HOST}`,
+    'http://localhost:5000',
+    'http://localhost:3000'
+  ],
+  credentials: true
+}));
+
 app.use(express.json());
 app.use(express.urlencoded({ extended: false }));
 
