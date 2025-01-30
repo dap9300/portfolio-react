@@ -53,11 +53,10 @@ app.use((req, res, next) => {
     serveStatic(app);
   }
 
-  // Use a different port to avoid conflicts
   const PORT = process.env.PORT || 3000;
 
   const startServer = (retries = 3) => {
-    server.listen(PORT, "0.0.0.0", () => {
+    server.listen(PORT, () => {
       log(`Server running on port ${PORT}`);
     }).on('error', (err: any) => {
       if (err.code === 'EADDRINUSE' && retries > 0) {
