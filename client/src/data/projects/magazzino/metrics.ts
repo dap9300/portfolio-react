@@ -4,15 +4,15 @@ import { ICON_KEYS } from '@/lib/constants';
 export const metrics: ProjectMetric[] = [
   {
     icon: ICON_KEYS.USERS,
-    value: '44,115',
+    value: '60,396',
     label: {
-      en: 'Total Social Followers',
-      it: 'Follower Social Totali'
+      en: 'Users Total Website',
+      it: 'Utenti Attivi Sito Web'
     }
   },
   {
     icon: ICON_KEYS.TRENDING,
-    value: '+550%',
+    value: '+143%',
     label: {
       en: 'Instagram Growth',
       it: 'Crescita Instagram'
@@ -20,10 +20,10 @@ export const metrics: ProjectMetric[] = [
   },
   {
     icon: ICON_KEYS.CALENDAR,
-    value: '37,455',
+    value: '250+',
     label: {
-      en: 'Annual Users',
-      it: 'Utenti Annuali'
+      en: 'Events organized',
+      it: 'Eventi Gestiti'
     }
   }
 ];
