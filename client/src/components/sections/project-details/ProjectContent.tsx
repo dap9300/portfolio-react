@@ -1,3 +1,4 @@
+
 "use client";
 import { FC, useState, useEffect } from "react";
 import { motion, AnimatePresence } from "framer-motion";
@@ -122,43 +123,6 @@ export const ProjectContent: FC<ProjectContentProps> = ({ project, language }) =
         )}
       </div>
 
-      {/* Image Carousel Section */}
-      <div className="w-full max-w-3xl mx-auto">
-        <Carousel className="w-full" opts={{ align: "start" }}>
-          <CarouselContent>
-            {imageDetails.map((image, index) => (
-              <CarouselItem key={index} className="basis-auto">
-                <motion.div
-                  layoutId={`image-${image.src}`}
-                  onClick={(e) => handleImageClick(image, e)}
-                  className={`relative rounded-lg overflow-hidden flex justify-center items-center bg-neutral-100 dark:bg-neutral-800 ${
-                    !selectedImage ? 'cursor-zoom-in' : 'pointer-events-none'
-                  }`}
-                >
-                  <motion.div
-                    className="absolute inset-0 bg-black/50 flex flex-col items-center justify-center opacity-0 transition-opacity duration-300"
-                    whileHover={!selectedImage ? { opacity: 1 } : undefined}
-                  >
-                    <Search className="w-12 h-12 text-white mb-2" />
-                    <div className="text-center text-white">
-                      <h3 className="font-semibold text-lg">{image.title}</h3>
-                      <p className="text-sm">{image.subtitle}</p>
-                    </div>
-                  </motion.div>
-                  <img
-                    src={image.src}
-                    alt={`Social Media Image ${index + 1}`}
-                    className="w-auto h-auto max-w-[300px] max-h-[300px] object-scale-down"
-                  />
-                </motion.div>
-              </CarouselItem>
-            ))}
-          </CarouselContent>
-          <CarouselPrevious />
-          <CarouselNext />
-        </Carousel>
-      </div>
-
       {/* Accordion Sections */}
       <motion.div
         initial={{ opacity: 0 }}
@@ -274,6 +238,43 @@ export const ProjectContent: FC<ProjectContentProps> = ({ project, language }) =
           </AccordionItem>
         </Accordion>
       </motion.div>
+
+      {/* Image Carousel Section */}
+      <div className="w-full max-w-3xl mx-auto">
+        <Carousel className="w-full" opts={{ align: "start" }}>
+          <CarouselContent>
+            {imageDetails.map((image, index) => (
+              <CarouselItem key={index} className="basis-auto">
+                <motion.div
+                  layoutId={`image-${image.src}`}
+                  onClick={(e) => handleImageClick(image, e)}
+                  className={`relative rounded-lg overflow-hidden flex justify-center items-center bg-neutral-100 dark:bg-neutral-800 ${
+                    !selectedImage ? 'cursor-zoom-in' : 'pointer-events-none'
+                  }`}
+                >
+                  <motion.div
+                    className="absolute inset-0 bg-black/50 flex flex-col items-center justify-center opacity-0 transition-opacity duration-300"
+                    whileHover={!selectedImage ? { opacity: 1 } : undefined}
+                  >
+                    <Search className="w-12 h-12 text-white mb-2" />
+                    <div className="text-center text-white">
+                      <h3 className="font-semibold text-lg">{image.title}</h3>
+                      <p className="text-sm">{image.subtitle}</p>
+                    </div>
+                  </motion.div>
+                  <img
+                    src={image.src}
+                    alt={`Social Media Image ${index + 1}`}
+                    className="w-auto h-auto max-w-[300px] max-h-[300px] object-scale-down"
+                  />
+                </motion.div>
+              </CarouselItem>
+            ))}
+          </CarouselContent>
+          <CarouselPrevious />
+          <CarouselNext />
+        </Carousel>
+      </div>
 
       {/* Zoom Overlay */}
       <AnimatePresence>
