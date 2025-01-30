@@ -1,5 +1,6 @@
 
 "use client";
+import { LineChart, Line, XAxis, YAxis, CartesianGrid, Tooltip, ResponsiveContainer } from 'recharts';
 import { FC, useState, useEffect } from "react";
 import { motion, AnimatePresence } from "framer-motion";
 import { Language } from "@/types";
@@ -143,11 +144,91 @@ export const ProjectContent: FC<ProjectContentProps> = ({ project, language }) =
               </AccordionTrigger>
               <AccordionContent className="px-4">
                 <Card className="p-6 mt-4">
-                  <ul className="space-y-2 text-muted-foreground">
-                    {project.detailedSections.strategies.social[language].map((item, index) => (
-                      <li key={index}>• {item}</li>
-                    ))}
-                  </ul>
+                  <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
+                    {/* Colonna Sinistra - Contenuto Esistente */}
+                    <div className="space-y-4">
+                      <h3 className="font-semibold text-lg">Gestione Contenuti</h3>
+                      <ul className="space-y-2 text-muted-foreground">
+                        {project.detailedSections.strategies.social[language].map((item, index) => (
+                          <li key={index} className="flex items-start gap-2">
+                            <div className="w-1.5 h-1.5 rounded-full bg-primary mt-2" />
+                            {item}
+                          </li>
+                        ))}
+                      </ul>
+                    </div>
+
+                    {/* Colonna Destra - Performance */}
+                    <div className="space-y-6">
+                      {/* Statistiche Social */}
+                      <div className="space-y-4">
+                        <h3 className="font-semibold text-lg">Performance Social</h3>
+                        <div className="grid grid-cols-1 gap-3">
+                          <Card className="p-4 bg-blue-50/50">
+                            <div className="flex justify-between items-center">
+                              <span className="font-medium">Facebook</span>
+                              <span className="text-green-600">+3.1% YoY</span>
+                            </div>
+                            <div className="text-2xl font-bold text-blue-600 mt-1">31.203</div>
+                            <div className="text-sm text-muted-foreground">follower</div>
+                          </Card>
+
+                          <Card className="p-4 bg-pink-50/50">
+                            <div className="flex justify-between items-center">
+                              <span className="font-medium">Instagram</span>
+                              <span className="text-green-600">+44.2% YoY</span>
+                            </div>
+                            <div className="text-2xl font-bold text-pink-600 mt-1">12.911</div>
+                            <div className="text-sm text-muted-foreground">follower</div>
+                          </Card>
+                        </div>
+                      </div>
+
+                      {/* Grafico Interattivo */}
+                      <div className="h-64">
+                        <ResponsiveContainer width="100%" height="100%">
+                          <LineChart
+                            data={[
+                              { month: 'Gen', followers: 60000 },
+                              { month: 'Feb', followers: 45000 },
+                              { month: 'Mar', followers: 30000 },
+                              { month: 'Apr', followers: 15000 },
+                              { month: 'Mag', followers: 0 },
+                              { month: 'Giu', followers: 44115 },
+                            ]}
+                          >
+                            <CartesianGrid strokeDasharray="3 3" className="opacity-50" />
+                            <XAxis dataKey="month" />
+                            <YAxis />
+                            <Tooltip />
+                            <Line
+                              type="monotone"
+                              dataKey="followers"
+                              stroke="#2563eb"
+                              strokeWidth={2}
+                              dot={{ fill: '#2563eb', r: 4 }}
+                            />
+                          </LineChart>
+                        </ResponsiveContainer>
+                      </div>
+
+                      {/* Metriche Chiave */}
+                      <div className="grid grid-cols-3 gap-3">
+                        <Card className="p-4 text-center bg-blue-50/50">
+                          <div className="text-2xl font-bold text-blue-600">44k+</div>
+                          <div className="text-sm text-muted-foreground">Followers</div>
+                        </Card>
+                        <Card className="p-4 text-center bg-green-50/50">
+                          <div className="text-2xl font-bold text-green-600">8.2%</div>
+                          <div className="text-sm text-muted-foreground">Engagement</div>
+                        </Card>
+                        <Card className="p-4 text-center bg-purple-50/50">
+                          <div className="text-2xl font-bold text-purple-600">550%</div>
+                          <div className="text-sm text-muted-foreground">Growth</div>
+                        </Card>
+                      </div>
+                    </div>
+                  </div>
                 </Card>
               </AccordionContent>
             </AccordionItem>
