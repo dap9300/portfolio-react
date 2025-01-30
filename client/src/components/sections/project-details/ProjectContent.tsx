@@ -1,6 +1,6 @@
 
 "use client";
-import { LineChart, Line, XAxis, YAxis, CartesianGrid, Tooltip, ResponsiveContainer } from 'recharts';
+
 import { FC, useState, useEffect } from "react";
 import { motion, AnimatePresence } from "framer-motion";
 import { Language } from "@/types";
@@ -145,7 +145,7 @@ export const ProjectContent: FC<ProjectContentProps> = ({ project, language }) =
               <AccordionContent className="px-4">
                 <Card className="p-6 mt-4">
                   <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
-                    {/* Colonna Sinistra - Contenuto Esistente */}
+                    {/* Left Column - Existing Content */}
                     <div className="space-y-4">
                       <h3 className="font-semibold text-lg">Gestione Contenuti</h3>
                       <ul className="space-y-2 text-muted-foreground">
@@ -158,74 +158,77 @@ export const ProjectContent: FC<ProjectContentProps> = ({ project, language }) =
                       </ul>
                     </div>
 
-                    {/* Colonna Destra - Performance */}
+                    {/* Right Column - New Performance Section */}
                     <div className="space-y-6">
-                      {/* Statistiche Social */}
+                      {/* Social Stats */}
                       <div className="space-y-4">
                         <h3 className="font-semibold text-lg">Performance Social</h3>
-                        <div className="grid grid-cols-1 gap-3">
-                          <Card className="p-4 bg-blue-50/50">
+                        <div className="space-y-4">
+                          {/* Facebook Card */}
+                          <Card className="p-4 bg-muted/50">
                             <div className="flex justify-between items-center">
                               <span className="font-medium">Facebook</span>
-                              <span className="text-green-600">+3.1% YoY</span>
+                              <span className="text-primary">+3.1% YoY</span>
                             </div>
-                            <div className="text-2xl font-bold text-blue-600 mt-1">31.203</div>
+                            <div className="text-2xl font-bold mt-2">31.203</div>
                             <div className="text-sm text-muted-foreground">follower</div>
                           </Card>
 
-                          <Card className="p-4 bg-pink-50/50">
+                          {/* Instagram Card */}
+                          <Card className="p-4 bg-muted/50">
                             <div className="flex justify-between items-center">
                               <span className="font-medium">Instagram</span>
-                              <span className="text-green-600">+44.2% YoY</span>
+                              <span className="text-primary">+44.2% YoY</span>
                             </div>
-                            <div className="text-2xl font-bold text-pink-600 mt-1">12.911</div>
+                            <div className="text-2xl font-bold mt-2">12.911</div>
                             <div className="text-sm text-muted-foreground">follower</div>
                           </Card>
                         </div>
                       </div>
 
-                      {/* Grafico Interattivo */}
-                      <div className="h-64">
-                        <ResponsiveContainer width="100%" height="100%">
-                          <LineChart
-                            data={[
-                              { month: 'Gen', followers: 60000 },
-                              { month: 'Feb', followers: 45000 },
-                              { month: 'Mar', followers: 30000 },
-                              { month: 'Apr', followers: 15000 },
-                              { month: 'Mag', followers: 0 },
-                              { month: 'Giu', followers: 44115 },
-                            ]}
-                          >
-                            <CartesianGrid strokeDasharray="3 3" className="opacity-50" />
-                            <XAxis dataKey="month" />
-                            <YAxis />
-                            <Tooltip />
-                            <Line
-                              type="monotone"
-                              dataKey="followers"
-                              stroke="#2563eb"
-                              strokeWidth={2}
-                              dot={{ fill: '#2563eb', r: 4 }}
-                            />
-                          </LineChart>
-                        </ResponsiveContainer>
-                      </div>
-
-                      {/* Metriche Chiave */}
-                      <div className="grid grid-cols-3 gap-3">
-                        <Card className="p-4 text-center bg-blue-50/50">
-                          <div className="text-2xl font-bold text-blue-600">44k+</div>
+                      {/* Growth Metrics */}
+                      <div className="grid grid-cols-2 gap-4">
+                        <Card className="p-4 text-center">
+                          <div className="text-2xl font-bold">44k+</div>
                           <div className="text-sm text-muted-foreground">Followers</div>
                         </Card>
-                        <Card className="p-4 text-center bg-green-50/50">
-                          <div className="text-2xl font-bold text-green-600">8.2%</div>
+                        <Card className="p-4 text-center">
+                          <div className="text-2xl font-bold">8.2%</div>
                           <div className="text-sm text-muted-foreground">Engagement</div>
                         </Card>
-                        <Card className="p-4 text-center bg-purple-50/50">
-                          <div className="text-2xl font-bold text-purple-600">550%</div>
+                        <Card className="p-4 text-center">
+                          <div className="text-2xl font-bold">550%</div>
                           <div className="text-sm text-muted-foreground">Growth</div>
                         </Card>
+                        <Card className="p-4 text-center">
+                          <div className="text-2xl font-bold">37.4k</div>
+                          <div className="text-sm text-muted-foreground">Utenti Annuali</div>
+                        </Card>
+                      </div>
+
+                      {/* Monthly Growth */}
+                      <div className="space-y-2">
+                        <h4 className="font-medium">Crescita Mensile Followers</h4>
+                        <div className="space-y-3">
+                          {[
+                            { month: 'Gen', value: 60000 },
+                            { month: 'Feb', value: 45000 },
+                            { month: 'Mar', value: 30000 },
+                            { month: 'Apr', value: 15000 },
+                            { month: 'Mag', value: 0 },
+                            { month: 'Giu', value: 44115 },
+                          ].map((item, index) => (
+                            <div key={index} className="flex items-center gap-3">
+                              <div className="w-12 text-muted-foreground">{item.month}</div>
+                              <div className="flex-1 h-2 bg-muted rounded-full overflow-hidden">
+                                <div 
+                                  className="h-full bg-primary rounded-full" 
+                                  style={{ width: `${(item.value / 60000) * 100}%` }}
+                                />
+                              </div>
+                            </div>
+                          ))}
+                        </div>
                       </div>
                     </div>
                   </div>
