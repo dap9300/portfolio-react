@@ -7,20 +7,19 @@ import { fileURLToPath } from "url";
 
 const __filename = fileURLToPath(import.meta.url);
 const __dirname = dirname(__filename);
+
 export default defineConfig({
   plugins: [react(), runtimeErrorOverlay(), themePlugin()],
   server: {
-    host: '0.0.0.0',
+    host: true,
+    port: 3000,
     hmr: {
       clientPort: 443,
+      host: '4537662a-f129-484e-a445-6e437c3a47c5-00-2ypdx2swfmqm1.kirk.replit.dev'
     },
     watch: {
       usePolling: true,
-    },
-    allowedHosts: [
-      '4537662a-f129-484e-a445-6e437c3a47c5-00-2ypdx2swfmqm1.kirk.replit.dev',
-      '.replit.dev'
-    ],
+    }
   },
   resolve: {
     alias: {
@@ -32,5 +31,5 @@ export default defineConfig({
   build: {
     outDir: path.resolve(__dirname, "dist/public"),
     emptyOutDir: true,
-  },
+  }
 });

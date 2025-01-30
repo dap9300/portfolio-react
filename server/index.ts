@@ -2,6 +2,9 @@ import express, { type Request, Response, NextFunction } from "express";
 import { registerRoutes } from "./routes";
 import { setupVite, serveStatic, log } from "./vite";
 
+// Set Vite environment variables for host allowance
+process.env.VITE_ALLOW_REPLIT_HOST = '4537662a-f129-484e-a445-6e437c3a47c5-00-2ypdx2swfmqm1.kirk.replit.dev';
+
 const app = express();
 app.use(express.json());
 app.use(express.urlencoded({ extended: false }));
