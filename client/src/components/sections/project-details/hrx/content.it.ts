@@ -1,4 +1,6 @@
 
+import { Project } from '@/types';
+
 export const projectDetailsTranslations = {
   back: {
     en: 'Back to Projects',
@@ -63,16 +65,6 @@ export const projectContent = {
         'Mailchimp',
         'Adobe Creative Suite'
       ]
-    },
-    objectives: {
-      title: {
-        en: 'Objectives',
-        it: 'Obiettivi'
-      },
-      content: {
-        en: 'Implementation of digital marketing strategies.',
-        it: 'Implementazione di strategie di marketing digitale.'
-      }
     },
     socialMedia: {
       title: {
