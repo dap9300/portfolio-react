@@ -1,5 +1,4 @@
-
-import { translations } from "@/lib/translations";
+import { translations } from "@/components/sections/project-details/magazzino/content.it";
 import { Language } from "@/types";
 import { SectionTitle } from "@/components/shared/SectionTitle";
 import { Card, CardContent } from "@/components/ui/card";

@@ -1,6 +1,6 @@
 import { motion } from "framer-motion";
 import { Button } from "@/components/ui/button";
-import { translations } from "@/lib/translations";
+import { translations } from "@/components/sections/project-details/magazzino/content.it";
 import { Language } from "@/types";
 import { fadeInUp, staggerContainer } from "@/lib/animations";
 

@@ -1,5 +1,5 @@
 import { useState, useEffect, useRef } from "react";
-import { translations } from "@/lib/translations";
+import { translations } from "@/components/sections/project-details/magazzino/content.it";
 import { Language } from "@/types";
 import { motion } from "framer-motion";
 import { fadeInUp } from "@/lib/animations";
