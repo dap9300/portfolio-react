@@ -70,8 +70,6 @@ export const detailedSections: DetailedSections = {
         'Creato formati di contenuto diversificati',
         'Ottimizzato programmazione dei post',
         'Integrato strategia multipiattaforma',
-        'Facebook: 31.203 follower (+3,1% YoY)',
-        'Instagram: 12.911 follower (+44,2% YoY)',
       ],
     },
     email: {

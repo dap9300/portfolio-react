@@ -9,15 +9,30 @@
     "it": "Ho gestito il coordinamento strategico e operativo in un'organizzazione fintech, con un focus sullo sviluppo di strategie digitali integrate, sull'ottimizzazione delle performance e sulla gestione di team cross-funzionali"
   },
   "image": "/assets/dtc-banner.jpg",
-  "technologies": [
-    "Team Management",
-    "Editorial Management",
-    "Content Strategy",
-    "Technical SEO",
-    "Google Analytics",
-    "Email Marketing",
-    "Cross-functional Collaboration"
-  ],
+  "technologies": {
+    "tools": [
+      {
+        "id": "google-analytics",
+        "name": "Google Analytics"
+      },
+      {
+        "id": "google-search-console",
+        "name": "Google Search Console"
+      },
+      {
+        "id": "google-tag-manager",
+        "name": "Google Tag Manager"
+      },
+      {
+        "id": "mailchimp",
+        "name": "Email Marketing"
+      },
+      {
+        "id": "semrush",
+        "name": "Technical SEO"
+      }
+    ]
+  },
   "sections": {
     "overview": {
       "title": {

@@ -1,6 +1,6 @@
 import express, { type Request, Response, NextFunction } from "express";
 import { registerRoutes } from "./routes";
-import { setupVite, serveStatic, log } from "./vite";
+import { setupVite, serveStatic } from "./vite"; // Rimosso log
 import cors from "cors";
 
 // Get the Replit host from the environment
@@ -30,26 +30,15 @@ app.use(cors(corsOptions));
 app.use(express.json());
 app.use(express.urlencoded({ extended: false }));
 
-// Logging middleware
-app.use((req, res, next) => {
-  const start = Date.now();
-  res.on("finish", () => {
-    const duration = Date.now() - start;
-    log(`${req.method} ${req.path} ${res.statusCode} in ${duration}ms`);
-  });
-  next();
+// Error handling middleware - Mostra solo errori in console
+app.use((err: any, _req: Request, res: Response, _next: NextFunction) => {
+  console.error("❌ Error:", err.message);
+  const status = err.status || err.statusCode || 500;
+  res.status(status).json({ message: err.message || "Internal Server Error" });
 });
 
 (async () => {
   const server = registerRoutes(app);
-
-  // Error handling middleware
-  app.use((err: any, _req: Request, res: Response, _next: NextFunction) => {
-    console.error('Error:', err);
-    const status = err.status || err.statusCode || 500;
-    const message = err.message || "Internal Server Error";
-    res.status(status).json({ message });
-  });
 
   if (process.env.NODE_ENV !== 'production') {
     await setupVite(app, server);
@@ -60,7 +49,7 @@ app.use((req, res, next) => {
   const PORT = process.env.PORT || 5000;
 
   server.listen(Number(PORT), '0.0.0.0', () => {
-    log(`Server running on port ${PORT}`);
-    log(`Replit host: ${REPLIT_HOST}`);
+    console.error(`✅ Server running on port ${PORT}`);
+    console.error(`🌍 Replit host: ${REPLIT_HOST}`);
   });
 })();
