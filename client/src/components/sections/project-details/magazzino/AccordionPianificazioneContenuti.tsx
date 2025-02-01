@@ -4,7 +4,6 @@ import { Project } from "@/types/projects";
 import { Card } from "@/components/ui/card";
 import { FileEdit } from "lucide-react";
 import { AccordionContent, AccordionItem, AccordionTrigger } from "@/components/ui/accordion";
-import { projectDetailsTranslations as t } from "@/data/translations/projectDetails";
 
 interface AccordionPianificazioneContenutiProps {
   project: Project;
