@@ -29,7 +29,7 @@ import {
   Tooltip,
   ResponsiveContainer
 } from 'recharts';
-import { SiGoogleanalytics, SiGooglesearchconsole, SiGoogletagmanager, SiMailchimp, SiSemrush, SiInstagram, SiTelegram, SiAdobe, SiMeta, SiGoogleads } from 'react-icons/si';
+import { SiGoogleanalytics, SiGooglesearchconsole, SiGoogletagmanager, SiMailchimp, SiSemrush, SiInstagram, SiTelegram, SiAdobe } from 'react-icons/si';
 import { IconType } from 'react-icons';
 
 const toolIconMap: Record<string, IconType> = {
@@ -40,9 +40,7 @@ const toolIconMap: Record<string, IconType> = {
   'semrush': SiSemrush,
   'instagram': SiInstagram,
   'telegram': SiTelegram,
-  'adobe': SiAdobe,
-    'meta-ads': SiMeta,
-  'google-ads': SiGoogleads
+  'adobe': SiAdobe
 };
 
 
@@ -118,25 +116,25 @@ export const ProjectContent: FC<ProjectContentProps> = ({ project, language }) =
         </div>
 
         {/* Tools Section */}
-        {project.technologies && (
+        {project.technologies?.tools && (
           <div className="md:col-span-2 space-y-4">
             <div className="flex items-center gap-2">
               <Wrench className="w-6 h-6 text-primary" />
               <h2 className="text-2xl font-semibold">Tools & Platforms</h2>
             </div>
             <Card className="p-6">
-              <div className="grid grid-cols-2 md:grid-cols-3 gap-4">
-                {project.technologies.map((tech) => {
-                   const IconComponent = toolIconMap[tech.toLowerCase().replace(/\s+/g, '-')];
+              <div className="grid grid-cols-2 md:grid-cols-3 gap-3">
+                {project.technologies.tools.map((tool) => {
+                  const Icon = toolIconMap[tool.id];
                   return (
                     <div
-                      key={tech}
+                      key={tool.id}
                       className="group relative border border-border/50 hover:border-primary/50 transition-all duration-300 hover:shadow-lg hover:shadow-primary/5 rounded-xl overflow-hidden p-4"
                     >
                       <div className="absolute inset-0 bg-gradient-to-r from-primary/5 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300" />
                       <div className="flex items-center gap-3 relative z-10">
-                        {IconComponent && <IconComponent className="w-5 h-5 text-primary" />}
-                        <span className="font-medium">{tech}</span>
+                        {Icon && <Icon className="w-5 h-5 text-primary" />}
+                        <span className="font-medium">{tool.name}</span>
                       </div>
                     </div>
                   );
