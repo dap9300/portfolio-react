@@ -11,3 +11,40 @@ export * from './AccordionObiettivi';
 export * from './AccordionPianificazioneContenuti';
 export * from './AccordionSocialMedia';
 export { projectDetailsTranslations } from './content.it';
+
+import { projectContent as italianContent } from './content.it';
+
+export const project = {
+  id: 2,
+  title: {
+    en: "HRX - Digital Marketing Strategy",
+    it: "HRX - Strategia di Marketing Digitale"
+  },
+  description: {
+    en: "Digital transformation and communication strategy for HRX.",
+    it: "Strategia di trasformazione digitale e comunicazione per HRX."
+  },
+  image: '/assets/hrx-banner1.jpg',
+  technologies: {
+    social: [
+      'Meta Business Suite',
+      'Instagram',
+      'Facebook',
+      'LinkedIn',
+      'Adobe Creative Suite'
+    ],
+    web: [
+      'WordPress',
+      'Google Analytics',
+      'Google Ads'
+    ],
+    email: [
+      'Mailchimp'
+    ]
+  },
+  metrics: italianContent.metrics,
+  gallery: [
+    '/assets/hrx-banner1.jpg'
+  ],
+  detailedSections: italianContent.detailedSections
+};
