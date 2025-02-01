@@ -6,7 +6,7 @@ import { LanguageSwitch } from '@/components/shared/LanguageSwitch';
 import { ArrowLeft } from 'lucide-react';
 import { fadeInUp, staggerContainer } from '@/lib/animations';
 import { useEffect } from 'react';
-import { projectDetailsTranslations } from '@/data/translations/projectDetails';
+import { projectDetailsTranslations } from './project-details/magazzino/content.it';
 import { getProject } from '@/lib/projectsManager';
 import {
   ProjectLayout,
