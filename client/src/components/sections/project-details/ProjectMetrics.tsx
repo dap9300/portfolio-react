@@ -1,8 +1,36 @@
+
 import { FC } from "react";
 import { motion } from "framer-motion";
 import { Language } from "@/types";
-import { ProjectMetric } from "@/types/projects";
+import { Project, ProjectMetric } from "@/types/projects";
 import { Users, TrendingUp, Calendar } from "lucide-react";
+
+export const projectMetrics: Record<
+  string,
+  Array<{
+    icon: string;
+    value: string;
+    label: Record<Language, string>;
+  }>
+> = {
+  '1': [
+    {
+      icon: 'rjzlcjqi',
+      value: '44,114',
+      label: { en: 'Total Social Followers', it: 'Follower Social Totali' },
+    },
+    {
+      icon: 'gkosxwgv',
+      value: '+550%',
+      label: { en: 'Instagram Growth', it: 'Crescita Instagram' },
+    },
+    {
+      icon: 'mzjnwzka',
+      value: '37,455',
+      label: { en: 'Annual Users', it: 'Utenti Annuali' },
+    },
+  ]
+};
 
 interface ProjectMetricsProps {
   metrics: ProjectMetric[];
