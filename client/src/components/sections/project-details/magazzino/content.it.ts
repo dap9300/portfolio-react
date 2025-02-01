@@ -88,6 +88,10 @@ export const projectDetailsTranslations = {
     overview: {
       en: 'Project Overview',
       it: 'Panoramica del Progetto'
+    },
+    objectives: {
+      en: 'Objectives',
+      it: 'Obiettivi'
     }
   }
 };
