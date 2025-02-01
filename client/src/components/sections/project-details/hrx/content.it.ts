@@ -35,3 +35,34 @@ export const projectDetailsTranslations = {
     }
   }
 };
+
+export const projectContent = {
+  metrics: [
+    'Meta Business Suite',
+    'Instagram Growth: +40%',
+    'Facebook Engagement: +65%',
+    'Email Marketing ROI: 3.2x'
+  ],
+  detailedSections: {
+    tools: {
+      title: {
+        en: 'Tools & Platforms',
+        it: 'Strumenti e Piattaforme'
+      },
+      description: {
+        en: 'Technologies and platforms used in this project',
+        it: 'Tecnologie e piattaforme utilizzate in questo progetto'
+      },
+      items: [
+        'Meta Business Suite',
+        'Instagram',
+        'Facebook',
+        'LinkedIn',
+        'WordPress',
+        'Google Analytics',
+        'Mailchimp',
+        'Adobe Creative Suite'
+      ]
+    }
+  }
+};
