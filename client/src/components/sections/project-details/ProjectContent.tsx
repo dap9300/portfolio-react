@@ -22,7 +22,7 @@ import {
   AccordionPianificazioneContenuti,
   AccordionEmailMarketing,
   AccordionCrowdfunding
-} from './magazzino';
+} from '@/components/sections/project-details/magazzino';
 
 interface ImageDetail {
   src: string;
