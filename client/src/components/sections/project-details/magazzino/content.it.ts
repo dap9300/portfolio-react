@@ -1,67 +1,97 @@
-import { Project } from '@/types';
+import { Language } from '@/types';
+
+export const translations = {
+  en: {
+    nav: {
+      home: 'Home',
+      overview: 'Overview',
+      projects: 'Projects',
+      skills: 'Skills',
+      education: 'Education',
+      contact: 'Contact'
+    },
+    hero: {
+      greeting: 'Hi, I\'m',
+      role: 'Full Stack Developer',
+      cta: 'Get in touch'
+    },
+    overview: {
+      title: 'Overview',
+      content: 'I am a passionate full-stack developer with experience in building modern web applications. I focus on creating efficient, scalable, and user-friendly solutions.'
+    },
+    projects: {
+      title: 'Projects',
+      viewProject: 'View Project'
+    },
+    skills: {
+      title: 'Skills & Competencies',
+      technical: 'Technical Skills',
+      soft: 'Soft Skills'
+    },
+    education: {
+      title: 'Education',
+    },
+    contact: {
+      title: 'Contact',
+      name: 'Name',
+      email: 'Email',
+      message: 'Message',
+      send: 'Send Message'
+    }
+  },
+  it: {
+    nav: {
+      home: 'Home',
+      overview: 'Panoramica',
+      projects: 'Progetti',
+      skills: 'Competenze',
+      education: 'Formazione',
+      contact: 'Contatti'
+    },
+    hero: {
+      greeting: 'Ciao, sono',
+      role: 'Sviluppatore Full Stack',
+      cta: 'Contattami'
+    },
+    overview: {
+      title: 'Panoramica Generale',
+      content: 'Sono uno sviluppatore full-stack appassionato con esperienza nella creazione di applicazioni web moderne. Mi concentro sulla creazione di soluzioni efficienti, scalabili e user-friendly.'
+    },
+    projects: {
+      title: 'Progetti',
+      viewProject: 'Vedi Progetto'
+    },
+    skills: {
+      title: 'Skills & Competenze',
+      technical: 'Competenze Tecniche',
+      soft: 'Soft Skills'
+    },
+    education: {
+      title: 'Formazione',
+    },
+    contact: {
+      title: 'Contatti',
+      name: 'Nome',
+      email: 'Email',
+      message: 'Messaggio',
+      send: 'Invia Messaggio'
+    }
+  }
+} as const;
 
 export const projectDetailsTranslations = {
   back: {
     en: 'Back to Projects',
     it: 'Torna ai Progetti'
   },
-  navigation: {
-    previous: {
-      en: 'Previous',
-      it: 'Precedente'
-    },
-    next: {
-      en: 'Next',
-      it: 'Successivo'
-    }
-  },
-  overview: {
-    en: 'Overview',
-    it: 'Panoramica'
-  },
   projectDetails: {
     overview: {
       en: 'Project Overview',
       it: 'Panoramica del Progetto'
-    },
-    objectives: {
-      en: 'Objectives',
-      it: 'Obiettivi'
-    },
-    keyResults: {
-      en: 'Key Results',
-      it: 'Risultati Chiave'
-    },
-    specialProjects: {
-      en: 'Special Projects',
-      it: 'Progetti Speciali'
-    },
-    contentPlanning: {
-      en: 'Content Planning',
-      it: 'Pianificazione Contenuti'
-    },
-    crowdfunding: {
-      en: 'Crowdfunding Campaign',
-      it: 'Campagna di Crowdfunding',
-      results: {
-        en: [
-          'Successfully raised €50,000',
-          'Engaged over 500 backers',
-          'Achieved 125% of target goal'
-        ],
-        it: [
-          'Raccolti con successo €50.000',
-          'Coinvolti oltre 500 sostenitori',
-          'Raggiunto il 125% dell\'obiettivo'
-        ]
-      }
     }
-  },
-  gallery: {
-    en: 'Project Gallery',
-    it: 'Galleria del Progetto'
   }
-} as const;
+};
+import { Project } from '@/types';
 
 export const projectContent: Project = {
   id: 1,
