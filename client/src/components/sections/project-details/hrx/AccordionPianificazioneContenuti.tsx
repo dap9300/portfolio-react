@@ -1,9 +1,10 @@
-
-import { FC } from 'react';
-import { AccordionContent, AccordionItem, AccordionTrigger } from '@/components/ui/accordion';
-import { Card } from '@/components/ui/card';
-import { Language, Project } from '@/types';
-import { FileEdit } from 'lucide-react';
+import { FC } from "react";
+import { Language } from "@/types";
+import { Project } from "@/types/projects";
+import { Card } from "@/components/ui/card";
+import { FileEdit } from "lucide-react";
+import { AccordionContent, AccordionItem, AccordionTrigger } from "@/components/ui/accordion";
+import { projectDetailsTranslations as t } from "./content.it"; // Updated import path
 
 interface AccordionPianificazioneContenutiProps {
   project: Project;
