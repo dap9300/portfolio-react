@@ -10,9 +10,4 @@ export * from './AccordionEmailMarketing';
 export * from './AccordionObiettivi';
 export * from './AccordionPianificazioneContenuti';
 export * from './AccordionSocialMedia';
-import { projectContent as italianContent } from './content.it';
-import { projectContent as englishContent } from './content.en';
-
-export const getContent = (language: 'it' | 'en') => {
-  return language === 'it' ? italianContent : englishContent;
-};
+export { projectDetailsTranslations } from './content.it';

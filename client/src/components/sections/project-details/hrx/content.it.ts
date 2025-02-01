@@ -1,5 +1,4 @@
 
-{/* Copy from magazzino/content.it.ts */}
 export const projectDetailsTranslations = {
   back: {
     en: 'Back to Projects',
@@ -10,9 +9,25 @@ export const projectDetailsTranslations = {
       en: 'Project Overview',
       it: 'Panoramica del Progetto'
     },
+    tools: {
+      en: 'Tools & Platforms',
+      it: 'Strumenti e Piattaforme'
+    },
     objectives: {
       en: 'Objectives',
       it: 'Obiettivi'
+    },
+    socialStrategy: {
+      en: 'Social Media Strategy',
+      it: 'Strategia Social Media'
+    },
+    contentPlanning: {
+      en: 'Content Planning',
+      it: 'Pianificazione Contenuti'
+    },
+    emailMarketing: {
+      en: 'Email Marketing',
+      it: 'Email Marketing'
     },
     crowdfunding: {
       en: 'Crowdfunding Campaign',
