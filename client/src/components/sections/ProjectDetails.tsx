@@ -13,7 +13,7 @@ import {
   ProjectHeader,
   ProjectMetrics,
   ProjectContent
-} from './project-details';
+} from './project-details/magazzino';
 
 interface ProjectDetailsProps {
   language: Language;
