@@ -12,8 +12,7 @@ import {
   ProjectLayout,
   ProjectHeader,
   ProjectMetrics,
-  ProjectContent,
-  ProjectGallery
+  ProjectContent
 } from './project-details';
 
 interface ProjectDetailsProps {
@@ -78,7 +77,6 @@ export function ProjectDetails({
         >
           <ProjectMetrics metrics={project.metrics} language={language} />
           <ProjectContent project={project} language={language} />
-          <ProjectGallery gallery={project.gallery} />
         </motion.div>
       </div>
     </ProjectLayout>

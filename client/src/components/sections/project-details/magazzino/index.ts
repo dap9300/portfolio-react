@@ -5,6 +5,7 @@ export { AccordionPianificazioneContenuti } from './AccordionPianificazioneConte
 export { AccordionEmailMarketing } from './AccordionEmailMarketing';
 export { AccordionCrowdfunding } from './AccordionCrowdfunding';
 
+
 // Import project content
 import { projectContent as italianContent } from './content.it';
 import { projectContent as englishContent } from './content.en';

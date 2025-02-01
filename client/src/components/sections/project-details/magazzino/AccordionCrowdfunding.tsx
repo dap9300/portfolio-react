@@ -12,141 +12,155 @@ interface AccordionCrowdfundingProps {
   language: Language;
 }
 
+const Timeline: FC = () => {
+  const [selected, setSelected] = useState(0);
+
+  const timelineSteps = [
+    {
+      stage: 'Ideazione',
+      icon: Lightbulb,
+      description: 'Definizione del concept, analisi del territorio e pianificazione strategica del progetto'
+    },
+    {
+      stage: 'Implementazione',
+      icon: Code2,
+      description: 'Sviluppo della piattaforma, creazione dei contenuti e preparazione degli strumenti di campagna'
+    },
+    {
+      stage: 'Comunicazione',
+      icon: MessageSquare,
+      description: 'Attivazione dei canali social, PR e coinvolgimento della community locale'
+    },
+    {
+      stage: 'Chiusura',
+      icon: CheckCircle,
+      description: 'Raggiungimento degli obiettivi, rendicontazione e celebrazione dei risultati'
+    }
+  ];
+
+  return (
+    <div className="w-full space-y-6">
+      <div className="relative py-8">
+        <div className="absolute top-1/2 left-0 w-full h-0.5 bg-muted"></div>
+        <motion.div 
+          className="absolute top-1/2 left-0 h-0.5 bg-primary"
+          initial={{ width: '0%' }}
+          animate={{ width: `${(selected / (timelineSteps.length - 1)) * 100}%` }}
+          transition={{ duration: 0.5, ease: "easeInOut" }}
+        />
+        <div className="absolute top-1/2 left-0 w-full h-0.5 bg-dotted-pattern"></div>
+
+        <div className="grid grid-cols-4 gap-4 relative">
+          {timelineSteps.map((step, index) => {
+            const isSelected = selected === index;
+            const isPast = index < selected;
+
+            return (
+              <div 
+                key={step.stage} 
+                className="flex flex-col items-center cursor-pointer" 
+                onClick={() => setSelected(index)}
+              >
+                <motion.div 
+                  className={`w-14 h-14 rounded-full border-2 flex items-center justify-center mb-2 relative z-10
+                    ${isSelected ? 'bg-primary border-primary shadow-lg' : 
+                      isPast ? 'bg-background border-primary' : 'bg-background border-muted'}`}
+                  whileHover={{ scale: 1.1 }}
+                  whileTap={{ scale: 0.95 }}
+                  animate={{
+                    y: isSelected ? -4 : 0
+                  }}
+                  transition={{
+                    type: "spring",
+                    stiffness: 300,
+                    damping: 20
+                  }}
+                >
+                  <step.icon 
+                    className={`w-6 h-6 ${
+                      isSelected ? 'text-background' : 
+                      isPast ? 'text-primary' : 'text-muted-foreground'
+                    }`}
+                  />
+                </motion.div>
+                <p className={`text-sm font-medium ${
+                  isSelected ? 'text-primary scale-105 font-semibold' :
+                  isPast ? 'text-primary' : 'text-muted-foreground'
+                }`}>
+                  {step.stage}
+                </p>
+              </div>
+            );
+          })}
+        </div>
+      </div>
+
+      <motion.div 
+        className="bg-background/80 p-4 rounded-lg shadow-sm"
+        initial={{ opacity: 0, y: 20 }}
+        animate={{ opacity: 1, y: 0 }}
+        transition={{
+          type: "spring",
+          stiffness: 200,
+          damping: 20
+        }}
+        key={selected}
+      >
+        <p className="text-sm text-muted-foreground leading-relaxed">
+          {timelineSteps[selected].description}
+        </p>
+      </motion.div>
+    </div>
+  );
+};
+
 export const AccordionCrowdfunding: FC<AccordionCrowdfundingProps> = ({ project, language }) => {
   const [supportersCount, setSupportersCount] = useState(0);
   const [fundAmount, setFundAmount] = useState(0);
+  const [hasAnimated, setHasAnimated] = useState(false);
 
   const animateSupporters = () => {
-    animate(0, 300, {
-      duration: 2,
-      ease: "circOut",
-      onUpdate: (latest) => setSupportersCount(Math.round(latest))
+    const controls = animate(0, 300, {
+      duration: 2.2,
+      ease: "easeOut",
+      onUpdate: (latest) => {
+        setSupportersCount(Math.round(latest));
+      }
     });
+
+    return controls.stop;
   };
 
   const animateFunds = () => {
-    animate(0, 5597, {
-      duration: 2.5,
-      ease: "circOut",
-      onUpdate: (latest) => setFundAmount(Math.round(latest))
+    const controls = animate(0, 5597, {
+      duration: 2.2,
+      ease: "easeInOut",
+      stiffness: 150,
+      damping: 25,
+      onUpdate: (latest) => {
+        setFundAmount(Math.round(latest));
+      }
     });
+
+    return controls.stop;
   };
 
   useEffect(() => {
-    const timer = setTimeout(() => {
-      animateSupporters();
-      setTimeout(animateFunds, 200);
-    }, 300);
+    if (!hasAnimated) {
+      const timer = setTimeout(() => {
+        const cleanupSupporters = animateSupporters();
+        const cleanupFunds = animateFunds();
+        setHasAnimated(true);
 
-    return () => clearTimeout(timer);
-  }, []);
+        return () => {
+          cleanupSupporters();
+          cleanupFunds();
+        };
+      }, 500);
 
-  const Timeline = () => {
-    const [selected, setSelected] = useState(0);
-
-    const timelineSteps = [
-      {
-        stage: 'Ideazione',
-        icon: Lightbulb,
-        description: 'Definizione del concept, analisi del territorio e pianificazione strategica del progetto'
-      },
-      {
-        stage: 'Implementazione',
-        icon: Code2,
-        description: 'Sviluppo della piattaforma, creazione dei contenuti e preparazione degli strumenti di campagna'
-      },
-      {
-        stage: 'Comunicazione',
-        icon: MessageSquare,
-        description: 'Attivazione dei canali social, PR e coinvolgimento della community locale'
-      },
-      {
-        stage: 'Chiusura',
-        icon: CheckCircle,
-        description: 'Raggiungimento degli obiettivi, rendicontazione e celebrazione dei risultati'
-      }
-    ];
-
-    return (
-      <div className="w-full space-y-6">
-        <div className="relative py-8">
-          {/* Base line */}
-          <div className="absolute top-1/2 left-0 w-full h-0.5 bg-muted"></div>
-
-          {/* Progress line */}
-          <motion.div 
-            className="absolute top-1/2 left-0 h-0.5 bg-primary"
-            initial={{ width: '0%' }}
-            animate={{ width: `${(selected / (timelineSteps.length - 1)) * 100}%` }}
-            transition={{ duration: 0.5, ease: "easeInOut" }}
-          />
-
-          {/* Dotted line for future steps */}
-          <div className="absolute top-1/2 left-0 w-full h-0.5 bg-dotted-pattern"></div>
-
-          <div className="grid grid-cols-4 gap-4 relative">
-            {timelineSteps.map((step, index) => {
-              const isSelected = selected === index;
-              const isPast = index < selected;
-
-              return (
-                <div 
-                  key={step.stage} 
-                  className="flex flex-col items-center cursor-pointer" 
-                  onClick={() => setSelected(index)}
-                >
-                  <motion.div 
-                    className={`w-14 h-14 rounded-full border-2 flex items-center justify-center mb-2 relative z-10
-                      ${isSelected ? 'bg-primary border-primary shadow-lg' : 
-                        isPast ? 'bg-background border-primary' : 'bg-background border-muted'}`}
-                    whileHover={{ scale: 1.1 }}
-                    whileTap={{ scale: 0.95 }}
-                    animate={{
-                      y: isSelected ? -4 : 0
-                    }}
-                    transition={{
-                      type: "spring",
-                      stiffness: 300,
-                      damping: 20
-                    }}
-                  >
-                    <step.icon 
-                      className={`w-6 h-6 ${
-                        isSelected ? 'text-background' : 
-                        isPast ? 'text-primary' : 'text-muted-foreground'
-                      }`}
-                    />
-                  </motion.div>
-                  <p className={`text-sm font-medium ${
-                    isSelected ? 'text-primary scale-105 font-semibold' :
-                    isPast ? 'text-primary' : 'text-muted-foreground'
-                  }`}>
-                    {step.stage}
-                  </p>
-                </div>
-              );
-            })}
-          </div>
-        </div>
-
-        <motion.div 
-          className="bg-background/80 p-4 rounded-lg shadow-sm"
-          initial={{ opacity: 0, y: 20 }}
-          animate={{ opacity: 1, y: 0 }}
-          transition={{
-            type: "spring",
-            stiffness: 200,
-            damping: 20
-          }}
-          key={selected}
-        >
-          <p className="text-sm text-muted-foreground leading-relaxed">
-            {timelineSteps[selected].description}
-          </p>
-        </motion.div>
-      </div>
-    );
-  };
+      return () => clearTimeout(timer);
+    }
+  }, [hasAnimated]);
 
   return (
     <AccordionItem value="crowdfunding" className="border rounded-lg hover:bg-accent/50 transition-colors">
