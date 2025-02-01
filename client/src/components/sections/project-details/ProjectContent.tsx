@@ -6,7 +6,7 @@ import { Language } from "@/types";
 import { Project } from "@/types/projects";
 import { Card } from "@/components/ui/card";
 import { BookOpen, Search, X } from "lucide-react";
-import { projectDetailsTranslations as t } from "@/data/translations/projectDetails";
+import { projectDetailsTranslations as t } from "./magazzino/content.it";
 import { Accordion } from "@/components/ui/accordion";
 import {
   Carousel,
