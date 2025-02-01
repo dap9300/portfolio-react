@@ -35,7 +35,10 @@ app.use((req, res, next) => {
   const start = Date.now();
   res.on("finish", () => {
     const duration = Date.now() - start;
-    log(`${req.method} ${req.path} ${res.statusCode} in ${duration}ms`);
+    // Only log errors (4xx and 5xx status codes)
+    if (res.statusCode >= 400) {
+      log(`ERROR: ${req.method} ${req.path} ${res.statusCode} in ${duration}ms`);
+    }
   });
   next();
 });
