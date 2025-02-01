@@ -2,11 +2,11 @@
 "use client";
 
 import { FC, useState, useEffect } from "react";
-import { motion, AnimatePresence } from "framer-motion";
+import { motion, AnimatePresence, useMotionValue, useTransform, animate } from "framer-motion";
 import { Language } from "@/types";
 import { Project } from "@/types/projects";
 import { Card } from "@/components/ui/card";
-import { FileEdit, Target, BarChart3, Trophy, Wrench, Mail, BookOpen, Search, X } from "lucide-react";
+import { FileEdit, Target, BarChart3, Trophy, Wrench, Mail, BookOpen, Search, X, Check } from "lucide-react";
 import { projectDetailsTranslations as t } from "@/data/translations/projectDetails";
 import {
   Accordion,
@@ -21,6 +21,16 @@ import {
   CarouselNext,
   CarouselPrevious,
 } from "@/components/ui/carousel";
+import {
+  LineChart,
+  Line,
+  XAxis,
+  YAxis,
+  CartesianGrid,
+  Tooltip,
+  ResponsiveContainer
+} from 'recharts';
+
 
 interface ImageDetail {
   src: string;
@@ -56,42 +66,64 @@ interface ProjectContentProps {
   language: Language;
 }
 
-export const ProjectContent: FC<ProjectContentProps> = ({ project, language }) => {
-  const [selectedImage, setSelectedImage] = useState<ImageDetail | null>(null);
-  const [clickedPosition, setClickedPosition] = useState({ x: 0, y: 0 });
+        export const ProjectContent: FC<ProjectContentProps> = ({ project, language }) => {
+          const [selectedImage, setSelectedImage] = useState<ImageDetail | null>(null);
+          const [clickedPosition, setClickedPosition] = useState({ x: 0, y: 0 });
+          const supportersCount = useMotionValue(0);
+          const fundAmount = useMotionValue(0);
+          const formattedSupporters = useTransform(supportersCount, value => 
+            Math.floor(value).toString()
+          );
+          const formattedAmount = useTransform(fundAmount, value => 
+            `€${Math.floor(value).toLocaleString()}`
+          );
 
-  const handleImageClick = (image: ImageDetail, event: React.MouseEvent) => {
-    const rect = event.currentTarget.getBoundingClientRect();
-    setClickedPosition({
-      x: event.clientX - rect.left - rect.width / 2,
-      y: event.clientY - rect.top - rect.height / 2
-    });
-    document.body.classList.add('react-zoom-container-open');
-    setSelectedImage(image);
-  };
+          const handleImageClick = (image: ImageDetail, event: React.MouseEvent) => {
+            const rect = event.currentTarget.getBoundingClientRect();
+            setClickedPosition({
+              x: event.clientX - rect.left - rect.width / 2,
+              y: event.clientY - rect.top - rect.height / 2
+            });
+            document.body.classList.add('react-zoom-container-open');
+            setSelectedImage(image);
+          };
 
-  useEffect(() => {
-    return () => {
-      document.body.classList.remove('react-zoom-container-open');
-    };
-  }, []);
+          useEffect(() => {
+            return () => {
+              document.body.classList.remove('react-zoom-container-open');
+            };
+          }, []);
 
-  return (
-    <div className="space-y-8">
-      {/* Overview and Tools Section */}
-      <div className="grid md:grid-cols-3 gap-6">
-        {/* Overview Section */}
-        <div className="space-y-4">
-          <div className="flex items-center gap-2">
-            <BookOpen className="w-6 h-6 text-primary" />
-            <h2 className="text-2xl font-semibold">{t.projectDetails.overview[language]}</h2>
-          </div>
-          <Card className="p-6">
-            <p className="text-muted-foreground whitespace-pre-line">
-              {project.description[language]}
-            </p>
-          </Card>
-        </div>
+          useEffect(() => {
+            const supportersAnimation = animate(supportersCount, 300, {
+              duration: 2,
+              onComplete: () => {
+                animate(fundAmount, 5597, {
+                  duration: 2.5,
+                  ease: "easeOut"
+                });
+              }
+            });
+
+            return () => supportersAnimation.stop();
+          }, []);
+
+          return (
+            <div className="space-y-8">
+              {/* Overview and Tools Section */}
+              <div className="grid md:grid-cols-3 gap-6">
+                {/* Overview Section */}
+                <div className="space-y-4">
+                  <div className="flex items-center gap-2">
+                    <BookOpen className="w-6 h-6 text-primary" />
+                    <h2 className="text-2xl font-semibold">{t.projectDetails.overview[language]}</h2>
+                  </div>
+                  <Card className="p-6">
+                    <p className="text-muted-foreground whitespace-pre-line">
+                      {project.description[language]}
+                    </p>
+                  </Card>
+                </div>
 
         {/* Tools Section */}
         {project.detailedSections?.tools && (
@@ -130,136 +162,7 @@ export const ProjectContent: FC<ProjectContentProps> = ({ project, language }) =
         animate={{ opacity: 1 }}
         transition={{ duration: 0.5 }}
       >
-        <Accordion type="single" collapsible className="space-y-4">
-          {/* Social Media Section */}
-          {project.detailedSections?.strategies?.social && (
-            <AccordionItem value="social" className="border rounded-lg hover:bg-accent/50 transition-colors">
-              <AccordionTrigger className="px-4">
-                <div className="flex items-center gap-3">
-                  <FileEdit className="w-5 h-5 text-primary" />
-                  <h2 className="text-xl font-semibold">
-                    {language === 'en' ? 'Social Media & Content Creation' : 'Social Media & Content Creation'}
-                  </h2>
-                </div>
-              </AccordionTrigger>
-              <AccordionContent className="px-4">
-                <Card className="p-6 mt-4">
-                  <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
-                    {/* Left Column - Existing Content */}
-                    <div className="space-y-4">
-                      <h3 className="font-semibold text-lg">Gestione Contenuti</h3>
-                      <ul className="space-y-2 text-muted-foreground">
-                        {project.detailedSections.strategies.social[language].map((item, index) => (
-                          <li key={index} className="flex items-start gap-2">
-                            <div className="w-1.5 h-1.5 rounded-full bg-primary mt-2" />
-                            {item}
-                          </li>
-                        ))}
-                      </ul>
-                    </div>
-
-                    {/* Right Column - New Performance Section */}
-                    <div className="space-y-6">
-                      {/* Social Stats */}
-                      <div className="space-y-4">
-                        <h3 className="font-semibold text-lg">Performance Social</h3>
-                        <div className="space-y-4">
-                          {/* Facebook Card */}
-                          <Card className="p-4 bg-muted/50">
-                            <div className="flex justify-between items-center">
-                              <span className="font-medium">Facebook</span>
-                              <span className="text-primary">+3.1% YoY</span>
-                            </div>
-                            <div className="text-2xl font-bold mt-2">31.203</div>
-                            <div className="text-sm text-muted-foreground">follower</div>
-                          </Card>
-
-                          {/* Instagram Card */}
-                          <Card className="p-4 bg-muted/50">
-                            <div className="flex justify-between items-center">
-                              <span className="font-medium">Instagram</span>
-                              <span className="text-primary">+44.2% YoY</span>
-                            </div>
-                            <div className="text-2xl font-bold mt-2">12.911</div>
-                            <div className="text-sm text-muted-foreground">follower</div>
-                          </Card>
-                        </div>
-                      </div>
-
-                      {/* Growth Metrics */}
-                      <div className="grid grid-cols-2 gap-4">
-                        <Card className="p-4 text-center">
-                          <div className="text-2xl font-bold">44k+</div>
-                          <div className="text-sm text-muted-foreground">Followers</div>
-                        </Card>
-                        <Card className="p-4 text-center">
-                          <div className="text-2xl font-bold">8.2%</div>
-                          <div className="text-sm text-muted-foreground">Engagement</div>
-                        </Card>
-                        <Card className="p-4 text-center">
-                          <div className="text-2xl font-bold">550%</div>
-                          <div className="text-sm text-muted-foreground">Growth</div>
-                        </Card>
-                        <Card className="p-4 text-center">
-                          <div className="text-2xl font-bold">37.4k</div>
-                          <div className="text-sm text-muted-foreground">Utenti Annuali</div>
-                        </Card>
-                      </div>
-
-                      {/* Monthly Growth */}
-                      <div className="space-y-2">
-                        <h4 className="font-medium">Crescita Mensile Followers</h4>
-                        <div className="space-y-3">
-                          {[
-                            { month: 'Gen', value: 60000 },
-                            { month: 'Feb', value: 45000 },
-                            { month: 'Mar', value: 30000 },
-                            { month: 'Apr', value: 15000 },
-                            { month: 'Mag', value: 0 },
-                            { month: 'Giu', value: 44115 },
-                          ].map((item, index) => (
-                            <div key={index} className="flex items-center gap-3">
-                              <div className="w-12 text-muted-foreground">{item.month}</div>
-                              <div className="flex-1 h-2 bg-muted rounded-full overflow-hidden">
-                                <div 
-                                  className="h-full bg-primary rounded-full" 
-                                  style={{ width: `${(item.value / 60000) * 100}%` }}
-                                />
-                              </div>
-                            </div>
-                          ))}
-                        </div>
-                      </div>
-                    </div>
-                  </div>
-                </Card>
-              </AccordionContent>
-            </AccordionItem>
-          )}
-
-          {/* Email Marketing Section */}
-          {project.detailedSections?.strategies?.email && (
-            <AccordionItem value="email" className="border rounded-lg hover:bg-accent/50 transition-colors">
-              <AccordionTrigger className="px-4 data-[state=open]:bg-accent/20">
-                <div className="flex items-center gap-3 w-full">
-                  <Mail className="w-5 h-5 text-primary" />
-                  <h2 className="text-xl font-semibold">
-                    {language === 'en' ? 'Email Marketing' : 'Email Marketing'}
-                  </h2>
-                </div>
-              </AccordionTrigger>
-              <AccordionContent className="px-4">
-                <Card className="p-6 mt-4">
-                  <ul className="space-y-2 text-muted-foreground">
-                    {project.detailedSections.strategies.email[language].map((item, index) => (
-                      <li key={index}>• {item}</li>
-                    ))}
-                  </ul>
-                </Card>
-              </AccordionContent>
-            </AccordionItem>
-          )}
-
+        <Accordion type="single" collapsible className="space-y-6">
           {/* Objectives Section */}
           {project.detailedSections?.objectives && (
             <AccordionItem value="objectives" className="border rounded-lg hover:bg-accent/50 transition-colors">
@@ -271,17 +174,149 @@ export const ProjectContent: FC<ProjectContentProps> = ({ project, language }) =
               </AccordionTrigger>
               <AccordionContent className="px-4">
                 <Card className="p-6 mt-4">
-                  <ul className="space-y-2 text-muted-foreground">
-                    {project.detailedSections.objectives[language].map((objective, index) => (
-                      <li key={index}>• {objective}</li>
+                  <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
+                    {[
+                      {
+                        title: 'Aumentare la visibilità online',
+                        icon: '✨',
+                        achievement: 'Target raggiunto',
+                        details: 'Incremento significativo della presenza sui social media e motori di ricerca'
+                      },
+                      {
+                        title: 'Migliorare l\'efficacia della comunicazione degli eventi',
+                        icon: '📢',
+                        achievement: 'Superato aspettative',
+                        details: 'Aumento del 75% nella partecipazione agli eventi promossi'
+                      },
+                      {
+                        title: 'Incrementare il coinvolgimento della community',
+                        icon: '🤝',
+                        achievement: 'In continua crescita', 
+                        details: 'Community attiva e engagement rate superiore alla media del settore'
+                      },
+                      {
+                        title: 'Ottimizzare la presenza digitale',
+                        icon: '📱',
+                        achievement: 'Completato',
+                        details: 'Implementazione di una strategia digitale integrata e performante'
+                      }
+                    ].map((objective, index) => (
+                      <div key={index} className="bg-accent/50 p-6 rounded-xl hover:shadow-md transition-all duration-300">
+                        <div className="flex items-start gap-4">
+                          <div className="text-2xl">{objective.icon}</div>
+                          <div className="flex-1">
+                            <h4 className="font-medium mb-2">{objective.title}</h4>
+                            <div className="flex items-center gap-2 mb-2">
+                              <Check className="w-4 h-4 text-green-500" /> {/* Changed to Check icon */}
+                              <span className="text-sm font-medium text-green-600">{objective.achievement}</span>
+                            </div>
+                            <p className="text-sm text-muted-foreground">{objective.details}</p>
+                          </div>
+                        </div>
+                      </div>
                     ))}
-                  </ul>
+                  </div>
                 </Card>
               </AccordionContent>
             </AccordionItem>
           )}
+          
+          {/* Social Media Section */}
+          {project.detailedSections?.strategies?.social && (
+        <AccordionItem value="social" className="border rounded-lg hover:bg-accent/50 transition-colors">
+          <AccordionTrigger className="px-4">
+            <div className="flex items-center gap-3">
+              <FileEdit className="w-5 h-5 text-primary" />
+              <h2 className="text-xl font-semibold">
+                {language === 'en' ? 'Social Media' : 'Social Media'}
+              </h2>
+            </div>
+          </AccordionTrigger>
+          <AccordionContent className="px-4">
+            <Card className="p-6 mt-4">
+              <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
+                {/* Left Column - Text Content */}
+                <div className="space-y-4">
+                  <h3 className="font-semibold text-lg">Gestione Contenuti</h3>
+                  <ul className="space-y-2 text-muted-foreground">
+                    {project.detailedSections.strategies.social[language].map((item, index) => (
+                      <li key={index} className="flex items-start gap-2">
+                        <div className="w-1.5 h-1.5 rounded-full bg-blue-500 mt-2" />
+                        {item}
+                      </li>
+                    ))}
+                  </ul>
+                </div>
 
-          {/* Content Planning Section */}
+                {/* Right Column - Performance Stats */}
+                <div className="space-y-4">
+                  <h3 className="font-semibold text-lg">Performance Social</h3>
+                  <div className="space-y-4">
+                    {/* Facebook Stats */}
+                    <div className="bg-blue-50 dark:bg-blue-900/20 p-4 rounded-lg">
+                      <div className="flex justify-between items-center">
+                        <span className="font-medium">Facebook</span>
+                        <span className="text-green-600 dark:text-green-400">+3,1% YoY</span>
+                      </div>
+                      <p className="text-2xl font-bold text-blue-600 dark:text-blue-400 mt-1">31.203</p>
+                      <p className="text-sm text-muted-foreground">follower</p>
+                    </div>
+
+                    {/* Instagram Stats */}
+                    <div className="bg-purple-50 dark:bg-purple-900/20 p-4 rounded-lg">
+                      <div className="flex justify-between items-center">
+                        <span className="font-medium">Instagram</span>
+                        <span className="text-green-600 dark:text-green-400">+44,2% YoY</span>
+                      </div>
+                      <p className="text-2xl font-bold text-purple-600 dark:text-purple-400 mt-1">12.911</p>
+                      <p className="text-sm text-muted-foreground">follower</p>
+                    </div>
+                  </div>
+                </div>
+              </div>
+
+            {/* Growth Chart */}
+              <div className="mt-8 h-64">
+                <ResponsiveContainer width="100%" height="100%">
+                  <LineChart data={[
+                    { month: 'Gen', followers: 32000, engagement: 2100 },
+                    { month: 'Feb', followers: 34500, engagement: 2300 },
+                    { month: 'Mar', followers: 37800, engagement: 2600 },
+                    { month: 'Apr', followers: 40200, engagement: 2800 },
+                    { month: 'Mag', followers: 42500, engagement: 3100 },
+                    { month: 'Giu', followers: 44115, engagement: 3400 }
+                  ]}>
+                    <CartesianGrid strokeDasharray="3 3" />
+                    <XAxis dataKey="month" />
+                    <YAxis />
+                    <Tooltip />
+                    <Line type="monotone" dataKey="followers" stroke="#2563eb" name="Followers" />
+                    <Line type="monotone" dataKey="engagement" stroke="#16a34a" name="Engagement" />
+                  </LineChart>
+                </ResponsiveContainer>
+              </div>
+
+              {/* Metrics Section Social Media*/}
+              <div className="grid grid-cols-3 gap-4 mt-8">
+                <div className="bg-blue-50 dark:bg-blue-900/20 p-4 rounded-lg text-center">
+                  <p className="text-2xl font-bold text-blue-600 dark:text-blue-400">44k+</p>
+                  <p className="text-sm text-muted-foreground">Followers</p>
+                </div>
+                <div className="bg-green-50 dark:bg-green-900/20 p-4 rounded-lg text-center">
+                  <p className="text-2xl font-bold text-green-600 dark:text-green-400">8.2%</p>
+                  <p className="text-sm text-muted-foreground">Engagement</p>
+                </div>
+                <div className="bg-purple-50 dark:bg-purple-900/20 p-4 rounded-lg text-center">
+                  <p className="text-2xl font-bold text-purple-600 dark:text-purple-400">550%</p>
+                  <p className="text-sm text-muted-foreground">Growth</p>
+                </div>
+              </div>
+            </Card>
+          </AccordionContent>
+        </AccordionItem>
+          )}
+
+          {/* Pianificazione Contenuti Section */}
           {project.detailedSections?.strategies?.contentPlanning && (
             <AccordionItem value="content-planning" className="border rounded-lg hover:bg-accent/50 transition-colors">
               <AccordionTrigger className="px-4">
@@ -294,7 +329,10 @@ export const ProjectContent: FC<ProjectContentProps> = ({ project, language }) =
                 <Card className="p-6 mt-4">
                   <ul className="space-y-2 text-muted-foreground">
                     {project.detailedSections.strategies.contentPlanning[language].map((item, index) => (
-                      <li key={index}>• {item}</li>
+                      <li key={index} className="flex items-center gap-2">
+                        <div className="w-1.5 h-1.5 rounded-full bg-blue-500"></div> {/* Bullet personalizzato */}
+                        <span>{item}</span>
+                      </li>
                     ))}
                   </ul>
                 </Card>
@@ -302,21 +340,153 @@ export const ProjectContent: FC<ProjectContentProps> = ({ project, language }) =
             </AccordionItem>
           )}
 
-          {/* Crowdfunding Section */}
-          <AccordionItem value="crowdfunding" className="border rounded-lg hover:bg-accent/50 transition-colors">
-            <AccordionTrigger className="px-4">
-              <div className="flex items-center gap-3">
-                <Trophy className="w-5 h-5 text-primary" />
-                <h2 className="text-xl font-semibold">{t.projectDetails.crowdfunding[language]}</h2>
-              </div>
-            </AccordionTrigger>
-            <AccordionContent className="px-4">
-              <Card className="p-6 mt-4">
-                <ul className="space-y-2 text-muted-foreground">
-                  {t.projectDetails.crowdfunding.results[language].map((result, index) => (
-                    <li key={index}>• {result}</li>
-                  ))}
-                </ul>
+          {/* Email Marketing Section */}
+          {project.detailedSections?.strategies?.email && (
+            <AccordionItem value="email" className="border rounded-lg hover:bg-accent/50 transition-colors">
+              <AccordionTrigger className="px-4">
+                <div className="flex items-center gap-3">
+                  <Mail className="w-5 h-5 text-primary" />
+                  <h2 className="text-xl font-semibold">
+                    {language === 'en' ? 'Email Marketing' : 'Email Marketing'}
+                  </h2>
+                </div>
+              </AccordionTrigger>
+              <AccordionContent className="px-4">
+                <Card className="p-6 mt-4">
+                  <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
+                    {/* Left Column - Bullet Points */}
+                    <div className="space-y-4">
+                      <h3 className="font-semibold text-lg">Attività Email Marketing</h3>
+                      <ul className="space-y-2">
+                        {[
+                          'Newsletter settimanale con contenuti esclusivi',
+                          'Campagne DEM per eventi speciali',
+                          'Segmentazione del database utenti',
+                          'Automazione del funnel di conversione'
+                        ].map((item, index) => (
+                          <li key={index} className="flex items-start gap-2">
+                            <div className="w-1.5 h-1.5 rounded-full bg-blue-500 mt-2" />
+                            <span className="text-muted-foreground">{item}</span>
+                          </li>
+                        ))}
+                      </ul>
+                    </div>
+
+                    {/* Right Column - Metrics */}
+                    <div className="grid grid-cols-2 gap-4">
+                      <div className="bg-accent/50 p-4 rounded-lg">
+                        <p className="text-sm text-muted-foreground">Iscritti Newsletter</p>
+                        <p className="text-2xl font-bold text-blue-500">44.514</p>
+                        <span className="text-green-600 text-base ">+54%</span>
+                      </div>
+                      <div className="bg-accent/50 p-4 rounded-lg">
+                        <p className="text-sm text-muted-foreground">Tasso di Apertura</p>
+                        <p className="text-2xl font-bold text-blue-500">32%</p>
+                        <span className="text-muted-foreground text-sm">medio</span>
+                      </div>
+                      <div className="bg-accent/50 p-4 rounded-lg">
+                        <p className="text-sm text-muted-foreground">Tasso di Click</p>
+                        <p className="text-2xl font-bold text-blue-500">12%</p>
+                        <span className="text-muted-foreground text-sm">medio</span>
+                      </div>
+                      <div className="bg-accent/50 p-4 rounded-lg">
+                        <p className="text-sm text-muted-foreground">Performance YoY</p>
+                        <p className="text-2xl font-bold text-blue-500">+28%</p>
+                        <span className="text-muted-foreground text-sm">crescita</span>
+                      </div>
+                    </div>
+                  </div>
+                </Card>
+              </AccordionContent>
+            </AccordionItem>
+          )}
+
+
+         
+
+                              {/* Crowdfunding Section */}
+                              <AccordionItem value="crowdfunding" className="border rounded-lg hover:bg-accent/50 transition-colors">
+                                <AccordionTrigger className="px-4">
+                                  <div className="flex items-center gap-3">
+                                    <Trophy className="w-5 h-5 text-primary" />
+                                    <h2 className="text-xl font-semibold">{t.projectDetails.crowdfunding[language]}</h2>
+                                  </div>
+                                </AccordionTrigger>
+                                <AccordionContent className="px-4">
+                                  <Card className="p-6 mt-4">
+                                    <div className="space-y-6">
+                                      <div className="mb-6">
+                                        <h3 className="text-xl font-semibold">FIUMEDENTRO: Una campagna di crowdfunding per rigenerare lo spazio pubblico dei Murazzi</h3>
+                                        <p className="text-muted-foreground mt-2 leading-relaxed">Ho coordinato e gestito la campagna di crowdfunding FIUMEDENTRO, un'iniziativa promossa da Magazzino sul Po e Terzo Paesaggio, volta a raccogliere fondi per trasformare gli spazi abbandonati dei Murazzi del Po in un luogo pubblico inclusivo e multispecie. Il progetto ha integrato rigenerazione urbana, sostenibilità e cultura partecipativa.</p>
+                                      </div>
+
+                                      <div className="grid grid-cols-1 md:grid-cols-2 gap-6 mb-8">
+                                        <div className="bg-gradient-to-br from-accent/50 to-accent/30 p-8 rounded-lg shadow-md">
+                                          <div className="mb-4">
+                                            <div className="flex justify-between items-center mb-2">
+                                              <span className="text-lg font-medium">Fondi Raccolti</span>
+                                              <motion.span className="text-4xl font-bold text-green-600">
+                                                {formattedAmount.get()}
+                                              </motion.span>
+                                            </div>
+                                            <div className="w-full h-4 bg-muted rounded-full overflow-hidden">
+                                              <motion.div 
+                                                initial={{ width: 0 }}
+                                                animate={{ width: '100%' }}
+                                                transition={{ duration: 1.5, ease: "easeOut" }}
+                                                className="h-full bg-gradient-to-r from-green-500 to-green-400 rounded-full"
+                                              />
+                                            </div>
+                                          </div>
+                                          <div className="flex justify-between items-center bg-background/50 p-4 rounded-lg">
+                                            <div>
+                                              <motion.p className="text-4xl font-bold text-blue-500">
+                                                {formattedSupporters.get()}
+                                                <span className="text-2xl">+</span>
+                                              </motion.p>
+                                              <p className="text-sm text-muted-foreground mt-1">Sostenitori Individuali</p>
+                                            </div>
+                                          </div>
+                                        </div>
+
+                    <div className="bg-accent/50 p-6 rounded-lg">
+                      <h4 className="text-lg font-medium mb-4">Strategia Campagna</h4>
+                      <div className="space-y-3">
+                        {[
+                          'Strategia promozionale multicanale',
+                          'Campagna di coinvolgimento community',
+                          'Campagna di sensibilizzazione social'
+                        ].map((item, index) => (
+                          <div key={index} className="flex items-center gap-3">
+                            <div className="w-2 h-2 rounded-full bg-blue-500"></div>
+                            <span className="text-muted-foreground">{item}</span>
+                          </div>
+                        ))}
+                      </div>
+                    </div>
+                  </div>
+
+                  <div className="bg-accent/50 p-6 rounded-lg">
+                    <h4 className="font-medium mb-6 text-center">Timeline Campagna</h4>
+                    <div className="relative py-8">
+                      <div className="absolute top-1/2 left-0 w-full h-0.5 bg-muted"></div>
+                      <div className="grid grid-cols-3 gap-4 relative">
+                        {[
+                          { stage: 'Lancio', icon: '🚀' },
+                          { stage: 'Sviluppo', icon: '📈' },
+                          { stage: 'Chiusura', icon: '🎯' }
+                        ].map((step) => (
+                          <div key={step.stage} className="flex flex-col items-center">
+                              <div className="w-12 h-12 bg-background rounded-full border-2 border-blue-500 flex items-center justify-center mb-2 relative z-10 hover:scale-110 transition-transform">
+                              <span className="text-xl">{step.icon}</span>
+                            </div>
+                            <p className="text-sm font-medium text-muted-foreground">{step.stage}</p>
+                          </div>
+                        ))}
+                      </div>
+                    </div>
+                  </div>
+                </div>
               </Card>
             </AccordionContent>
           </AccordionItem>
