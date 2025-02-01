@@ -19,5 +19,11 @@
     @apply font-sans antialiased bg-background text-foreground;
   }
 
+  /* Pattern Tratteggiato Accordion Crowdfunding Timeline Project Magazzino */
+  .bg-dotted-pattern {
+    background-image: linear-gradient(to right, var(--muted) 50%, transparent 50%);
+    background-size: 8px 1px;
+    background-repeat: repeat-x;
+  }
   
 }

@@ -1,9 +1,9 @@
-import { FC, useEffect } from "react";
-import { motion, useMotionValue, useTransform, animate } from "framer-motion";
+import { FC, useEffect, useState } from "react";
+import { motion, animate } from "framer-motion";
 import { Language } from "@/types";
 import { Project } from "@/types/projects";
 import { Card } from "@/components/ui/card";
-import { Trophy } from "lucide-react";
+import { Trophy, Lightbulb, Code2, MessageSquare, CheckCircle } from "lucide-react";
 import { AccordionContent, AccordionItem, AccordionTrigger } from "@/components/ui/accordion";
 import { projectDetailsTranslations as t } from "@/data/translations/projectDetails";
 
@@ -13,28 +13,140 @@ interface AccordionCrowdfundingProps {
 }
 
 export const AccordionCrowdfunding: FC<AccordionCrowdfundingProps> = ({ project, language }) => {
-  const supportersCount = useMotionValue(0);
-  const fundAmount = useMotionValue(0);
-  const formattedSupporters = useTransform(supportersCount, value => 
-    Math.floor(value).toString()
-  );
-  const formattedAmount = useTransform(fundAmount, value => 
-    `€${Math.floor(value).toLocaleString()}`
-  );
+  const [supportersCount, setSupportersCount] = useState(0);
+  const [fundAmount, setFundAmount] = useState(0);
+
+  const animateSupporters = () => {
+    animate(0, 300, {
+      duration: 2,
+      ease: "circOut",
+      onUpdate: (latest) => setSupportersCount(Math.round(latest))
+    });
+  };
+
+  const animateFunds = () => {
+    animate(0, 5597, {
+      duration: 2.5,
+      ease: "circOut",
+      onUpdate: (latest) => setFundAmount(Math.round(latest))
+    });
+  };
 
   useEffect(() => {
-    const supportersAnimation = animate(supportersCount, 300, {
-      duration: 2,
-      onComplete: () => {
-        animate(fundAmount, 5597, {
-          duration: 2.5,
-          ease: "easeOut"
-        });
-      }
-    });
+    const timer = setTimeout(() => {
+      animateSupporters();
+      setTimeout(animateFunds, 200);
+    }, 300);
 
-    return () => supportersAnimation.stop();
+    return () => clearTimeout(timer);
   }, []);
+
+  const Timeline = () => {
+    const [selected, setSelected] = useState(0);
+
+    const timelineSteps = [
+      {
+        stage: 'Ideazione',
+        icon: Lightbulb,
+        description: 'Definizione del concept, analisi del territorio e pianificazione strategica del progetto'
+      },
+      {
+        stage: 'Implementazione',
+        icon: Code2,
+        description: 'Sviluppo della piattaforma, creazione dei contenuti e preparazione degli strumenti di campagna'
+      },
+      {
+        stage: 'Comunicazione',
+        icon: MessageSquare,
+        description: 'Attivazione dei canali social, PR e coinvolgimento della community locale'
+      },
+      {
+        stage: 'Chiusura',
+        icon: CheckCircle,
+        description: 'Raggiungimento degli obiettivi, rendicontazione e celebrazione dei risultati'
+      }
+    ];
+
+    return (
+      <div className="w-full space-y-6">
+        <div className="relative py-8">
+          {/* Base line */}
+          <div className="absolute top-1/2 left-0 w-full h-0.5 bg-muted"></div>
+
+          {/* Progress line */}
+          <motion.div 
+            className="absolute top-1/2 left-0 h-0.5 bg-primary"
+            initial={{ width: '0%' }}
+            animate={{ width: `${(selected / (timelineSteps.length - 1)) * 100}%` }}
+            transition={{ duration: 0.5, ease: "easeInOut" }}
+          />
+
+          {/* Dotted line for future steps */}
+          <div className="absolute top-1/2 left-0 w-full h-0.5 bg-dotted-pattern"></div>
+
+          <div className="grid grid-cols-4 gap-4 relative">
+            {timelineSteps.map((step, index) => {
+              const isSelected = selected === index;
+              const isPast = index < selected;
+
+              return (
+                <div 
+                  key={step.stage} 
+                  className="flex flex-col items-center cursor-pointer" 
+                  onClick={() => setSelected(index)}
+                >
+                  <motion.div 
+                    className={`w-14 h-14 rounded-full border-2 flex items-center justify-center mb-2 relative z-10
+                      ${isSelected ? 'bg-primary border-primary shadow-lg' : 
+                        isPast ? 'bg-background border-primary' : 'bg-background border-muted'}`}
+                    whileHover={{ scale: 1.1 }}
+                    whileTap={{ scale: 0.95 }}
+                    animate={{
+                      y: isSelected ? -4 : 0
+                    }}
+                    transition={{
+                      type: "spring",
+                      stiffness: 300,
+                      damping: 20
+                    }}
+                  >
+                    <step.icon 
+                      className={`w-6 h-6 ${
+                        isSelected ? 'text-background' : 
+                        isPast ? 'text-primary' : 'text-muted-foreground'
+                      }`}
+                    />
+                  </motion.div>
+                  <p className={`text-sm font-medium ${
+                    isSelected ? 'text-primary scale-105 font-semibold' :
+                    isPast ? 'text-primary' : 'text-muted-foreground'
+                  }`}>
+                    {step.stage}
+                  </p>
+                </div>
+              );
+            })}
+          </div>
+        </div>
+
+        <motion.div 
+          className="bg-background/80 p-4 rounded-lg shadow-sm"
+          initial={{ opacity: 0, y: 20 }}
+          animate={{ opacity: 1, y: 0 }}
+          transition={{
+            type: "spring",
+            stiffness: 200,
+            damping: 20
+          }}
+          key={selected}
+        >
+          <p className="text-sm text-muted-foreground leading-relaxed">
+            {timelineSteps[selected].description}
+          </p>
+        </motion.div>
+      </div>
+    );
+  };
 
   return (
     <AccordionItem value="crowdfunding" className="border rounded-lg hover:bg-accent/50 transition-colors">
@@ -48,9 +160,14 @@ export const AccordionCrowdfunding: FC<AccordionCrowdfundingProps> = ({ project,
         <Card className="p-6 mt-4">
           <div className="space-y-6">
             <div className="mb-6">
-              <h3 className="text-xl font-semibold">FIUMEDENTRO: Una campagna di crowdfunding per rigenerare lo spazio pubblico dei Murazzi</h3>
+              <h3 className="text-xl font-semibold">
+                FIUMEDENTRO: Una campagna di crowdfunding per rigenerare lo spazio pubblico dei Murazzi
+              </h3>
               <p className="text-muted-foreground mt-2 leading-relaxed">
-                Ho coordinato e gestito la campagna di crowdfunding FIUMEDENTRO, un'iniziativa promossa da Magazzino sul Po e Terzo Paesaggio, volta a raccogliere fondi per trasformare gli spazi abbandonati dei Murazzi del Po in un luogo pubblico inclusivo e multispecie. Il progetto ha integrato rigenerazione urbana, sostenibilità e cultura partecipativa.
+                Ho coordinato e gestito la campagna di crowdfunding FIUMEDENTRO, un'iniziativa promossa 
+                da Magazzino sul Po e Terzo Paesaggio, volta a raccogliere fondi per trasformare gli 
+                spazi abbandonati dei Murazzi del Po in un luogo pubblico inclusivo e multispecie. 
+                Il progetto ha integrato rigenerazione urbana, sostenibilità e cultura partecipativa.
               </p>
             </div>
 
@@ -59,8 +176,13 @@ export const AccordionCrowdfunding: FC<AccordionCrowdfundingProps> = ({ project,
                 <div className="mb-4">
                   <div className="flex justify-between items-center mb-2">
                     <span className="text-lg font-medium">Fondi Raccolti</span>
-                    <motion.span className="text-4xl font-bold text-green-600">
-                      {formattedAmount.get()}
+                    <motion.span 
+                      className="text-4xl font-bold text-green-600"
+                      initial={{ opacity: 0 }}
+                      animate={{ opacity: 1 }}
+                      transition={{ duration: 0.5 }}
+                    >
+                      €{fundAmount.toLocaleString()}
                     </motion.span>
                   </div>
                   <div className="w-full h-4 bg-muted rounded-full overflow-hidden">
@@ -74,8 +196,13 @@ export const AccordionCrowdfunding: FC<AccordionCrowdfundingProps> = ({ project,
                 </div>
                 <div className="flex justify-between items-center bg-background/50 p-4 rounded-lg">
                   <div>
-                    <motion.p className="text-4xl font-bold text-blue-500">
-                      {formattedSupporters.get()}
+                    <motion.p 
+                      className="text-4xl font-bold text-blue-500"
+                      initial={{ opacity: 0 }}
+                      animate={{ opacity: 1 }}
+                      transition={{ duration: 0.5 }}
+                    >
+                      {supportersCount}
                       <span className="text-2xl">+</span>
                     </motion.p>
                     <p className="text-sm text-muted-foreground mt-1">Sostenitori Individuali</p>
@@ -102,23 +229,7 @@ export const AccordionCrowdfunding: FC<AccordionCrowdfundingProps> = ({ project,
 
             <div className="bg-accent/50 p-6 rounded-lg">
               <h4 className="font-medium mb-6 text-center">Timeline Campagna</h4>
-              <div className="relative py-8">
-                <div className="absolute top-1/2 left-0 w-full h-0.5 bg-muted"></div>
-                <div className="grid grid-cols-3 gap-4 relative">
-                  {[
-                    { stage: 'Lancio', icon: '🚀' },
-                    { stage: 'Sviluppo', icon: '📈' },
-                    { stage: 'Chiusura', icon: '🎯' }
-                  ].map((step) => (
-                    <div key={step.stage} className="flex flex-col items-center">
-                      <div className="w-12 h-12 bg-background rounded-full border-2 border-blue-500 flex items-center justify-center mb-2 relative z-10 hover:scale-110 transition-transform">
-                        <span className="text-xl">{step.icon}</span>
-                      </div>
-                      <p className="text-sm font-medium text-muted-foreground">{step.stage}</p>
-                    </div>
-                  ))}
-                </div>
-              </div>
+              <Timeline />
             </div>
           </div>
         </Card>
