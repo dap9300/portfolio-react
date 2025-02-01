@@ -50,7 +50,7 @@ export const AccordionSocialMedia: FC<AccordionSocialMediaProps> = ({ project, l
          <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
            {/* Left Column - Text Content */}
            <div className="space-y-4">
-             <h3 className="font-semibold text-lg">Gestione Contenuti</h3>
+             <h3 className="font-semibold text-lg">Attività</h3>
              <ul className="space-y-2 text-muted-foreground">
                {project.detailedSections.socialMedia.metrics.map((item, index) => (
                  <li key={index} className="flex items-start gap-2">
@@ -69,7 +69,7 @@ export const AccordionSocialMedia: FC<AccordionSocialMediaProps> = ({ project, l
                <div className="bg-blue-50 dark:bg-blue-900/20 p-4 rounded-lg">
                  <div className="flex justify-between items-center">
                    <span className="font-medium">Facebook</span>
-                   <span className="text-green-600 dark:text-green-400">+3,1% YoY</span>
+                   <span className="text-green-600 dark:text-green-400">+5,1% YoY</span>
                  </div>
                  <p className="text-2xl font-bold text-blue-600 dark:text-blue-400 mt-1">31.203</p>
                  <p className="text-sm text-muted-foreground">follower</p>
@@ -79,9 +79,9 @@ export const AccordionSocialMedia: FC<AccordionSocialMediaProps> = ({ project, l
                <div className="bg-purple-50 dark:bg-purple-900/20 p-4 rounded-lg">
                  <div className="flex justify-between items-center">
                    <span className="font-medium">Instagram</span>
-                   <span className="text-green-600 dark:text-green-400">+44,2% YoY</span>
+                   <span className="text-green-600 dark:text-green-400">+41% YoY</span>
                  </div>
-                 <p className="text-2xl font-bold text-purple-600 dark:text-purple-400 mt-1">12.911</p>
+                 <p className="text-2xl font-bold text-purple-600 dark:text-purple-400 mt-1">13.133</p>
                  <p className="text-sm text-muted-foreground">follower</p>
                </div>
              </div>

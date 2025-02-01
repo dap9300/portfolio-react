@@ -44,22 +44,22 @@ export const AccordionEmailMarketing: FC<AccordionEmailMarketingProps> = ({ proj
               <div className="bg-accent/50 p-4 rounded-lg">
                 <p className="text-sm text-muted-foreground">Iscritti Newsletter</p>
                 <p className="text-2xl font-bold text-blue-500">44.514</p>
-                <span className="text-green-600 text-base">+54%</span>
+                <span className="text-green-600 text-base">+28% YoY</span>
               </div>
               <div className="bg-accent/50 p-4 rounded-lg">
                 <p className="text-sm text-muted-foreground">Tasso di Apertura</p>
-                <p className="text-2xl font-bold text-blue-500">32%</p>
+                <p className="text-2xl font-bold text-blue-500">14,7%</p>
                 <span className="text-muted-foreground text-sm">medio</span>
               </div>
               <div className="bg-accent/50 p-4 rounded-lg">
                 <p className="text-sm text-muted-foreground">Tasso di Click</p>
-                <p className="text-2xl font-bold text-blue-500">12%</p>
+                <p className="text-2xl font-bold text-blue-500">4.5%</p>
                 <span className="text-muted-foreground text-sm">medio</span>
               </div>
               <div className="bg-accent/50 p-4 rounded-lg">
-                <p className="text-sm text-muted-foreground">Performance YoY</p>
-                <p className="text-2xl font-bold text-blue-500">+28%</p>
-                <span className="text-muted-foreground text-sm">crescita</span>
+                <p className="text-sm text-muted-foreground">Tasso di Cancellazione</p>
+                <p className="text-2xl font-bold text-blue-500">0,7%</p>
+                <span className="text-muted-foreground text-sm">basso</span>
               </div>
             </div>
           </div>
