@@ -92,6 +92,10 @@ export const projectDetailsTranslations = {
     objectives: {
       en: 'Objectives',
       it: 'Obiettivi'
+    },
+    crowdfunding: {
+      en: 'Crowdfunding Campaign',
+      it: 'Campagna di Crowdfunding'
     }
   }
 };
