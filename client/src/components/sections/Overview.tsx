@@ -1,4 +1,3 @@
-
 import { motion } from "framer-motion";
 import { translations } from "@/components/sections/project-details/magazzino/content.it";
 import { Language } from "@/types";
