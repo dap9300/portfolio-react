@@ -11,7 +11,7 @@ interface AccordionEmailMarketingProps {
 }
 
 export const AccordionEmailMarketing: FC<AccordionEmailMarketingProps> = ({ project, language }) => {
-  if (!project.detailedSections?.strategies?.email) return null;
+  if (!project.detailedSections?.emailMarketing) return null;
 
   return (
     <AccordionItem value="email" className="border rounded-lg hover:bg-accent/50 transition-colors">
@@ -19,7 +19,7 @@ export const AccordionEmailMarketing: FC<AccordionEmailMarketingProps> = ({ proj
         <div className="flex items-center gap-3">
           <Mail className="w-5 h-5 text-primary" />
           <h2 className="text-xl font-semibold">
-            {language === 'en' ? 'Email Marketing' : 'Email Marketing'}
+            {project.detailedSections.emailMarketing.title[language]}
           </h2>
         </div>
       </AccordionTrigger>
@@ -30,12 +30,7 @@ export const AccordionEmailMarketing: FC<AccordionEmailMarketingProps> = ({ proj
             <div className="space-y-4">
               <h3 className="font-semibold text-lg">Attività Email Marketing</h3>
               <ul className="space-y-2">
-                {[
-                  'Newsletter settimanale con contenuti esclusivi',
-                  'Campagne DEM per eventi speciali',
-                  'Segmentazione del database utenti',
-                  'Automazione del funnel di conversione'
-                ].map((item, index) => (
+                {project.detailedSections.emailMarketing.metrics.map((item, index) => (
                   <li key={index} className="flex items-start gap-2">
                     <div className="w-1.5 h-1.5 rounded-full bg-blue-500 mt-2" />
                     <span className="text-muted-foreground">{item}</span>

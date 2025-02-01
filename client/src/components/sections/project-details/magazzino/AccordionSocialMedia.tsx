@@ -21,7 +21,7 @@ interface AccordionSocialMediaProps {
 }
 
 export const AccordionSocialMedia: FC<AccordionSocialMediaProps> = ({ project, language }) => {
-  if (!project.detailedSections?.strategies?.social) return null;
+  if (!project.detailedSections?.socialMedia) return null;
 
   return (
     <AccordionItem value="social" className="border rounded-lg hover:bg-accent/50 transition-colors">
@@ -29,7 +29,7 @@ export const AccordionSocialMedia: FC<AccordionSocialMediaProps> = ({ project, l
         <div className="flex items-center gap-3">
           <FileEdit className="w-5 h-5 text-primary" />
           <h2 className="text-xl font-semibold">
-            {language === 'en' ? 'Social Media' : 'Social Media'}
+            {project.detailedSections.socialMedia.title[language]}
           </h2>
         </div>
       </AccordionTrigger>
@@ -40,7 +40,7 @@ export const AccordionSocialMedia: FC<AccordionSocialMediaProps> = ({ project, l
             <div className="space-y-4">
               <h3 className="font-semibold text-lg">Gestione Contenuti</h3>
               <ul className="space-y-2 text-muted-foreground">
-                {project.detailedSections.strategies.social[language].map((item, index) => (
+                {project.detailedSections.socialMedia.metrics.map((item, index) => (
                   <li key={index} className="flex items-start gap-2">
                     <div className="w-1.5 h-1.5 rounded-full bg-blue-500 mt-2" />
                     {item}
