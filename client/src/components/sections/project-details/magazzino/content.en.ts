@@ -89,8 +89,8 @@ export const projectContent: Project = {
         it: 'Panoramica del Progetto'
       },
       content: {
-        en: 'I led the digital transformation and implemented communication strategies for one of Turin\'s major cultural venues, focusing on social media growth and engagement.',
-        it: 'Ho guidato la trasformazione digitale e implementato strategie di comunicazione per uno dei principali luoghi culturali di Torino, concentrandomi sulla crescita e coinvolgimento sui social media.'
+        en: "I led the digital transformation and implemented communication strategies for one of Turin's major cultural venues, focusing on social media growth and engagement.",
+        it: "Ho guidato la trasformazione digitale e implementato strategie di comunicazione per uno dei principali luoghi culturali di Torino, concentrandomi sulla crescita e coinvolgimento sui social media."
       },
       metrics: [
         'Facebook: Developed monthly editorial calendar',
@@ -112,6 +112,54 @@ export const projectContent: Project = {
         'CPM - 1.57€',
         'Average CTR - 0.74%',
         'Campaign ROI - 2.46%'
+      ]
+    },
+    socialMedia: {
+      title: {
+        en: 'Social Media Strategy',
+        it: 'Strategia Social Media'
+      },
+      content: {
+        en: 'Implementation of an integrated social media strategy focused on community growth and engagement.',
+        it: 'Implementazione di una strategia social media integrata focalizzata sulla crescita della community e sull\'engagement.'
+      },
+      metrics: [
+        'Instagram: +44.2% follower growth YoY',
+        'Facebook: +3.1% follower growth YoY',
+        'Average engagement rate: 4.8%',
+        'Organic reach: +97.6% YoY'
+      ]
+    },
+    emailMarketing: {
+      title: {
+        en: 'Email Marketing',
+        it: 'Email Marketing'
+      },
+      content: {
+        en: 'Development and management of email marketing campaigns to promote events and engage with the community.',
+        it: 'Sviluppo e gestione delle campagne di email marketing per promuovere gli eventi e mantenere il contatto con la community.'
+      },
+      metrics: [
+        'Weekly newsletter to over 40,000 subscribers',
+        'Average CTR (5%) Open Rate (10%)',
+        'Arci circuit push notifications',
+        'User segmentation and interest-based lists'
+      ]
+    },
+    contentPlanning: {
+      title: {
+        en: 'Content Planning',
+        it: 'Pianificazione Contenuti'
+      },
+      content: {
+        en: 'Strategic content planning and creation to maintain consistent brand communication.',
+        it: 'Pianificazione strategica e creazione di contenuti per mantenere una comunicazione del brand coerente.'
+      },
+      metrics: [
+        'Monthly editorial plan',
+        'Platform-optimized content',
+        'Content performance analysis',
+        'A/B testing formats and copy'
       ]
     }
   },
