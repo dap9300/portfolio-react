@@ -65,7 +65,16 @@ export const projectContent: Project = {
       description: {
         en: 'Technologies and platforms used in this project',
         it: 'Tecnologie e piattaforme utilizzate in questo progetto'
-      }
+      },
+      items: [
+        'Meta Business Suite',
+        'Instagram',
+        'Facebook',
+        'WordPress',
+        'Google Analytics',
+        'MailUp',
+        'Adobe Creative Suite'
+      ]
     },
     overview: {
       title: {
