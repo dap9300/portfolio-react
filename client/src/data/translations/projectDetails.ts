@@ -37,8 +37,8 @@ export const projectDetailsTranslations = {
       it: 'Progetti Speciali'
     },
     contentPlanning: {
-      en: 'Content Creation',
-      it: 'Content Creation'
+      en: 'Content Planning',
+      it: 'Pianificazione Contenuti'
     },
     crowdfunding: {
       en: 'Crowdfunding Campaign',
