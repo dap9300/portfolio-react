@@ -1,5 +1,4 @@
 import { FC } from "react";
-import { motion } from "framer-motion";
 import { Language } from "@/types";
 import { Project } from "@/types/projects";
 import { Card } from "@/components/ui/card";
@@ -12,7 +11,7 @@ interface AccordionObiettiviProps {
   language: Language;
 }
 
-export const AccordionObiettivi: FC<AccordionObiettiviProps> = ({ project, language }) => {
+const AccordionObiettivi: FC<AccordionObiettiviProps> = ({ project, language }) => {
   return (
     <AccordionItem value="objectives" className="border rounded-lg hover:bg-accent/50 transition-colors">
       <AccordionTrigger className="px-4">
@@ -70,3 +69,5 @@ export const AccordionObiettivi: FC<AccordionObiettiviProps> = ({ project, langu
     </AccordionItem>
   );
 };
+
+export default AccordionObiettivi;

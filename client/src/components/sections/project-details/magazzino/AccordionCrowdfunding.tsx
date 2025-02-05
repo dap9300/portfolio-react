@@ -114,7 +114,7 @@ const Timeline: FC = () => {
   );
 };
 
-export const AccordionCrowdfunding: FC<AccordionCrowdfundingProps> = ({ project, language }) => {
+const AccordionCrowdfunding: FC<AccordionCrowdfundingProps> = ({ project, language }) => {
   const [supportersCount, setSupportersCount] = useState(0);
   const [fundAmount, setFundAmount] = useState(0);
   const [hasAnimated, setHasAnimated] = useState(false);
@@ -251,3 +251,5 @@ export const AccordionCrowdfunding: FC<AccordionCrowdfundingProps> = ({ project,
     </AccordionItem>
   );
 };
+
+export default AccordionCrowdfunding;

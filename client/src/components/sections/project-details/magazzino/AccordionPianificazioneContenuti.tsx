@@ -4,14 +4,14 @@ import { Project } from "@/types/projects";
 import { Card } from "@/components/ui/card";
 import { FileEdit } from "lucide-react";
 import { AccordionContent, AccordionItem, AccordionTrigger } from "@/components/ui/accordion";
-import { projectDetailsTranslations as t } from "./content.it"; // Updated import path
+import { projectDetailsTranslations as t } from "./content.it";
 
 interface AccordionPianificazioneContenutiProps {
   project: Project;
   language: Language;
 }
 
-export const AccordionPianificazioneContenuti: FC<AccordionPianificazioneContenutiProps> = ({ project, language }) => {
+const AccordionPianificazioneContenuti: FC<AccordionPianificazioneContenutiProps> = ({ project, language }) => {
   if (!project.detailedSections?.contentPlanning) return null;
 
   return (
@@ -19,7 +19,9 @@ export const AccordionPianificazioneContenuti: FC<AccordionPianificazioneContenu
       <AccordionTrigger className="px-4">
         <div className="flex items-center gap-3">
           <FileEdit className="w-5 h-5 text-primary" />
-          <h2 className="text-xl font-semibold">{project.detailedSections.contentPlanning.title[language]}</h2>
+          <h2 className="text-xl font-semibold">
+            {project.detailedSections.contentPlanning.title[language]}
+          </h2>
         </div>
       </AccordionTrigger>
       <AccordionContent className="px-4">
@@ -37,3 +39,5 @@ export const AccordionPianificazioneContenuti: FC<AccordionPianificazioneContenu
     </AccordionItem>
   );
 };
+
+export default AccordionPianificazioneContenuti;
