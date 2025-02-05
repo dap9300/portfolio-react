@@ -1,4 +1,5 @@
 import { LocalizedContent } from './index';
+import type { LucideIcon } from 'lucide-react';
 
 export interface ProjectTechnology {
   social?: string[];
@@ -7,7 +8,7 @@ export interface ProjectTechnology {
 }
 
 export interface ProjectMetric {
-  icon: string;
+  icon: LucideIcon;
   value: string;
   label: LocalizedContent<string>;
 }

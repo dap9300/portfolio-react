@@ -1,6 +1,7 @@
-// content.it.ts di hrx (project 2)
-import { Language } from '@/types';
-
+import { Language } from "@/types";
+import { Users, Calendar, ShoppingCart } from "lucide-react";
+import type { LucideIcon } from "lucide-react";
+import { Project } from "@/types/projects";
 
 export const projectDetailsTranslations = {
   back: {
@@ -71,7 +72,7 @@ export const projectContent: Project = {
   },
   metrics: [
     {
-      icon: 'rjzlcjqi',
+      icon: Users,
       value: '4,2x',
       label: {
         en: 'Average ROAS on Google Ads campaigns',
@@ -79,7 +80,7 @@ export const projectContent: Project = {
       }
     },
     {
-      icon: 'esvewwqs',
+      icon: ShoppingCart,
       value: '+18%',
       label: {
         en: 'CRO on E-commerce',
@@ -87,7 +88,7 @@ export const projectContent: Project = {
       }
     },
     {
-      icon: 'mzjnwzka',
+      icon: Calendar,
       value: '+120%',
       label: {
         en: 'Campaigns ROI',

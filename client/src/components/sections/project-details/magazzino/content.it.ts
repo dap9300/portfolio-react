@@ -1,5 +1,8 @@
-// content.it.ts di magazzino (project 1)
 import { Language } from '@/types';
+import { Users, TrendingUp, Calendar } from 'lucide-react';
+import type { LucideIcon } from 'lucide-react';
+import { Project } from '@/types/projects';
+
 {/* Da refactorizare parte iniziale */}
 export const translations = { 
   en: {
@@ -100,7 +103,7 @@ export const projectDetailsTranslations = {
     }
   }
 };
-import { Project } from '@/types';
+import { Project } from '@/types/projects';
 
 export const projectContent: Project = {
   id: 1,
@@ -134,7 +137,7 @@ export const projectContent: Project = {
   },
   metrics: [
     {
-      icon: 'rjzlcjqi',
+      icon: Users,
       value: '44,114',
       label: {
         en: 'Total Social Followers',
@@ -142,7 +145,7 @@ export const projectContent: Project = {
       }
     },
     {
-      icon: 'gkosxwgv',
+      icon: TrendingUp,
       value: '+550%',
       label: {
         en: 'Instagram Growth',
@@ -150,7 +153,7 @@ export const projectContent: Project = {
       }
     },
     {
-      icon: 'mzjnwzka',
+      icon: Calendar,
       value: '37,455',
       label: {
         en: 'Annual Users',

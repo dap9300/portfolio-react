@@ -30,7 +30,7 @@
   },
   "metrics": [
     {
-      "icon": "rjzlcjqi",
+      "iconName": "Users",
       "value": "44,114",
       "label": {
         "en": "Total Social Followers",
@@ -38,7 +38,7 @@
       }
     },
     {
-      "icon": "gkosxwgv",
+      "iconName": "TrendingUp",
       "value": "+143%",
       "label": {
         "en": "Instagram Growth",
@@ -46,7 +46,7 @@
       }
     },
     {
-      "icon": "mzjnwzka",
+      "iconName": "Calendar",
       "value": "37,455",
       "label": {
         "en": "Annual Users",
