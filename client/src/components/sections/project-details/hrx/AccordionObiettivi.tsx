@@ -1,5 +1,3 @@
-// AccordionObiettivi.tsx di hrx (project 2)
-
 import { FC } from "react";
 import { motion } from "framer-motion";
 import { Language } from "@/types";
@@ -7,14 +5,14 @@ import { Project } from "@/types/projects";
 import { Card } from "@/components/ui/card";
 import { Target, Check } from "lucide-react";
 import { AccordionContent, AccordionItem, AccordionTrigger } from "@/components/ui/accordion";
-import { projectDetailsTranslations as t } from "./content.it";
+import { hrxDetailsTranslations as t } from "./translations";
 
-interface AccordionObiettiviProps {
+interface HRXObjectivesAccordionProps {
   project: Project;
   language: Language;
 }
 
-export const AccordionObiettivi: FC<AccordionObiettiviProps> = ({ project, language }) => {
+export const HRXObjectivesAccordion: FC<HRXObjectivesAccordionProps> = ({ project, language }) => {
   return (
     <AccordionItem value="objectives" className="border rounded-lg hover:bg-accent/50 transition-colors">
       <AccordionTrigger className="px-4">
@@ -28,28 +26,28 @@ export const AccordionObiettivi: FC<AccordionObiettiviProps> = ({ project, langu
           <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
             {[
               {
-                title: 'Aumentare la visibilità online',
+                title: 'Incrementare Lead Generation',
                 icon: '✨',
-                achievement: 'Target raggiunto',
-                details: 'Incremento significativo della presenza sui social media e motori di ricerca'
+                achievement: 'Target raggiunto: +22%',
+                details: 'Significativo aumento nella generazione di lead qualificati'
               },
               {
-                title: 'Migliorare l\'efficacia della comunicazione degli eventi',
+                title: 'Ottimizzare ROAS',
                 icon: '📢',
-                achievement: 'Superato aspettative',
-                details: 'Aumento del 75% nella partecipazione agli eventi promossi'
+                achievement: 'Superato target: 4.2x',
+                details: 'Return on Ad Spend superiore agli obiettivi prefissati'
               },
               {
-                title: 'Incrementare il coinvolgimento della community',
+                title: 'Migliorare CTR',
                 icon: '🤝',
-                achievement: 'In continua crescita',
-                details: 'Community attiva e engagement rate superiore alla media del settore'
+                achievement: 'Raggiunto: +3.5%',
+                details: 'Click-Through Rate ottimizzato su tutte le campagne'
               },
               {
-                title: 'Ottimizzare la presenza digitale',
+                title: 'Espandere Presenza Online',
                 icon: '📱',
                 achievement: 'Completato',
-                details: 'Implementazione di una strategia digitale integrata e performante'
+                details: 'Strategia multicanale implementata con successo'
               }
             ].map((objective, index) => (
               <div key={index} className="bg-accent/50 p-6 rounded-xl hover:shadow-md transition-all duration-300">

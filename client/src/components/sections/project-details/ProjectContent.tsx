@@ -17,7 +17,7 @@ import {
 } from "@/components/ui/carousel";
 
 import {
-  AccordionObiettivi,
+  HRXObjectivesAccordion,
   AccordionSocialMedia,
   AccordionPianificazioneContenuti,
   AccordionEmailMarketing,
@@ -132,7 +132,7 @@ export const ProjectContent: FC<ProjectContentProps> = ({ project, language }) =
         transition={{ duration: 0.5 }}
       >
         <Accordion type="single" collapsible className="space-y-6">
-          <AccordionObiettivi project={project} language={language} />
+          <HRXObjectivesAccordion project={project} language={language} />
           <AccordionSocialMedia project={project} language={language} />
           <AccordionPianificazioneContenuti project={project} language={language} />
           <AccordionEmailMarketing project={project} language={language} />

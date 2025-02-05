@@ -7,7 +7,7 @@ export { ProjectContent } from '../ProjectContent';
 export { ProjectDetails } from '../../ProjectDetails';
 export * from './AccordionCrowdfunding';
 export * from './AccordionEmailMarketing';
-export * from './AccordionObiettivi';
+export { HRXObjectivesAccordion } from './AccordionObiettivi';
 export * from './AccordionPianificazioneContenuti';
 export * from './AccordionSocialMedia';
 import { projectContent as italianContent } from './content.it';
