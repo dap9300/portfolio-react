@@ -16,22 +16,24 @@ import {
   CarouselPrevious,
 } from "@/components/ui/carousel";
 
-// Import Magazzino components
+// Import Magazzino components and content
 import { 
   AccordionCrowdfunding as MagazzinoCrowdfunding,
   AccordionEmailMarketing as MagazzinoEmailMarketing,
   AccordionObiettivi as MagazzinoObiettivi,
   AccordionPianificazioneContenuti as MagazzinoPianificazioneContenuti,
-  AccordionSocialMedia as MagazzinoSocialMedia
+  AccordionSocialMedia as MagazzinoSocialMedia,
+  getProjectContent as getMagazzinoContent
 } from './magazzino';
 
-// Import HRX components
+// Import HRX components and content
 import {
-  HRXObjectivesAccordion,
-  HRXSocialMedia,
-  HRXPianificazioneContenuti,
+  HRXCrowdfunding,
   HRXEmailMarketing,
-  HRXCrowdfunding
+  HRXObjectivesAccordion,
+  HRXPianificazioneContenuti,
+  HRXSocialMedia,
+  getProjectContent as getHRXContent
 } from './hrx';
 
 interface ImageDetail {
@@ -89,24 +91,27 @@ export const ProjectContent: FC<ProjectContentProps> = ({ project, language }) =
   }, []);
 
   const renderAccordions = () => {
+    // Get the correct project content based on project ID
+    const projectContent = project.id === 2 ? getHRXContent(language) : getMagazzinoContent(language);
+
     if (project.id === 2) { // HRX Project
       return (
         <Accordion type="single" collapsible className="space-y-6">
-          <HRXObjectivesAccordion project={project} language={language} />
-          <HRXSocialMedia project={project} language={language} />
-          <HRXPianificazioneContenuti project={project} language={language} />
-          <HRXEmailMarketing project={project} language={language} />
-          <HRXCrowdfunding project={project} language={language} />
+          <HRXObjectivesAccordion project={projectContent} language={language} />
+          <HRXSocialMedia project={projectContent} language={language} />
+          <HRXPianificazioneContenuti project={projectContent} language={language} />
+          <HRXEmailMarketing project={projectContent} language={language} />
+          <HRXCrowdfunding project={projectContent} language={language} />
         </Accordion>
       );
     } else { // Magazzino Project (default)
       return (
         <Accordion type="single" collapsible className="space-y-6">
-          <MagazzinoObiettivi project={project} language={language} />
-          <MagazzinoSocialMedia project={project} language={language} />
-          <MagazzinoPianificazioneContenuti project={project} language={language} />
-          <MagazzinoEmailMarketing project={project} language={language} />
-          <MagazzinoCrowdfunding project={project} language={language} />
+          <MagazzinoObiettivi project={projectContent} language={language} />
+          <MagazzinoSocialMedia project={projectContent} language={language} />
+          <MagazzinoPianificazioneContenuti project={projectContent} language={language} />
+          <MagazzinoEmailMarketing project={projectContent} language={language} />
+          <MagazzinoCrowdfunding project={projectContent} language={language} />
         </Accordion>
       );
     }
@@ -147,7 +152,7 @@ export const ProjectContent: FC<ProjectContentProps> = ({ project, language }) =
                   >
                     <div className="absolute inset-0 bg-gradient-to-r from-primary/5 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300" />
                     <div className="px-4 py-3 flex items-center gap-2 whitespace-nowrap">
-                      <span className="text-2xl">{typeof tool === 'string' ? tool : tool.name}</span>
+                      <span className="text-2xl">{tool}</span>
                     </div>
                   </div>
                 ))}

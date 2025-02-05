@@ -1,4 +1,5 @@
 import { Project } from '@/types';
+import { Users, TrendingUp, Calendar } from 'lucide-react';
 
 export const projectContent: Project = {
   id: 1,
@@ -39,7 +40,7 @@ export const projectContent: Project = {
   },
   metrics: [
     {
-      icon: 'rjzlcjqi',
+      icon: Users,
       value: '44,114',
       label: {
         en: 'Total Social Followers',
@@ -47,7 +48,7 @@ export const projectContent: Project = {
       }
     },
     {
-      icon: 'gkosxwgv',
+      icon: TrendingUp,
       value: '+550%',
       label: {
         en: 'Instagram Growth',
@@ -55,7 +56,7 @@ export const projectContent: Project = {
       }
     },
     {
-      icon: 'mzjnwzka',
+      icon: Calendar,
       value: '37,455',
       label: {
         en: 'Annual Users',
@@ -64,25 +65,6 @@ export const projectContent: Project = {
     }
   ],
   detailedSections: {
-    tools: {
-      title: {
-        en: 'Tools & Platforms',
-        it: 'Strumenti e Piattaforme'
-      },
-      description: {
-        en: 'Technologies and platforms used in this project',
-        it: 'Tecnologie e piattaforme utilizzate in questo progetto'
-      },
-      items: [
-        'Meta Business Suite',
-        'Instagram',
-        'Facebook',
-        'WordPress',
-        'Google Analytics',
-        'MailUp',
-        'Adobe Creative Suite'
-      ]
-    },
     overview: {
       title: {
         en: 'Project Overview',
@@ -114,22 +96,6 @@ export const projectContent: Project = {
         'Campaign ROI - 2.46%'
       ]
     },
-    socialMedia: {
-      title: {
-        en: 'Social Media Strategy',
-        it: 'Strategia Social Media'
-      },
-      content: {
-        en: 'Implementation of an integrated social media strategy focused on community growth and engagement.',
-        it: 'Implementazione di una strategia social media integrata focalizzata sulla crescita della community e sull\'engagement.'
-      },
-      metrics: [
-        'Instagram: +44.2% follower growth YoY',
-        'Facebook: +3.1% follower growth YoY',
-        'Average engagement rate: 4.8%',
-        'Organic reach: +97.6% YoY'
-      ]
-    },
     emailMarketing: {
       title: {
         en: 'Email Marketing',
@@ -146,6 +112,22 @@ export const projectContent: Project = {
         'User segmentation and interest-based lists'
       ]
     },
+    socialMedia: {
+      title: {
+        en: 'Social Media Strategy',
+        it: 'Strategia Social Media'
+      },
+      content: {
+        en: 'Implementation of an integrated social media strategy focused on community growth and engagement.',
+        it: 'Implementazione di una strategia social media integrata focalizzata sulla crescita della community e sull\'engagement.'
+      },
+      metrics: [
+        'Instagram: +44.2% follower growth YoY',
+        'Facebook: +3.1% follower growth YoY',
+        'Average engagement rate: 4.8%',
+        'Organic reach: +97.6% YoY'
+      ]
+    },
     contentPlanning: {
       title: {
         en: 'Content Planning',
@@ -160,6 +142,25 @@ export const projectContent: Project = {
         'Platform-optimized content',
         'Content performance analysis',
         'A/B testing formats and copy'
+      ]
+    },
+    tools: {
+      title: {
+        en: 'Tools & Platforms',
+        it: 'Strumenti e Piattaforme'
+      },
+      description: {
+        en: 'Technologies and platforms used in this project',
+        it: 'Tecnologie e piattaforme utilizzate in questo progetto'
+      },
+      items: [
+        'Meta Business Suite',
+        'Instagram',
+        'Facebook',
+        'WordPress',
+        'Google Analytics',
+        'MailUp',
+        'Adobe Creative Suite'
       ]
     }
   },

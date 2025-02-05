@@ -5,9 +5,11 @@ export { default as AccordionObiettivi } from './AccordionObiettivi';
 export { default as AccordionPianificazioneContenuti } from './AccordionPianificazioneContenuti';
 export { default as AccordionSocialMedia } from './AccordionSocialMedia';
 
-export { projectContent as italianContent } from './content.it';
-export { projectContent as englishContent } from './content.en';
+// Export project content
+export { projectContent } from './content.it';
+export { projectContent as englishProjectContent } from './content.en';
 
-export const getContent = (language: 'it' | 'en') => {
-  return language === 'it' ? italianContent : englishContent;
+// Helper function to get the correct content based on language
+export const getProjectContent = (language: 'it' | 'en') => {
+  return language === 'it' ? projectContent : englishProjectContent;
 };
