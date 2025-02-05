@@ -1,3 +1,4 @@
+// index.ts di magazzino (project 1)
 export { ProjectGallery } from '../ProjectGallery';
 export { ProjectHeader } from '../ProjectHeader';
 export { ProjectLayout } from '../ProjectLayout';
@@ -15,6 +16,7 @@ import { projectContent as englishContent } from './content.en';
 export const getContent = (language: 'it' | 'en') => {
   return language === 'it' ? italianContent : englishContent;
 };
+
 export const project = {
   id: 1,
   title: {

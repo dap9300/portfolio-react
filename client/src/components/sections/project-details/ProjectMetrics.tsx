@@ -1,9 +1,8 @@
-
 import { FC } from "react";
 import { motion } from "framer-motion";
 import { Language } from "@/types";
 import { Project, ProjectMetric } from "@/types/projects";
-import { Users, TrendingUp, Calendar } from "lucide-react";
+import { ICON_MAPPING } from "@/constants/icons";
 
 export const projectMetrics: Record<
   string,
@@ -29,6 +28,32 @@ export const projectMetrics: Record<
       value: '37,455',
       label: { en: 'Annual Users', it: 'Utenti Annuali' },
     },
+  ],
+  '2': [
+    {
+      icon: 'rjzlcjqi',
+      value: '4,2x',
+      label: {
+        en: 'Average ROAS on Google Ads campaigns',
+        it: 'ROAS medio su campagne Google Ads'
+      }
+    },
+    {
+      icon: 'esvewwqs',
+      value: '+18%',
+      label: {
+        en: 'CRO on E-commerce',
+        it: 'CRO su E-commerce'
+      }
+    },
+    {
+      icon: 'mzjnwzka',
+      value: '+120%',
+      label: {
+        en: 'Campaigns ROI',
+        it: 'ROI Campagne'
+      }
+    }
   ]
 };
 
@@ -40,18 +65,9 @@ interface ProjectMetricsProps {
 export const ProjectMetrics: FC<ProjectMetricsProps> = ({ metrics, language }) => {
   if (!metrics?.length) return null;
 
-  // Map icon keys to Lucide icons
   const getIcon = (iconKey: string) => {
-    switch (iconKey) {
-      case 'rjzlcjqi':
-        return <Users className="w-10 h-10 text-primary" />;
-      case 'gkosxwgv':
-        return <TrendingUp className="w-10 h-10 text-primary" />;
-      case 'mzjnwzka':
-        return <Calendar className="w-10 h-10 text-primary" />;
-      default:
-        return null;
-    }
+    const IconComponent = ICON_MAPPING[iconKey as keyof typeof ICON_MAPPING];
+    return IconComponent ? <IconComponent className="w-10 h-10 text-primary" /> : null;
   };
 
   return (

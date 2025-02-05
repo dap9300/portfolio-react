@@ -1,3 +1,4 @@
+// AccordionCrowdfunding.tsx di hrx (project 2)
 import { FC, useEffect, useState } from "react";
 import { motion, animate } from "framer-motion";
 import { Language } from "@/types";

@@ -1,3 +1,5 @@
+// AccordionObiettivi.tsx di hrx (project 2)
+
 import { FC } from "react";
 import { motion } from "framer-motion";
 import { Language } from "@/types";

@@ -1,8 +1,4 @@
-import { 
-  Users, TrendingUp, Calendar, Globe, 
-  Target, Search, Star, FileEdit, 
-  BarChart3, Wrench, Trophy 
-} from 'lucide-react';
+import {   Users, TrendingUp, Calendar, Globe, Target, Search, Star, FileEdit, BarChart3, Wrench, Trophy, ShoppingCart } from 'lucide-react';
 
 export const ICON_KEYS = {
   USERS: 'rjzlcjqi',
@@ -11,7 +7,8 @@ export const ICON_KEYS = {
   GLOBE: 'ehdfdiha',
   TARGET: 'lupuorrc',
   SEARCH: 'msoeawqm',
-  STAR: 'yqoxyxia'
+  STAR: 'yqoxyxia',
+  SHOPPINGCART: 'esvewwqs'
 } as const;
 
 export type IconKey = typeof ICON_KEYS[keyof typeof ICON_KEYS];
@@ -23,7 +20,8 @@ export const ICON_MAPPING = {
   [ICON_KEYS.GLOBE]: Globe,
   [ICON_KEYS.TARGET]: Target,
   [ICON_KEYS.SEARCH]: Search,
-  [ICON_KEYS.STAR]: Star
+  [ICON_KEYS.STAR]: Star,
+  [ICON_KEYS.SHOPPINGCART]: ShoppingCart
 } as const;
 
 export const UI_ICONS = {

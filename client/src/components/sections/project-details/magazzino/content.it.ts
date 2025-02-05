@@ -1,6 +1,7 @@
+// content.it.ts di magazzino (project 1)
 import { Language } from '@/types';
-
-export const translations = {
+{/* Da refactorizare parte iniziale */}
+export const translations = { 
   en: {
     nav: {
       home: 'Home',

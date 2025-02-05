@@ -1,9 +1,12 @@
+// AccordionEmailMarketing.tsx di hrx (project 2)
+
 import { FC } from "react";
 import { Language } from "@/types";
 import { Project } from "@/types/projects";
 import { Card } from "@/components/ui/card";
 import { Mail } from "lucide-react";
 import { AccordionContent, AccordionItem, AccordionTrigger } from "@/components/ui/accordion";
+import { projectDetailsTranslations as t } from "./content.it"; // Updated import path
 
 interface AccordionEmailMarketingProps {
   project: Project;

@@ -1,3 +1,4 @@
+// AccordionSocialMedia.tsx di magazzino (project 1)
 import { FC } from "react";
 import { motion } from "framer-motion";
 import { Language } from "@/types";

@@ -1,3 +1,6 @@
+// content.it.ts di hrx (project 2)
+import { Language } from '@/types';
+
 
 export const projectDetailsTranslations = {
   back: {
@@ -36,12 +39,61 @@ export const projectDetailsTranslations = {
   }
 };
 
-export const projectContent = {
+export const projectContent: Project = {
+  id: 2,
+  title: {
+    en: "HRX - Digital Marketing Strategy",
+    it: "HRX - Strategia di Marketing Digitale"
+  },
+  description: {
+    en: "Digital transformation and communication strategy for one of Turin's main cultural venues.",
+    it: "In qualità di Digital Marketing & Communications Specialist presso Magazzino sul Po, ho guidato la trasformazione digitale di uno dei principali luoghi di aggregazione culturale di Torino, gestendo strategie integrate di comunicazione e marketing per promuovere eventi culturali e musicali."
+  },
+  image: '/assets/banner-magazzino.webp',
+  technologies: {
+    social: [
+      'Meta Business Suite',
+      'Instagram',
+      'Facebook',
+      'Telegram',
+      'Adobe Creative Suite',
+      'DaVinci Resolve'
+    ],
+    web: [
+      'WordPress',
+      'Google Search Console',
+      'Google Analytics',
+      'Google Looker Studio'
+    ],
+    email: [
+      'MailUp'
+    ]
+  },
   metrics: [
-    'Meta Business Suite',
-    'Instagram Growth: +40%',
-    'Facebook Engagement: +65%',
-    'Email Marketing ROI: 3.2x'
+    {
+      icon: 'rjzlcjqi',
+      value: '4,2x',
+      label: {
+        en: 'Average ROAS on Google Ads campaigns',
+        it: 'ROAS medio su campagne Google Ads'
+      }
+    },
+    {
+      icon: 'esvewwqs',
+      value: '+18%',
+      label: {
+        en: 'CRO on E-commerce',
+        it: 'CRO su E-commerce'
+      }
+    },
+    {
+      icon: 'mzjnwzka',
+      value: '+120%',
+      label: {
+        en: 'Campaigns ROI',
+        it: 'ROI Campagne'
+      }
+    }
   ],
   detailedSections: {
     tools: {
@@ -57,22 +109,42 @@ export const projectContent = {
         'Meta Business Suite',
         'Instagram',
         'Facebook',
-        'LinkedIn',
         'WordPress',
         'Google Analytics',
-        'Mailchimp',
+        'MailUp',
         'Adobe Creative Suite'
+      ]
+    },
+    overview: {
+      title: {
+        en: 'Project Overview',
+        it: 'Panoramica del Progetto'
+      },
+      content: {
+        en: "I led the digital transformation and implemented communication strategies for one of Turin's major cultural venues, focusing on social media growth and engagement.",
+        it: "Ho guidato la trasformazione digitale e implementato strategie di comunicazione per uno dei principali luoghi culturali di Torino, concentrandomi sulla crescita e coinvolgimento sui social media."
+      },
+      metrics: [
+        'Facebook: Sviluppato calendario editoriale mensile',
+        '- Copertura: 545.960 (+97,6%)',
+        '- Visite: 91.723 (+90,6%)',
+        'Instagram: 12.911 follower (+44,2% YoY)',
+        '- Copertura: 502.784 (+550,6%)',
+        '- Visite: 66.153 (+93,9%)'
       ]
     },
     objectives: {
       title: {
-        en: 'Objectives',
-        it: 'Obiettivi'
+        en: 'Objectives & KPI',
+        it: 'Obiettivi & KPI'
       },
-      content: {
-        en: 'Implementation of digital marketing strategies.',
-        it: 'Implementazione di strategie di marketing digitale.'
-      }
+      items: [
+        'Budget gestito - XXX€',
+        'CPC MEDIO - 0.10€',
+        'CPM - 1.57€',
+        'CTR MEDIO - 0.74%',
+        'ROI CAMPAGNE - 2.46%'
+      ]
     },
     socialMedia: {
       title: {
@@ -80,14 +152,14 @@ export const projectContent = {
         it: 'Strategia Social Media'
       },
       content: {
-        en: 'Implementation of an integrated social media strategy.',
-        it: 'Implementazione di una strategia social media integrata.'
+        en: 'Implementation of an integrated social media strategy focused on community growth and engagement.',
+        it: 'Implementazione di una strategia social media integrata focalizzata sulla crescita della community e sull\'engagement.'
       },
       metrics: [
-        'Instagram: +40% follower growth',
-        'Facebook: +65% engagement',
-        'Average engagement rate: 5.2%',
-        'Organic reach: +85% YoY'
+        'Instagram: +44.2% crescita follower YoY',
+        'Facebook: +3.1% crescita follower YoY',
+        'Engagement rate medio: 4.8%',
+        'Reach organica: +97.6% YoY'
       ]
     },
     emailMarketing: {
@@ -96,14 +168,14 @@ export const projectContent = {
         it: 'Email Marketing'
       },
       content: {
-        en: 'Development of email marketing campaigns.',
-        it: 'Sviluppo di campagne di email marketing.'
+        en: 'Development and management of email marketing campaigns to promote events and engage with the community.',
+        it: 'Sviluppo e gestione delle campagne di email marketing per promuovere gli eventi e mantenere il contatto con la community.'
       },
       metrics: [
-        'Weekly newsletter to subscribers',
-        'Average CTR: 4.8%',
-        'Open Rate: 22%',
-        'ROI: 3.2x'
+        'Newsletter settimanale a oltre 40.000 iscritti',
+        'CTR medio (5%) Tasso di Apertura (10%)',
+        'Invio notifiche push circuito Arci',
+        'Segmentazione utenza e liste per interessi'
       ]
     },
     contentPlanning: {
@@ -112,15 +184,22 @@ export const projectContent = {
         it: 'Pianificazione Contenuti'
       },
       content: {
-        en: 'Strategic content planning and creation.',
-        it: 'Pianificazione strategica e creazione contenuti.'
+        en: 'Strategic content planning and creation to maintain consistent brand communication.',
+        it: 'Pianificazione strategica e creazione di contenuti per mantenere una comunicazione del brand coerente.'
       },
       metrics: [
-        'Monthly editorial plan',
-        'Platform-optimized content',
-        'Content performance analysis',
-        'A/B testing implementation'
+        'Piano editoriale mensile',
+        'Contenuti ottimizzati per piattaforma',
+        'Analisi performance contenuti',
+        'A/B testing formati e copy'
       ]
     }
+  },
+  assets: {
+    banner: '/assets/banner-magazzino.webp',
+    analytics: [
+      '/assets/analytics_maga1.png',
+      '/assets/growth.png'
+    ]
   }
 };

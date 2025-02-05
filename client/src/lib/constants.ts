@@ -5,5 +5,6 @@ export const ICON_KEYS = {
   GLOBE: 'ehdfdiha',
   TARGET: 'lupuorrc',
   SEARCH: 'msoeawqm',
-  STAR: 'yqoxyxia'
+  STAR: 'yqoxyxia',
+  SHOPPINGCART: 'esvewwqs'
 } as const;
