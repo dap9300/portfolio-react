@@ -16,12 +16,20 @@ import {
   CarouselPrevious,
 } from "@/components/ui/carousel";
 
+// Import Magazzino components
+import { AccordionObiettivi as MagazzinoObiettivi } from './magazzino/AccordionObiettivi';
+import { AccordionSocialMedia as MagazzinoSocialMedia } from './magazzino/AccordionSocialMedia';
+import { AccordionPianificazioneContenuti as MagazzinoPianificazioneContenuti } from './magazzino/AccordionPianificazioneContenuti';
+import { AccordionEmailMarketing as MagazzinoEmailMarketing } from './magazzino/AccordionEmailMarketing';
+import { AccordionCrowdfunding as MagazzinoCrowdfunding } from './magazzino/AccordionCrowdfunding';
+
+// Import HRX components
 import {
   HRXObjectivesAccordion,
-  AccordionSocialMedia,
-  AccordionPianificazioneContenuti,
-  AccordionEmailMarketing,
-  AccordionCrowdfunding
+  AccordionSocialMedia as HRXSocialMedia,
+  AccordionPianificazioneContenuti as HRXPianificazioneContenuti,
+  AccordionEmailMarketing as HRXEmailMarketing,
+  AccordionCrowdfunding as HRXCrowdfunding
 } from '@/components/sections/project-details/hrx';
 
 interface ImageDetail {
@@ -78,6 +86,30 @@ export const ProjectContent: FC<ProjectContentProps> = ({ project, language }) =
     };
   }, []);
 
+  const renderAccordions = () => {
+    if (project.id === 2) { // HRX Project
+      return (
+        <Accordion type="single" collapsible className="space-y-6">
+          <HRXObjectivesAccordion project={project} language={language} />
+          <HRXSocialMedia project={project} language={language} />
+          <HRXPianificazioneContenuti project={project} language={language} />
+          <HRXEmailMarketing project={project} language={language} />
+          <HRXCrowdfunding project={project} language={language} />
+        </Accordion>
+      );
+    } else { // Magazzino Project (default)
+      return (
+        <Accordion type="single" collapsible className="space-y-6">
+          <MagazzinoObiettivi project={project} language={language} />
+          <MagazzinoSocialMedia project={project} language={language} />
+          <MagazzinoPianificazioneContenuti project={project} language={language} />
+          <MagazzinoEmailMarketing project={project} language={language} />
+          <MagazzinoCrowdfunding project={project} language={language} />
+        </Accordion>
+      );
+    }
+  };
+
   return (
     <div className="space-y-8">
       {/* Overview and Tools Section */}
@@ -131,13 +163,7 @@ export const ProjectContent: FC<ProjectContentProps> = ({ project, language }) =
         animate={{ opacity: 1 }}
         transition={{ duration: 0.5 }}
       >
-        <Accordion type="single" collapsible className="space-y-6">
-          <HRXObjectivesAccordion project={project} language={language} />
-          <AccordionSocialMedia project={project} language={language} />
-          <AccordionPianificazioneContenuti project={project} language={language} />
-          <AccordionEmailMarketing project={project} language={language} />
-          <AccordionCrowdfunding project={project} language={language} />
-        </Accordion>
+        {renderAccordions()}
       </motion.div>
 
       {/* Image Carousel Section */}
