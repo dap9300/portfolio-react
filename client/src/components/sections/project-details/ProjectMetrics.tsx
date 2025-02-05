@@ -2,61 +2,6 @@ import { FC } from "react";
 import { motion } from "framer-motion";
 import { Language } from "@/types";
 import { Project, ProjectMetric } from "@/types/projects";
-import { Users, TrendingUp, Calendar, Globe, Target, Search, Star, ShoppingCart } from "lucide-react";
-import type { LucideIcon } from "lucide-react";
-
-export const projectMetrics: Record<
-  string,
-  Array<{
-    icon: LucideIcon;
-    value: string;
-    label: Record<Language, string>;
-  }>
-> = {
-  '1': [
-    {
-      icon: Users,
-      value: '44,114',
-      label: { en: 'Total Social Followers', it: 'Follower Social Totali' },
-    },
-    {
-      icon: TrendingUp,
-      value: '+550%',
-      label: { en: 'Instagram Growth', it: 'Crescita Instagram' },
-    },
-    {
-      icon: Calendar,
-      value: '37,455',
-      label: { en: 'Annual Users', it: 'Utenti Annuali' },
-    },
-  ],
-  '2': [
-    {
-      icon: Users,
-      value: '4,2x',
-      label: {
-        en: 'Average ROAS on Google Ads campaigns',
-        it: 'ROAS medio su campagne Google Ads'
-      }
-    },
-    {
-      icon: ShoppingCart,
-      value: '+18%',
-      label: {
-        en: 'CRO on E-commerce',
-        it: 'CRO su E-commerce'
-      }
-    },
-    {
-      icon: Calendar,
-      value: '+120%',
-      label: {
-        en: 'Campaigns ROI',
-        it: 'ROI Campagne'
-      }
-    }
-  ]
-};
 
 interface ProjectMetricsProps {
   metrics: ProjectMetric[];
@@ -70,6 +15,10 @@ export const ProjectMetrics: FC<ProjectMetricsProps> = ({ metrics, language }) =
     <div className="grid grid-cols-1 md:grid-cols-3 gap-6 my-8">
       {metrics.map((metric, index) => {
         const IconComponent = metric.icon;
+        const labelContent = typeof metric.label[language] === 'string' 
+          ? metric.label[language] 
+          : metric.label[language].text;
+
         return (
           <motion.div
             key={index}
@@ -80,11 +29,17 @@ export const ProjectMetrics: FC<ProjectMetricsProps> = ({ metrics, language }) =
           >
             <div className="flex items-center space-x-4">
               <IconComponent className="w-10 h-10 text-primary" />
-              <div>
+              <div className="relative group">
                 <p className="text-2xl font-bold">{metric.value}</p>
                 <p className="text-muted-foreground">
-                  {metric.label[language]}
+                  {labelContent}
                 </p>
+                {typeof metric.label[language] !== 'string' && metric.label[language].tooltip && (
+                  <div className="absolute invisible group-hover:visible bg-gray-800 text-white text-sm rounded-md p-2 w-64 -top-2 left-1/2 -translate-y-full -translate-x-1/2 pointer-events-none transition-all duration-300 ease-in-out opacity-0 scale-95 group-hover:opacity-100 group-hover:scale-100 delay-150 z-10">
+                    {metric.label[language].tooltip}
+                    <div className="absolute -bottom-1 left-1/2 -translate-x-1/2 w-2 h-2 bg-gray-800 rotate-45"></div>
+                  </div>
+                )}
               </div>
             </div>
           </motion.div>

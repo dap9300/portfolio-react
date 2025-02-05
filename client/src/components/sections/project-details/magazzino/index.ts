@@ -1,4 +1,4 @@
-// index.ts di magazzino (project 1)
+// client/src/components/sections/project-details/magazzino/index.ts
 export { ProjectGallery } from '../ProjectGallery';
 export { ProjectHeader } from '../ProjectHeader';
 export { ProjectLayout } from '../ProjectLayout';

@@ -1,3 +1,4 @@
+// client/src/types/index.ts
 export type Language = 'en' | 'it';
 
 export interface LocalizedContent<T> {

@@ -1,6 +1,5 @@
-import { Language } from "@/types";
+// client/src/components/sections/project-details/hrx/content.it.ts
 import { Users, Calendar, ShoppingCart } from "lucide-react";
-import type { LucideIcon } from "lucide-react";
 import { Project } from "@/types/projects";
 
 export const projectDetailsTranslations = {
@@ -47,8 +46,8 @@ export const projectContent: Project = {
     it: "HRX - Strategia di Marketing Digitale"
   },
   description: {
-    en: "Digital transformation and communication strategy for one of Turin's main cultural venues.",
-    it: "In qualità di Digital Marketing & Communications Specialist presso Magazzino sul Po, ho guidato la trasformazione digitale di uno dei principali luoghi di aggregazione culturale di Torino, gestendo strategie integrate di comunicazione e marketing per promuovere eventi culturali e musicali."
+    en: "HRX EN DESCRIPTION",
+    it: "HRX IT DESCRIPTION"
   },
   image: '/assets/banner-magazzino.webp',
   technologies: {
@@ -75,24 +74,42 @@ export const projectContent: Project = {
       icon: Users,
       value: '4,2x',
       label: {
-        en: 'Average ROAS on Google Ads campaigns',
-        it: 'ROAS medio su campagne Google Ads'
+        en: {
+          text: 'Average ROAS on Google Ads campaigns',
+          tooltip: 'ROAS: Return On Ad Spend - The ratio between the revenue generated from ads and the cost of those ads'
+        },
+        it: {
+          text: 'ROAS medio campagne Google Ads',
+          tooltip: 'ROAS: Return On Ad Spend - Il rapporto tra i ricavi generati dalle inserzioni e il costo delle stesse'
+        }
       }
     },
     {
       icon: ShoppingCart,
-      value: '+18%',
+      value: '+22%',
       label: {
-        en: 'CRO on E-commerce',
-        it: 'CRO su E-commerce'
+        en: {
+          text: 'CRO on E-commerce',
+          tooltip: 'CRO: Conversion Rate Optimization - The process of increasing the percentage of website visitors who take desired actions (conversions)'
+        },
+        it: {
+          text: 'CRO su E-commerce',
+          tooltip: 'CRO: Conversion Rate Optimization - Il processo di ottimizzazione che mira ad aumentare la percentuale di visitatori che completano azioni desiderate (conversioni)'
+        }
       }
     },
     {
       icon: Calendar,
-      value: '+120%',
+      value: '3,5%',
       label: {
-        en: 'Campaigns ROI',
-        it: 'ROI Campagne'
+        en: {
+          text: 'Average CTR on social campaigns',
+          tooltip: 'CTR: Click-Through Rate - The ratio of users who click on a specific link to the number of total users who view the content'
+        },
+        it: {
+          text: 'CTR medio su campagne social',
+          tooltip: 'CTR: Click-Through Rate - Il rapporto tra il numero di utenti che cliccano su un link specifico e il numero totale di utenti che visualizzano il contenuto'
+        }
       }
     }
   ],

@@ -1,4 +1,4 @@
-// index.ts di hrx (project 2)
+// client/src/components/sections/project-details/hrx/index.ts
 export { ProjectGallery } from '../ProjectGallery';
 export { ProjectHeader } from '../ProjectHeader';
 export { ProjectLayout } from '../ProjectLayout';

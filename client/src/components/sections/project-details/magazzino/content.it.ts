@@ -1,6 +1,6 @@
-import { Language } from '@/types';
+// client/src/components/sections/project-details/magazzino/content.it.ts
+
 import { Users, TrendingUp, Calendar } from 'lucide-react';
-import type { LucideIcon } from 'lucide-react';
 import { Project } from '@/types/projects';
 
 {/* Da refactorizare parte iniziale */}
