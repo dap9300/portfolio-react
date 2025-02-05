@@ -33,8 +33,8 @@ export const projectDetailsTranslations = {
       it: 'Email Marketing'
     },
     crowdfunding: {
-      en: 'Results & Performance',
-      it: 'Risultati e Performance'
+      en: 'Crowdfunding Campaign',
+      it: 'Campagna di Crowdfunding'
     }
   }
 };
@@ -46,54 +46,70 @@ export const projectContent: Project = {
     it: "HRX - Strategia di Marketing Digitale"
   },
   description: {
-    en: "Development and implementation of digital marketing strategies for a leading HR tech company, focusing on lead generation and brand awareness.",
-    it: "Sviluppo e implementazione di strategie di marketing digitale per un'azienda leader nel settore HR tech, con focus sulla generazione di lead e brand awareness."
+    en: "HRX EN DESCRIPTION",
+    it: "HRX IT DESCRIPTION"
   },
-  image: '/assets/hrx-banner1.jpg',
+  image: '/assets/banner-magazzino.webp',
   technologies: {
     social: [
       'Meta Business Suite',
-      'LinkedIn Campaign Manager',
-      'HubSpot Marketing Hub',
-      'Canva Pro',
-      'Adobe Creative Suite'
+      'Instagram',
+      'Facebook',
+      'Telegram',
+      'Adobe Creative Suite',
+      'DaVinci Resolve'
     ],
     web: [
-      'Google Analytics 4',
-      'Google Tag Manager',
+      'WordPress',
       'Google Search Console',
-      'SEMrush',
-      'WordPress'
+      'Google Analytics',
+      'Google Looker Studio'
     ],
     email: [
-      'HubSpot',
-      'Mailchimp',
-      'SendGrid'
+      'MailUp'
     ]
   },
   metrics: [
     {
       icon: Users,
-      value: '4.2x',
+      value: '4,2x',
       label: {
-        en: 'Average ROAS',
-        it: 'ROAS medio'
+        en: {
+          text: 'Average ROAS on Google Ads campaigns',
+          tooltip: 'ROAS: Return On Ad Spend - The ratio between the revenue generated from ads and the cost of those ads'
+        },
+        it: {
+          text: 'ROAS medio campagne Google Ads',
+          tooltip: 'ROAS: Return On Ad Spend - Il rapporto tra i ricavi generati dalle inserzioni e il costo delle stesse'
+        }
       }
     },
     {
       icon: ShoppingCart,
       value: '+22%',
       label: {
-        en: 'Lead Generation',
-        it: 'Generazione Lead'
+        en: {
+          text: 'CRO on E-commerce',
+          tooltip: 'CRO: Conversion Rate Optimization - The process of increasing the percentage of website visitors who take desired actions (conversions)'
+        },
+        it: {
+          text: 'CRO su E-commerce',
+          tooltip: 'CRO: Conversion Rate Optimization - Il processo di ottimizzazione che mira ad aumentare la percentuale di visitatori che completano azioni desiderate (conversioni)'
+        }
       }
     },
     {
       icon: Calendar,
-      value: '3.5%',
+      value: '3,5%',
       label: {
-        en: 'CTR Improvement',
-        it: 'Miglioramento CTR'
+        en: {
+          text: 'Average CTR on social campaigns',
+          tooltip: 'CTR: Click-Through Rate - The ratio of users who click on a specific link to the number of total users who view the content'
+        },
+        it: {
+          text: 'CTR medio su campagne social',
+          tooltip: 'CTR: Click-Through Rate - Il rapporto tra il numero di utenti che cliccano su un link specifico e il numero totale di utenti che visualizzano il contenuto'
+        }
       }
     }
   ],
@@ -104,28 +120,17 @@ export const projectContent: Project = {
         it: 'Strumenti e Piattaforme'
       },
       description: {
-        en: 'Advanced marketing tools and platforms utilized in this project',
-        it: 'Strumenti di marketing avanzati e piattaforme utilizzate in questo progetto'
+        en: 'Technologies and platforms used in this project',
+        it: 'Tecnologie e piattaforme utilizzate in questo progetto'
       },
       items: [
-        'HubSpot Marketing Hub',
-        'LinkedIn Campaign Manager',
         'Meta Business Suite',
-        'Google Analytics 4',
-        'SEMrush',
+        'Instagram',
+        'Facebook',
+        'WordPress',
+        'Google Analytics',
+        'MailUp',
         'Adobe Creative Suite'
-      ]
-    },
-    contentPlanning: {
-      title: {
-        en: 'Content Strategy',
-        it: 'Strategia dei Contenuti'
-      },
-      metrics: [
-        'Piano editoriale multi-piattaforma',
-        'Contenuti SEO-oriented',
-        'Lead magnet development',
-        'Marketing automation workflow'
       ]
     },
     overview: {
@@ -134,24 +139,79 @@ export const projectContent: Project = {
         it: 'Panoramica del Progetto'
       },
       content: {
-        en: "Led digital marketing initiatives for HRX, implementing comprehensive strategies across multiple channels to drive business growth and market presence.",
-        it: "Ho guidato le iniziative di marketing digitale per HRX, implementando strategie complete su più canali per guidare la crescita del business e la presenza sul mercato."
+        en: "I led the digital transformation and implemented communication strategies for one of Turin's major cultural venues, focusing on social media growth and engagement.",
+        it: "Ho guidato la trasformazione digitale e implementato strategie di comunicazione per uno dei principali luoghi culturali di Torino, concentrandomi sulla crescita e coinvolgimento sui social media."
       },
       metrics: [
-        'LinkedIn: Developed B2B campaign strategy',
-        '- Lead gen: +22% YoY',
-        '- Engagement: +45% YoY',
-        'Google Ads: ROAS 4.2x',
-        '- CTR improvement: +3.5%',
-        '- Cost per lead: -18%'
+        'Facebook: Sviluppato calendario editoriale mensile',
+        '- Copertura: 545.960 (+97,6%)',
+        '- Visite: 91.723 (+90,6%)',
+        'Instagram: 12.911 follower (+44,2% YoY)',
+        '- Copertura: 502.784 (+550,6%)',
+        '- Visite: 66.153 (+93,9%)'
+      ]
+    },
+    objectives: {
+      title: {
+        en: 'Objectives & KPI',
+        it: 'Obiettivi & KPI'
+      },
+      items: [
+        'Budget gestito - XXX€',
+        'CPC MEDIO - 0.10€',
+        'CPM - 1.57€',
+        'CTR MEDIO - 0.74%',
+        'ROI CAMPAGNE - 2.46%'
+      ]
+    },
+    socialMedia: {
+      title: {
+        en: 'Social Media Strategy',
+        it: 'Strategia Social Media'
+      },
+      content: {
+        en: 'Implementation of an integrated social media strategy focused on community growth and engagement.',
+        it: 'Implementazione di una strategia social media integrata focalizzata sulla crescita della community e sull\'engagement.'
+      },
+      metrics: [
+        'Instagram: +44.2% crescita follower YoY',
+        'Facebook: +3.1% crescita follower YoY',
+        'Engagement rate medio: 4.8%',
+        'Reach organica: +97.6% YoY'
+      ]
+    },
+    emailMarketing: {
+      title: {
+        en: 'Email Marketing',
+        it: 'Email Marketing'
+      },
+      content: {
+        en: 'Development and management of email marketing campaigns to promote events and engage with the community.',
+        it: 'Sviluppo e gestione delle campagne di email marketing per promuovere gli eventi e mantenere il contatto con la community.'
+      },
+      metrics: [
+        'Newsletter settimanale a oltre 40.000 iscritti',
+        'CTR medio (5%) Tasso di Apertura (10%)',
+        'Invio notifiche push circuito Arci',
+        'Segmentazione utenza e liste per interessi'
+      ]
+    },
+    contentPlanning: {
+      title: {
+        en: 'Content Planning',
+        it: 'Pianificazione Contenuti'
+      },
+      content: {
+        en: 'Strategic content planning and creation to maintain consistent brand communication.',
+        it: 'Pianificazione strategica e creazione di contenuti per mantenere una comunicazione del brand coerente.'
+      },
+      metrics: [
+        'Piano editoriale mensile',
+        'Contenuti ottimizzati per piattaforma',
+        'Analisi performance contenuti',
+        'A/B testing formati e copy'
       ]
     }
   },
-  assets: {
-    banner: '/assets/hrx-banner1.jpg',
-    analytics: [
-      '/assets/hrx-analytics1.png',
-      '/assets/hrx-growth.png'
-    ]
-  }
+  
 };

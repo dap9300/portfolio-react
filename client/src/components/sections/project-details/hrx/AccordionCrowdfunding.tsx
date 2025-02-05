@@ -176,7 +176,7 @@ export const AccordionCrowdfunding: FC<AccordionCrowdfundingProps> = ({ project,
           <div className="space-y-6">
             <div className="mb-6">
               <h3 className="text-xl font-semibold">
-                FIUMEDENTRO: Una campagna di crowdfunding per rigenerare lo spazio pubblico dei Murazzi
+                xxx
               </h3>
               <p className="text-muted-foreground mt-2 leading-relaxed">
                 Ho coordinato e gestito la campagna di crowdfunding FIUMEDENTRO, un'iniziativa promossa 

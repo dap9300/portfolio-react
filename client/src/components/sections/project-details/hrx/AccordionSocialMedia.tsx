@@ -55,7 +55,7 @@ export const AccordionSocialMedia: FC<AccordionSocialMediaProps> = ({ project, l
         {project?.detailedSections?.socialMedia && (
           <Card className="p-6 mt-4">
             <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
-              {/* Left Column - Text Content */}
+              {/* Left Column - Text Content - contenuto su content.it */}
               <div className="space-y-4">
                 <h3 className="font-semibold text-lg">Attività</h3>
                 {project.detailedSections.socialMedia.content && (
