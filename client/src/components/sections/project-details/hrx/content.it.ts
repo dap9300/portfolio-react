@@ -58,6 +58,93 @@ export const projectDetailsTranslations = {
 };
 
 // Contenuto principale del progetto
+export const project: Project = {
+  id: 2,
+  title: {
+    en: "HRX - Digital Marketing Strategy",
+    it: "HRX - Strategia di Marketing Digitale"
+  },
+  description: {
+    en: "Digital transformation and communication strategy for HRX.",
+    it: "In qualità di prima figura dedicata al marketing digitale in HRX SRL, azienda italiana specializzata nella produzione di abbigliamento tecnico e accessori per il motorsport."
+  },
+  image: '/assets/hrx-banner1.jpg',
+  technologies: {
+    social: [
+      'Meta Business Suite',
+      'Instagram',
+      'Facebook',
+      'LinkedIn',
+      'Adobe Creative Suite'
+    ],
+    web: [
+      'Shopify',
+      'Google Analytics',
+      'Google Ads'
+    ],
+    email: [
+      'Mailchimp'
+    ]
+  },
+  metrics: [
+    {
+      icon: Users,
+      value: '4.2x',
+      label: {
+        en: 'Average ROAS',
+        it: 'ROAS Medio'
+      }
+    },
+    {
+      icon: ShoppingCart,
+      value: '+22%',
+      label: {
+        en: 'E-commerce CRO',
+        it: 'CRO E-commerce'
+      }
+    },
+    {
+      icon: MousePointerClick,
+      value: '3.5%',
+      label: {
+        en: 'Average CTR',
+        it: 'CTR Medio'
+      }
+    }
+  ],
+  detailedSections: {
+    tools: {
+      title: {
+        en: 'Tools & Platforms',
+        it: 'Strumenti e Piattaforme'
+      },
+      description: {
+        en: 'Technologies and platforms used in this project',
+        it: 'Tecnologie e piattaforme utilizzate in questo progetto'
+      },
+      items: [
+        'Meta Business Suite',
+        'Instagram',
+        'Facebook',
+        'Shopify',
+        'Google Analytics',
+        'Google Ads',
+        'Mailchimp'
+      ]
+    },
+    overview: {
+      title: {
+        en: 'Project Overview',
+        it: 'Panoramica del Progetto'
+      },
+      content: {
+        en: 'Led digital transformation for HRX, focusing on e-commerce optimization and digital marketing strategies.',
+        it: 'Ho guidato la trasformazione digitale di HRX, concentrandomi sull\'ottimizzazione dell\'e-commerce e sulle strategie di marketing digitale.'
+      }
+    }
+  }
+};
+
 export const projectContent: Project = {
   id: 2,
   title: {
