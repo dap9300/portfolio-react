@@ -26,7 +26,7 @@ export const project = {
   },
   description: {
     en: "Digital transformation and communication strategy for HRX.",
-    it: "Strategia di trasformazione digitale e comunicazione per HRX."
+    it: "In qualità di prima figura dedicata al marketing digitale in HRX SRL, azienda italiana specializzata nella produzione di abbigliamento tecnico e accessori per il motorsport, ho lavorato su diverse aree chiave, tra cui gestione dell'e-commerce, campagne di advertising su Google Ads e Meta, ottimizzazione SEO e strategie di remarketing, con l'obiettivo di aumentare le vendite online e migliorare il ROI delle campagne pubblicitarie."
   },
   image: '/assets/hrx-banner1.jpg',
   technologies: {
@@ -38,7 +38,7 @@ export const project = {
       'Adobe Creative Suite'
     ],
     web: [
-      'WordPress',
+      'Shopify',
       'Google Analytics',
       'Google Ads'
     ],

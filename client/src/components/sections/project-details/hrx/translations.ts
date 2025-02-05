@@ -14,8 +14,8 @@ export const hrxDetailsTranslations = {
       it: 'Strumenti e Piattaforme'
     },
     objectives: {
-      en: 'HRX Objectives',
-      it: 'Obiettivi HRX'
+      en: 'Objectives',
+      it: 'Obiettivi'
     },
     socialStrategy: {
       en: 'Digital Marketing Strategy',
