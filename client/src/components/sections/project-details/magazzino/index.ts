@@ -1,21 +1,11 @@
 // client/src/components/sections/project-details/magazzino/index.ts
-export { ProjectGallery } from '../ProjectGallery';
-export { ProjectHeader } from '../ProjectHeader';
-export { ProjectLayout } from '../ProjectLayout';
-export { ProjectMetrics } from '../ProjectMetrics';
-export { ProjectContent } from '../ProjectContent';
-export { ProjectDetails } from '../../ProjectDetails';
-export * from './AccordionCrowdfunding';
-export * from './AccordionEmailMarketing';
-export * from './AccordionObiettivi';
-export * from './AccordionPianificazioneContenuti';
-export * from './AccordionSocialMedia';
-import { projectContent as italianContent } from './content.it';
-import { projectContent as englishContent } from './content.en';
-
-export const getContent = (language: 'it' | 'en') => {
-  return language === 'it' ? italianContent : englishContent;
-};
+export { AccordionCrowdfunding } from './AccordionCrowdfunding';
+export { AccordionEmailMarketing } from './AccordionEmailMarketing';
+export { AccordionObiettivi } from './AccordionObiettivi';
+export { AccordionPianificazioneContenuti } from './AccordionPianificazioneContenuti';
+export { AccordionSocialMedia } from './AccordionSocialMedia';
+export { projectContent as italianContent } from './content.it';
+export { projectContent as englishContent } from './content.en';
 
 export const project = {
   id: 1,
@@ -24,7 +14,7 @@ export const project = {
     it: "Magazzino sul Po - Strategia di Marketing Digitale"
   },
   description: {
-    en: `Digital transformation and communication strategy for one of Turin's main cultural venues.`,
+    en: "Digital transformation and communication strategy for one of Turin's main cultural venues.",
     it: "In qualità di Digital Marketing & Communications Specialist presso Magazzino sul Po, ho guidato la trasformazione digitale di uno dei principali luoghi di aggregazione culturale di Torino."
   },
   image: '/assets/banner-magazzino.webp',
@@ -53,12 +43,9 @@ export const project = {
     '/assets/oldsocial2.png',
     '/assets/sito-eventi-1.png'
   ],
-  detailedSections: italianContent.detailedSections,
-  assets: {
-    banner: '/assets/banner-magazzino.webp',
-    analytics: [
-      '/assets/analytics_maga1.png',
-      '/assets/growth.png'
-    ]
-  }
+  detailedSections: italianContent.detailedSections
+};
+
+export const getContent = (language: 'it' | 'en') => {
+  return language === 'it' ? italianContent : englishContent;
 };
