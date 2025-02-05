@@ -13,7 +13,7 @@ export interface ProjectAssets {
 }
 
 export interface ProjectMetric {
-  icon: string;
+  icon: string | any;
   value: string;
   label: LocalizedContent<string>;
 }
@@ -24,38 +24,53 @@ export interface ProjectTechnology {
   email?: string[];
 }
 
-export interface ProjectSection {
-  title: LocalizedContent<string>;
-  content: LocalizedContent<string>;
-}
-
-export interface ProjectContent {
-  title: LocalizedContent<string>;
-  description: LocalizedContent<string>;
-  objectives?: LocalizedContent<string[]>;
-  results?: LocalizedContent<string[]>;
+export interface DetailedSections {
+  tools?: {
+    title: LocalizedContent<string>;
+    description: LocalizedContent<string>;
+    items: string[];
+  };
+  overview?: {
+    title: LocalizedContent<string>;
+    content: LocalizedContent<string>;
+    metrics?: string[];
+  };
+  objectives?: {
+    title: LocalizedContent<string>;
+    items: string[];
+  };
+  socialMedia?: {
+    title: LocalizedContent<string>;
+    content: LocalizedContent<string>;
+    metrics: string[];
+  };
+  emailMarketing?: {
+    title: LocalizedContent<string>;
+    content: LocalizedContent<string>;
+    metrics: string[];
+  };
+  contentPlanning?: {
+    title: LocalizedContent<string>;
+    content?: LocalizedContent<string>;
+    metrics: string[];
+  };
+  crowdfunding?: {
+    title: LocalizedContent<string>;
+    content?: LocalizedContent<string>;
+    metrics?: string[];
+  };
 }
 
 export interface Project {
   id: number;
-  content: ProjectContent;
-  assets: ProjectAssets;
-  technologies: string[] | ProjectTechnology;
+  title: LocalizedContent<string>;
+  description: LocalizedContent<string>;
+  image: string;
+  technologies: ProjectTechnology;
   metrics?: ProjectMetric[];
-  sections?: {
-    overview?: ProjectSection;
-    objectives?: string[];
-    strategies?: {
-      contentPlanning?: {
-        en: string[];
-        it: string[];
-      };
-      analytics?: {
-        en: string[];
-        it: string[];
-      };
-    };
-  };
+  detailedSections: DetailedSections;
+  assets: ProjectAssets;
+  gallery?: string[];
 }
 
 export interface TranslationKeys {
