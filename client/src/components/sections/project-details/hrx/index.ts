@@ -4,12 +4,10 @@ export { default as HRXEmailMarketing } from './AccordionEmailMarketing';
 export { default as HRXObjectivesAccordion } from './AccordionObiettivi';
 export { default as HRXPianificazioneContenuti } from './AccordionPianificazioneContenuti';
 export { default as HRXSocialMedia } from './AccordionSocialMedia';
+export { project } from './content.it';
+export { projectContent as italianContent } from './content.it';
+export { projectContent as englishContent } from './content.en';
 
-// Export project content
-export { projectContent } from './content.it';
-export { projectContent as englishProjectContent } from './content.en';
-
-// Helper function to get the correct content based on language
-export const getProjectContent = (language: 'it' | 'en') => {
-  return language === 'it' ? projectContent : englishProjectContent;
+export const getContent = (language: 'it' | 'en') => {
+  return language === 'it' ? italianContent : englishContent;
 };

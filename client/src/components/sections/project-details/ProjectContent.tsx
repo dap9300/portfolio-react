@@ -16,25 +16,21 @@ import {
   CarouselPrevious,
 } from "@/components/ui/carousel";
 
-// Import Magazzino components and content
-import { 
-  AccordionCrowdfunding as MagazzinoCrowdfunding,
-  AccordionEmailMarketing as MagazzinoEmailMarketing,
-  AccordionObiettivi as MagazzinoObiettivi,
-  AccordionPianificazioneContenuti as MagazzinoPianificazioneContenuti,
-  AccordionSocialMedia as MagazzinoSocialMedia,
-  getProjectContent as getMagazzinoContent
-} from './magazzino';
+// Import Magazzino components
+import { AccordionObiettivi as MagazzinoObiettivi } from './magazzino/AccordionObiettivi';
+import { AccordionSocialMedia as MagazzinoSocialMedia } from './magazzino/AccordionSocialMedia';
+import { AccordionPianificazioneContenuti as MagazzinoPianificazioneContenuti } from './magazzino/AccordionPianificazioneContenuti';
+import { AccordionEmailMarketing as MagazzinoEmailMarketing } from './magazzino/AccordionEmailMarketing';
+import { AccordionCrowdfunding as MagazzinoCrowdfunding } from './magazzino/AccordionCrowdfunding';
 
-// Import HRX components and content
+// Import HRX components
 import {
-  HRXCrowdfunding,
-  HRXEmailMarketing,
   HRXObjectivesAccordion,
-  HRXPianificazioneContenuti,
   HRXSocialMedia,
-  getProjectContent as getHRXContent
-} from './hrx';
+  HRXPianificazioneContenuti,
+  HRXEmailMarketing,
+  HRXCrowdfunding
+} from '@/components/sections/project-details/hrx';
 
 interface ImageDetail {
   src: string;
@@ -91,27 +87,24 @@ export const ProjectContent: FC<ProjectContentProps> = ({ project, language }) =
   }, []);
 
   const renderAccordions = () => {
-    // Get the correct project content based on project ID
-    const projectContent = project.id === 2 ? getHRXContent(language) : getMagazzinoContent(language);
-
     if (project.id === 2) { // HRX Project
       return (
         <Accordion type="single" collapsible className="space-y-6">
-          <HRXObjectivesAccordion project={projectContent} language={language} />
-          <HRXSocialMedia project={projectContent} language={language} />
-          <HRXPianificazioneContenuti project={projectContent} language={language} />
-          <HRXEmailMarketing project={projectContent} language={language} />
-          <HRXCrowdfunding project={projectContent} language={language} />
+          <HRXObjectivesAccordion project={project} language={language} />
+          <HRXSocialMedia project={project} language={language} />
+          <HRXPianificazioneContenuti project={project} language={language} />
+          <HRXEmailMarketing project={project} language={language} />
+          <HRXCrowdfunding project={project} language={language} />
         </Accordion>
       );
     } else { // Magazzino Project (default)
       return (
         <Accordion type="single" collapsible className="space-y-6">
-          <MagazzinoObiettivi project={projectContent} language={language} />
-          <MagazzinoSocialMedia project={projectContent} language={language} />
-          <MagazzinoPianificazioneContenuti project={projectContent} language={language} />
-          <MagazzinoEmailMarketing project={projectContent} language={language} />
-          <MagazzinoCrowdfunding project={projectContent} language={language} />
+          <MagazzinoObiettivi project={project} language={language} />
+          <MagazzinoSocialMedia project={project} language={language} />
+          <MagazzinoPianificazioneContenuti project={project} language={language} />
+          <MagazzinoEmailMarketing project={project} language={language} />
+          <MagazzinoCrowdfunding project={project} language={language} />
         </Accordion>
       );
     }
@@ -145,14 +138,17 @@ export const ProjectContent: FC<ProjectContentProps> = ({ project, language }) =
                 {project.detailedSections.tools.description[language]}
               </p>
               <div className="grid grid-cols-2 md:grid-cols-3 gap-3">
-                {project.detailedSections.tools.items.map((tool, index) => (
+                {project.detailedSections.tools.items.map((tool) => (
                   <div
-                    key={index}
+                    key={tool.name}
                     className="group relative border border-border/50 hover:border-primary/50 transition-all duration-300 hover:shadow-lg hover:shadow-primary/5 rounded-xl overflow-hidden inline-flex"
                   >
                     <div className="absolute inset-0 bg-gradient-to-r from-primary/5 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300" />
                     <div className="px-4 py-3 flex items-center gap-2 whitespace-nowrap">
-                      <span className="text-2xl">{tool}</span>
+                      <tool.Icon className="w-5 h-5" /> 
+                      <h3 className="font-medium relative z-10">
+                        {tool.name}
+                      </h3>
                     </div>
                   </div>
                 ))}

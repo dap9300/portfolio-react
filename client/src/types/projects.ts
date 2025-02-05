@@ -26,24 +26,12 @@ export interface DetailedSections {
     content: LocalizedContent<string>;
     metrics: string[];
   };
-  objectives?: {
-    title: LocalizedContent<string>;
-    items: string[];
-  };
-  emailMarketing?: {
-    title: LocalizedContent<string>;
-    content: LocalizedContent<string>;
-    metrics: string[];
-  };
-  socialMedia?: {
-    title: LocalizedContent<string>;
-    content: LocalizedContent<string>;
-    metrics: string[];
-  };
-  contentPlanning?: {
-    title: LocalizedContent<string>;
-    content: LocalizedContent<string>;
-    metrics: string[];
+  objectives: LocalizedContent<string[]>;
+  strategies: {
+    contentPlanning: LocalizedContent<string[]>;
+    analytics: LocalizedContent<string[]>;
+    social?: LocalizedContent<string[]>;
+    email?: LocalizedContent<string[]>;
   };
   tools?: {
     title: LocalizedContent<string>;

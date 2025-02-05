@@ -10,7 +10,7 @@ interface AccordionEmailMarketingProps {
   language: Language;
 }
 
-const AccordionEmailMarketing: FC<AccordionEmailMarketingProps> = ({ project, language }) => {
+export const AccordionEmailMarketing: FC<AccordionEmailMarketingProps> = ({ project, language }) => {
   if (!project.detailedSections?.emailMarketing) return null;
 
   return (
@@ -68,5 +68,3 @@ const AccordionEmailMarketing: FC<AccordionEmailMarketingProps> = ({ project, la
     </AccordionItem>
   );
 };
-
-export default AccordionEmailMarketing;

@@ -1,5 +1,4 @@
 import { Project } from '@/types';
-import { Users, TrendingUp, Calendar } from 'lucide-react';
 
 export const projectContent: Project = {
   id: 1,
@@ -40,7 +39,7 @@ export const projectContent: Project = {
   },
   metrics: [
     {
-      icon: Users,
+      icon: 'rjzlcjqi',
       value: '44,114',
       label: {
         en: 'Total Social Followers',
@@ -48,7 +47,7 @@ export const projectContent: Project = {
       }
     },
     {
-      icon: TrendingUp,
+      icon: 'gkosxwgv',
       value: '+550%',
       label: {
         en: 'Instagram Growth',
@@ -56,7 +55,7 @@ export const projectContent: Project = {
       }
     },
     {
-      icon: Calendar,
+      icon: 'mzjnwzka',
       value: '37,455',
       label: {
         en: 'Annual Users',
@@ -65,6 +64,25 @@ export const projectContent: Project = {
     }
   ],
   detailedSections: {
+    tools: {
+      title: {
+        en: 'Tools & Platforms',
+        it: 'Strumenti e Piattaforme'
+      },
+      description: {
+        en: 'Technologies and platforms used in this project',
+        it: 'Tecnologie e piattaforme utilizzate in questo progetto'
+      },
+      items: [
+        'Meta Business Suite',
+        'Instagram',
+        'Facebook',
+        'WordPress',
+        'Google Analytics',
+        'MailUp',
+        'Adobe Creative Suite'
+      ]
+    },
     overview: {
       title: {
         en: 'Project Overview',
@@ -96,22 +114,6 @@ export const projectContent: Project = {
         'Campaign ROI - 2.46%'
       ]
     },
-    emailMarketing: {
-      title: {
-        en: 'Email Marketing',
-        it: 'Email Marketing'
-      },
-      content: {
-        en: 'Development and management of email marketing campaigns to promote events and engage with the community.',
-        it: 'Sviluppo e gestione delle campagne di email marketing per promuovere gli eventi e mantenere il contatto con la community.'
-      },
-      metrics: [
-        'Weekly newsletter to over 40,000 subscribers',
-        'Average CTR (5%) Open Rate (10%)',
-        'Arci circuit push notifications',
-        'User segmentation and interest-based lists'
-      ]
-    },
     socialMedia: {
       title: {
         en: 'Social Media Strategy',
@@ -128,6 +130,22 @@ export const projectContent: Project = {
         'Organic reach: +97.6% YoY'
       ]
     },
+    emailMarketing: {
+      title: {
+        en: 'Email Marketing',
+        it: 'Email Marketing'
+      },
+      content: {
+        en: 'Development and management of email marketing campaigns to promote events and engage with the community.',
+        it: 'Sviluppo e gestione delle campagne di email marketing per promuovere gli eventi e mantenere il contatto con la community.'
+      },
+      metrics: [
+        'Weekly newsletter to over 40,000 subscribers',
+        'Average CTR (5%) Open Rate (10%)',
+        'Arci circuit push notifications',
+        'User segmentation and interest-based lists'
+      ]
+    },
     contentPlanning: {
       title: {
         en: 'Content Planning',
@@ -142,25 +160,6 @@ export const projectContent: Project = {
         'Platform-optimized content',
         'Content performance analysis',
         'A/B testing formats and copy'
-      ]
-    },
-    tools: {
-      title: {
-        en: 'Tools & Platforms',
-        it: 'Strumenti e Piattaforme'
-      },
-      description: {
-        en: 'Technologies and platforms used in this project',
-        it: 'Tecnologie e piattaforme utilizzate in questo progetto'
-      },
-      items: [
-        'Meta Business Suite',
-        'Instagram',
-        'Facebook',
-        'WordPress',
-        'Google Analytics',
-        'MailUp',
-        'Adobe Creative Suite'
       ]
     }
   },
