@@ -4,7 +4,7 @@ import { Project } from "@/types/projects";
 import { Card } from "@/components/ui/card";
 import { FileEdit } from "lucide-react";
 import { AccordionContent, AccordionItem, AccordionTrigger } from "@/components/ui/accordion";
-import { projectDetailsTranslations as t } from "./content.it";
+import { hrxDetailsTranslations as t } from "./translations";
 
 interface BeforeAfterSliderProps {
   beforeImage: string;
@@ -73,7 +73,6 @@ const BeforeAfterSlider: FC<BeforeAfterSliderProps> = ({
       ref={containerRef}
       className="relative select-none cursor-col-resize rounded-lg overflow-hidden w-4/5 mx-auto"
     >  
-      {/* Before Image */}
       <img 
         src={beforeImage} 
         alt={beforeLabel} 
@@ -84,7 +83,6 @@ const BeforeAfterSlider: FC<BeforeAfterSliderProps> = ({
         {beforeLabel}
       </span>
 
-      {/* After Image */}
       <div 
         className="absolute top-0 left-0 h-full overflow-hidden"
         style={{ width: `${sliderPosition}%` }}
@@ -105,13 +103,12 @@ const BeforeAfterSlider: FC<BeforeAfterSliderProps> = ({
         </span>
       </div>
 
-      {/* Slider Handle */}
       <div 
         ref={sliderRef}
         className="absolute top-0 bottom-0 w-0.5 bg-primary cursor-col-resize"
         style={{ left: `${sliderPosition}%` }}
         onMouseDown={handleMouseDown}
-        onTouchStart={handleMouseDown}
+        onTouchStart={() => setIsDragging(true)}
       >
         <div className="absolute top-1/2 left-1/2 w-8 h-8 -translate-x-1/2 -translate-y-1/2 bg-background rounded-full shadow-lg flex items-center justify-center border border-primary">
           <div className="w-0.5 h-4 bg-primary rounded-full" />
@@ -121,14 +118,12 @@ const BeforeAfterSlider: FC<BeforeAfterSliderProps> = ({
   );
 };
 
-interface AccordionPianificazioneContenutiProps {
+interface HRXPianificazioneContenutiProps {
   project: Project;
   language: Language;
 }
 
-export const AccordionPianificazioneContenuti: FC<AccordionPianificazioneContenutiProps> = ({ project, language }) => {
-  if (!project.detailedSections?.contentPlanning) return null;
-
+const HRXPianificazioneContenuti: FC<HRXPianificazioneContenutiProps> = ({ project, language }) => {
   return (
     <AccordionItem value="content-planning" className="border rounded-lg hover:bg-accent/50 transition-colors">
       <AccordionTrigger className="px-4">
@@ -147,7 +142,12 @@ export const AccordionPianificazioneContenuti: FC<AccordionPianificazioneContenu
           />
 
           <ul className="space-y-2 text-muted-foreground mt-6">
-            {project.detailedSections.contentPlanning.metrics.map((item, index) => (
+            {[
+              'Piano editoriale mensile',
+              'Contenuti ottimizzati per piattaforma',
+              'Analisi performance contenuti',
+              'A/B testing formati e copy'
+            ].map((item, index) => (
               <li key={index} className="flex items-center gap-2">
                 <div className="w-1.5 h-1.5 rounded-full bg-primary"></div>
                 <span>{item}</span>
@@ -159,3 +159,5 @@ export const AccordionPianificazioneContenuti: FC<AccordionPianificazioneContenu
     </AccordionItem>
   );
 };
+
+export default HRXPianificazioneContenuti;

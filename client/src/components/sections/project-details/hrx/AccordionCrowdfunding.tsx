@@ -4,14 +4,14 @@ import { Project } from "@/types/projects";
 import { Card } from "@/components/ui/card";
 import { Trophy } from "lucide-react";
 import { AccordionContent, AccordionItem, AccordionTrigger } from "@/components/ui/accordion";
-import { projectDetailsTranslations as t } from "./content.it";
+import { hrxDetailsTranslations as t } from "./translations";
 
-interface AccordionCrowdfundingProps {
+interface HRXCrowdfundingProps {
   project: Project;
   language: Language;
 }
 
-export const AccordionCrowdfunding: FC<AccordionCrowdfundingProps> = ({ project, language }) => {
+const HRXCrowdfunding: FC<HRXCrowdfundingProps> = ({ project, language }) => {
   return (
     <AccordionItem value="crowdfunding" className="border rounded-lg hover:bg-accent/50 transition-colors">
       <AccordionTrigger className="px-4">
@@ -29,7 +29,7 @@ export const AccordionCrowdfunding: FC<AccordionCrowdfundingProps> = ({ project,
                 {project.detailedSections.ecommerce.title[language]}
               </h3>
               <div className="text-muted-foreground">
-                {project.detailedSections.ecommerce.content[language].split('\n').map((paragraph, index) => ( // fa andare il testo a capo 
+                {project.detailedSections.ecommerce.content[language].split('\n').map((paragraph, index) => (
                   <p key={index} className="mb-3 leading-relaxed">
                     {paragraph}
                   </p>
@@ -50,3 +50,5 @@ export const AccordionCrowdfunding: FC<AccordionCrowdfundingProps> = ({ project,
     </AccordionItem>
   );
 };
+
+export default HRXCrowdfunding;

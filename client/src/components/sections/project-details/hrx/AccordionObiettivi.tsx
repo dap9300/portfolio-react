@@ -12,7 +12,7 @@ interface HRXObjectivesAccordionProps {
   language: Language;
 }
 
-export const HRXObjectivesAccordion: FC<HRXObjectivesAccordionProps> = ({ project, language }) => {
+const HRXObjectivesAccordion: FC<HRXObjectivesAccordionProps> = ({ project, language }) => {
   return (
     <AccordionItem value="objectives" className="border rounded-lg hover:bg-accent/50 transition-colors">
       <AccordionTrigger className="px-4">
@@ -70,3 +70,5 @@ export const HRXObjectivesAccordion: FC<HRXObjectivesAccordionProps> = ({ projec
     </AccordionItem>
   );
 };
+
+export default HRXObjectivesAccordion;

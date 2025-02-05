@@ -1,12 +1,12 @@
 // client/src/components/sections/project-details/hrx/index.ts
-export { AccordionCrowdfunding } from './AccordionCrowdfunding';
-export { AccordionEmailMarketing } from './AccordionEmailMarketing';
-export { AccordionObiettivi as HRXObjectivesAccordion } from './AccordionObiettivi';
-export { AccordionPianificazioneContenuti } from './AccordionPianificazioneContenuti';
-export { AccordionSocialMedia } from './AccordionSocialMedia';
+export { default as HRXCrowdfunding } from './AccordionCrowdfunding';
+export { default as HRXEmailMarketing } from './AccordionEmailMarketing';
+export { default as HRXObjectivesAccordion } from './AccordionObiettivi';
+export { default as HRXPianificazioneContenuti } from './AccordionPianificazioneContenuti';
+export { default as HRXSocialMedia } from './AccordionSocialMedia';
+export { project } from './content.it';
 export { projectContent as italianContent } from './content.it';
 export { projectContent as englishContent } from './content.en';
-export { project } from './content.it';
 
 export const getContent = (language: 'it' | 'en') => {
   return language === 'it' ? italianContent : englishContent;

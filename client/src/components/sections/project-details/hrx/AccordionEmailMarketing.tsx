@@ -1,28 +1,24 @@
-// AccordionEmailMarketing.tsx di hrx (project 2)
-
 import { FC } from "react";
 import { Language } from "@/types";
 import { Project } from "@/types/projects";
 import { Card } from "@/components/ui/card";
 import { Mail } from "lucide-react";
 import { AccordionContent, AccordionItem, AccordionTrigger } from "@/components/ui/accordion";
-import { projectDetailsTranslations as t } from "./content.it"; // Updated import path
+import { hrxDetailsTranslations as t } from "./translations";
 
-interface AccordionEmailMarketingProps {
+interface HRXEmailMarketingProps {
   project: Project;
   language: Language;
 }
 
-export const AccordionEmailMarketing: FC<AccordionEmailMarketingProps> = ({ project, language }) => {
-  if (!project.detailedSections?.emailMarketing) return null;
-
+const HRXEmailMarketing: FC<HRXEmailMarketingProps> = ({ project, language }) => {
   return (
     <AccordionItem value="email" className="border rounded-lg hover:bg-accent/50 transition-colors">
       <AccordionTrigger className="px-4">
         <div className="flex items-center gap-3">
           <Mail className="w-5 h-5 text-primary" />
           <h2 className="text-xl font-semibold">
-            {project.detailedSections.emailMarketing.title[language]}
+            {t.projectDetails.emailMarketing[language]}
           </h2>
         </div>
       </AccordionTrigger>
@@ -33,7 +29,12 @@ export const AccordionEmailMarketing: FC<AccordionEmailMarketingProps> = ({ proj
             <div className="space-y-4">
               <h3 className="font-semibold text-lg">Attività Email Marketing</h3>
               <ul className="space-y-2">
-                {project.detailedSections.emailMarketing.metrics.map((item, index) => (
+                {[
+                  'Newsletter settimanale a oltre 40.000 iscritti',
+                  'CTR medio (5%) Tasso di Apertura (10%)',
+                  'Invio notifiche push circuito Arci',
+                  'Segmentazione utenza e liste per interessi'
+                ].map((item, index) => (
                   <li key={index} className="flex items-start gap-2">
                     <div className="w-1.5 h-1.5 rounded-full bg-blue-500 mt-2" />
                     <span className="text-muted-foreground">{item}</span>
@@ -71,3 +72,5 @@ export const AccordionEmailMarketing: FC<AccordionEmailMarketingProps> = ({ proj
     </AccordionItem>
   );
 };
+
+export default HRXEmailMarketing;

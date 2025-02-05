@@ -26,10 +26,10 @@ import { AccordionCrowdfunding as MagazzinoCrowdfunding } from './magazzino/Acco
 // Import HRX components
 import {
   HRXObjectivesAccordion,
-  AccordionSocialMedia as HRXSocialMedia,
-  AccordionPianificazioneContenuti as HRXPianificazioneContenuti,
-  AccordionEmailMarketing as HRXEmailMarketing,
-  AccordionCrowdfunding as HRXCrowdfunding
+  HRXSocialMedia,
+  HRXPianificazioneContenuti,
+  HRXEmailMarketing,
+  HRXCrowdfunding
 } from '@/components/sections/project-details/hrx';
 
 interface ImageDetail {
