@@ -1,3 +1,4 @@
+// client/src/components/sections/project-details/magazzino/AccordionObiettivi.tsx
 import { FC } from "react";
 import { motion } from "framer-motion";
 import { Language } from "@/types";

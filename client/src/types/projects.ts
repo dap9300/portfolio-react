@@ -1,11 +1,17 @@
 // client/src/types/projects.ts
 import { LocalizedContent } from './index';
 import type { LucideIcon } from 'lucide-react';
+import { IconType } from 'react-icons';
+
+export interface Tool {
+  name: string;
+  Icon: IconType | LucideIcon;
+}
 
 export interface ProjectTechnology {
-  social?: string[];
-  web?: string[];
-  email?: string[];
+  social?: Tool[];
+  web?: Tool[];
+  email?: Tool[];
 }
 
 export interface ProjectMetric {
@@ -36,7 +42,11 @@ export interface DetailedSections {
   tools?: {
     title: LocalizedContent<string>;
     description: LocalizedContent<string>;
-    items: string[];
+    items: Tool[];  // Modificato da string[] a Tool[]
+  };
+  ecommerce?: {
+    title: LocalizedContent<string>;
+    content: LocalizedContent<string>;
   };
 }
 
@@ -45,7 +55,7 @@ export interface Project {
   title: LocalizedContent<string>;
   description: LocalizedContent<string>;
   image: string;
-  technologies: string[] | ProjectTechnology;
+  technologies: Tool[] | ProjectTechnology;  // Modificato per supportare Tool
   metrics: ProjectMetric[];
   detailedSections?: DetailedSections;
   gallery?: string[];

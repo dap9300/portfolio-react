@@ -17,11 +17,13 @@ import {
 } from "@/components/ui/carousel";
 
 // Import Magazzino components
-import { AccordionObiettivi as MagazzinoObiettivi } from './magazzino/AccordionObiettivi';
-import { AccordionSocialMedia as MagazzinoSocialMedia } from './magazzino/AccordionSocialMedia';
-import { AccordionPianificazioneContenuti as MagazzinoPianificazioneContenuti } from './magazzino/AccordionPianificazioneContenuti';
-import { AccordionEmailMarketing as MagazzinoEmailMarketing } from './magazzino/AccordionEmailMarketing';
-import { AccordionCrowdfunding as MagazzinoCrowdfunding } from './magazzino/AccordionCrowdfunding';
+import { 
+  AccordionObiettivi,
+  AccordionSocialMedia,
+  AccordionPianificazioneContenuti,
+  AccordionEmailMarketing,
+  AccordionCrowdfunding
+} from './magazzino';
 
 // Import HRX components
 import {
@@ -90,21 +92,21 @@ export const ProjectContent: FC<ProjectContentProps> = ({ project, language }) =
     if (project.id === 2) { // HRX Project
       return (
         <Accordion type="single" collapsible className="space-y-6">
-          <HRXObjectivesAccordion project={project} language={language} />
-          <HRXSocialMedia project={project} language={language} />
-          <HRXPianificazioneContenuti project={project} language={language} />
-          <HRXEmailMarketing project={project} language={language} />
-          <HRXCrowdfunding project={project} language={language} />
+          {HRXObjectivesAccordion && <HRXObjectivesAccordion project={project} language={language} />}
+          {HRXSocialMedia && <HRXSocialMedia project={project} language={language} />}
+          {HRXPianificazioneContenuti && <HRXPianificazioneContenuti project={project} language={language} />}
+          {HRXEmailMarketing && <HRXEmailMarketing project={project} language={language} />}
+          {HRXCrowdfunding && <HRXCrowdfunding project={project} language={language} />}
         </Accordion>
       );
     } else { // Magazzino Project (default)
       return (
         <Accordion type="single" collapsible className="space-y-6">
-          <MagazzinoObiettivi project={project} language={language} />
-          <MagazzinoSocialMedia project={project} language={language} />
-          <MagazzinoPianificazioneContenuti project={project} language={language} />
-          <MagazzinoEmailMarketing project={project} language={language} />
-          <MagazzinoCrowdfunding project={project} language={language} />
+          <AccordionObiettivi project={project} language={language} />
+          <AccordionSocialMedia project={project} language={language} />
+          <AccordionPianificazioneContenuti project={project} language={language} />
+          <AccordionEmailMarketing project={project} language={language} />
+          <AccordionCrowdfunding project={project} language={language} />
         </Accordion>
       );
     }
@@ -138,17 +140,16 @@ export const ProjectContent: FC<ProjectContentProps> = ({ project, language }) =
                 {project.detailedSections.tools.description[language]}
               </p>
               <div className="grid grid-cols-2 md:grid-cols-3 gap-3">
-                {project.detailedSections.tools.items.map((tool) => (
+                {project.detailedSections.tools.items.map((tool, index) => (
                   <div
-                    key={tool.name}
+                    key={index}
                     className="group relative border border-border/50 hover:border-primary/50 transition-all duration-300 hover:shadow-lg hover:shadow-primary/5 rounded-xl overflow-hidden inline-flex"
                   >
                     <div className="absolute inset-0 bg-gradient-to-r from-primary/5 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300" />
                     <div className="px-4 py-3 flex items-center gap-2 whitespace-nowrap">
-                      <tool.Icon className="w-5 h-5" /> 
-                      <h3 className="font-medium relative z-10">
-                        {tool.name}
-                      </h3>
+                      <span className="font-medium relative z-10">
+                        {tool}
+                      </span>
                     </div>
                   </div>
                 ))}
