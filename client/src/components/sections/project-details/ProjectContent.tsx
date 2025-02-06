@@ -27,7 +27,7 @@ import {
   HRXSocialMedia,
   HRXPianificazioneContenuti,
   HRXEmailMarketing,
-  HRXCrowdfunding
+  HRXEcommerce
 } from '@/components/sections/project-details/hrx';
 
 interface ImageDetail {
