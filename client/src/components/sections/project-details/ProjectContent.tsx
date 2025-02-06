@@ -1,6 +1,6 @@
 "use client";
 
-import { FC } from "react";
+import { FC, useState, useEffect } from "react";
 import { motion } from "framer-motion";
 import { Language } from "@/types";
 import { Project } from "@/types/projects";
