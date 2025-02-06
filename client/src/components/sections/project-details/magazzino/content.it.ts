@@ -1,8 +1,8 @@
 // client/src/components/sections/project-details/magazzino/content.it.ts
 
 import type { Project, ProjectMetric } from '@/types/projects';
-import { Users, TrendingUp, Calendar } from 'lucide-react';
-import { SiWordpress, SiGoogleanalytics, SiFacebook, SiInstagram } from 'react-icons/si';
+import { Users, TrendingUp, Calendar, Building2 } from 'lucide-react';
+import { SiWordpress, SiGoogleanalytics, SiFacebook, SiInstagram, SiAdobecreativecloud } from 'react-icons/si';
 
 export const translations = { 
   en: {
@@ -163,6 +163,10 @@ export const project: Project = {
       {
         name: "Instagram",
         Icon: SiInstagram
+      },
+      {
+        name: "Business Suite",
+        Icon: Building2
       }
     ],
     web: [
@@ -173,6 +177,10 @@ export const project: Project = {
       {
         name: "Google Analytics",
         Icon: SiGoogleanalytics
+      },
+      {
+        name: "Adobe Creative Cloud",
+        Icon: SiAdobecreativecloud
       }
     ]
   },
@@ -180,12 +188,12 @@ export const project: Project = {
   detailedSections: {
     tools: {
       title: {
-        en: 'Tools & Platforms',
-        it: 'Strumenti e Piattaforme'
+        en: "Tools & Platforms",
+        it: "Strumenti e Piattaforme"
       },
       description: {
-        en: 'Technologies and platforms used in this project',
-        it: 'Tecnologie e piattaforme utilizzate in questo progetto'
+        en: "Technologies and platforms used in this project",
+        it: "Tecnologie e piattaforme utilizzate in questo progetto"
       },
       items: [
         {
@@ -203,13 +211,21 @@ export const project: Project = {
         {
           name: "Instagram",
           Icon: SiInstagram
+        },
+        {
+          name: "Business Suite",
+          Icon: Building2
+        },
+        {
+          name: "Adobe Creative Cloud",
+          Icon: SiAdobecreativecloud
         }
       ]
     },
     overview: {
       title: {
-        en: 'Project Overview',
-        it: 'Panoramica del Progetto'
+        en: "Project Overview",
+        it: "Panoramica del Progetto"
       },
       content: {
         en: "I led the digital transformation and implemented communication strategies for one of Turin's major cultural venues, focusing on social media growth and engagement.",

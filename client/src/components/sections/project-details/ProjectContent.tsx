@@ -1,7 +1,7 @@
 // client/src/components/sections/project-details/ProjectContent.tsx
 "use client";
 
-import { FC, useState, useEffect } from "react";
+import { FC } from "react";
 import { motion } from "framer-motion";
 import { Language } from "@/types";
 import { Project } from "@/types/projects";
@@ -16,8 +16,7 @@ import {
   AccordionObiettivi,
   AccordionSocialMedia,
   AccordionPianificazioneContenuti,
-  AccordionEmailMarketing,
-  AccordionCrowdfunding
+  AccordionEmailMarketing
 } from './magazzino';
 
 // Import HRX components
@@ -29,37 +28,12 @@ import {
   HRXEcommerce
 } from '@/components/sections/project-details/hrx';
 
-interface ImageDetail {
-  src: string;
-  title: string;
-  subtitle: string;
-}
-
 interface ProjectContentProps {
   project: Project;
   language: Language;
 }
 
 export const ProjectContent: FC<ProjectContentProps> = ({ project, language }) => {
-  const [selectedImage, setSelectedImage] = useState<ImageDetail | null>(null);
-  const [clickedPosition, setClickedPosition] = useState({ x: 0, y: 0 });
-
-  const handleImageClick = (image: ImageDetail, event: React.MouseEvent) => {
-    const rect = event.currentTarget.getBoundingClientRect();
-    setClickedPosition({
-      x: event.clientX - rect.left - rect.width / 2,
-      y: event.clientY - rect.top - rect.height / 2
-    });
-    document.body.classList.add('react-zoom-container-open');
-    setSelectedImage(image);
-  };
-
-  useEffect(() => {
-    return () => {
-      document.body.classList.remove('react-zoom-container-open');
-    };
-  }, []);
-
   const renderAccordions = () => {
     if (project.id === 2) { // HRX Project
       return (
@@ -78,7 +52,6 @@ export const ProjectContent: FC<ProjectContentProps> = ({ project, language }) =
           <AccordionSocialMedia project={project} language={language} />
           <AccordionPianificazioneContenuti project={project} language={language} />
           <AccordionEmailMarketing project={project} language={language} />
-          {project.id === 1 && <AccordionCrowdfunding project={project} language={language} />}
         </Accordion>
       );
     }
@@ -113,7 +86,7 @@ export const ProjectContent: FC<ProjectContentProps> = ({ project, language }) =
               </p>
               <div className="grid grid-cols-2 md:grid-cols-3 gap-3">
                 {project.detailedSections.tools.items.map((tool, index) => {
-                  const Icon = tool.Icon;
+                  if (!tool.Icon) return null;
                   return (
                     <div
                       key={`${tool.name}-${index}`}
@@ -121,7 +94,7 @@ export const ProjectContent: FC<ProjectContentProps> = ({ project, language }) =
                     >
                       <div className="absolute inset-0 bg-gradient-to-r from-primary/5 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300" />
                       <div className="px-4 py-3 flex items-center gap-2 whitespace-nowrap">
-                        {Icon && <Icon className="w-4 h-4" />}
+                        <tool.Icon className="w-4 h-4" />
                         <span className="font-medium relative z-10">
                           {tool.name}
                         </span>
