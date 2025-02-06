@@ -1,3 +1,4 @@
+
 "use client";
 
 import { FC, useState, useEffect } from "react";
@@ -9,14 +10,15 @@ import { BookOpen } from "lucide-react";
 import { projectDetailsTranslations as t } from "./magazzino/content.it";
 import { Accordion } from "@/components/ui/accordion";
 import { ProjectCarousel } from "./ProjectCarousel";
+import { HRXCrowdfunding } from './hrx';
+import { AccordionCrowdfunding } from './magazzino/AccordionCrowdfunding';
 
 // Import Magazzino components
 import { 
   AccordionObiettivi,
   AccordionSocialMedia,
   AccordionPianificazioneContenuti,
-  AccordionEmailMarketing,
-  AccordionCrowdfunding
+  AccordionEmailMarketing
 } from './magazzino';
 
 // Import HRX components
@@ -24,8 +26,7 @@ import {
   HRXObjectivesAccordion,
   HRXSocialMedia,
   HRXPianificazioneContenuti,
-  HRXEmailMarketing,
-  HRXCrowdfunding
+  HRXEmailMarketing
 } from '@/components/sections/project-details/hrx';
 
 interface ImageDetail {
@@ -82,10 +83,7 @@ export const ProjectContent: FC<ProjectContentProps> = ({ project, language }) =
     };
   }, []);
 
-  import { HRXCrowdfunding } from './hrx';
-import { AccordionCrowdfunding } from './magazzino/AccordionCrowdfunding';
-
-const renderAccordions = () => {
+  const renderAccordions = () => {
     if (project.id === 2) { // HRX Project
       return (
         <Accordion type="single" collapsible className="space-y-6">
