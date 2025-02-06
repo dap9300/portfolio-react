@@ -196,20 +196,6 @@ export const project: Project = {
           "Storytelling del brand"
         ]
       },
-      analytics: {
-        en: [
-          "E-commerce tracking setup",
-          "Customer journey analysis",
-          "Conversion funnel optimization",
-          "A/B testing implementation"
-        ],
-        it: [
-          "Setup tracking e-commerce",
-          "Analisi customer journey",
-          "Ottimizzazione funnel di conversione",
-          "Implementazione A/B testing"
-        ]
-      },
       social: {
         en: [
           "Social commerce strategy",

@@ -175,20 +175,6 @@ export const project: Project = {
           "Storie di successo dei pazienti"
         ]
       },
-      analytics: {
-        en: [
-          "Conversion tracking implementation",
-          "User behavior analysis",
-          "Campaign performance monitoring",
-          "ROI analysis"
-        ],
-        it: [
-          "Implementazione tracciamento conversioni",
-          "Analisi comportamento utenti",
-          "Monitoraggio performance campagne",
-          "Analisi ROI"
-        ]
-      },
       social: {
         en: [
           "Social media content strategy",
