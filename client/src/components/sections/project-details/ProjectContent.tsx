@@ -11,7 +11,6 @@ import { projectDetailsTranslations as t } from "./magazzino/content.it";
 import { Accordion } from "@/components/ui/accordion";
 import { ProjectCarousel } from "./ProjectCarousel";
 
-
 // Import Magazzino components
 import { 
   AccordionObiettivi,
@@ -35,29 +34,6 @@ interface ImageDetail {
   title: string;
   subtitle: string;
 }
-
-const imageDetails: ImageDetail[] = [
-  { 
-    src: '/assets/newsocial2.png',
-    title: "Instagram Feed",
-    subtitle: "Esempio di feed Instagram"
-  },
-  {
-    src: '/assets/newsocial3.png',
-    title: "Instagram Feed",
-    subtitle: ""
-  },
-  {
-    src: '/assets/crescitafollower2.png',
-    title: "Crescita Pagina Instagram",
-    subtitle: "ott 2021 - dic 2023"
-  },
-  {
-    src: '/assets/growth.png',
-    title: "Crescita Pagina Instagram",
-    subtitle: ""
-  }
-];
 
 interface ProjectContentProps {
   project: Project;
@@ -95,14 +71,14 @@ export const ProjectContent: FC<ProjectContentProps> = ({ project, language }) =
           {HRXEcommerce && <HRXEcommerce project={project} language={language} />}
         </Accordion>
       );
-    } else { // Magazzino Project (default)
+    } else { // Other Projects (Magazzino, Manunta, DTC)
       return (
         <Accordion type="single" collapsible className="space-y-6">
           <AccordionObiettivi project={project} language={language} />
           <AccordionSocialMedia project={project} language={language} />
           <AccordionPianificazioneContenuti project={project} language={language} />
           <AccordionEmailMarketing project={project} language={language} />
-          <AccordionCrowdfunding project={project} language={language} />
+          {project.id === 1 && <AccordionCrowdfunding project={project} language={language} />}
         </Accordion>
       );
     }
@@ -136,20 +112,23 @@ export const ProjectContent: FC<ProjectContentProps> = ({ project, language }) =
                 {project.detailedSections.tools.description[language]}
               </p>
               <div className="grid grid-cols-2 md:grid-cols-3 gap-3">
-                {project.detailedSections.tools?.items.map((tool, index) => (
-                  <div
-                    key={index}
-                    className="group relative border border-border/50 hover:border-primary/50 transition-all duration-300 hover:shadow-lg hover:shadow-primary/5 rounded-xl overflow-hidden inline-flex"
-                  >
-                    <div className="absolute inset-0 bg-gradient-to-r from-primary/5 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300" />
-                    <div className="px-4 py-3 flex items-center gap-2 whitespace-nowrap">
-                      {tool.Icon && <tool.Icon className="w-4 h-4" />}
-                      <span className="font-medium relative z-10">
-                        {tool.name}
-                      </span>
+                {project.detailedSections.tools.items.map((tool, index) => {
+                  const Icon = tool.Icon;
+                  return (
+                    <div
+                      key={`${tool.name}-${index}`}
+                      className="group relative border border-border/50 hover:border-primary/50 transition-all duration-300 hover:shadow-lg hover:shadow-primary/5 rounded-xl overflow-hidden inline-flex"
+                    >
+                      <div className="absolute inset-0 bg-gradient-to-r from-primary/5 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300" />
+                      <div className="px-4 py-3 flex items-center gap-2 whitespace-nowrap">
+                        {Icon && <Icon className="w-4 h-4" />}
+                        <span className="font-medium relative z-10">
+                          {tool.name}
+                        </span>
+                      </div>
                     </div>
-                  </div>
-                ))}
+                  );
+                })}
               </div>
             </Card>
           </div>
