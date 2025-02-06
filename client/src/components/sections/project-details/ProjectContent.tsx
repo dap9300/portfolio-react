@@ -10,26 +10,7 @@ import { BookOpen } from "lucide-react";
 import { projectDetailsTranslations as t } from "./magazzino/content.it";
 import { Accordion } from "@/components/ui/accordion";
 import { ProjectCarousel } from "./ProjectCarousel";
-
-// Import Magazzino components
-import { 
-  AccordionObiettivi,
-  AccordionSocialMedia,
-  AccordionPianificazioneContenuti,
-  AccordionEmailMarketing,
-  AccordionCrowdfunding
-} from './magazzino';
-
-// Import HRX components
-import {
-  HRXObjectivesAccordion,
-  HRXSocialMedia,
-  HRXPianificazioneContenuti,
-  HRXEmailMarketing,
-  HRXEcommerce
-} from '@/components/sections/project-details/hrx';
-
-import { getProjectComponents } from '@/lib/projects';  // Add this import
+import { getProjectComponents } from '@/lib/projects';
 
 interface ImageDetail {
   src: string;
@@ -87,6 +68,11 @@ export const ProjectContent: FC<ProjectContentProps> = ({ project, language }) =
 
   const renderAccordions = () => {
     const AccordionComponents = getProjectComponents(project.id.toString());
+    if (!Array.isArray(AccordionComponents)) {
+      console.error('AccordionComponents is not an array:', AccordionComponents);
+      return null;
+    }
+
     return (
       <Accordion type="single" collapsible className="space-y-6">
         {AccordionComponents.map((Component, index) => (
@@ -131,8 +117,9 @@ export const ProjectContent: FC<ProjectContentProps> = ({ project, language }) =
                   >
                     <div className="absolute inset-0 bg-gradient-to-r from-primary/5 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300" />
                     <div className="px-4 py-3 flex items-center gap-2 whitespace-nowrap">
+                      {tool.Icon && <tool.Icon className="w-4 h-4" />}
                       <span className="font-medium relative z-10">
-                        {tool}
+                        {tool.name}
                       </span>
                     </div>
                   </div>

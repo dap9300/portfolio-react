@@ -2,62 +2,56 @@
 import { Users, Calendar, ShoppingCart, MousePointerClick } from "lucide-react";
 
 // Importazione delle icone FontAwesome per i social media e piattaforme
-import { FaMeta, FaInstagram, FaFacebook, FaTelegram, FaShopify, FaGoogle } from "react-icons/fa6";
+import { FaMeta, FaInstagram, FaFacebook, FaTelegram, FaShopify } from "react-icons/fa6";
 
 // Importazione delle icone Simple Icons per strumenti e servizi
 import { 
-
   SiDavinciresolve, 
   SiGoogleanalytics,
-  SiLooker,
   SiGooglesearchconsole,
   SiGoogleads,
-  SiLooker, 
   SiMailchimp
 } from "react-icons/si";
 
-// Importazione del tipo Project
 import { Project } from "@/types/projects";
 
-// Traduzioni per le sezioni del progetto
 export const projectDetailsTranslations = {
   back: {
     en: "Back to Projects",
-    it: "Torna ai Progetti",
+    it: "Torna ai Progetti"
   },
   projectDetails: {
     overview: {
       en: "Project Overview",
-      it: "Panoramica del Progetto",
+      it: "Panoramica del Progetto"
     },
     tools: {
       en: "Tools & Platforms",
-      it: "Strumenti e Piattaforme",
+      it: "Strumenti e Piattaforme"
     },
     objectives: {
       en: "Objectives",
-      it: "Obiettivi",
+      it: "Obiettivi"
     },
     socialStrategy: {
       en: "Social Media Strategy",
-      it: "Strategia Social Media",
+      it: "Strategia Social Media"
     },
     contentPlanning: {
       en: "Content Planning",
-      it: "Pianificazione Contenuti",
+      it: "Pianificazione Contenuti"
     },
     emailMarketing: {
       en: "Email Marketing",
-      it: "Email Marketing",
+      it: "Email Marketing"
     },
     ecommerce: {
       en: "E-commerce",
-      it: "E-commerce",
+      it: "E-commerce"
     },
   },
 };
 
-// Contenuto principale del progetto
 export const project: Project = {
   id: 2,
   title: {
@@ -71,19 +65,19 @@ export const project: Project = {
   image: '/assets/hrx-banner1.jpg',
   technologies: {
     social: [
-      'Meta Business Suite',
-      'Instagram',
-      'Facebook',
-      'LinkedIn',
-      'Adobe Creative Suite'
+      { name: "Meta Business Suite", Icon: FaMeta },
+      { name: "Instagram", Icon: FaInstagram },
+      { name: "Facebook", Icon: FaFacebook },
+      { name: "Telegram", Icon: FaTelegram }
     ],
     web: [
-      'Shopify',
-      'Google Analytics',
-      'Google Ads'
+      { name: "Shopify", Icon: FaShopify },
+      { name: "Google Analytics", Icon: SiGoogleanalytics },
+      { name: "Google Ads", Icon: SiGoogleads },
+      { name: "Google Search Console", Icon: SiGooglesearchconsole }
     ],
     email: [
-      'Mailchimp'
+      { name: "MailChimp", Icon: SiMailchimp }
     ]
   },
   metrics: [
@@ -123,13 +117,13 @@ export const project: Project = {
         it: 'Tecnologie e piattaforme utilizzate in questo progetto'
       },
       items: [
-        'Meta Business Suite',
-        'Instagram',
-        'Facebook',
-        'Shopify',
-        'Google Analytics',
-        'Google Ads',
-        'Mailchimp'
+        { name: "Meta Business Suite", Icon: FaMeta },
+        { name: "Instagram", Icon: FaInstagram },
+        { name: "Facebook", Icon: FaFacebook },
+        { name: "Shopify", Icon: FaShopify },
+        { name: "Google Analytics", Icon: SiGoogleanalytics },
+        { name: "Google Ads", Icon: SiGoogleads },
+        { name: "MailChimp", Icon: SiMailchimp }
       ]
     },
     overview: {
@@ -140,6 +134,70 @@ export const project: Project = {
       content: {
         en: 'Led digital transformation for HRX, focusing on e-commerce optimization and digital marketing strategies.',
         it: 'Ho guidato la trasformazione digitale di HRX, concentrandomi sull\'ottimizzazione dell\'e-commerce e sulle strategie di marketing digitale.'
+      },
+      metrics: [
+        'Social media growth: +35%',
+        'Engagement rate: 4.2%',
+        'Website traffic: +25%'
+      ]
+    },
+    objectives: {
+      title: {
+        en: 'Objectives & KPI',
+        it: 'Obiettivi & KPI'
+      },
+      content: {
+        en: 'Key performance indicators and objectives for the project',
+        it: 'Indicatori chiave di performance e obiettivi del progetto'
+      },
+      items: [
+        'Budget gestito - XXX€',
+        'CPC MEDIO - 0.10€',
+        'CPM - 1.57€',
+        'CTR MEDIO - 0.74%',
+        'ROI CAMPAGNE - 2.46%'
+      ]
+    },
+    socialMedia: {
+      title: {
+        en: 'Social Media Strategy',
+        it: 'Strategia Social Media'
+      },
+      content: {
+        en: 'Implementation of an integrated social media strategy focused on community growth and engagement.',
+        it: 'Implementazione di una strategia social media integrata focalizzata sulla crescita della community e sull\'engagement.'
+      },
+      metrics: [
+        'Instagram: +44.2% crescita follower YoY',
+        'Facebook: +3.1% crescita follower YoY',
+        'Engagement rate medio: 4.8%',
+        'Reach organica: +97.6% YoY'
+      ]
+    },
+    contentPlanning: {
+      title: {
+        en: 'Content Planning',
+        it: 'Pianificazione Contenuti'
+      },
+      content: {
+        en: 'Strategic content planning and creation to maintain consistent brand communication.',
+        it: 'Pianificazione strategica e creazione di contenuti per mantenere una comunicazione del brand coerente.'
+      },
+      metrics: [
+        'Piano editoriale mensile',
+        'Contenuti ottimizzati per piattaforma',
+        'Analisi performance contenuti',
+        'A/B testing formati e copy'
+      ]
+    },
+    ecommerce: {
+      title: {
+        en: 'E-commerce',
+        it: 'E-commerce'
+      },
+      content: {
+        en: 'Product page optimization and conversion funnel improvement.',
+        it: 'Ottimizzazione delle pagine prodotto e del funnel di conversione.'
       }
     }
   }
@@ -161,7 +219,7 @@ export const projectContent: Project = {
     social: [
       {
         name: "Meta Business Suite",
-        Icon: FaMeta  // Modificato da 'icon' a 'Icon'
+        Icon: FaMeta  
       },
       {
         name: "Instagram",

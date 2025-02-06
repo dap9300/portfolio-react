@@ -10,9 +10,9 @@ export interface Tool {
 }
 
 export interface ProjectTechnology {
-  social?: Tool[];
-  web?: Tool[];
-  email?: Tool[];
+  social: Tool[];
+  web: Tool[];
+  email: Tool[];
 }
 
 export interface ProjectMetric {
@@ -27,28 +27,30 @@ export interface ProjectAssets {
   analytics?: string[];
 }
 
+export interface DetailedSection {
+  title: LocalizedContent<string>;
+  content?: LocalizedContent<string>;
+  items?: string[];
+  metrics?: string[];
+}
+
 export interface DetailedSections {
   overview: {
     title: LocalizedContent<string>;
     content: LocalizedContent<string>;
-    metrics: string[];
-  };
-  objectives: LocalizedContent<string[]>;
-  strategies: {
-    contentPlanning: LocalizedContent<string[]>;
-    analytics: LocalizedContent<string[]>;
-    social?: LocalizedContent<string[]>;
-    email?: LocalizedContent<string[]>;
+    metrics?: string[];
   };
   tools?: {
     title: LocalizedContent<string>;
     description: LocalizedContent<string>;
-    items: Tool[];  // Modificato da string[] a Tool[]
+    items: Tool[];
   };
-  ecommerce?: {
-    title: LocalizedContent<string>;
-    content: LocalizedContent<string>;
-  };
+  objectives?: DetailedSection;
+  contentPlanning?: DetailedSection;
+  socialMedia?: DetailedSection;
+  emailMarketing?: DetailedSection;
+  ecommerce?: DetailedSection;
+  strategies?: DetailedSection;
 }
 
 export interface Project {
@@ -56,7 +58,7 @@ export interface Project {
   title: LocalizedContent<string>;
   description: LocalizedContent<string>;
   image: string;
-  technologies: Tool[] | ProjectTechnology;  // Modificato per supportare Tool
+  technologies: ProjectTechnology;
   metrics: ProjectMetric[];
   detailedSections?: DetailedSections;
   gallery?: string[];

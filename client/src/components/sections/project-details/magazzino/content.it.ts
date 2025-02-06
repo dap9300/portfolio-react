@@ -1,9 +1,16 @@
 // client/src/components/sections/project-details/magazzino/content.it.ts
 
 import { Users, TrendingUp, Calendar } from 'lucide-react';
+import { FaMeta, FaInstagram, FaFacebook, FaTelegram } from 'react-icons/fa6';
+import { 
+  SiDavinciresolve,
+  SiGoogleanalytics,
+  SiGooglesearchconsole,
+  SiMailchimp,
+  SiWordpress
+} from 'react-icons/si';
 import { Project } from '@/types/projects';
 
-{/* Da refactorizare parte iniziale */}
 export const translations = { 
   en: {
     nav: {
@@ -103,7 +110,6 @@ export const projectDetailsTranslations = {
     }
   }
 };
-import { Project } from '@/types/projects';
 
 export const project: Project = {
   id: 1,
@@ -118,21 +124,19 @@ export const project: Project = {
   image: '/assets/banner-magazzino.webp',
   technologies: {
     social: [
-      'Meta Business Suite',
-      'Instagram',
-      'Facebook',
-      'Telegram',
-      'Adobe Creative Suite',
-      'DaVinci Resolve'
+      { name: "Meta Business Suite", Icon: FaMeta },
+      { name: "Instagram", Icon: FaInstagram },
+      { name: "Facebook", Icon: FaFacebook },
+      { name: "Telegram", Icon: FaTelegram },
+      { name: "DaVinci Resolve", Icon: SiDavinciresolve }
     ],
     web: [
-      'WordPress',
-      'Google Search Console',
-      'Google Analytics',
-      'Google Looker Studio'
+      { name: "WordPress", Icon: SiWordpress },
+      { name: "Google Search Console", Icon: SiGooglesearchconsole },
+      { name: "Google Analytics", Icon: SiGoogleanalytics }
     ],
     email: [
-      'MailUp'
+      { name: "MailUp", Icon: SiMailchimp }
     ]
   },
   metrics: [
@@ -172,13 +176,13 @@ export const project: Project = {
         it: 'Tecnologie e piattaforme utilizzate in questo progetto'
       },
       items: [
-        'Meta Business Suite',
-        'Instagram',
-        'Facebook',
-        'WordPress',
-        'Google Analytics',
-        'MailUp',
-        'Adobe Creative Suite'
+        { name: "Meta Business Suite", Icon: FaMeta },
+        { name: "Instagram", Icon: FaInstagram },
+        { name: "Facebook", Icon: FaFacebook },
+        { name: "WordPress", Icon: SiWordpress },
+        { name: "Google Analytics", Icon: SiGoogleanalytics },
+        { name: "MailUp", Icon: SiMailchimp },
+        { name: "Adobe Creative Suite", Icon: null}
       ]
     },
     overview: {
@@ -189,8 +193,84 @@ export const project: Project = {
       content: {
         en: "I led the digital transformation and implemented communication strategies for one of Turin's major cultural venues, focusing on social media growth and engagement.",
         it: "Ho guidato la trasformazione digitale e implementato strategie di comunicazione per uno dei principali luoghi culturali di Torino, concentrandomi sulla crescita e coinvolgimento sui social media."
-      }
+      },
+      metrics: [
+        'Facebook: Sviluppato calendario editoriale mensile',
+        '- Copertura: 545.960 (+97,6%)',
+        '- Visite: 91.723 (+90,6%)',
+        'Instagram: 12.911 follower (+44,2% YoY)',
+        '- Copertura: 502.784 (+550,6%)',
+        '- Visite: 66.153 (+93,9%)'
+      ]
+    },
+    objectives: {
+      title: {
+        en: 'Objectives & KPI',
+        it: 'Obiettivi & KPI'
+      },
+      items: [
+        'Budget gestito - XXX€',
+        'CPC MEDIO - 0.10€',
+        'CPM - 1.57€',
+        'CTR MEDIO - 0.74%',
+        'ROI CAMPAGNE - 2.46%'
+      ]
+    },
+    socialMedia: {
+      title: {
+        en: 'Social Media Strategy',
+        it: 'Strategia Social Media'
+      },
+      content: {
+        en: 'Implementation of an integrated social media strategy focused on community growth and engagement.',
+        it: 'Implementazione di una strategia social media integrata focalizzata sulla crescita della community e sull\'engagement.'
+      },
+      metrics: [
+        'Instagram: +44.2% crescita follower YoY',
+        'Facebook: +3.1% crescita follower YoY',
+        'Engagement rate medio: 4.8%',
+        'Reach organica: +97.6% YoY'
+      ]
+    },
+    emailMarketing: {
+      title: {
+        en: 'Email Marketing',
+        it: 'Email Marketing'
+      },
+      content: {
+        en: 'Development and management of email marketing campaigns to promote events and engage with the community.',
+        it: 'Sviluppo e gestione delle campagne di email marketing per promuovere gli eventi e mantenere il contatto con la community.'
+      },
+      metrics: [
+        'Newsletter settimanale a oltre 40.000 iscritti',
+        'CTR medio (5%) Tasso di Apertura (10%)',
+        'Invio notifiche push circuito Arci',
+        'Segmentazione utenza e liste per interessi'
+      ]
+    },
+    contentPlanning: {
+      title: {
+        en: 'Content Planning',
+        it: 'Pianificazione Contenuti'
+      },
+      content: {
+        en: 'Strategic content planning and creation to maintain consistent brand communication.',
+        it: 'Pianificazione strategica e creazione di contenuti per mantenere una comunicazione del brand coerente.'
+      },
+      metrics: [
+        'Piano editoriale mensile',
+        'Contenuti ottimizzati per piattaforma',
+        'Analisi performance contenuti',
+        'A/B testing formati e copy'
+      ]
     }
+  },
+  assets: {
+    banner: '/assets/banner-magazzino.webp',
+    analytics: [
+      '/assets/analytics_maga1.png',
+      '/assets/growth.png'
+    ]
   }
 };
 
@@ -207,21 +287,21 @@ export const projectContent: Project = {
   image: '/assets/banner-magazzino.webp',
   technologies: {
     social: [
-      'Meta Business Suite',
-      'Instagram',
-      'Facebook',
-      'Telegram',
-      'Adobe Creative Suite',
-      'DaVinci Resolve'
+      { name: "Meta Business Suite", Icon: FaMeta },
+      { name: "Instagram", Icon: FaInstagram },
+      { name: "Facebook", Icon: FaFacebook },
+      { name: "Telegram", Icon: FaTelegram },
+      { name: "Adobe Creative Suite", Icon: null },
+      { name: "DaVinci Resolve", Icon: SiDavinciresolve }
     ],
     web: [
-      'WordPress',
-      'Google Search Console',
-      'Google Analytics',
-      'Google Looker Studio'
+      { name: "WordPress", Icon: SiWordpress },
+      { name: "Google Search Console", Icon: SiGooglesearchconsole },
+      { name: "Google Analytics", Icon: SiGoogleanalytics },
+      { name: "Google Looker Studio", Icon: null}
     ],
     email: [
-      'MailUp'
+      { name: "MailUp", Icon: SiMailchimp }
     ]
   },
   metrics: [
@@ -261,13 +341,13 @@ export const projectContent: Project = {
         it: 'Tecnologie e piattaforme utilizzate in questo progetto'
       },
       items: [
-        'Meta Business Suite',
-        'Instagram',
-        'Facebook',
-        'WordPress',
-        'Google Analytics',
-        'MailUp',
-        'Adobe Creative Suite'
+        { name: "Meta Business Suite", Icon: FaMeta },
+        { name: "Instagram", Icon: FaInstagram },
+        { name: "Facebook", Icon: FaFacebook },
+        { name: "WordPress", Icon: SiWordpress },
+        { name: "Google Analytics", Icon: SiGoogleanalytics },
+        { name: "MailUp", Icon: SiMailchimp },
+        { name: "Adobe Creative Suite", Icon: null}
       ]
     },
     overview: {
