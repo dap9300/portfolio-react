@@ -10,7 +10,7 @@ import { BookOpen } from "lucide-react";
 import { projectDetailsTranslations as t } from "./magazzino/content.it";
 import { Accordion } from "@/components/ui/accordion";
 import { ProjectCarousel } from "./ProjectCarousel";
-import { HRXCrowdfunding } from './hrx';
+import { AccordionCrowdfunding as HRXCrowdfunding } from './hrx/AccordionCrowdfunding';
 import { AccordionCrowdfunding } from './magazzino/AccordionCrowdfunding';
 
 // Import Magazzino components
@@ -91,7 +91,7 @@ export const ProjectContent: FC<ProjectContentProps> = ({ project, language }) =
           {HRXSocialMedia && <HRXSocialMedia project={project} language={language} />}
           {HRXPianificazioneContenuti && <HRXPianificazioneContenuti project={project} language={language} />}
           {HRXEmailMarketing && <HRXEmailMarketing project={project} language={language} />}
-          <HRXCrowdfunding project={project} language={language} />
+          {<HRXCrowdfunding project={project} language={language} />}
         </Accordion>
       );
     } else { // Magazzino Project (default)
@@ -101,7 +101,7 @@ export const ProjectContent: FC<ProjectContentProps> = ({ project, language }) =
           <AccordionSocialMedia project={project} language={language} />
           <AccordionPianificazioneContenuti project={project} language={language} />
           <AccordionEmailMarketing project={project} language={language} />
-          <AccordionCrowdfunding project={project} language={language} />
+          {<AccordionCrowdfunding project={project} language={language} />}
         </Accordion>
       );
     }
