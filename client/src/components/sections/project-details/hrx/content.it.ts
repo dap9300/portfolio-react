@@ -50,7 +50,7 @@ export const projectDetailsTranslations = {
       en: "Email Marketing",
       it: "Email Marketing",
     },
-    crowdfunding: {
+    ecommerce: {
       en: "E-commerce",
       it: "E-commerce",
     },

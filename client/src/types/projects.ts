@@ -1,4 +1,5 @@
 // client/src/types/projects.ts
+
 import { LocalizedContent } from './index';
 import type { LucideIcon } from 'lucide-react';
 import { IconType } from 'react-icons';

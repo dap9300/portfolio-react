@@ -1,3 +1,5 @@
+// client/src/lib/projectsManager.ts
+
 import { Project } from '@/types/projects';
 import { project as magazzinoProject } from '@/components/sections/project-details/magazzino';
 import { project as hrxProject } from '@/components/sections/project-details/hrx';

@@ -92,7 +92,7 @@ export const ProjectContent: FC<ProjectContentProps> = ({ project, language }) =
           {HRXSocialMedia && <HRXSocialMedia project={project} language={language} />}
           {HRXPianificazioneContenuti && <HRXPianificazioneContenuti project={project} language={language} />}
           {HRXEmailMarketing && <HRXEmailMarketing project={project} language={language} />}
-          {HRXCrowdfunding && <HRXCrowdfunding project={project} language={language} />}
+          {HRXEcommerce && <HRXEcommerce project={project} language={language} />}
         </Accordion>
       );
     } else { // Magazzino Project (default)

@@ -1,3 +1,4 @@
+// client/src/components/sections/project-details/magazzino/content.en.ts
 import { Project } from '@/types';
 
 export const projectContent: Project = {

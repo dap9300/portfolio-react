@@ -34,7 +34,7 @@ export const hrxDetailsTranslations = {
       it: 'Risultati e Performance'
     },
     // Aggiunta questa sezione
-    crowdfunding: {
+    ecommerce: {
       en: 'E-commerce',
       it: 'E-commerce'
     }

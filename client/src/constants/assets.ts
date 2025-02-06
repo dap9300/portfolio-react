@@ -1,3 +1,4 @@
+// client/src/constants/assets.ts
 export const PROJECT_ASSETS = {
   MAGAZZINO: {
     BANNER: '/assets/banner-magazzino.webp',

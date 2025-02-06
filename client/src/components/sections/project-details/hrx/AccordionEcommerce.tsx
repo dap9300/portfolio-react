@@ -13,14 +13,15 @@ interface AccordionEcommerceProps {
 }
 
 export const AccordionEcommerce: FC<AccordionEcommerceProps> = ({ project, language }) => {
-  if (!project.detailedSections?.ecommerce) return null;
+  // Definisco un fallback per il titolo nel caso in cui le traduzioni non siano disponibili
+  const sectionTitle = t?.projectDetails?.ecommerce?.[language] || "E-commerce";
 
   return (
     <AccordionItem value="ecommerce" className="border rounded-lg hover:bg-accent/50 transition-colors">
       <AccordionTrigger className="px-4">
         <div className="flex items-center gap-3">
           <ShoppingCart className="w-5 h-5 text-primary" />
-          <h2 className="text-xl font-semibold">{t.projectDetails.ecommerce[language]}</h2>
+          <h2 className="text-xl font-semibold">{sectionTitle}</h2>
         </div>
       </AccordionTrigger>
       <AccordionContent className="px-4">
@@ -29,10 +30,10 @@ export const AccordionEcommerce: FC<AccordionEcommerceProps> = ({ project, langu
             {/* Left Column - Text Content */}
             <div className="space-y-4">
               <h3 className="text-xl font-semibold">
-                {project.detailedSections.ecommerce.title[language]}
+                {project.detailedSections?.ecommerce?.title?.[language] || sectionTitle}
               </h3>
               <div className="text-muted-foreground">
-                {project.detailedSections.ecommerce.content[language].split('\n').map((paragraph, index) => (
+                {project.detailedSections?.ecommerce?.content?.[language]?.split('\n').map((paragraph, index) => (
                   <p key={index} className="mb-3 leading-relaxed">
                     {paragraph}
                   </p>
