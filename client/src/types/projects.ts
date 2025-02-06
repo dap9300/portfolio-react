@@ -60,4 +60,5 @@ export interface Project {
   metrics: ProjectMetric[];
   detailedSections?: DetailedSections;
   assets?: ProjectAssets;
+  link?: string; // Optional external link to the project
 }

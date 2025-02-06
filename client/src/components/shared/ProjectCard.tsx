@@ -1,6 +1,6 @@
 import { Card, CardContent, CardHeader } from "@/components/ui/card";
 import { Button } from "@/components/ui/button";
-import { Project, Language } from "@/types";
+import { Project, Language, Tool } from "@/types";
 import { ExternalLink } from "lucide-react";
 import { useLocation } from "wouter";
 import { motion } from "framer-motion";
@@ -12,13 +12,13 @@ interface ProjectCardProps {
 
 export function ProjectCard({ project, language }: ProjectCardProps) {
   const [, setLocation] = useLocation();
-  const technologies = Array.isArray(project.technologies)
-    ? project.technologies
-    : [
-        ...(project.technologies.social || []),
-        ...(project.technologies.web || []),
-        ...(project.technologies.email || [])
-      ];
+
+  // Convert technology objects to array of Tool objects
+  const technologies: Tool[] = [
+    ...(project.technologies.social || []),
+    ...(project.technologies.web || []),
+    ...(project.technologies.email || [])
+  ];
 
   return (
     <motion.div
@@ -42,12 +42,13 @@ export function ProjectCard({ project, language }: ProjectCardProps) {
           <h3 className="text-xl font-semibold mb-2">{project.title[language]}</h3>
           <p className="text-muted-foreground mb-4">{project.description[language].split('\n')[0]}</p>
           <div className="flex flex-wrap gap-2 mb-4">
-            {technologies.map((tech) => (
+            {technologies.map((tech, index) => (
               <span
-                key={tech}
-                className="px-2 py-1 bg-primary/10 text-primary rounded text-sm"
+                key={`${tech.name}-${index}`}
+                className="px-2 py-1 bg-primary/10 text-primary rounded text-sm flex items-center gap-1"
               >
-                {tech}
+                {tech.Icon && <tech.Icon className="w-4 h-4" />}
+                <span>{tech.name}</span>
               </span>
             ))}
           </div>
