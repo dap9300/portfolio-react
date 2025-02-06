@@ -82,7 +82,10 @@ export const ProjectContent: FC<ProjectContentProps> = ({ project, language }) =
     };
   }, []);
 
-  const renderAccordions = () => {
+  import { HRXCrowdfunding } from './hrx';
+import { AccordionCrowdfunding } from './magazzino/AccordionCrowdfunding';
+
+const renderAccordions = () => {
     if (project.id === 2) { // HRX Project
       return (
         <Accordion type="single" collapsible className="space-y-6">
@@ -90,7 +93,7 @@ export const ProjectContent: FC<ProjectContentProps> = ({ project, language }) =
           {HRXSocialMedia && <HRXSocialMedia project={project} language={language} />}
           {HRXPianificazioneContenuti && <HRXPianificazioneContenuti project={project} language={language} />}
           {HRXEmailMarketing && <HRXEmailMarketing project={project} language={language} />}
-          {HRXCrowdfunding && <HRXCrowdfunding project={project} language={language} />}
+          <HRXCrowdfunding project={project} language={language} />
         </Accordion>
       );
     } else { // Magazzino Project (default)
