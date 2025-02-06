@@ -11,8 +11,7 @@ import {
   AccordionObiettivi as MagazzinoObiettivi,
   AccordionSocialMedia as MagazzinoSocial,
   AccordionPianificazioneContenuti as MagazzinoPianificazione,
-  AccordionEmailMarketing as MagazzinoEmail,
-  AccordionCrowdfunding as MagazzinoCrowdfunding
+  AccordionEmailMarketing as MagazzinoEmail
 } from '@/components/sections/project-details/magazzino';
 
 import {
@@ -89,8 +88,7 @@ export function getProjectComponents(id: string) {
         MagazzinoObiettivi,
         MagazzinoSocial,
         MagazzinoPianificazione,
-        MagazzinoEmail,
-        MagazzinoCrowdfunding
+        MagazzinoEmail
       ];
   }
 }

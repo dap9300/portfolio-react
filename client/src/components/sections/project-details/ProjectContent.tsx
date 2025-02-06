@@ -18,29 +18,6 @@ interface ImageDetail {
   subtitle: string;
 }
 
-const imageDetails: ImageDetail[] = [
-  { 
-    src: '/assets/newsocial2.png',
-    title: "Instagram Feed",
-    subtitle: "Esempio di feed Instagram"
-  },
-  {
-    src: '/assets/newsocial3.png',
-    title: "Instagram Feed",
-    subtitle: ""
-  },
-  {
-    src: '/assets/crescitafollower2.png',
-    title: "Crescita Pagina Instagram",
-    subtitle: "ott 2021 - dic 2023"
-  },
-  {
-    src: '/assets/growth.png',
-    title: "Crescita Pagina Instagram",
-    subtitle: ""
-  }
-];
-
 interface ProjectContentProps {
   project: Project;
   language: Language;
@@ -112,7 +89,7 @@ export const ProjectContent: FC<ProjectContentProps> = ({ project, language }) =
               <div className="grid grid-cols-2 md:grid-cols-3 gap-3">
                 {project.detailedSections.tools.items.map((tool, index) => (
                   <div
-                    key={index}
+                    key={`${tool.name}-${index}`}
                     className="group relative border border-border/50 hover:border-primary/50 transition-all duration-300 hover:shadow-lg hover:shadow-primary/5 rounded-xl overflow-hidden inline-flex"
                   >
                     <div className="absolute inset-0 bg-gradient-to-r from-primary/5 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300" />
