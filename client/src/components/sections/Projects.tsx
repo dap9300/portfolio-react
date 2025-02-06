@@ -4,7 +4,7 @@ import { Language } from "@/types";
 import { SectionTitle } from "@/components/shared/SectionTitle";
 import { ProjectCard } from "@/components/shared/ProjectCard";
 import { staggerContainer, sectionVariants } from "@/lib/animations";
-import { getAllProjects } from "@/lib/projectsManager";
+import { getAllProjects } from "@/lib/projects";  // Updated import
 
 interface ProjectsProps {
   language: Language;

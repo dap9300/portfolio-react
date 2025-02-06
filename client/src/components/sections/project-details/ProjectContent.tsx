@@ -11,7 +11,6 @@ import { projectDetailsTranslations as t } from "./magazzino/content.it";
 import { Accordion } from "@/components/ui/accordion";
 import { ProjectCarousel } from "./ProjectCarousel";
 
-
 // Import Magazzino components
 import { 
   AccordionObiettivi,
@@ -29,6 +28,8 @@ import {
   HRXEmailMarketing,
   HRXEcommerce
 } from '@/components/sections/project-details/hrx';
+
+import { getProjectComponents } from '@/lib/projects';  // Add this import
 
 interface ImageDetail {
   src: string;
@@ -85,27 +86,14 @@ export const ProjectContent: FC<ProjectContentProps> = ({ project, language }) =
   }, []);
 
   const renderAccordions = () => {
-    if (project.id === 2) { // HRX Project
-      return (
-        <Accordion type="single" collapsible className="space-y-6">
-          {HRXObjectivesAccordion && <HRXObjectivesAccordion project={project} language={language} />}
-          {HRXSocialMedia && <HRXSocialMedia project={project} language={language} />}
-          {HRXPianificazioneContenuti && <HRXPianificazioneContenuti project={project} language={language} />}
-          {HRXEmailMarketing && <HRXEmailMarketing project={project} language={language} />}
-          {HRXEcommerce && <HRXEcommerce project={project} language={language} />}
-        </Accordion>
-      );
-    } else { // Magazzino Project (default)
-      return (
-        <Accordion type="single" collapsible className="space-y-6">
-          <AccordionObiettivi project={project} language={language} />
-          <AccordionSocialMedia project={project} language={language} />
-          <AccordionPianificazioneContenuti project={project} language={language} />
-          <AccordionEmailMarketing project={project} language={language} />
-          <AccordionCrowdfunding project={project} language={language} />
-        </Accordion>
-      );
-    }
+    const AccordionComponents = getProjectComponents(project.id.toString());
+    return (
+      <Accordion type="single" collapsible className="space-y-6">
+        {AccordionComponents.map((Component, index) => (
+          <Component key={index} project={project} language={language} />
+        ))}
+      </Accordion>
+    );
   };
 
   return (
