@@ -1,26 +1,26 @@
-
+// client/src/components/sections/project-details/hrx/AccordionEcommerce.tsx
 import { FC } from "react";
 import { Language } from "@/types";
 import { Project } from "@/types/projects";
 import { Card } from "@/components/ui/card";
-import { Trophy } from "lucide-react";
+import { ShoppingCart } from "lucide-react";
 import { AccordionContent, AccordionItem, AccordionTrigger } from "@/components/ui/accordion";
 import { hrxDetailsTranslations as t } from "./translations";
 
-interface AccordionCrowdfundingProps {
+interface AccordionEcommerceProps {
   project: Project;
   language: Language;
 }
 
-export const AccordionCrowdfunding: FC<AccordionCrowdfundingProps> = ({ project, language }) => {
+export const AccordionEcommerce: FC<AccordionEcommerceProps> = ({ project, language }) => {
   if (!project.detailedSections?.ecommerce) return null;
 
   return (
-    <AccordionItem value="crowdfunding" className="border rounded-lg hover:bg-accent/50 transition-colors">
+    <AccordionItem value="ecommerce" className="border rounded-lg hover:bg-accent/50 transition-colors">
       <AccordionTrigger className="px-4">
         <div className="flex items-center gap-3">
-          <Trophy className="w-5 h-5 text-primary" />
-          <h2 className="text-xl font-semibold">{t.projectDetails.crowdfunding[language]}</h2>
+          <ShoppingCart className="w-5 h-5 text-primary" />
+          <h2 className="text-xl font-semibold">{t.projectDetails.ecommerce[language]}</h2>
         </div>
       </AccordionTrigger>
       <AccordionContent className="px-4">
@@ -54,4 +54,4 @@ export const AccordionCrowdfunding: FC<AccordionCrowdfundingProps> = ({ project,
   );
 };
 
-export default AccordionCrowdfunding;
+export default AccordionEcommerce;

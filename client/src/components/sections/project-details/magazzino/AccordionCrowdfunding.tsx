@@ -1,4 +1,4 @@
-
+// client/src/components/sections/project-details/magazzino/AccordionCrowdfunding.tsx
 import { FC, useEffect, useState } from "react";
 import { motion, animate } from "framer-motion";
 import { Language } from "@/types";
