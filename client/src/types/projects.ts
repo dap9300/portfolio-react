@@ -31,7 +31,7 @@ export interface DetailedSections {
   overview: {
     title: LocalizedContent<string>;
     content: LocalizedContent<string>;
-    metrics: string[];
+    metrics: ProjectMetric[]; // Changed to ProjectMetric[]
   };
   objectives: LocalizedContent<string[]>;
   strategies: {
@@ -43,7 +43,7 @@ export interface DetailedSections {
   tools?: {
     title: LocalizedContent<string>;
     description: LocalizedContent<string>;
-    items: Tool[];  // Modificato da string[] a Tool[]
+    items: Tool[];
   };
   ecommerce?: {
     title: LocalizedContent<string>;
@@ -56,10 +56,9 @@ export interface Project {
   title: LocalizedContent<string>;
   description: LocalizedContent<string>;
   image: string;
-  technologies: Tool[] | ProjectTechnology;  // Modificato per supportare Tool
+  technologies: ProjectTechnology;
   metrics: ProjectMetric[];
   detailedSections?: DetailedSections;
-  gallery?: string[];
-  link?: string;
   assets?: ProjectAssets;
+  link?: string;
 }
