@@ -24,6 +24,7 @@ export interface ProjectMetric {
 export interface DetailedSection {
   title: LocalizedContent<string>;
   content?: LocalizedContent<string>;
+  description?: LocalizedContent<string>;
   items?: string[];
   metrics?: string[];
 }
@@ -43,6 +44,7 @@ export interface DetailedSections {
   socialMedia?: DetailedSection;
   emailMarketing?: DetailedSection;
   ecommerce?: DetailedSection;
+  crowdfunding?: DetailedSection;
 }
 
 export interface Project {

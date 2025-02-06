@@ -7,7 +7,7 @@ import { Language } from "@/types";
 import { Project } from "@/types/projects";
 import { Card } from "@/components/ui/card";
 import { BookOpen } from "lucide-react";
-import { projectDetailsTranslations as t } from "./magazzino/content.it";
+import { projectDetailsTranslations as t } from "@/components/sections/project-details/magazzino/content.it";
 import { Accordion } from "@/components/ui/accordion";
 import { ProjectCarousel } from "./ProjectCarousel";
 import { getProjectComponents } from '@/lib/projects';
@@ -24,24 +24,10 @@ interface ProjectContentProps {
 }
 
 export const ProjectContent: FC<ProjectContentProps> = ({ project, language }) => {
-  const renderAccordions = () => {
-    const components = getProjectComponents(project.id.toString());
-    if (!components || components.length === 0) {
-      console.warn('No accordion components found for project:', project.id);
-      return null;
-    }
-
-    return (
-      <Accordion type="single" collapsible className="space-y-6">
-        {components.map((Component, index) => (
-          <Component key={index} project={project} language={language} />
-        ))}
-      </Accordion>
-    );
-  };
-
   const [selectedImage, setSelectedImage] = useState<ImageDetail | null>(null);
   const [clickedPosition, setClickedPosition] = useState({ x: 0, y: 0 });
+
+  const components = getProjectComponents(project.id.toString());
 
   const handleImageClick = (image: ImageDetail, event: React.MouseEvent) => {
     const rect = event.currentTarget.getBoundingClientRect();
@@ -108,13 +94,19 @@ export const ProjectContent: FC<ProjectContentProps> = ({ project, language }) =
       </div>
 
       {/* Accordion Sections */}
-      <motion.div
-        initial={{ opacity: 0 }}
-        animate={{ opacity: 1 }}
-        transition={{ duration: 0.5 }}
-      >
-        {renderAccordions()}
-      </motion.div>
+      {components && components.length > 0 && (
+        <motion.div
+          initial={{ opacity: 0 }}
+          animate={{ opacity: 1 }}
+          transition={{ duration: 0.5 }}
+        >
+          <Accordion type="single" collapsible className="space-y-6">
+            {components.map((Component, index) => (
+              <Component key={index} project={project} language={language} />
+            ))}
+          </Accordion>
+        </motion.div>
+      )}
 
       {/* Image Carousel Section */}
       <ProjectCarousel />
