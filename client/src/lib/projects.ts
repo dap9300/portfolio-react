@@ -1,25 +1,27 @@
 // client/src/lib/projects.ts
-
 import { Project } from '@/types/projects';
+
+// Import projects
 import { project as magazzinoProject } from '@/components/sections/project-details/magazzino/content.it';
 import { project as hrxProject } from '@/components/sections/project-details/hrx/content.it';
 import { project as manuntaProject } from '@/components/sections/project-details/manunta/content.it';
 import { project as dtcProject } from '@/components/sections/project-details/dtc/content.it';
 
-// Import accordion components
+// Import accordion components for each project
 import { 
   AccordionObiettivi as MagazzinoObiettivi,
   AccordionSocialMedia as MagazzinoSocial,
   AccordionPianificazioneContenuti as MagazzinoPianificazione,
-  AccordionEmailMarketing as MagazzinoEmail
+  AccordionEmailMarketing as MagazzinoEmail,
+  AccordionCrowdfunding as MagazzinoCrowdfunding
 } from '@/components/sections/project-details/magazzino';
 
 import {
+  HRXEcommerce,
+  HRXEmailMarketing,
   HRXObjectivesAccordion as HRXObiettivi,
-  HRXSocialMedia as HRXSocial,
-  HRXPianificazioneContenuti as HRXPianificazione,
-  HRXEmailMarketing as HRXEmail,
-  HRXEcommerce
+  HRXPianificazioneContenuti,
+  HRXSocialMedia
 } from '@/components/sections/project-details/hrx';
 
 import {
@@ -42,7 +44,6 @@ const projects: Record<string, Project> = {
   '4': dtcProject
 };
 
-// Simplified API for project management
 export function getProject(id: string): Project | undefined {
   return projects[id];
 }
@@ -51,23 +52,14 @@ export function getAllProjects(): Project[] {
   return Object.values(projects);
 }
 
-export function getProjectMetrics(id: string) {
-  return projects[id]?.metrics || [];
-}
-
-export function getProjectDetailedSections(id: string) {
-  return projects[id]?.detailedSections;
-}
-
-// Helper to determine which components to use based on project ID
 export function getProjectComponents(id: string) {
   switch(id) {
     case '2':
       return [
         HRXObiettivi,
-        HRXSocial,
-        HRXPianificazione,
-        HRXEmail,
+        HRXSocialMedia,
+        HRXPianificazioneContenuti,
+        HRXEmailMarketing,
         HRXEcommerce
       ];
     case '3':
@@ -88,7 +80,8 @@ export function getProjectComponents(id: string) {
         MagazzinoObiettivi,
         MagazzinoSocial,
         MagazzinoPianificazione,
-        MagazzinoEmail
+        MagazzinoEmail,
+        MagazzinoCrowdfunding
       ];
   }
 }

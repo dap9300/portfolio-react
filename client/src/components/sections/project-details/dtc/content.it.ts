@@ -1,5 +1,5 @@
 import { Project } from "@/types/projects";
-import { Users, TrendingUp, Calendar } from "lucide-react";
+import { Users, TrendingUp } from "lucide-react";
 import { FaMeta, FaInstagram, FaFacebook } from "react-icons/fa6";
 import { SiGoogleanalytics, SiMailchimp, SiWordpress, SiGoogleads } from "react-icons/si";
 
@@ -37,6 +37,14 @@ export const project: Project = {
         en: "Traffic Growth",
         it: "Crescita Traffico"
       }
+    },
+    {
+      icon: TrendingUp,
+      value: "3.8%",
+      label: {
+        en: "Conversion Rate",
+        it: "Tasso di Conversione"
+      }
     }
   ],
   detailedSections: {
@@ -67,21 +75,12 @@ export const project: Project = {
       content: {
         en: "Led digital marketing strategy for DTC.",
         it: "Ho guidato la strategia di marketing digitale per DTC."
-      },
-      metrics: [
-        "Website traffic: +40%",
-        "Conversion rate: 3.8%",
-        "ROI: 280%"
-      ]
+      }
     },
     objectives: {
       title: {
         en: "Objectives & KPI",
         it: "Obiettivi & KPI"
-      },
-      content: {
-        en: "Key objectives and performance indicators",
-        it: "Obiettivi chiave e indicatori di performance"
       },
       items: [
         "Incrementare il traffico web",
@@ -97,13 +96,7 @@ export const project: Project = {
       content: {
         en: "Strategic content planning and execution",
         it: "Pianificazione e esecuzione strategica dei contenuti"
-      },
-      metrics: [
-        "Piano editoriale mensile",
-        "Ottimizzazione contenuti",
-        "Analisi performance",
-        "A/B testing"
-      ]
+      }
     },
     socialMedia: {
       title: {
@@ -113,13 +106,11 @@ export const project: Project = {
       content: {
         en: "Social media strategy implementation",
         it: "Implementazione strategia social media"
-      },
-      metrics: [
-        "Crescita follower: +40%",
-        "Engagement rate: 5.2%",
-        "ROI campagne: 220%"
-      ]
+      }
     }
+  },
+  assets: {
+    banner: '/assets/dtc-banner.webp'
   }
 };
 

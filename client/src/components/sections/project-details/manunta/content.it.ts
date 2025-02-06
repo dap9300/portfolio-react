@@ -1,5 +1,5 @@
 import { Project } from "@/types/projects";
-import { Users, TrendingUp, Calendar } from "lucide-react";
+import { Users, TrendingUp } from "lucide-react";
 import { FaMeta, FaInstagram, FaFacebook } from "react-icons/fa6";
 import { SiGoogleanalytics, SiMailchimp, SiWordpress } from "react-icons/si";
 
@@ -36,6 +36,14 @@ export const project: Project = {
         en: "Engagement Growth",
         it: "Crescita Engagement"
       }
+    },
+    {
+      icon: TrendingUp,
+      value: "4.2%",
+      label: {
+        en: "Average Engagement Rate",
+        it: "Tasso di Engagement Medio"
+      }
     }
   ],
   detailedSections: {
@@ -65,21 +73,12 @@ export const project: Project = {
       content: {
         en: "Led digital transformation strategy for Manunta.",
         it: "Ho guidato la strategia di trasformazione digitale per Manunta."
-      },
-      metrics: [
-        "Social media growth: +35%",
-        "Engagement rate: 4.2%",
-        "Website traffic: +25%"
-      ]
+      }
     },
     objectives: {
       title: {
         en: "Objectives & KPI",
         it: "Obiettivi & KPI"
-      },
-      content: {
-        en: "Key objectives and performance indicators",
-        it: "Obiettivi chiave e indicatori di performance"
       },
       items: [
         "Aumentare la presenza sui social media",
@@ -95,12 +94,7 @@ export const project: Project = {
       content: {
         en: "Strategic content planning and creation",
         it: "Pianificazione strategica e creazione contenuti"
-      },
-      metrics: [
-        "Piano editoriale mensile",
-        "Contenuti ottimizzati per piattaforma",
-        "Analisi performance contenuti"
-      ]
+      }
     },
     socialMedia: {
       title: {
@@ -108,15 +102,13 @@ export const project: Project = {
         it: "Strategia Social Media"
       },
       content: {
-        en: "Social media strategy and implementation",
-        it: "Strategia e implementazione social media"
-      },
-      metrics: [
-        "Instagram: +44.2% crescita follower YoY",
-        "Facebook: +3.1% crescita follower YoY",
-        "Engagement rate medio: 4.8%"
-      ]
+        en: "Social media strategy implementation",
+        it: "Implementazione strategia social media"
+      }
     }
+  },
+  assets: {
+    banner: '/assets/manunta-banner.webp'
   }
 };
 

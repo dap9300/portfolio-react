@@ -9,7 +9,7 @@ export interface Tool {
   Icon: IconType | LucideIcon;
 }
 
-export interface ProjectTechnology {
+export interface Technologies {
   social: Tool[];
   web: Tool[];
   email: Tool[];
@@ -19,12 +19,6 @@ export interface ProjectMetric {
   icon: LucideIcon;
   value: string;
   label: LocalizedContent<string>;
-}
-
-export interface ProjectAssets {
-  banner: string;
-  gallery?: string[];
-  analytics?: string[];
 }
 
 export interface DetailedSection {
@@ -38,9 +32,8 @@ export interface DetailedSections {
   overview: {
     title: LocalizedContent<string>;
     content: LocalizedContent<string>;
-    metrics?: string[];
   };
-  tools?: {
+  tools: {
     title: LocalizedContent<string>;
     description: LocalizedContent<string>;
     items: Tool[];
@@ -50,7 +43,6 @@ export interface DetailedSections {
   socialMedia?: DetailedSection;
   emailMarketing?: DetailedSection;
   ecommerce?: DetailedSection;
-  strategies?: DetailedSection;
 }
 
 export interface Project {
@@ -58,10 +50,12 @@ export interface Project {
   title: LocalizedContent<string>;
   description: LocalizedContent<string>;
   image: string;
-  technologies: ProjectTechnology;
+  technologies: Technologies;
   metrics: ProjectMetric[];
-  detailedSections?: DetailedSections;
+  detailedSections: DetailedSections;
   gallery?: string[];
-  link?: string;
-  assets?: ProjectAssets;
+  assets?: {
+    banner: string;
+    analytics?: string[];
+  };
 }

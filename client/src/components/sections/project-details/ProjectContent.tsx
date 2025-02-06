@@ -24,6 +24,22 @@ interface ProjectContentProps {
 }
 
 export const ProjectContent: FC<ProjectContentProps> = ({ project, language }) => {
+  const renderAccordions = () => {
+    const components = getProjectComponents(project.id.toString());
+    if (!components || components.length === 0) {
+      console.warn('No accordion components found for project:', project.id);
+      return null;
+    }
+
+    return (
+      <Accordion type="single" collapsible className="space-y-6">
+        {components.map((Component, index) => (
+          <Component key={index} project={project} language={language} />
+        ))}
+      </Accordion>
+    );
+  };
+
   const [selectedImage, setSelectedImage] = useState<ImageDetail | null>(null);
   const [clickedPosition, setClickedPosition] = useState({ x: 0, y: 0 });
 
@@ -42,22 +58,6 @@ export const ProjectContent: FC<ProjectContentProps> = ({ project, language }) =
       document.body.classList.remove('react-zoom-container-open');
     };
   }, []);
-
-  const renderAccordions = () => {
-    const AccordionComponents = getProjectComponents(project.id.toString());
-    if (!Array.isArray(AccordionComponents)) {
-      console.error('AccordionComponents is not an array:', AccordionComponents);
-      return null;
-    }
-
-    return (
-      <Accordion type="single" collapsible className="space-y-6">
-        {AccordionComponents.map((Component, index) => (
-          <Component key={index} project={project} language={language} />
-        ))}
-      </Accordion>
-    );
-  };
 
   return (
     <div className="space-y-8">

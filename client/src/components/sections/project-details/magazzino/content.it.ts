@@ -1,15 +1,14 @@
 // client/src/components/sections/project-details/magazzino/content.it.ts
 
+import { Project } from '@/types/projects';
 import { Users, TrendingUp, Calendar } from 'lucide-react';
 import { FaMeta, FaInstagram, FaFacebook, FaTelegram } from 'react-icons/fa6';
 import { 
-  SiDavinciresolve,
   SiGoogleanalytics,
   SiGooglesearchconsole,
   SiMailchimp,
   SiWordpress
 } from 'react-icons/si';
-import { Project } from '@/types/projects';
 
 export const translations = { 
   en: {
@@ -100,13 +99,9 @@ export const projectDetailsTranslations = {
       en: 'Project Overview',
       it: 'Panoramica del Progetto'
     },
-    objectives: {
-      en: 'Objectives',
-      it: 'Obiettivi'
-    },
-    crowdfunding: {
-      en: 'Crowdfunding Campaign',
-      it: 'Campagna di Crowdfunding'
+    tools: {
+      en: 'Tools & Platforms',
+      it: 'Strumenti e Piattaforme'
     }
   }
 };
@@ -127,8 +122,7 @@ export const project: Project = {
       { name: "Meta Business Suite", Icon: FaMeta },
       { name: "Instagram", Icon: FaInstagram },
       { name: "Facebook", Icon: FaFacebook },
-      { name: "Telegram", Icon: FaTelegram },
-      { name: "DaVinci Resolve", Icon: SiDavinciresolve }
+      { name: "Telegram", Icon: FaTelegram }
     ],
     web: [
       { name: "WordPress", Icon: SiWordpress },
@@ -166,6 +160,16 @@ export const project: Project = {
     }
   ],
   detailedSections: {
+    overview: {
+      title: {
+        en: 'Project Overview',
+        it: 'Panoramica del Progetto'
+      },
+      content: {
+        en: "I led the digital transformation and implemented communication strategies for one of Turin's major cultural venues, focusing on social media growth and engagement.",
+        it: "Ho guidato la trasformazione digitale e implementato strategie di comunicazione per uno dei principali luoghi culturali di Torino, concentrandomi sulla crescita e coinvolgimento sui social media."
+      }
+    },
     tools: {
       title: {
         en: 'Tools & Platforms',
@@ -182,24 +186,6 @@ export const project: Project = {
         { name: "WordPress", Icon: SiWordpress },
         { name: "Google Analytics", Icon: SiGoogleanalytics },
         { name: "MailUp", Icon: SiMailchimp }
-      ]
-    },
-    overview: {
-      title: {
-        en: 'Project Overview',
-        it: 'Panoramica del Progetto'
-      },
-      content: {
-        en: "I led the digital transformation and implemented communication strategies for one of Turin's major cultural venues, focusing on social media growth and engagement.",
-        it: "Ho guidato la trasformazione digitale e implementato strategie di comunicazione per uno dei principali luoghi culturali di Torino, concentrandomi sulla crescita e coinvolgimento sui social media."
-      },
-      metrics: [
-        'Facebook: Sviluppato calendario editoriale mensile',
-        '- Copertura: 545.960 (+97,6%)',
-        '- Visite: 91.723 (+90,6%)',
-        'Instagram: 12.911 follower (+44.2% YoY)',
-        '- Copertura: 502.784 (+550,6%)',
-        '- Visite: 66.153 (+93.9%)'
       ]
     },
     objectives: {
@@ -223,29 +209,7 @@ export const project: Project = {
       content: {
         en: 'Implementation of an integrated social media strategy focused on community growth and engagement.',
         it: 'Implementazione di una strategia social media integrata focalizzata sulla crescita della community e sull\'engagement.'
-      },
-      metrics: [
-        'Instagram: +44.2% crescita follower YoY',
-        'Facebook: +3.1% crescita follower YoY',
-        'Engagement rate medio: 4.8%',
-        'Reach organica: +97.6% YoY'
-      ]
-    },
-    emailMarketing: {
-      title: {
-        en: 'Email Marketing',
-        it: 'Email Marketing'
-      },
-      content: {
-        en: 'Development and management of email marketing campaigns to promote events and engage with the community.',
-        it: 'Sviluppo e gestione delle campagne di email marketing per promuovere gli eventi e mantenere il contatto con la community.'
-      },
-      metrics: [
-        'Newsletter settimanale a oltre 40.000 iscritti',
-        'CTR medio (5%) Tasso di Apertura (10%)',
-        'Invio notifiche push circuito Arci',
-        'Segmentazione utenza e liste per interessi'
-      ]
+      }
     },
     contentPlanning: {
       title: {
@@ -255,13 +219,7 @@ export const project: Project = {
       content: {
         en: 'Strategic content planning and creation to maintain consistent brand communication.',
         it: 'Pianificazione strategica e creazione di contenuti per mantenere una comunicazione del brand coerente.'
-      },
-      metrics: [
-        'Piano editoriale mensile',
-        'Contenuti ottimizzati per piattaforma',
-        'Analisi performance contenuti',
-        'A/B testing formati e copy'
-      ]
+      }
     }
   },
   assets: {

@@ -2,10 +2,9 @@
 import { Project } from '@/types/projects';
 
 // Icon imports
-import { Users, Calendar, ShoppingCart, MousePointerClick } from "lucide-react";
+import { Users, ShoppingCart, MousePointerClick } from "lucide-react";
 import { FaMeta, FaInstagram, FaFacebook, FaTelegram, FaShopify } from "react-icons/fa6";
 import { 
-  SiDavinciresolve, 
   SiGoogleanalytics,
   SiGooglesearchconsole,
   SiGoogleads,
@@ -118,10 +117,6 @@ export const project: Project = {
         en: 'Objectives & KPI',
         it: 'Obiettivi & KPI'
       },
-      content: {
-        en: 'Key performance indicators and objectives for the project',
-        it: 'Indicatori chiave di performance e obiettivi del progetto'
-      },
       items: [
         'Budget gestito - XXX€',
         'CPC MEDIO - 0.10€',
@@ -172,5 +167,8 @@ export const project: Project = {
         it: 'Ottimizzazione delle pagine prodotto e del funnel di conversione.'
       }
     }
+  },
+  assets: {
+    banner: '/assets/hrx-banner1.jpg'
   }
 };
