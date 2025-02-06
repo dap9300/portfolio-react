@@ -7,7 +7,7 @@ import { ArrowLeft } from 'lucide-react';
 import { fadeInUp, staggerContainer } from '@/lib/animations';
 import { useEffect } from 'react';
 import { projectDetailsTranslations } from './project-details/hrx/content.it';
-import { getProject } from '@/lib/projects';
+import { getProject } from '@/lib/projectsManager';
 import {
   ProjectLayout,
   ProjectHeader,

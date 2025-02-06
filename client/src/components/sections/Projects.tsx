@@ -4,7 +4,7 @@ import { Language } from "@/types";
 import { SectionTitle } from "@/components/shared/SectionTitle";
 import { ProjectCard } from "@/components/shared/ProjectCard";
 import { staggerContainer, sectionVariants } from "@/lib/animations";
-import { getAllProjects } from "@/lib/projects";
+import { getAllProjects } from "@/lib/projectsManager";
 
 interface ProjectsProps {
   language: Language;
@@ -38,13 +38,7 @@ export function Projects({ language }: ProjectsProps) {
           {projects.map((project) => (
             <ProjectCard
               key={project.id}
-              project={{
-                ...project,
-                technologies: {
-                  ...project.technologies,
-                  social: project.technologies.social.map(tool => tool.name)
-                }
-              }}
+              project={project}
               language={language}
             />
           ))}

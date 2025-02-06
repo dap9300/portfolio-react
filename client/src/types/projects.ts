@@ -9,10 +9,10 @@ export interface Tool {
   Icon: IconType | LucideIcon;
 }
 
-export interface Technologies {
-  social: Tool[];
-  web: Tool[];
-  email: Tool[];
+export interface ProjectTechnology {
+  social?: Tool[];
+  web?: Tool[];
+  email?: Tool[];
 }
 
 export interface ProjectMetric {
@@ -21,30 +21,34 @@ export interface ProjectMetric {
   label: LocalizedContent<string>;
 }
 
-export interface DetailedSection {
-  title: LocalizedContent<string>;
-  content?: LocalizedContent<string>;
-  description?: LocalizedContent<string>;
-  items?: string[];
-  metrics?: string[];
+export interface ProjectAssets {
+  banner: string;
+  gallery?: string[];
+  analytics?: string[];
 }
 
 export interface DetailedSections {
   overview: {
     title: LocalizedContent<string>;
     content: LocalizedContent<string>;
+    metrics: string[];
   };
-  tools: {
+  objectives: LocalizedContent<string[]>;
+  strategies: {
+    contentPlanning: LocalizedContent<string[]>;
+    analytics: LocalizedContent<string[]>;
+    social?: LocalizedContent<string[]>;
+    email?: LocalizedContent<string[]>;
+  };
+  tools?: {
     title: LocalizedContent<string>;
     description: LocalizedContent<string>;
-    items: Tool[];
+    items: Tool[];  // Modificato da string[] a Tool[]
   };
-  objectives?: DetailedSection;
-  contentPlanning?: DetailedSection;
-  socialMedia?: DetailedSection;
-  emailMarketing?: DetailedSection;
-  ecommerce?: DetailedSection;
-  crowdfunding?: DetailedSection;
+  ecommerce?: {
+    title: LocalizedContent<string>;
+    content: LocalizedContent<string>;
+  };
 }
 
 export interface Project {
@@ -52,12 +56,10 @@ export interface Project {
   title: LocalizedContent<string>;
   description: LocalizedContent<string>;
   image: string;
-  technologies: Technologies;
+  technologies: Tool[] | ProjectTechnology;  // Modificato per supportare Tool
   metrics: ProjectMetric[];
-  detailedSections: DetailedSections;
+  detailedSections?: DetailedSections;
   gallery?: string[];
-  assets?: {
-    banner: string;
-    analytics?: string[];
-  };
+  link?: string;
+  assets?: ProjectAssets;
 }

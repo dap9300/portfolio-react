@@ -7,16 +7,57 @@ import { Language } from "@/types";
 import { Project } from "@/types/projects";
 import { Card } from "@/components/ui/card";
 import { BookOpen } from "lucide-react";
-import { projectDetailsTranslations as t } from "@/components/sections/project-details/magazzino/content.it";
+import { projectDetailsTranslations as t } from "./magazzino/content.it";
 import { Accordion } from "@/components/ui/accordion";
 import { ProjectCarousel } from "./ProjectCarousel";
-import { getProjectComponents } from '@/lib/projects';
+
+
+// Import Magazzino components
+import { 
+  AccordionObiettivi,
+  AccordionSocialMedia,
+  AccordionPianificazioneContenuti,
+  AccordionEmailMarketing,
+  AccordionCrowdfunding
+} from './magazzino';
+
+// Import HRX components
+import {
+  HRXObjectivesAccordion,
+  HRXSocialMedia,
+  HRXPianificazioneContenuti,
+  HRXEmailMarketing,
+  HRXEcommerce
+} from '@/components/sections/project-details/hrx';
 
 interface ImageDetail {
   src: string;
   title: string;
   subtitle: string;
 }
+
+const imageDetails: ImageDetail[] = [
+  { 
+    src: '/assets/newsocial2.png',
+    title: "Instagram Feed",
+    subtitle: "Esempio di feed Instagram"
+  },
+  {
+    src: '/assets/newsocial3.png',
+    title: "Instagram Feed",
+    subtitle: ""
+  },
+  {
+    src: '/assets/crescitafollower2.png',
+    title: "Crescita Pagina Instagram",
+    subtitle: "ott 2021 - dic 2023"
+  },
+  {
+    src: '/assets/growth.png',
+    title: "Crescita Pagina Instagram",
+    subtitle: ""
+  }
+];
 
 interface ProjectContentProps {
   project: Project;
@@ -26,8 +67,6 @@ interface ProjectContentProps {
 export const ProjectContent: FC<ProjectContentProps> = ({ project, language }) => {
   const [selectedImage, setSelectedImage] = useState<ImageDetail | null>(null);
   const [clickedPosition, setClickedPosition] = useState({ x: 0, y: 0 });
-
-  const components = getProjectComponents(project.id.toString());
 
   const handleImageClick = (image: ImageDetail, event: React.MouseEvent) => {
     const rect = event.currentTarget.getBoundingClientRect();
@@ -44,6 +83,30 @@ export const ProjectContent: FC<ProjectContentProps> = ({ project, language }) =
       document.body.classList.remove('react-zoom-container-open');
     };
   }, []);
+
+  const renderAccordions = () => {
+    if (project.id === 2) { // HRX Project
+      return (
+        <Accordion type="single" collapsible className="space-y-6">
+          {HRXObjectivesAccordion && <HRXObjectivesAccordion project={project} language={language} />}
+          {HRXSocialMedia && <HRXSocialMedia project={project} language={language} />}
+          {HRXPianificazioneContenuti && <HRXPianificazioneContenuti project={project} language={language} />}
+          {HRXEmailMarketing && <HRXEmailMarketing project={project} language={language} />}
+          {HRXEcommerce && <HRXEcommerce project={project} language={language} />}
+        </Accordion>
+      );
+    } else { // Magazzino Project (default)
+      return (
+        <Accordion type="single" collapsible className="space-y-6">
+          <AccordionObiettivi project={project} language={language} />
+          <AccordionSocialMedia project={project} language={language} />
+          <AccordionPianificazioneContenuti project={project} language={language} />
+          <AccordionEmailMarketing project={project} language={language} />
+          <AccordionCrowdfunding project={project} language={language} />
+        </Accordion>
+      );
+    }
+  };
 
   return (
     <div className="space-y-8">
@@ -75,14 +138,13 @@ export const ProjectContent: FC<ProjectContentProps> = ({ project, language }) =
               <div className="grid grid-cols-2 md:grid-cols-3 gap-3">
                 {project.detailedSections.tools.items.map((tool, index) => (
                   <div
-                    key={`${tool.name}-${index}`}
+                    key={index}
                     className="group relative border border-border/50 hover:border-primary/50 transition-all duration-300 hover:shadow-lg hover:shadow-primary/5 rounded-xl overflow-hidden inline-flex"
                   >
                     <div className="absolute inset-0 bg-gradient-to-r from-primary/5 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300" />
                     <div className="px-4 py-3 flex items-center gap-2 whitespace-nowrap">
-                      {tool.Icon && <tool.Icon className="w-4 h-4" />}
                       <span className="font-medium relative z-10">
-                        {tool.name}
+                        {tool}
                       </span>
                     </div>
                   </div>
@@ -94,19 +156,13 @@ export const ProjectContent: FC<ProjectContentProps> = ({ project, language }) =
       </div>
 
       {/* Accordion Sections */}
-      {components && components.length > 0 && (
-        <motion.div
-          initial={{ opacity: 0 }}
-          animate={{ opacity: 1 }}
-          transition={{ duration: 0.5 }}
-        >
-          <Accordion type="single" collapsible className="space-y-6">
-            {components.map((Component, index) => (
-              <Component key={index} project={project} language={language} />
-            ))}
-          </Accordion>
-        </motion.div>
-      )}
+      <motion.div
+        initial={{ opacity: 0 }}
+        animate={{ opacity: 1 }}
+        transition={{ duration: 0.5 }}
+      >
+        {renderAccordions()}
+      </motion.div>
 
       {/* Image Carousel Section */}
       <ProjectCarousel />
