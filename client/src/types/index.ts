@@ -6,7 +6,72 @@ export interface LocalizedContent<T> {
   it: T;
 }
 
-// Removed duplicate Project interface - import from types/projects.ts instead
+export interface ProjectAssets {
+  banner: string;
+  gallery?: string[];
+  analytics?: string[];
+}
+
+export interface ProjectMetric {
+  icon: string | any;
+  value: string;
+  label: LocalizedContent<string>;
+}
+
+export interface ProjectTechnology {
+  social?: string[];
+  web?: string[];
+  email?: string[];
+}
+
+export interface DetailedSections {
+  tools?: {
+    title: LocalizedContent<string>;
+    description: LocalizedContent<string>;
+    items: string[];
+  };
+  overview?: {
+    title: LocalizedContent<string>;
+    content: LocalizedContent<string>;
+    metrics?: string[];
+  };
+  objectives?: {
+    title: LocalizedContent<string>;
+    items: string[];
+  };
+  socialMedia?: {
+    title: LocalizedContent<string>;
+    content: LocalizedContent<string>;
+    metrics: string[];
+  };
+  emailMarketing?: {
+    title: LocalizedContent<string>;
+    content: LocalizedContent<string>;
+    metrics: string[];
+  };
+  contentPlanning?: {
+    title: LocalizedContent<string>;
+    content?: LocalizedContent<string>;
+    metrics: string[];
+  };
+  crowdfunding?: {
+    title: LocalizedContent<string>;
+    content?: LocalizedContent<string>;
+    metrics?: string[];
+  };
+}
+
+export interface Project {
+  id: number;
+  title: LocalizedContent<string>;
+  description: LocalizedContent<string>;
+  image: string;
+  technologies: ProjectTechnology;
+  metrics?: ProjectMetric[];
+  detailedSections: DetailedSections;
+  assets: ProjectAssets;
+  gallery?: string[];
+}
 
 export interface TranslationKeys {
   nav: {
@@ -51,6 +116,3 @@ export interface Section {
   id: string;
   title: LocalizedContent<string>;
 }
-
-// Re-export types from projects.ts
-export { Project, ProjectMetric, ProjectTechnology, DetailedSections, ProjectAssets, Tool } from './projects';

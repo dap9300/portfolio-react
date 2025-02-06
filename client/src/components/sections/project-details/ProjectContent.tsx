@@ -1,4 +1,7 @@
-import { FC } from "react";
+// client/src/components/sections/project-details/ProjectContent.tsx
+"use client";
+
+import { FC, useState, useEffect } from "react";
 import { motion } from "framer-motion";
 import { Language } from "@/types";
 import { Project } from "@/types/projects";
@@ -8,12 +11,14 @@ import { projectDetailsTranslations as t } from "./magazzino/content.it";
 import { Accordion } from "@/components/ui/accordion";
 import { ProjectCarousel } from "./ProjectCarousel";
 
+
 // Import Magazzino components
 import { 
   AccordionObiettivi,
   AccordionSocialMedia,
   AccordionPianificazioneContenuti,
-  AccordionEmailMarketing
+  AccordionEmailMarketing,
+  AccordionCrowdfunding
 } from './magazzino';
 
 // Import HRX components
@@ -25,30 +30,79 @@ import {
   HRXEcommerce
 } from '@/components/sections/project-details/hrx';
 
+interface ImageDetail {
+  src: string;
+  title: string;
+  subtitle: string;
+}
+
+const imageDetails: ImageDetail[] = [
+  { 
+    src: '/assets/newsocial2.png',
+    title: "Instagram Feed",
+    subtitle: "Esempio di feed Instagram"
+  },
+  {
+    src: '/assets/newsocial3.png',
+    title: "Instagram Feed",
+    subtitle: ""
+  },
+  {
+    src: '/assets/crescitafollower2.png',
+    title: "Crescita Pagina Instagram",
+    subtitle: "ott 2021 - dic 2023"
+  },
+  {
+    src: '/assets/growth.png',
+    title: "Crescita Pagina Instagram",
+    subtitle: ""
+  }
+];
+
 interface ProjectContentProps {
   project: Project;
   language: Language;
 }
 
 export const ProjectContent: FC<ProjectContentProps> = ({ project, language }) => {
+  const [selectedImage, setSelectedImage] = useState<ImageDetail | null>(null);
+  const [clickedPosition, setClickedPosition] = useState({ x: 0, y: 0 });
+
+  const handleImageClick = (image: ImageDetail, event: React.MouseEvent) => {
+    const rect = event.currentTarget.getBoundingClientRect();
+    setClickedPosition({
+      x: event.clientX - rect.left - rect.width / 2,
+      y: event.clientY - rect.top - rect.height / 2
+    });
+    document.body.classList.add('react-zoom-container-open');
+    setSelectedImage(image);
+  };
+
+  useEffect(() => {
+    return () => {
+      document.body.classList.remove('react-zoom-container-open');
+    };
+  }, []);
+
   const renderAccordions = () => {
     if (project.id === 2) { // HRX Project
       return (
         <Accordion type="single" collapsible className="space-y-6">
-          <HRXObjectivesAccordion project={project} language={language} />
-          <HRXSocialMedia project={project} language={language} />
-          <HRXPianificazioneContenuti project={project} language={language} />
-          <HRXEmailMarketing project={project} language={language} />
-          <HRXEcommerce project={project} language={language} />
+          {HRXObjectivesAccordion && <HRXObjectivesAccordion project={project} language={language} />}
+          {HRXSocialMedia && <HRXSocialMedia project={project} language={language} />}
+          {HRXPianificazioneContenuti && <HRXPianificazioneContenuti project={project} language={language} />}
+          {HRXEmailMarketing && <HRXEmailMarketing project={project} language={language} />}
+          {HRXEcommerce && <HRXEcommerce project={project} language={language} />}
         </Accordion>
       );
-    } else { // Other Projects (Magazzino, Manunta, DTC)
+    } else { // Magazzino Project (default)
       return (
         <Accordion type="single" collapsible className="space-y-6">
           <AccordionObiettivi project={project} language={language} />
           <AccordionSocialMedia project={project} language={language} />
           <AccordionPianificazioneContenuti project={project} language={language} />
           <AccordionEmailMarketing project={project} language={language} />
+          <AccordionCrowdfunding project={project} language={language} />
         </Accordion>
       );
     }
@@ -82,24 +136,19 @@ export const ProjectContent: FC<ProjectContentProps> = ({ project, language }) =
                 {project.detailedSections.tools.description[language]}
               </p>
               <div className="grid grid-cols-2 md:grid-cols-3 gap-3">
-                {project.detailedSections.tools.items.map((tool, index) => {
-                  if (!tool.Icon) return null;
-                  const IconComponent = tool.Icon;
-                  return (
-                    <div
-                      key={`${tool.name}-${index}`}
-                      className="group relative border border-border/50 hover:border-primary/50 transition-all duration-300 hover:shadow-lg hover:shadow-primary/5 rounded-xl overflow-hidden inline-flex"
-                    >
-                      <div className="absolute inset-0 bg-gradient-to-r from-primary/5 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300" />
-                      <div className="px-4 py-3 flex items-center gap-2 whitespace-nowrap">
-                        <IconComponent className="w-4 h-4" />
-                        <span className="font-medium relative z-10">
-                          {tool.name}
-                        </span>
-                      </div>
+                {project.detailedSections.tools.items.map((tool, index) => (
+                  <div
+                    key={index}
+                    className="group relative border border-border/50 hover:border-primary/50 transition-all duration-300 hover:shadow-lg hover:shadow-primary/5 rounded-xl overflow-hidden inline-flex"
+                  >
+                    <div className="absolute inset-0 bg-gradient-to-r from-primary/5 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300" />
+                    <div className="px-4 py-3 flex items-center gap-2 whitespace-nowrap">
+                      <span className="font-medium relative z-10">
+                        {tool}
+                      </span>
                     </div>
-                  );
-                })}
+                  </div>
+                ))}
               </div>
             </Card>
           </div>
