@@ -1,7 +1,9 @@
-import type { Project, ProjectMetric } from '@/types/projects';
+// Backup of original manunta content.it.ts
+import { Project } from '@/types/projects';
 import { Users, TrendingUp, MousePointerClick } from 'lucide-react';
 import { SiWordpress, SiGoogleanalytics, SiGoogleads, SiFacebook, SiInstagram } from 'react-icons/si';
 
+// Original content follows
 export const projectDetailsTranslations = {
   back: {
     en: "Back to Projects",
@@ -34,33 +36,6 @@ export const projectDetailsTranslations = {
     }
   }
 };
-
-const projectMetrics: ProjectMetric[] = [
-  {
-    icon: Users,
-    value: "+150%",
-    label: {
-      en: "Online Bookings",
-      it: "Prenotazioni Online"
-    }
-  },
-  {
-    icon: TrendingUp,
-    value: "+85%",
-    label: {
-      en: "Organic Traffic",
-      it: "Traffico Organico"
-    }
-  },
-  {
-    icon: MousePointerClick,
-    value: "2.8%",
-    label: {
-      en: "Average CTR",
-      it: "CTR Medio"
-    }
-  }
-];
 
 export const project: Project = {
   id: 3,
@@ -99,7 +74,32 @@ export const project: Project = {
       }
     ]
   },
-  metrics: projectMetrics,
+  metrics: [
+    {
+      icon: Users,
+      value: "+150%",
+      label: {
+        en: "Online Bookings",
+        it: "Prenotazioni Online"
+      }
+    },
+    {
+      icon: TrendingUp,
+      value: "+85%",
+      label: {
+        en: "Organic Traffic",
+        it: "Traffico Organico"
+      }
+    },
+    {
+      icon: MousePointerClick,
+      value: "2.8%",
+      label: {
+        en: "Average CTR",
+        it: "CTR Medio"
+      }
+    }
+  ],
   detailedSections: {
     tools: {
       title: {
@@ -142,7 +142,23 @@ export const project: Project = {
         en: "Led the digital transformation for a physiotherapy clinic, implementing SEO strategies and managing social media campaigns to boost online visibility and patient bookings.",
         it: "Ho guidato la trasformazione digitale di uno studio di fisioterapia, implementando strategie SEO e gestendo campagne social media per aumentare la visibilità online e le prenotazioni dei pazienti."
       },
-      metrics: projectMetrics
+      metrics: [
+        {
+          icon: Users,
+          value: "Website optimization",
+          label: { en: "Website Optimization", it: "Ottimizzazione del sito web" }
+        },
+        {
+          icon: TrendingUp,
+          value: "Social media management",
+          label: { en: "Social Media Management", it: "Gestione dei social media" }
+        },
+        {
+          icon: MousePointerClick,
+          value: "SEO strategy",
+          label: { en: "SEO Strategy", it: "Strategia SEO" }
+        }
+      ]
     },
     objectives: {
       en: [
@@ -227,5 +243,3 @@ export const project: Project = {
     ]
   }
 };
-
-export const projectContent = project;

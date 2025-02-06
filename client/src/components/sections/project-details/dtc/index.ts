@@ -1,5 +1,6 @@
 // Export project content and translations
 export { project } from './content.it';
+export { projectContent } from './content.it';
 export { projectDetailsTranslations } from './content.it';
 
 // Export accordion components

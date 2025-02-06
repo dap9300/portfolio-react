@@ -28,10 +28,15 @@ export interface ProjectAssets {
 }
 
 export interface DetailedSections {
+  tools?: {
+    title: LocalizedContent<string>;
+    description: LocalizedContent<string>;
+    items: Tool[];
+  };
   overview: {
     title: LocalizedContent<string>;
     content: LocalizedContent<string>;
-    metrics: ProjectMetric[]; // Changed to ProjectMetric[]
+    metrics: ProjectMetric[];
   };
   objectives: LocalizedContent<string[]>;
   strategies: {
@@ -39,11 +44,6 @@ export interface DetailedSections {
     analytics: LocalizedContent<string[]>;
     social?: LocalizedContent<string[]>;
     email?: LocalizedContent<string[]>;
-  };
-  tools?: {
-    title: LocalizedContent<string>;
-    description: LocalizedContent<string>;
-    items: Tool[];
   };
   ecommerce?: {
     title: LocalizedContent<string>;
@@ -60,5 +60,4 @@ export interface Project {
   metrics: ProjectMetric[];
   detailedSections?: DetailedSections;
   assets?: ProjectAssets;
-  link?: string;
 }

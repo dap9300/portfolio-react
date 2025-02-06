@@ -6,13 +6,11 @@ import { FaMeta, FaInstagram, FaFacebook, FaTelegram, FaShopify, FaGoogle } from
 
 // Importazione delle icone Simple Icons per strumenti e servizi
 import { 
-
   SiDavinciresolve, 
   SiGoogleanalytics,
   SiLooker,
   SiGooglesearchconsole,
   SiGoogleads,
-  SiLooker, 
   SiMailchimp
 } from "react-icons/si";
 
@@ -156,58 +154,29 @@ export const projectContent: Project = {
     it: "HRX IT DESCRIPTION",
   },
   image: "/assets/banner-magazzino.webp",
-  // Tecnologie utilizzate, suddivise per categoria
   technologies: {
-    social: [
-      {
-        name: "Meta Business Suite",
-        Icon: FaMeta  // Modificato da 'icon' a 'Icon'
-      },
-      {
-        name: "Instagram",
-        Icon: FaInstagram
-      },
-      {
-        name: "Facebook",
-        Icon: FaFacebook
-      },
-      {
-        name: "Telegram",
-        Icon: FaTelegram
-      },
-      {
-        name: "Google Search Console",
-        Icon: SiGooglesearchconsole
-      },
-      {
-        name: "DaVinci Resolve",
-        Icon: SiDavinciresolve 
-      }
-    ],
     web: [
       {
         name: "Shopify",
         Icon: FaShopify
       },
       {
-        name: "Google Search Console",
-        Icon: SiGooglesearchconsole
-      },
-      {
-        name: "Google AdSense",
-        Icon: SiGoogleads
-      },
-      {
         name: "Google Analytics",
         Icon: SiGoogleanalytics
       },
       {
-        name: "Google Looker Studio",
-        Icon: SiLooker
+        name: "Google Ads",
+        Icon: SiGoogleads
+      }
+    ],
+    social: [
+      {
+        name: "Facebook",
+        Icon: FaFacebook
       },
       {
-        name: "Google Looker Studio",
-        Icon: SiLooker
+        name: "Instagram",
+        Icon: FaInstagram
       }
     ],
     email: [
@@ -217,7 +186,6 @@ export const projectContent: Project = {
       }
     ],
   },
-  // Metriche del progetto
   metrics: [
     {
       icon: Users,
@@ -262,7 +230,6 @@ export const projectContent: Project = {
       },
     },
   ],
-  // Sezioni dettagliate del progetto
   detailedSections: {
     tools: {
       title: {

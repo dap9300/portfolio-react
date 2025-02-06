@@ -1,4 +1,5 @@
-import type { Project, ProjectMetric } from '@/types/projects';
+// Backup of original dtc content.it.ts
+import { Project } from '@/types/projects';
 import { Users, TrendingUp, ShoppingCart } from 'lucide-react';
 import { 
   SiShopify, 
@@ -9,6 +10,7 @@ import {
   SiMailchimp
 } from 'react-icons/si';
 
+// Original content follows
 export const projectDetailsTranslations = {
   back: {
     en: "Back to Projects",
@@ -45,33 +47,6 @@ export const projectDetailsTranslations = {
     }
   }
 };
-
-const projectMetrics: ProjectMetric[] = [
-  {
-    icon: ShoppingCart,
-    value: "+180%",
-    label: {
-      en: "Sales Growth",
-      it: "Crescita Vendite"
-    }
-  },
-  {
-    icon: Users,
-    value: "3.2x",
-    label: {
-      en: "ROAS",
-      it: "ROAS"
-    }
-  },
-  {
-    icon: TrendingUp,
-    value: "+95%",
-    label: {
-      en: "Website Traffic",
-      it: "Traffico Web"
-    }
-  }
-];
 
 export const project: Project = {
   id: 4,
@@ -116,7 +91,32 @@ export const project: Project = {
       }
     ]
   },
-  metrics: projectMetrics,
+  metrics: [
+    {
+      icon: ShoppingCart,
+      value: "+180%",
+      label: {
+        en: "Sales Growth",
+        it: "Crescita Vendite"
+      }
+    },
+    {
+      icon: Users,
+      value: "3.2x",
+      label: {
+        en: "ROAS",
+        it: "ROAS"
+      }
+    },
+    {
+      icon: TrendingUp,
+      value: "+95%",
+      label: {
+        en: "Website Traffic",
+        it: "Traffico Web"
+      }
+    }
+  ],
   detailedSections: {
     tools: {
       title: {
@@ -163,7 +163,23 @@ export const project: Project = {
         en: "Led the e-commerce growth strategy, implementing performance marketing campaigns and optimizing the conversion funnel to boost sales.",
         it: "Ho guidato la strategia di crescita e-commerce, implementando campagne di performance marketing e ottimizzando il funnel di conversione per aumentare le vendite."
       },
-      metrics: projectMetrics
+      metrics: [
+        {
+          icon: ShoppingCart,
+          value: "E-commerce optimization",
+          label: { en: "E-commerce Optimization", it: "Ottimizzazione E-commerce" }
+        },
+        {
+          icon: Users,
+          value: "Performance marketing",
+          label: { en: "Performance Marketing", it: "Performance Marketing" }
+        },
+        {
+          icon: TrendingUp,
+          value: "Analytics and reporting",
+          label: { en: "Analytics & Reporting", it: "Analytics e Reporting" }
+        }
+      ]
     },
     objectives: {
       en: [
@@ -258,5 +274,3 @@ export const project: Project = {
     ]
   }
 };
-
-export const projectContent = project;

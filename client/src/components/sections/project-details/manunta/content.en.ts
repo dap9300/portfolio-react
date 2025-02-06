@@ -18,3 +18,5 @@ export const project: Project = {
     }
   }
 };
+
+export const projectContent = project;
