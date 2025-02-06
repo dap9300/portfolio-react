@@ -1,10 +1,11 @@
+
 import { FC } from "react";
 import { Language } from "@/types";
 import { Project } from "@/types/projects";
 import { Card } from "@/components/ui/card";
 import { Trophy } from "lucide-react";
 import { AccordionContent, AccordionItem, AccordionTrigger } from "@/components/ui/accordion";
-import { hrxDetailsTranslations as t } from "./translations";  // Cambiato il nome dell'import
+import { hrxDetailsTranslations as t } from "./translations";
 
 interface AccordionCrowdfundingProps {
   project: Project;
@@ -12,7 +13,7 @@ interface AccordionCrowdfundingProps {
 }
 
 export const AccordionCrowdfunding: FC<AccordionCrowdfundingProps> = ({ project, language }) => {
-  if (!project.detailedSections?.ecommerce) return null;  // Aggiunto check di sicurezza
+  if (!project.detailedSections?.ecommerce) return null;
 
   return (
     <AccordionItem value="crowdfunding" className="border rounded-lg hover:bg-accent/50 transition-colors">
@@ -53,4 +54,4 @@ export const AccordionCrowdfunding: FC<AccordionCrowdfundingProps> = ({ project,
   );
 };
 
-export default AccordionCrowdfunding;  // Aggiunto export default
+export default AccordionCrowdfunding;
