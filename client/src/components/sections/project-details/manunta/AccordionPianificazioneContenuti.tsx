@@ -1,10 +1,11 @@
+// client/src/components/sections/project-details/manunta/AccordionPianificazioneContenuti.tsx
 import { FC, useState, useRef, useEffect } from "react";
 import { Language } from "@/types";
 import { Project } from "@/types/projects";
 import { Card } from "@/components/ui/card";
 import { FileEdit } from "lucide-react";
 import { AccordionContent, AccordionItem, AccordionTrigger } from "@/components/ui/accordion";
-import { projectDetailsTranslations as t } from "./content.it";
+import { translations as t } from "./content.it";
 
 interface BeforeAfterSliderProps {
   beforeImage: string;
@@ -118,12 +119,12 @@ const BeforeAfterSlider: FC<BeforeAfterSliderProps> = ({
   );
 };
 
-interface HRXPianificazioneContenutiProps {
+interface ManuntaPianificazioneContenutiProps {
   project: Project;
   language: Language;
 }
 
-const HRXPianificazioneContenuti: FC<HRXPianificazioneContenutiProps> = ({ project, language }) => {
+const ManuntaPianificazioneContenuti: FC<ManuntaPianificazioneContenutiProps> = ({ project, language }) => {
   return (
     <AccordionItem value="content-planning" className="border rounded-lg hover:bg-accent/50 transition-colors">
       <AccordionTrigger className="px-4">
@@ -135,8 +136,8 @@ const HRXPianificazioneContenuti: FC<HRXPianificazioneContenutiProps> = ({ proje
       <AccordionContent className="px-4">
         <Card className="p-6 mt-4">
           <BeforeAfterSlider
-            beforeImage="/assets/old-hrx-1.png"
-            afterImage="/assets/new-hrx1.png"
+            beforeImage="/assets/manunta-old.png"
+            afterImage="/assets/manunta-new.png"
             beforeLabel={language === 'it' ? 'Prima' : 'Before'}
             afterLabel={language === 'it' ? 'Dopo' : 'After'}
           />
@@ -144,9 +145,9 @@ const HRXPianificazioneContenuti: FC<HRXPianificazioneContenutiProps> = ({ proje
           <ul className="space-y-2 text-muted-foreground mt-6">
             {[
               'Piano editoriale mensile',
-              'Contenuti ottimizzati per piattaforma',
-              'Analisi performance contenuti',
-              'A/B testing formati e copy'
+              'Contenuti educativi su salute e benessere',
+              'Blog post settimanali',
+              'Video tutorial trattamenti'
             ].map((item, index) => (
               <li key={index} className="flex items-center gap-2">
                 <div className="w-1.5 h-1.5 rounded-full bg-primary"></div>
@@ -160,4 +161,4 @@ const HRXPianificazioneContenuti: FC<HRXPianificazioneContenutiProps> = ({ proje
   );
 };
 
-export default HRXPianificazioneContenuti;
+export default ManuntaPianificazioneContenuti;

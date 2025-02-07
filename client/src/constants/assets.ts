@@ -7,12 +7,12 @@ export const PROJECT_ASSETS = {
     SOCIAL: {}
   },
   HRX: {
-    BANNER: '/assets/hrx-banner1.jpg'
+    BANNER: '/assets/hrx-banner1.webp'
   },
   MANUNTA: {
     BANNER: '/assets/manunta-banner.jpg'
   },
   DTC: {
-    BANNER: '/assets/dtc-banner.jpg'
+    BANNER: '/assets/dtc-banner.webp'
   }
 } as const;

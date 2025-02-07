@@ -1,3 +1,4 @@
+// client/src/data/projects/manunta/index.ts
 import { Project } from '@/types/projects';
 
 export const project: Project = {

@@ -1,60 +1,56 @@
-// Importazione delle icone Lucide React per le metriche
+// client/src/components/sections/project-details/hrx/content.it.ts
 import { Users, Calendar, ShoppingCart, MousePointerClick } from "lucide-react";
-
-// Importazione delle icone FontAwesome per i social media e piattaforme
 import { FaMeta, FaInstagram, FaFacebook, FaTelegram, FaShopify, FaGoogle } from "react-icons/fa6";
-
-// Importazione delle icone Simple Icons per strumenti e servizi
 import { 
-
   SiDavinciresolve, 
   SiGoogleanalytics,
   SiLooker,
   SiGooglesearchconsole,
   SiGoogleads,
-  SiLooker, 
   SiMailchimp
 } from "react-icons/si";
-
-// Importazione del tipo Project
 import { Project } from "@/types/projects";
 
-// Traduzioni per le sezioni del progetto
+// Integrated translations that were previously in translations.ts
 export const projectDetailsTranslations = {
   back: {
-    en: "Back to Projects",
-    it: "Torna ai Progetti",
+    en: 'Back to Projects',
+    it: 'Torna ai Progetti'
   },
   projectDetails: {
     overview: {
-      en: "Project Overview",
-      it: "Panoramica del Progetto",
+      en: 'Project Overview',
+      it: 'Panoramica del Progetto'
     },
     tools: {
-      en: "Tools & Platforms",
-      it: "Strumenti e Piattaforme",
+      en: 'Tools & Platforms',
+      it: 'Strumenti e Piattaforme'
     },
     objectives: {
-      en: "Objectives",
-      it: "Obiettivi",
+      en: 'Objectives',
+      it: 'Obiettivi'
     },
     socialStrategy: {
-      en: "Social Media Strategy",
-      it: "Strategia Social Media",
+      en: 'Digital Marketing Strategy',
+      it: 'Strategia Marketing Digitale'
     },
     contentPlanning: {
-      en: "Content Planning",
-      it: "Pianificazione Contenuti",
+      en: 'Content Strategy',
+      it: 'Strategia dei Contenuti'
     },
     emailMarketing: {
-      en: "Email Marketing",
-      it: "Email Marketing",
+      en: 'Email Marketing',
+      it: 'Email Marketing'
+    },
+    performance: {
+      en: 'Results & Performance',
+      it: 'Risultati e Performance'
     },
     ecommerce: {
-      en: "E-commerce",
-      it: "E-commerce",
-    },
-  },
+      en: 'E-commerce',
+      it: 'E-commerce'
+    }
+  }
 };
 
 // Contenuto principale del progetto

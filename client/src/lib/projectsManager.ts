@@ -1,18 +1,11 @@
 // client/src/lib/projectsManager.ts
-
 import { Project } from '@/types/projects';
 import { project as magazzinoProject } from '@/components/sections/project-details/magazzino';
 import { project as hrxProject } from '@/components/sections/project-details/hrx';
-import { project as manuntaProject } from '@/data/projects/manunta';
-import { project as dtcProject } from '@/data/projects/dtc';
+import { project as manuntaProject } from '@/components/sections/project-details/manunta';
+import { project as dtcProject } from '@/components/sections/project-details/dtc';
 
-import { projectDetailsTranslations as magazzinoTranslations } from '@/components/sections/project-details/magazzino/content.it';
-import { projectDetailsTranslations as hrxTranslations } from '@/components/sections/project-details/hrx/content.it';
-// Import future projects translations here
-// import { projectDetailsTranslations as manuntaTranslations } from '@/data/projects/manunta/content.it';
-// import { projectDetailsTranslations as dtcTranslations } from '@/data/projects/dtc/content.it';
-
-// Projects mapping
+// Projects mapping - combining component-based and JSON-based projects
 const projects: Record<string, Project> = {
   '1': magazzinoProject,
   '2': hrxProject,
@@ -20,13 +13,17 @@ const projects: Record<string, Project> = {
   '4': dtcProject
 };
 
+import { projectDetailsTranslations as magazzinoTranslations } from '@/components/sections/project-details/magazzino/content.it';
+import { projectDetailsTranslations as hrxTranslations } from '@/components/sections/project-details/hrx/content.it';
+import { translations as manuntaTranslations } from '@/components/sections/project-details/manunta/content.it';
+import { translations as dtcTranslations } from '@/components/sections/project-details/dtc/content.it';
+
 // Translations mapping
 const projectTranslations: Record<string, any> = {
   '1': magazzinoTranslations,
   '2': hrxTranslations,
-  // Add other translations as projects are added
-  // '3': manuntaTranslations,
-  // '4': dtcTranslations
+  '3': manuntaTranslations,
+  '4': dtcTranslations
 };
 
 export function getProject(id: string): Project | undefined {
@@ -61,7 +58,12 @@ export function getProjectAccordions(id: string) {
   switch(id) {
     case '2':
       return require('@/components/sections/project-details/hrx');
+    case '3':
+      return require('@/components/sections/project-details/manunta');
     case '1':
+      return require('@/components/sections/project-details/magazzino');
+    case '4':
+      return require('@/components/sections/project-details/dtc');
     default:
       return require('@/components/sections/project-details/magazzino');
   }

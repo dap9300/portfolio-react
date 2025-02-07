@@ -1,18 +1,18 @@
+// client/src/components/sections/project-details/manunta/AccordionEmailMarketing.tsx
 import { FC } from "react";
 import { Language } from "@/types";
 import { Project } from "@/types/projects";
 import { Card } from "@/components/ui/card";
 import { Mail } from "lucide-react";
 import { AccordionContent, AccordionItem, AccordionTrigger } from "@/components/ui/accordion";
-import { projectDetailsTranslations as t } from "./content.it";
+import { translations as t } from "./content.it";
 
-
-interface HRXEmailMarketingProps {
+interface ManuntaEmailMarketingProps {
   project: Project;
   language: Language;
 }
 
-const HRXEmailMarketing: FC<HRXEmailMarketingProps> = ({ project, language }) => {
+const ManuntaEmailMarketing: FC<ManuntaEmailMarketingProps> = ({ project, language }) => {
   return (
     <AccordionItem value="email" className="border rounded-lg hover:bg-accent/50 transition-colors">
       <AccordionTrigger className="px-4">
@@ -31,10 +31,10 @@ const HRXEmailMarketing: FC<HRXEmailMarketingProps> = ({ project, language }) =>
               <h3 className="font-semibold text-lg">Attività Email Marketing</h3>
               <ul className="space-y-2">
                 {[
-                  'Newsletter settimanale a oltre 40.000 iscritti',
-                  'CTR medio (5%) Tasso di Apertura (10%)',
-                  'Invio notifiche push circuito Arci',
-                  'Segmentazione utenza e liste per interessi'
+                  'Newsletter mensile a 5,000+ iscritti',
+                  'Promemoria appuntamenti automatizzati',
+                  'Comunicazioni follow-up post trattamento',
+                  'Newsletter informative sulla salute'
                 ].map((item, index) => (
                   <li key={index} className="flex items-start gap-2">
                     <div className="w-1.5 h-1.5 rounded-full bg-blue-500 mt-2" />
@@ -48,23 +48,23 @@ const HRXEmailMarketing: FC<HRXEmailMarketingProps> = ({ project, language }) =>
             <div className="grid grid-cols-2 gap-4">
               <div className="bg-accent/50 p-4 rounded-lg">
                 <p className="text-sm text-muted-foreground">Iscritti Newsletter</p>
-                <p className="text-2xl font-bold text-blue-500">44.514</p>
-                <span className="text-green-600 text-base">+28% YoY</span>
+                <p className="text-2xl font-bold text-blue-500">5,214</p>
+                <span className="text-green-600 text-base">+45% YoY</span>
               </div>
               <div className="bg-accent/50 p-4 rounded-lg">
                 <p className="text-sm text-muted-foreground">Tasso di Apertura</p>
-                <p className="text-2xl font-bold text-blue-500">14,7%</p>
+                <p className="text-2xl font-bold text-blue-500">25%</p>
                 <span className="text-muted-foreground text-sm">medio</span>
               </div>
               <div className="bg-accent/50 p-4 rounded-lg">
                 <p className="text-sm text-muted-foreground">Tasso di Click</p>
-                <p className="text-2xl font-bold text-blue-500">4.5%</p>
+                <p className="text-2xl font-bold text-blue-500">3.2%</p>
                 <span className="text-muted-foreground text-sm">medio</span>
               </div>
               <div className="bg-accent/50 p-4 rounded-lg">
-                <p className="text-sm text-muted-foreground">Tasso di Cancellazione</p>
-                <p className="text-2xl font-bold text-blue-500">0,7%</p>
-                <span className="text-muted-foreground text-sm">basso</span>
+                <p className="text-sm text-muted-foreground">Efficacia Promemoria</p>
+                <p className="text-2xl font-bold text-blue-500">85%</p>
+                <span className="text-muted-foreground text-sm">presenza appuntamenti</span>
               </div>
             </div>
           </div>
@@ -74,4 +74,4 @@ const HRXEmailMarketing: FC<HRXEmailMarketingProps> = ({ project, language }) =>
   );
 };
 
-export default HRXEmailMarketing;
+export default ManuntaEmailMarketing;

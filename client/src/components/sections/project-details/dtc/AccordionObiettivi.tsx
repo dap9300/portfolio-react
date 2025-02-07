@@ -1,3 +1,4 @@
+// client/src/components/sections/project-details/dtc/AccordionObiettivi.tsx
 import { FC } from "react";
 import { motion } from "framer-motion";
 import { Language } from "@/types";
@@ -5,15 +6,14 @@ import { Project } from "@/types/projects";
 import { Card } from "@/components/ui/card";
 import { Target, Check } from "lucide-react";
 import { AccordionContent, AccordionItem, AccordionTrigger } from "@/components/ui/accordion";
-import { projectDetailsTranslations as t } from "./content.it";
+import { translations as t } from "./content.it";
 
-
-interface HRXObjectivesAccordionProps {
+interface DTCObjectivesAccordionProps {
   project: Project;
   language: Language;
 }
 
-const HRXObjectivesAccordion: FC<HRXObjectivesAccordionProps> = ({ project, language }) => {
+const DTCObjectivesAccordion: FC<DTCObjectivesAccordionProps> = ({ project, language }) => {
   return (
     <AccordionItem value="objectives" className="border rounded-lg hover:bg-accent/50 transition-colors">
       <AccordionTrigger className="px-4">
@@ -27,28 +27,28 @@ const HRXObjectivesAccordion: FC<HRXObjectivesAccordionProps> = ({ project, lang
           <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
             {[
               {
-                title: 'Incrementare Lead Generation',
-                icon: '✨',
-                achievement: 'Target raggiunto: +22%',
-                details: 'Significativo aumento nella generazione di lead qualificati'
+                title: 'Ottimizzazione SEO',
+                icon: '📈',
+                achievement: 'Target superato: +85%',
+                details: 'Significativo aumento del traffico organico'
               },
               {
-                title: 'Ottimizzare ROAS',
-                icon: '📢',
-                achievement: 'Superato target: 4.2x',
-                details: 'Return on Ad Spend superiore agli obiettivi prefissati'
+                title: 'Lead Generation',
+                icon: '🎯',
+                achievement: 'Superato target: +150%',
+                details: 'Incremento sostanziale nella generazione di lead qualificati'
               },
               {
-                title: 'Migliorare CTR',
-                icon: '🤝',
-                achievement: 'Raggiunto: +3.5%',
-                details: 'Click-Through Rate ottimizzato su tutte le campagne'
+                title: 'Performance Team',
+                icon: '👥',
+                achievement: 'Raggiunto: +65%',
+                details: 'Miglioramento efficienza dei processi di team'
               },
               {
-                title: 'Espandere Presenza Online',
+                title: 'Engagement Contenuti',
                 icon: '📱',
-                achievement: 'Completato',
-                details: 'Strategia multicanale implementata con successo'
+                achievement: 'Completato +120%',
+                details: 'Incremento significativo nell\'engagement dei contenuti'
               }
             ].map((objective, index) => (
               <div key={index} className="bg-accent/50 p-6 rounded-xl hover:shadow-md transition-all duration-300">
@@ -72,4 +72,4 @@ const HRXObjectivesAccordion: FC<HRXObjectivesAccordionProps> = ({ project, lang
   );
 };
 
-export default HRXObjectivesAccordion;
+export default DTCObjectivesAccordion;

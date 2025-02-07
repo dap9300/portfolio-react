@@ -2,6 +2,7 @@ import { FC } from "react";
 import { motion } from "framer-motion";
 import { Language } from "@/types";
 import { Project, ProjectMetric } from "@/types/projects";
+import { Users, TrendingUp, BarChart } from 'lucide-react'; // Aggiungiamo le icone che usiamo in DTC
 
 interface ProjectMetricsProps {
   metrics: ProjectMetric[];
@@ -9,12 +10,26 @@ interface ProjectMetricsProps {
 }
 
 export const ProjectMetrics: FC<ProjectMetricsProps> = ({ metrics, language }) => {
-  if (!metrics?.length) return null;
+  if (!metrics?.length) {
+    console.log("No metrics found or metrics is empty");
+    return null;
+  }
+
+  // Console log per debugging
+  console.log("Metrics:", metrics);
 
   return (
     <div className="grid grid-cols-1 md:grid-cols-3 gap-6 my-8">
       {metrics.map((metric, index) => {
-        const IconComponent = metric.icon;
+        // Gestione più flessibile delle icone
+        let IconToRender;
+        if (typeof metric.icon === 'string') {
+          // Se l'icona è una stringa, potremmo avere un mapping qui se necessario
+          IconToRender = Users; // default fallback
+        } else {
+          IconToRender = metric.icon;
+        }
+
         const labelContent = typeof metric.label[language] === 'string' 
           ? metric.label[language] 
           : metric.label[language].text;
@@ -28,7 +43,9 @@ export const ProjectMetrics: FC<ProjectMetricsProps> = ({ metrics, language }) =
             transition={{ duration: 0.5, delay: index * 0.1 }}
           >
             <div className="flex items-center space-x-4">
-              <IconComponent className="w-10 h-10 text-primary" />
+              {IconToRender && (
+                <IconToRender className="w-10 h-10 text-primary" />
+              )}
               <div className="relative group">
                 <p className="text-2xl font-bold">{metric.value}</p>
                 <p className="text-muted-foreground">
@@ -43,7 +60,7 @@ export const ProjectMetrics: FC<ProjectMetricsProps> = ({ metrics, language }) =
               </div>
             </div>
           </motion.div>
-        )
+        );
       })}
     </div>
   );

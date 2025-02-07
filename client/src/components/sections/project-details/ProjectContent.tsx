@@ -1,23 +1,19 @@
 // client/src/components/sections/project-details/ProjectContent.tsx
-"use client";
-
 import { FC, useState, useEffect } from "react";
 import { motion } from "framer-motion";
 import { Language } from "@/types";
 import { Project } from "@/types/projects";
 import { Card } from "@/components/ui/card";
 import { BookOpen } from "lucide-react";
-import { projectDetailsTranslations as t } from "./magazzino/content.it";
 import { Accordion } from "@/components/ui/accordion";
 import { ProjectCarousel } from "./ProjectCarousel";
 
-
 // Import Magazzino components
 import { 
-  AccordionObiettivi,
-  AccordionSocialMedia,
-  AccordionPianificazioneContenuti,
-  AccordionEmailMarketing,
+  AccordionObiettivi as MagazzinoObiettivi,
+  AccordionSocialMedia as MagazzinoSocialMedia,
+  AccordionPianificazioneContenuti as MagazzinoPianificazioneContenuti,
+  AccordionEmailMarketing as MagazzinoEmailMarketing,
   AccordionCrowdfunding
 } from './magazzino';
 
@@ -28,36 +24,25 @@ import {
   HRXPianificazioneContenuti,
   HRXEmailMarketing,
   HRXEcommerce
-} from '@/components/sections/project-details/hrx';
+} from './hrx';
 
-interface ImageDetail {
-  src: string;
-  title: string;
-  subtitle: string;
-}
+// Import Manunta components
+import {
+  AccordionObiettivi as ManuntaObiettivi,
+  AccordionSocialMedia as ManuntaSocialMedia,
+  AccordionPianificazioneContenuti as ManuntaPianificazioneContenuti,
+  AccordionEmailMarketing as ManuntaEmailMarketing,
+  AccordionServices as ManuntaServices
+} from './manunta';
 
-const imageDetails: ImageDetail[] = [
-  { 
-    src: '/assets/newsocial2.png',
-    title: "Instagram Feed",
-    subtitle: "Esempio di feed Instagram"
-  },
-  {
-    src: '/assets/newsocial3.png',
-    title: "Instagram Feed",
-    subtitle: ""
-  },
-  {
-    src: '/assets/crescitafollower2.png',
-    title: "Crescita Pagina Instagram",
-    subtitle: "ott 2021 - dic 2023"
-  },
-  {
-    src: '/assets/growth.png',
-    title: "Crescita Pagina Instagram",
-    subtitle: ""
-  }
-];
+// Import DTC components
+import {
+  AccordionObiettivi as DTCObiettivi,
+  AccordionContentStrategy,
+  AccordionLeadGeneration,
+  AccordionTeamManagement,
+  AccordionAnalytics
+} from './dtc';
 
 interface ProjectContentProps {
   project: Project;
@@ -85,26 +70,47 @@ export const ProjectContent: FC<ProjectContentProps> = ({ project, language }) =
   }, []);
 
   const renderAccordions = () => {
-    if (project.id === 2) { // HRX Project
-      return (
-        <Accordion type="single" collapsible className="space-y-6">
-          {HRXObjectivesAccordion && <HRXObjectivesAccordion project={project} language={language} />}
-          {HRXSocialMedia && <HRXSocialMedia project={project} language={language} />}
-          {HRXPianificazioneContenuti && <HRXPianificazioneContenuti project={project} language={language} />}
-          {HRXEmailMarketing && <HRXEmailMarketing project={project} language={language} />}
-          {HRXEcommerce && <HRXEcommerce project={project} language={language} />}
-        </Accordion>
-      );
-    } else { // Magazzino Project (default)
-      return (
-        <Accordion type="single" collapsible className="space-y-6">
-          <AccordionObiettivi project={project} language={language} />
-          <AccordionSocialMedia project={project} language={language} />
-          <AccordionPianificazioneContenuti project={project} language={language} />
-          <AccordionEmailMarketing project={project} language={language} />
-          <AccordionCrowdfunding project={project} language={language} />
-        </Accordion>
-      );
+    switch (project.id) {
+      case 2: // HRX Project
+        return (
+          <Accordion type="single" collapsible className="space-y-6">
+            <HRXObjectivesAccordion project={project} language={language} />
+            <HRXSocialMedia project={project} language={language} />
+            <HRXPianificazioneContenuti project={project} language={language} />
+            <HRXEmailMarketing project={project} language={language} />
+            <HRXEcommerce project={project} language={language} />
+          </Accordion>
+        );
+      case 3: // Manunta Project
+        return (
+          <Accordion type="single" collapsible className="space-y-6">
+            <ManuntaObiettivi project={project} language={language} />
+            <ManuntaSocialMedia project={project} language={language} />
+            <ManuntaPianificazioneContenuti project={project} language={language} />
+            <ManuntaEmailMarketing project={project} language={language} />
+            <ManuntaServices project={project} language={language} />
+          </Accordion>
+        );
+      case 4: // DTC Project
+        return (
+          <Accordion type="single" collapsible className="space-y-6">
+            <DTCObiettivi project={project} language={language} />
+            <AccordionAnalytics project={project} language={language} />
+            <AccordionContentStrategy project={project} language={language} />
+            <AccordionLeadGeneration project={project} language={language} />
+            <AccordionTeamManagement project={project} language={language} />
+          </Accordion>
+        );
+      default: // Magazzino Project
+        return (
+          <Accordion type="single" collapsible className="space-y-6">
+            <MagazzinoObiettivi project={project} language={language} />
+            <MagazzinoSocialMedia project={project} language={language} />
+            <MagazzinoPianificazioneContenuti project={project} language={language} />
+            <MagazzinoEmailMarketing project={project} language={language} />
+            <AccordionCrowdfunding project={project} language={language} />
+          </Accordion>
+        );
     }
   };
 
@@ -116,7 +122,9 @@ export const ProjectContent: FC<ProjectContentProps> = ({ project, language }) =
         <div className="space-y-4">
           <div className="flex items-center gap-2">
             <BookOpen className="w-6 h-6 text-primary" />
-            <h2 className="text-2xl font-semibold">{t.projectDetails.overview[language]}</h2>
+            <h2 className="text-2xl font-semibold">
+              {language === 'it' ? 'Panoramica del Progetto' : 'Project Overview'}
+            </h2>
           </div>
           <Card className="p-6">
             <p className="text-muted-foreground whitespace-pre-line">
@@ -126,17 +134,24 @@ export const ProjectContent: FC<ProjectContentProps> = ({ project, language }) =
         </div>
 
         {/* Tools Section */}
-        {project.detailedSections?.tools && (
           <div className="md:col-span-2 space-y-4">
             <div className="flex items-center gap-2">
-              <h2 className="text-2xl font-semibold">{project.detailedSections.tools.title[language]}</h2>
+              <h2 className="text-2xl font-semibold">
+                {language === 'it' ? 'Strumenti e Piattaforme' : 'Tools & Platforms'}
+              </h2>
             </div>
             <Card className="p-6">
               <p className="text-muted-foreground mb-6">
-                {project.detailedSections.tools.description[language]}
+                {language === 'it' 
+                  ? 'Tecnologie e piattaforme utilizzate in questo progetto'
+                  : 'Technologies and platforms used in this project'
+                }
               </p>
               <div className="grid grid-cols-2 md:grid-cols-3 gap-3">
-                {project.detailedSections.tools.items.map((tool, index) => (
+                {project.technologies.social?.concat(
+                  project.technologies.web || [],
+                  project.technologies.email || []
+                ).map((tool, index) => (
                   <div
                     key={index}
                     className="group relative border border-border/50 hover:border-primary/50 transition-all duration-300 hover:shadow-lg hover:shadow-primary/5 rounded-xl overflow-hidden inline-flex"
@@ -152,8 +167,8 @@ export const ProjectContent: FC<ProjectContentProps> = ({ project, language }) =
               </div>
             </Card>
           </div>
-        )}
-      </div>
+        </div>
+
 
       {/* Accordion Sections */}
       <motion.div

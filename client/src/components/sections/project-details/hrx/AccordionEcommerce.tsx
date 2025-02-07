@@ -5,7 +5,8 @@ import { Project } from "@/types/projects";
 import { Card } from "@/components/ui/card";
 import { ShoppingCart } from "lucide-react";
 import { AccordionContent, AccordionItem, AccordionTrigger } from "@/components/ui/accordion";
-import { hrxDetailsTranslations as t } from "./translations";
+import { projectDetailsTranslations as t } from "./content.it";
+
 
 interface AccordionEcommerceProps {
   project: Project;
