@@ -1,5 +1,5 @@
 import { motion } from "framer-motion";
-import { translations } from "@/components/sections/project-details/magazzino/content.it";
+import { translations } from "@/components/sections/project-details/SiteContent";
 import { Language } from "@/types";
 import { SectionTitle } from "@/components/shared/SectionTitle";
 import { fadeInUp, staggerContainer, sectionVariants } from "@/lib/animations";
