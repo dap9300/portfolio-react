@@ -1,11 +1,12 @@
-// client/src/lib/projectsManager.ts
+// projectsManager.ts
+
 import { Project } from '@/types/projects';
-import { project as magazzinoProject } from '@/components/sections/project-details/magazzino';
+import { project as magazzinoProject, translations as magazzinoTranslations } from '@/components/sections/project-details/magazzino';
 import { project as hrxProject } from '@/components/sections/project-details/hrx';
 import { project as manuntaProject } from '@/components/sections/project-details/manunta';
 import { project as dtcProject } from '@/components/sections/project-details/dtc';
 
-// Projects mapping - combining component-based and JSON-based projects
+// Projects mapping
 const projects: Record<string, Project> = {
   '1': magazzinoProject,
   '2': hrxProject,
@@ -13,11 +14,10 @@ const projects: Record<string, Project> = {
   '4': dtcProject
 };
 
-import { translations as siteTranslations } from '@/components/sections/project-details/SiteContent';
-import { translations } from '@/components/sections/project-details/SiteContent';
-import { projectDetailsTranslations as hrxTranslations } from '@/components/sections/project-details/hrx/content.it';
-import { translations as manuntaTranslations } from '@/components/sections/project-details/manunta/content.it';
-import { translations as dtcTranslations } from '@/components/sections/project-details/dtc/content.it';
+// This line was causing the error - we now import translations directly from the index files
+import { translations as hrxTranslations } from '@/components/sections/project-details/hrx';
+import { translations as manuntaTranslations } from '@/components/sections/project-details/manunta';
+import { translations as dtcTranslations } from '@/components/sections/project-details/dtc';
 
 // Translations mapping
 const projectTranslations: Record<string, any> = {

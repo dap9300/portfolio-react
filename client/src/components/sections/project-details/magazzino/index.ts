@@ -1,29 +1,48 @@
 // client/src/components/sections/project-details/magazzino/index.ts
 
-// 1. Prima importiamo i componenti
+// Grouped imports from react-icons/si
+import { 
+  SiDavinciresolve,
+  SiMeta,
+  SiInstagram,
+  SiFacebook,
+  SiTelegram,
+  SiAdobephotoshop,
+  SiAdobeillustrator,
+  SiWordpress,
+  SiGooglesearchconsole,
+  SiGoogleanalytics,
+  SiLooker
+} from "react-icons/si";
+
+// Separate import for TbMailUp
+import { TbMailUp } from "react-icons/tb";
+
+// First import project details translations
+import { projectDetailsTranslations } from './content.it';
+// Export it as translations
+export const translations = projectDetailsTranslations;
+
+// Rest of your imports and exports...
 export { AccordionCrowdfunding } from './AccordionCrowdfunding';
 export { AccordionEmailMarketing } from './AccordionEmailMarketing';
 export { AccordionObiettivi } from './AccordionObiettivi';
 export { AccordionPianificazioneContenuti } from './AccordionPianificazioneContenuti';
 export { AccordionSocialMedia } from './AccordionSocialMedia';
-
-// 2. Importiamo i contenuti da content.it e content.en
-import { translations, projectContent as importedItalianContent } from './content.it';
+import { projectContent as importedItalianContent } from './content.it';
 import { projectContent as importedEnglishContent } from './content.en';
 
-export { translations };
-
-// 3. Esportiamo i contenuti
+// Export contents
 export const italianContent = importedItalianContent;
 export const englishContent = importedEnglishContent;
 
-// 4. Esportiamo i componenti di livello superiore
+// 5. Esportiamo i componenti di livello superiore
 export { ProjectContent } from '../ProjectContent';
 export { ProjectHeader } from '../ProjectHeader';
 export { ProjectLayout } from '../ProjectLayout'; 
 export { ProjectMetrics } from '../ProjectMetrics';
 
-// 5. Definiamo il project utilizzando i contenuti importati
+// 6. Definiamo il project utilizzando i contenuti importati
 export const project = {
   id: 1,
   title: {
@@ -37,21 +56,22 @@ export const project = {
   image: '/assets/banner-magazzino.webp',
   technologies: {
     social: [
-      'Meta Business Suite',
-      'Instagram',
-      'Facebook',
-      'Telegram',
-      'Adobe Creative Suite',
-      'DaVinci Resolve'
+      { name: 'Meta Business Suite', icon: SiMeta },
+      { name: 'Instagram', icon: SiInstagram },
+      { name: 'Facebook', icon: SiFacebook },
+      { name: 'Telegram', icon: SiTelegram },
+      { name: 'Adobe Photoshop', icon: SiAdobephotoshop },
+      { name: 'Adobe Illustrator', icon: SiAdobeillustrator },
+      { name: 'DaVinci Resolve', icon: SiDavinciresolve }
     ],
     web: [
-      'WordPress',
-      'Google Search Console',
-      'Google Analytics',
-      'Google Looker Studio'
+      { name: 'WordPress', icon: SiWordpress },
+      { name: 'Google Search Console', icon: SiGooglesearchconsole },
+      { name: 'Google Analytics', icon: SiGoogleanalytics },
+      { name: 'Google Looker Studio', icon: SiLooker }
     ],
     email: [
-      'MailUp'
+      { name: 'MailUp', icon: TbMailUp }
     ]
   },
   metrics: importedItalianContent.metrics,
@@ -63,7 +83,7 @@ export const project = {
   detailedSections: importedItalianContent.detailedSections
 };
 
-// 6. Definiamo la funzione getContent
+// 7. Definiamo la funzione getContent
 export const getContent = (language: 'it' | 'en') => {
   return language === 'it' ? importedItalianContent : importedEnglishContent;
 };

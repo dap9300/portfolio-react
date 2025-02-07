@@ -1,5 +1,5 @@
 import { motion } from "framer-motion";
-import { translations } from "@/components/sections/project-details/magazzino/content.it";
+import { translations } from "@/components/sections/project-details/SiteContent";
 import { Language } from "@/types";
 import { SectionTitle } from "@/components/shared/SectionTitle";
 import { ProjectCard } from "@/components/shared/ProjectCard";
@@ -11,7 +11,7 @@ interface ProjectsProps {
 }
 
 export function Projects({ language }: ProjectsProps) {
-  const t = translations[language].projects;
+  const t = translations[language];
   const projects = getAllProjects();
 
   return (
@@ -25,7 +25,7 @@ export function Projects({ language }: ProjectsProps) {
     >
       <div className="container mx-auto">
         <SectionTitle 
-          title={t.title}
+          title={t.projects.title}
           icon="https://cdn.lordicon.com/iltqorsz.json"
         />
         <motion.div

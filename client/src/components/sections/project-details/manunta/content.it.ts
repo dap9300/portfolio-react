@@ -2,6 +2,44 @@
 import { Project } from '@/types';
 import { Users, TrendingUp, MousePointerClick } from 'lucide-react';
 
+// Define translations object
+const translationsData = {
+  back: {
+    en: 'Back to Projects',
+    it: 'Torna ai Progetti'
+  },
+  projectDetails: {
+    overview: {
+      en: 'Project Overview',
+      it: 'Panoramica del Progetto'
+    },
+    tools: {
+      en: 'Tools & Platforms',
+      it: 'Strumenti e Piattaforme'
+    },
+    objectives: {
+      en: 'Objectives',
+      it: 'Obiettivi'
+    },
+    socialStrategy: {
+      en: 'Social Media Strategy',
+      it: 'Strategia Social Media'
+    },
+    contentPlanning: {
+      en: 'Content Strategy',
+      it: 'Strategia dei Contenuti'
+    },
+    emailMarketing: {
+      en: 'Email Marketing',
+      it: 'Email Marketing'
+    }
+  }
+};
+
+// Export both versions for retrocompatibilità
+export const translations = translationsData;
+export const projectDetailsTranslations = translationsData;
+
 export const projectContent: Project = {
   id: 3,
   title: {
@@ -158,38 +196,5 @@ export const projectContent: Project = {
       '/assets/manunta-analytics1.png',
       '/assets/manunta-growth.png'
     ]
-  }
-};
-
-export const translations = {
-  back: {
-    en: 'Back to Projects',
-    it: 'Torna ai Progetti'
-  },
-  projectDetails: {
-    overview: {
-      en: 'Project Overview',
-      it: 'Panoramica del Progetto'
-    },
-    tools: {
-      en: 'Tools & Platforms',
-      it: 'Strumenti e Piattaforme'
-    },
-    objectives: {
-      en: 'Objectives',
-      it: 'Obiettivi'
-    },
-    socialStrategy: {
-      en: 'Social Media Strategy',
-      it: 'Strategia Social Media'
-    },
-    contentPlanning: {
-      en: 'Content Strategy',
-      it: 'Strategia dei Contenuti'
-    },
-    emailMarketing: {
-      en: 'Email Marketing',
-      it: 'Email Marketing'
-    }
   }
 };

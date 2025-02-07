@@ -2,6 +2,44 @@
 import { Project } from '@/types';
 import { Users, TrendingUp, BarChart } from 'lucide-react';
 
+// Define translations object
+const translationsData = {
+  back: {
+    en: 'Back to Projects',
+    it: 'Torna ai Progetti'
+  },
+  projectDetails: {
+    overview: {
+      en: 'Project Overview',
+      it: 'Panoramica del Progetto'
+    },
+    tools: {
+      en: 'Tools & Platforms',
+      it: 'Strumenti e Piattaforme'
+    },
+    objectives: {
+      en: 'Objectives',
+      it: 'Obiettivi'
+    },
+    contentStrategy: {
+      en: 'Content Strategy',
+      it: 'Strategia dei Contenuti'
+    },
+    leadGeneration: {
+      en: 'Lead Generation',
+      it: 'Generazione Lead'
+    },
+    teamManagement: {
+      en: 'Team Management',
+      it: 'Gestione Team'
+    }
+  }
+};
+
+// Export both versions
+export const translations = translationsData;
+export const projectDetailsTranslations = translationsData;
+
 export const projectContent: Project = {
   id: 4,
   title: {
@@ -127,38 +165,5 @@ export const projectContent: Project = {
       '/assets/dtc-analytics1.png',
       '/assets/dtc-growth.png'
     ]
-  }
-};
-
-export const translations = {
-  back: {
-    en: 'Back to Projects',
-    it: 'Torna ai Progetti'
-  },
-  projectDetails: {
-    overview: {
-      en: 'Project Overview',
-      it: 'Panoramica del Progetto'
-    },
-    tools: {
-      en: 'Tools & Platforms',
-      it: 'Strumenti e Piattaforme'
-    },
-    objectives: {
-      en: 'Objectives',
-      it: 'Obiettivi'
-    },
-    contentStrategy: {
-      en: 'Content Strategy',
-      it: 'Strategia dei Contenuti'
-    },
-    leadGeneration: {
-      en: 'Lead Generation',
-      it: 'Generazione Lead'
-    },
-    teamManagement: {
-      en: 'Team Management',
-      it: 'Gestione Team'
-    }
   }
 };

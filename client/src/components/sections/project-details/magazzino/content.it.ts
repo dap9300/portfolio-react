@@ -1,10 +1,10 @@
-import { Users, TrendingUp, Calendar } from 'lucide-react';
-import { Project } from '@/types/projects';
+// client/src/components/sections/project-details/magazzino/content.it.ts
 
 import { Users, TrendingUp, Calendar } from 'lucide-react';
 import { Project } from '@/types/projects';
 
-export const translations = {
+// First define the shared translations object
+const translationsData = {
   back: {
     en: 'Back to Projects',
     it: 'Torna ai Progetti'
@@ -21,9 +21,25 @@ export const translations = {
     crowdfunding: {
       en: 'Crowdfunding Campaign',
       it: 'Campagna di Crowdfunding'
+    },
+    socialMedia: {
+      en: 'Social Media Strategy',
+      it: 'Strategia Social Media'
+    },
+    emailMarketing: {
+      en: 'Email Marketing',
+      it: 'Email Marketing'
+    },
+    contentPlanning: {
+      en: 'Content Planning',
+      it: 'Pianificazione Contenuti'
     }
   }
 };
+
+// Export both translations for retrocompatibilità
+export const translations = translationsData;
+export const projectDetailsTranslations = translationsData;
 
 export const projectContent: Project = {
   id: 1,
@@ -36,7 +52,6 @@ export const projectContent: Project = {
     it: "In qualità di Digital Marketing & Communications Specialist presso Magazzino sul Po, ho guidato la trasformazione digitale di uno dei principali luoghi di aggregazione culturale di Torino, gestendo strategie integrate di comunicazione e marketing per promuovere eventi culturali e musicali."
   },
   image: '/assets/banner-magazzino.webp',
-
   metrics: [
     {
       icon: Users,
