@@ -4,7 +4,7 @@ import { Project } from '@/types/projects';
 import { Users, TrendingUp, Calendar } from 'lucide-react';
 import { Project } from '@/types/projects';
 
-export const projectDetailsTranslations = {
+export const translations = {
   back: {
     en: 'Back to Projects',
     it: 'Torna ai Progetti'

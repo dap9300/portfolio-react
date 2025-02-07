@@ -8,8 +8,10 @@ export { AccordionPianificazioneContenuti } from './AccordionPianificazioneConte
 export { AccordionSocialMedia } from './AccordionSocialMedia';
 
 // 2. Importiamo i contenuti da content.it e content.en
-import { projectContent as importedItalianContent } from './content.it';
+import { translations, projectContent as importedItalianContent } from './content.it';
 import { projectContent as importedEnglishContent } from './content.en';
+
+export { translations };
 
 // 3. Esportiamo i contenuti
 export const italianContent = importedItalianContent;
