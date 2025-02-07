@@ -13,16 +13,14 @@ const projects: Record<string, Project> = {
   '4': dtcProject
 };
 
-// Import translations from their respective locations
 import { translations as siteTranslations } from '@/components/sections/project-details/SiteContent';
-import { translations as magazzinoTranslations } from '@/components/sections/project-details/magazzino/content.it';
-import { translations as hrxTranslations } from '@/components/sections/project-details/hrx/content.it';
+import { translations } from '@/components/sections/project-details/SiteContent';
+import { projectDetailsTranslations as hrxTranslations } from '@/components/sections/project-details/hrx/content.it';
 import { translations as manuntaTranslations } from '@/components/sections/project-details/manunta/content.it';
 import { translations as dtcTranslations } from '@/components/sections/project-details/dtc/content.it';
 
 // Translations mapping
 const projectTranslations: Record<string, any> = {
-  'site': siteTranslations,
   '1': magazzinoTranslations,
   '2': hrxTranslations,
   '3': manuntaTranslations,
@@ -35,10 +33,6 @@ export function getProject(id: string): Project | undefined {
 
 export function getProjectTranslations(id: string): any {
   return projectTranslations[id];
-}
-
-export function getSiteTranslations(): any {
-  return projectTranslations['site'];
 }
 
 export function getAllProjects(): Project[] {
