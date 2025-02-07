@@ -71,8 +71,8 @@ export const projectContent: Project = {
         it: 'Strumenti e Piattaforme'
       },
       description: {
-        en: 'Technologies and platforms used in this project',
-        it: 'Tecnologie e piattaforme utilizzate in questo progetto'
+        en: 'qqTechnologies and platforms used in this project',
+        it: 'wwTecnologie e piattaforme utilizzate in questo progetto'
       },
       items: [
         'Meta Business Suite',
