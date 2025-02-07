@@ -1,12 +1,12 @@
-import { useState, useEffect } from "react";
-import type { FC } from "react";
+// client/src/components/sections/project-details/ProjectContent.tsx
+import { FC, useState, useEffect } from "react";
 import { motion } from "framer-motion";
 import { Language } from "@/types";
 import { Project } from "@/types/projects";
 import { Card } from "@/components/ui/card";
 import { BookOpen } from "lucide-react";
 import { Accordion } from "@/components/ui/accordion";
-import { Tool, ProjectTechnology } from '@/types/projects';
+import { ProjectCarousel } from "./ProjectCarousel";
 
 // Import Magazzino components
 import { 
@@ -49,11 +49,6 @@ interface ProjectContentProps {
   language: Language;
 }
 
-interface ImageDetail {
-  src: string;
-  alt?: string;
-}
-
 export const ProjectContent: FC<ProjectContentProps> = ({ project, language }) => {
   const [selectedImage, setSelectedImage] = useState<ImageDetail | null>(null);
   const [clickedPosition, setClickedPosition] = useState({ x: 0, y: 0 });
@@ -73,33 +68,6 @@ export const ProjectContent: FC<ProjectContentProps> = ({ project, language }) =
       document.body.classList.remove('react-zoom-container-open');
     };
   }, []);
-
-  const getTechnologies = () => {
-    const tech = project.technologies;
-
-    // If technologies is an array of Tool
-    if (Array.isArray(tech)) {
-      return tech;
-    }
-
-    // If technologies is a ProjectTechnology object
-    const techObj = tech as ProjectTechnology;
-    return [
-      ...(techObj.social || []),
-      ...(techObj.web || []),
-      ...(techObj.email || [])
-    ];
-  };
-
-  const renderTool = (tool: Tool) => {
-    const IconComponent = tool.Icon;
-    return (
-      <div className="px-4 py-3 flex items-center gap-2 whitespace-nowrap">
-        {IconComponent && <IconComponent className="w-5 h-5" />}
-        <span className="font-medium relative z-10">{tool.name}</span>
-      </div>
-    );
-  };
 
   const renderAccordions = () => {
     switch (project.id) {
@@ -148,6 +116,7 @@ export const ProjectContent: FC<ProjectContentProps> = ({ project, language }) =
 
   return (
     <div className="space-y-8">
+      {/* Overview and Tools Section */}
       <div className="grid md:grid-cols-3 gap-6">
         {/* Overview Section */}
         <div className="space-y-4">
@@ -165,33 +134,41 @@ export const ProjectContent: FC<ProjectContentProps> = ({ project, language }) =
         </div>
 
         {/* Tools Section */}
-        <div className="md:col-span-2 space-y-4">
-          <div className="flex items-center gap-2">
-            <h2 className="text-2xl font-semibold">
-              {language === 'it' ? 'Strumenti e Piattaforme' : 'Tools & Platforms'}
-            </h2>
-          </div>
-          <Card className="p-6">
-            <p className="text-muted-foreground mb-6">
-              {language === 'it' 
-                ? 'Tecnologie e piattaforme utilizzate in questo progetto'
-                : 'Technologies and platforms used in this project'
-              }
-            </p>
-            <div className="grid grid-cols-2 md:grid-cols-3 gap-3">
-              {getTechnologies().map((tool: Tool, index) => (
-                <div
-                  key={index}
-                  className="group relative border border-border/50 hover:border-primary/50 transition-all duration-300 hover:shadow-lg hover:shadow-primary/5 rounded-xl overflow-hidden inline-flex"
-                >
-                  <div className="absolute inset-0 bg-gradient-to-r from-primary/5 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300" />
-                  {renderTool(tool)}
-                </div>
-              ))}
+          <div className="md:col-span-2 space-y-4">
+            <div className="flex items-center gap-2">
+              <h2 className="text-2xl font-semibold">
+                {language === 'it' ? 'Strumenti e Piattaforme' : 'Tools & Platforms'}
+              </h2>
             </div>
-          </Card>
+            <Card className="p-6">
+              <p className="text-muted-foreground mb-6">
+                {language === 'it' 
+                  ? 'Tecnologie e piattaforme utilizzate in questo progetto'
+                  : 'Technologies and platforms used in this project'
+                }
+              </p>
+              <div className="grid grid-cols-2 md:grid-cols-3 gap-3">
+                {project.technologies.social?.concat(
+                  project.technologies.web || [],
+                  project.technologies.email || []
+                ).map((tool, index) => (
+                  <div
+                    key={index}
+                    className="group relative border border-border/50 hover:border-primary/50 transition-all duration-300 hover:shadow-lg hover:shadow-primary/5 rounded-xl overflow-hidden inline-flex"
+                  >
+                    <div className="absolute inset-0 bg-gradient-to-r from-primary/5 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300" />
+                    <div className="px-4 py-3 flex items-center gap-2 whitespace-nowrap">
+                      <span className="font-medium relative z-10">
+                        {tool}
+                      </span>
+                    </div>
+                  </div>
+                ))}
+              </div>
+            </Card>
+          </div>
         </div>
-      </div>
+
 
       {/* Accordion Sections */}
       <motion.div
@@ -201,6 +178,9 @@ export const ProjectContent: FC<ProjectContentProps> = ({ project, language }) =
       >
         {renderAccordions()}
       </motion.div>
+
+      {/* Image Carousel Section */}
+      <ProjectCarousel />
     </div>
   );
 };

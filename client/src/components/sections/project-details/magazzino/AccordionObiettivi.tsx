@@ -6,7 +6,7 @@ import { Project } from "@/types/projects";
 import { Card } from "@/components/ui/card";
 import { Target, Check } from "lucide-react";
 import { AccordionContent, AccordionItem, AccordionTrigger } from "@/components/ui/accordion";
-import { projectDetailsTranslations as t } from "./content.it";
+import { projectDetailsTranslations as t } from "./content";
 
 interface AccordionObiettiviProps {
   project: Project;

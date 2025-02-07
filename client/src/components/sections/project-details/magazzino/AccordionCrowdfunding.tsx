@@ -6,7 +6,7 @@ import { Project } from "@/types/projects";
 import { Card } from "@/components/ui/card";
 import { Trophy, Lightbulb, Code2, MessageSquare, CheckCircle } from "lucide-react";
 import { AccordionContent, AccordionItem, AccordionTrigger } from "@/components/ui/accordion";
-import { projectDetailsTranslations as t } from "./content.it";
+import { projectDetailsTranslations as t } from "./content";
 
 interface AccordionCrowdfundingProps {
   project: Project;

@@ -1,14 +1,52 @@
-// client/src/components/sections/project-details/magazzino/content.en.ts
-import { Project } from '@/types';
+import { Users, TrendingUp, Calendar } from 'lucide-react';
+import { Project } from '@/types/projects';
+import { SiDavinciresolve, SiMeta, SiInstagram, SiFacebook, SiTelegram, SiAdobephotoshop, SiAdobeillustrator, SiWordpress, SiGooglesearchconsole, SiGoogleanalytics, SiLooker } from "react-icons/si"; 
+import { TbMailUp } from "react-icons/tb";
 
-export const projectContent: Project = {
+const translationsData = {
+  back: {
+    en: 'Back to Projects',
+    it: 'Torna ai Progetti'
+  },
+  projectDetails: {
+    overview: {
+      en: 'Project Overview',
+      it: 'Panoramica del Progetto'
+    },
+    objectives: {
+      en: 'Objectives',
+      it: 'Obiettivi'
+    },
+    crowdfunding: {
+      en: 'Crowdfunding Campaign',
+      it: 'Campagna di Crowdfunding'
+    },
+    socialMedia: {
+      en: 'Social Media Strategy',
+      it: 'Strategia Social Media'
+    },
+    emailMarketing: {
+      en: 'Email Marketing',
+      it: 'Email Marketing'
+    },
+    contentPlanning: {
+      en: 'Content Planning',
+      it: 'Pianificazione Contenuti'
+    }
+  }
+};
+
+export const translations = translationsData;
+export const projectDetailsTranslations = translationsData;
+
+const projectData: Project = {
   id: 1,
   title: {
     en: "Magazzino sul Po - Digital Marketing Strategy",
     it: "Magazzino sul Po - Strategia di Marketing Digitale"
   },
   description: {
-    en: `Digital transformation and communication strategy for one of Turin's main cultural venues.
+    en: `HOME INTRO Digital transformation and communication strategy for one of Turin's main cultural venues.
     Facebook: 31,203 followers (+3.1% YoY)
     Coverage: 545,960 (+97.6%)
     Visits: 91,723 (+90.6%)
@@ -16,31 +54,26 @@ export const projectContent: Project = {
     Instagram: 12,911 followers (+44.2% YoY)
     Coverage: 502,784 (+550.6%)
     Visits: 66,153 (+93.9%)`,
-    it: "In qualità di Digital Marketing & Communications Specialist presso Magazzino sul Po, ho guidato la trasformazione digitale di uno dei principali luoghi di aggregazione culturale di Torino, gestendo strategie integrate di comunicazione e marketing per promuovere eventi culturali e musicali."
+    it: "INTRO HOME In qualità di Digital Marketing & Communications Specialist presso Magazzino sul Po, ho guidato la trasformazione digitale di uno dei principali luoghi di aggregazione culturale di Torino, gestendo strategie integrate di comunicazione e marketing per promuovere eventi culturali e musicali."
   },
   image: '/assets/banner-magazzino.webp',
-  technologies: {
-    social: [
-      'Meta Business Suite',
-      'Instagram',
-      'Facebook',
-      'Telegram',
-      'Adobe Creative Suite',
-      'DaVinci Resolve'
-    ],
-    web: [
-      'WordPress',
-      'Google Search Console',
-      'Google Analytics',
-      'Google Looker Studio'
-    ],
-    email: [
-      'MailUp'
-    ]
-  },
+  technologies: [
+    { name: 'Meta Business Suite', Icon: SiMeta },
+    { name: 'Instagram', Icon: SiInstagram },
+    { name: 'Facebook', Icon: SiFacebook },
+    { name: 'Telegram', Icon: SiTelegram },
+    { name: 'Adobe Photoshop', Icon: SiAdobephotoshop },
+    { name: 'Adobe Illustrator', Icon: SiAdobeillustrator },
+    { name: 'DaVinci Resolve', Icon: SiDavinciresolve },
+    { name: 'WordPress', Icon: SiWordpress },
+    { name: 'Google Search Console', Icon: SiGooglesearchconsole },
+    { name: 'Google Analytics', Icon: SiGoogleanalytics },
+    { name: 'Google Looker Studio', Icon: SiLooker },
+    { name: 'MailUp', Icon: TbMailUp }
+  ],
   metrics: [
     {
-      icon: 'rjzlcjqi',
+      icon: Users,
       value: '44,114',
       label: {
         en: 'Total Social Followers',
@@ -48,7 +81,7 @@ export const projectContent: Project = {
       }
     },
     {
-      icon: 'gkosxwgv',
+      icon: TrendingUp,
       value: '+550%',
       label: {
         en: 'Instagram Growth',
@@ -56,7 +89,7 @@ export const projectContent: Project = {
       }
     },
     {
-      icon: 'mzjnwzka',
+      icon: Calendar,
       value: '37,455',
       label: {
         en: 'Annual Users',
@@ -65,25 +98,6 @@ export const projectContent: Project = {
     }
   ],
   detailedSections: {
-    tools: {
-      title: {
-        en: 'Tools & Platforms',
-        it: 'Strumenti e Piattaforme'
-      },
-      description: {
-        en: 'qqTechnologies and platforms used in this project',
-        it: 'wwTecnologie e piattaforme utilizzate in questo progetto'
-      },
-      items: [
-        'Meta Business Suite',
-        'Instagram',
-        'Facebook',
-        'WordPress',
-        'Google Analytics',
-        'MailUp',
-        'Adobe Creative Suite'
-      ]
-    },
     overview: {
       title: {
         en: 'Project Overview',
@@ -102,12 +116,35 @@ export const projectContent: Project = {
         '- Visits: 66,153 (+93.9%)'
       ]
     },
+    tools: {
+      title: {
+        en: 'Tools & Platforms',
+        it: 'Strumenti e Piattaforme'
+      },
+      content: {
+        en: 'Technologies and platforms used in this project',
+        it: 'Tecnologie e piattaforme utilizzate in questo progetto'
+      },
+      items: [
+        { name: 'Meta Business Suite', Icon: SiMeta },
+        { name: 'Instagram', Icon: SiInstagram },
+        { name: 'Facebook', Icon: SiFacebook },
+        { name: 'WordPress', Icon: SiWordpress },
+        { name: 'Google Analytics', Icon: SiGoogleanalytics },
+        { name: 'MailUp', Icon: TbMailUp },
+        { name: 'Adobe Creative Suite', Icon: SiAdobephotoshop }
+      ]
+    },
     objectives: {
       title: {
         en: 'Objectives & KPI',
         it: 'Obiettivi & KPI'
       },
-      items: [
+      content: {
+        en: "Main objectives and key performance indicators achieved during the project.",
+        it: "Obiettivi principali e indicatori di performance raggiunti durante il progetto."
+      },
+      metrics: [
         'Managed Budget - XXX€',
         'Average CPC - 0.10€',
         'CPM - 1.57€',
@@ -172,3 +209,5 @@ export const projectContent: Project = {
     ]
   }
 };
+
+export const projectContent = projectData;

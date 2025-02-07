@@ -1,3 +1,4 @@
+// ProjectHeader.tsx
 import { FC, useEffect, useState } from "react";
 import { motion } from "framer-motion";
 import { Language } from "@/types";
@@ -12,19 +13,10 @@ export const ProjectHeader: FC<ProjectHeaderProps> = ({ project, language }) => 
   const [isLoaded, setIsLoaded] = useState(false);
 
   useEffect(() => {
-    // Preload image
     const img = new Image();
     img.src = project.image;
     img.onload = () => setIsLoaded(true);
   }, [project.image]);
-
-  const technologies = Array.isArray(project.technologies)
-    ? project.technologies
-    : [
-        ...(project.technologies.social || []),
-        ...(project.technologies.web || []),
-        ...(project.technologies.email || [])
-      ];
 
   return (
     <motion.div 
@@ -69,12 +61,13 @@ export const ProjectHeader: FC<ProjectHeaderProps> = ({ project, language }) => 
             animate={{ opacity: 1 }}
             transition={{ duration: 0.5, delay: 0.2 }}
           >
-            {technologies.map((tech) => (
+            {project.technologies.map((tech) => (
               <span
-                key={tech}
-                className="px-3 py-1 bg-white/10 rounded-full text-sm"
+                key={tech.name}
+                className="px-3 py-1 bg-white/10 rounded-full text-sm flex items-center gap-2"
               >
-                {tech}
+                {tech.Icon && <tech.Icon className="w-4 h-4" />}
+                {tech.name}
               </span>
             ))}
           </motion.div>
