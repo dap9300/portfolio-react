@@ -1,9 +1,6 @@
 import { Users, TrendingUp, Calendar } from 'lucide-react';
 import { Project } from '@/types/projects';
 
-import { Users, TrendingUp, Calendar } from 'lucide-react';
-import { Project } from '@/types/projects';
-
 export const translations = {
   back: {
     en: 'Back to Projects',
@@ -14,9 +11,25 @@ export const translations = {
       en: 'Project Overview',
       it: 'Panoramica del Progetto'
     },
+    tools: {
+      en: 'Tools & Platforms',
+      it: 'Strumenti e Piattaforme'
+    },
     objectives: {
       en: 'Objectives',
       it: 'Obiettivi'
+    },
+    socialMedia: {
+      en: 'Social Media Strategy',
+      it: 'Strategia Social Media'
+    },
+    emailMarketing: {
+      en: 'Email Marketing',
+      it: 'Email Marketing'
+    },
+    contentPlanning: {
+      en: 'Content Planning',
+      it: 'Pianificazione Contenuti'
     },
     crowdfunding: {
       en: 'Crowdfunding Campaign',
@@ -33,10 +46,28 @@ export const projectContent: Project = {
   },
   description: {
     en: "Digital transformation and communication strategy for one of Turin's main cultural venues.",
-    it: "In qualità di Digital Marketing & Communications Specialist presso Magazzino sul Po, ho guidato la trasformazione digitale di uno dei principali luoghi di aggregazione culturale di Torino, gestendo strategie integrate di comunicazione e marketing per promuovere eventi culturali e musicali."
+    it: "In qualità di Digital Marketing & Communications Specialist presso Magazzino sul Po, ho guidato la trasformazione digitale di uno dei principali luoghi di aggregazione culturale di Torino."
   },
   image: '/assets/banner-magazzino.webp',
-
+  technologies: {
+    social: [
+      { name: 'Meta Business Suite', icon: 'meta' },
+      { name: 'Instagram', icon: 'instagram' },
+      { name: 'Facebook', icon: 'facebook' },
+      { name: 'Telegram', icon: 'telegram' },
+      { name: 'Adobe Creative Suite', icon: 'adobe' },
+      { name: 'DaVinci Resolve', icon: 'davinci' }
+    ],
+    web: [
+      { name: 'WordPress', icon: 'wordpress' },
+      { name: 'Google Search Console', icon: 'searchconsole' },
+      { name: 'Google Analytics', icon: 'analytics' },
+      { name: 'Google Looker Studio', icon: 'looker' }
+    ],
+    email: [
+      { name: 'MailUp', icon: 'mailup' }
+    ]
+  },
   metrics: [
     {
       icon: Users,
@@ -93,54 +124,6 @@ export const projectContent: Project = {
         'CPM - 1.57€',
         'CTR MEDIO - 0.74%',
         'ROI CAMPAGNE - 2.46%'
-      ]
-    },
-    socialMedia: {
-      title: {
-        en: 'Social Media Strategy',
-        it: 'Strategia Social Media'
-      },
-      content: {
-        en: 'Implementation of an integrated social media strategy focused on community growth and engagement.',
-        it: 'Implementazione di una strategia social media integrata focalizzata sulla crescita della community e sull\'engagement.'
-      },
-      metrics: [
-        'Instagram: +44.2% crescita follower YoY',
-        'Facebook: +3.1% crescita follower YoY',
-        'Engagement rate medio: 4.8%',
-        'Reach organica: +97.6% YoY'
-      ]
-    },
-    emailMarketing: {
-      title: {
-        en: 'Email Marketing',
-        it: 'Email Marketing'
-      },
-      content: {
-        en: 'Development and management of email marketing campaigns to promote events and engage with the community.',
-        it: 'Sviluppo e gestione delle campagne di email marketing per promuovere gli eventi e mantenere il contatto con la community.'
-      },
-      metrics: [
-        'Newsletter settimanale a oltre 40.000 iscritti',
-        'CTR medio (5%) Tasso di Apertura (10%)',
-        'Invio notifiche push circuito Arci',
-        'Segmentazione utenza e liste per interessi'
-      ]
-    },
-    contentPlanning: {
-      title: {
-        en: 'Content Planning',
-        it: 'Pianificazione Contenuti'
-      },
-      content: {
-        en: 'Strategic content planning and creation to maintain consistent brand communication.',
-        it: 'Pianificazione strategica e creazione di contenuti per mantenere una comunicazione del brand coerente.'
-      },
-      metrics: [
-        'Piano editoriale mensile',
-        'Contenuti ottimizzati per piattaforma',
-        'Analisi performance contenuti',
-        'A/B testing formati e copy'
       ]
     }
   },

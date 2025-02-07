@@ -6,7 +6,7 @@ import { IconType } from 'react-icons';
 
 export interface Tool {
   name: string;
-  Icon: IconType | LucideIcon;
+  icon: string;  // Changed from Icon to icon to match the string-based approach
 }
 
 export interface ProjectTechnology {
@@ -33,21 +33,53 @@ export interface DetailedSections {
     content: LocalizedContent<string>;
     metrics: string[];
   };
-  objectives: LocalizedContent<string[]>;
-  strategies: {
-    contentPlanning: LocalizedContent<string[]>;
-    analytics: LocalizedContent<string[]>;
-    social?: LocalizedContent<string[]>;
-    email?: LocalizedContent<string[]>;
+  objectives: {
+    title: LocalizedContent<string>;
+    content?: LocalizedContent<string>;
+    metrics?: string[];
+    items?: string[];
   };
   tools?: {
     title: LocalizedContent<string>;
     description: LocalizedContent<string>;
-    items: Tool[];  // Modificato da string[] a Tool[]
+    items: Tool[];
+  };
+  socialMedia?: {
+    title: LocalizedContent<string>;
+    content: LocalizedContent<string>;
+    metrics?: string[];
+  };
+  emailMarketing?: {
+    title: LocalizedContent<string>;
+    content: LocalizedContent<string>;
+    metrics?: string[];
+  };
+  contentPlanning?: {
+    title: LocalizedContent<string>;
+    content: LocalizedContent<string>;
+    metrics?: string[];
   };
   ecommerce?: {
     title: LocalizedContent<string>;
     content: LocalizedContent<string>;
+  };
+  analytics?: {
+    title: LocalizedContent<string>;
+    content: LocalizedContent<string>;
+    metrics?: string[];
+  };
+  teamManagement?: {
+    title: LocalizedContent<string>;
+    content: LocalizedContent<string>;
+  };
+  leadGeneration?: {
+    title: LocalizedContent<string>;
+    content: LocalizedContent<string>;
+  };
+  contentStrategy?: {
+    title: LocalizedContent<string>;
+    content: LocalizedContent<string>;
+    metrics?: string[];
   };
 }
 
@@ -56,7 +88,7 @@ export interface Project {
   title: LocalizedContent<string>;
   description: LocalizedContent<string>;
   image: string;
-  technologies: Tool[] | ProjectTechnology;  // Modificato per supportare Tool
+  technologies: ProjectTechnology;
   metrics: ProjectMetric[];
   detailedSections?: DetailedSections;
   gallery?: string[];
