@@ -179,8 +179,8 @@ export const ProjectContent: FC<ProjectContentProps> = ({ project, language }) =
         {renderAccordions()}
       </motion.div>
 
-      {/* Image Carousel Section */}
-      <ProjectCarousel />
+      {/* Image Carousel Section
+      <ProjectCarousel /> */}
     </div>
   );
 };
