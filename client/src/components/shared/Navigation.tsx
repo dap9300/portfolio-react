@@ -1,5 +1,5 @@
 import { useState, useEffect, useRef } from "react";
-import { translations } from "@/components/sections/project-details/magazzino/content.it";
+import { translations } from "@/components/sections/project-details/SiteContent";
 import { Language } from "@/types";
 import { motion } from "framer-motion";
 import { fadeInUp } from "@/lib/animations";
@@ -29,11 +29,11 @@ export function Navigation({ language, onSectionClick }: NavigationProps) {
     const handleScroll = () => {
       const sections = document.querySelectorAll('section');
       const scrollPosition = window.scrollY + window.innerHeight / 3;
-      
+
       sections.forEach((section) => {
         const top = section.offsetTop;
         const height = section.offsetHeight;
-        
+
         if (scrollPosition >= top && scrollPosition < top + height) {
           setActiveSection(section.id);
         }

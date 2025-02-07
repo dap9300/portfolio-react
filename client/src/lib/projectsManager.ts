@@ -13,7 +13,7 @@ const projects: Record<string, Project> = {
   '4': dtcProject
 };
 
-import { projectDetailsTranslations as magazzinoTranslations } from '@/components/sections/project-details/magazzino/content.it';
+import { translations as siteTranslations } from '@/components/sections/project-details/SiteContent';
 import { projectDetailsTranslations as hrxTranslations } from '@/components/sections/project-details/hrx/content.it';
 import { translations as manuntaTranslations } from '@/components/sections/project-details/manunta/content.it';
 import { translations as dtcTranslations } from '@/components/sections/project-details/dtc/content.it';
