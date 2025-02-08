@@ -16,7 +16,7 @@ import {
   SiMailchimp,
 } from "react-icons/si";
 
-const translations = {
+const translationsData = {
   back: { en: 'Back to Projects', it: 'Torna ai Progetti' },
   projectDetails: {
     overview: { en: 'Project Overview', it: 'Panoramica del Progetto' },
@@ -160,4 +160,4 @@ const projectData: Project = {
   }
 };
 
-export { translations, translations as projectDetailsTranslations, projectData, projectData as projectContent };
+export { translationsData as translations, translationsData as projectDetailsTranslations, projectData, projectData as projectContent };
