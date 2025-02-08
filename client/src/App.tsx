@@ -45,11 +45,21 @@ function Router() {
   );
 }
 
+// Footer component
+const Footer = () => {
+  return (
+    <footer className="bg-gray-800 text-white text-center py-4">
+      <p>© Alessandro d’Apolito – 2025 | Proudly created with React & Typescript</p>
+    </footer>
+  );
+};
+
 // Separate App component
 export const App = () => {
   return (
     <QueryClientProvider client={queryClient}>
       <Router />
+      <Footer /> {/* Added Footer */}
       <Toaster />
     </QueryClientProvider>
   );
