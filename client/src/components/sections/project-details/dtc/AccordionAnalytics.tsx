@@ -5,7 +5,7 @@ import { Project } from "@/types/projects";
 import { Card } from "@/components/ui/card";
 import { BarChart2, TrendingUp, Search, Globe } from "lucide-react";
 import { AccordionContent, AccordionItem, AccordionTrigger } from "@/components/ui/accordion";
-import { translations as t } from "./content.it";
+import { translations as t } from "./content";
 import {
   LineChart,
   Line,
@@ -21,7 +21,7 @@ interface AccordionAnalyticsProps {
   language: Language;
 }
 
-const AccordionAnalytics: FC<AccordionAnalyticsProps> = ({ project, language }) => {
+export const AccordionAnalytics: FC<AccordionAnalyticsProps> = ({ project, language }) => {
   const sectionTitle = language === 'it' ? 'Analytics & Performance' : 'Analytics & Performance';
 
   const performanceData = [
@@ -146,5 +146,3 @@ const AccordionAnalytics: FC<AccordionAnalyticsProps> = ({ project, language }) 
     </AccordionItem>
   );
 };
-
-export default AccordionAnalytics;

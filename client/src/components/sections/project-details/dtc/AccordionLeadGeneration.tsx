@@ -5,7 +5,7 @@ import { Project } from "@/types/projects";
 import { Card } from "@/components/ui/card";
 import { Users, Target, TrendingUp } from "lucide-react";
 import { AccordionContent, AccordionItem, AccordionTrigger } from "@/components/ui/accordion";
-import { translations as t } from "./content.it";
+import { translations as t } from "./content";
 import {
   LineChart,
   Line,
@@ -21,7 +21,7 @@ interface DTCLeadGenerationProps {
   language: Language;
 }
 
-const DTCLeadGeneration: FC<DTCLeadGenerationProps> = ({ project, language }) => {
+export const AccordionLeadGeneration: FC<DTCLeadGenerationProps> = ({ project, language }) => {
   const data = [
     { year: '2023', month: 'Jan', leads: 250, conversion: 18 },
     { year: '2023', month: 'Mar', leads: 320, conversion: 22 },
@@ -124,5 +124,3 @@ const DTCLeadGeneration: FC<DTCLeadGenerationProps> = ({ project, language }) =>
     </AccordionItem>
   );
 };
-
-export default DTCLeadGeneration;

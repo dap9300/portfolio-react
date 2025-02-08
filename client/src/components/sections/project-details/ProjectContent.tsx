@@ -4,7 +4,7 @@ import { motion } from "framer-motion";
 import { Language } from "@/types";
 import { Project } from "@/types/projects";
 import { Card } from "@/components/ui/card";
-import { BookOpen } from "lucide-react";
+import { BookOpen, Cog } from "lucide-react";
 import { Accordion } from "@/components/ui/accordion";
 import { ProjectCarousel } from "./ProjectCarousel";
 
@@ -121,7 +121,7 @@ export const ProjectContent: FC<ProjectContentProps> = ({ project, language }) =
         {/* Overview Section */}
         <div className="space-y-4">
           <div className="flex items-center gap-2">
-            <BookOpen className="w-6 h-6 text-primary" />
+            <BookOpen className="w-7 h-7 text-primary" />
             <h2 className="text-2xl font-semibold">
               {language === 'it' ? 'Panoramica del Progetto' : 'Project Overview'}
             </h2>
@@ -133,20 +133,21 @@ export const ProjectContent: FC<ProjectContentProps> = ({ project, language }) =
           </Card>
         </div>
 
-        {/* Tools Section */}
+        {/* Strumenti e Piattaforme Section (Tools) */}
           <div className="md:col-span-2 space-y-4">
             <div className="flex items-center gap-2">
+              <Cog className="w-7 h-7 text-primary" />
               <h2 className="text-2xl font-semibold">
                 {language === 'it' ? 'Strumenti e Piattaforme' : 'Tools & Platforms'}
               </h2>
             </div>
             <Card className="p-6">
-              <p className="text-muted-foreground mb-6">
+              {/* <p className="text-muted-foreground mb-6">
                 {language === 'it' 
-                  ? 'Tecnologie e piattaforme utilizzate in questo progetto'
+                  ? '/* Tecnologie e piattaforme utilizzate in questo progetto ' 
                   : 'Technologies and platforms used in this project'
                 }
-              </p>
+              </p> */}
               <div className="grid grid-cols-2 md:grid-cols-3 gap-3">
                 {project.technologies.map((tool, index) => (
                   <div

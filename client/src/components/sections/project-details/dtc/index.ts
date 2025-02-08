@@ -1,25 +1,29 @@
 // client/src/components/sections/project-details/dtc/index.ts
+import { projectDetailsTranslations as translations, projectContent } from './content';
 
-// 1. First import projectDetailsTranslations
-import { projectDetailsTranslations, projectContent as importedItalianContent } from './content.it';
-import { projectContent as importedEnglishContent } from './content.en';
+export { translations };
 
-// 2. Export translations
-export const translations = projectDetailsTranslations;
+export { AccordionObiettivi } from './AccordionObiettivi';
+export { AccordionContentStrategy } from './AccordionContentStrategy';
+export { AccordionLeadGeneration } from './AccordionLeadGeneration';
+export { AccordionAnalytics } from './AccordionAnalytics';
+export { AccordionTeamManagement } from './AccordionTeamManagement';
 
-// 3. Export accordion components
-export { default as AccordionObiettivi } from './AccordionObiettivi';
-export { default as AccordionContentStrategy } from './AccordionContentStrategy';
-export { default as AccordionLeadGeneration } from './AccordionLeadGeneration';
-export { default as AccordionTeamManagement } from './AccordionTeamManagement';
-export { default as AccordionAnalytics } from './AccordionAnalytics';
+export { ProjectContent } from '../ProjectContent';
+export { ProjectHeader } from '../ProjectHeader';
+export { ProjectLayout } from '../ProjectLayout';
+export { ProjectMetrics } from '../ProjectMetrics';
 
-// 4. Export contents
-export const italianContent = importedItalianContent;
-export const englishContent = importedEnglishContent;
-export const project = importedItalianContent;
+export const italianContent = projectContent;
+export const englishContent = projectContent;
 
-// 5. Export content function
-export const getContent = (language: 'it' | 'en') => {
-  return language === 'it' ? italianContent : englishContent;
+export const project = {
+  ...projectContent,
+  gallery: [
+    '/assets/dtc-analytics1.png',
+    '/assets/dtc-performance.png',
+    '/assets/dtc-banner.jpg'
+  ],
 };
+
+export const getContent = (language: 'it' | 'en') => projectContent;

@@ -5,7 +5,7 @@ import { Project } from "@/types/projects";
 import { Card } from "@/components/ui/card";
 import { FileEdit, Layout, BookOpen, BarChart2, Target } from "lucide-react";
 import { AccordionContent, AccordionItem, AccordionTrigger } from "@/components/ui/accordion";
-import { translations as t } from "./content.it";
+import { translations as t } from "./content";
 import {
   LineChart,
   Line,
@@ -21,7 +21,7 @@ interface DTCContentStrategyProps {
   language: Language;
 }
 
-const DTCContentStrategy: FC<DTCContentStrategyProps> = ({ project, language }) => {
+export const AccordionContentStrategy: FC<DTCContentStrategyProps> = ({ project, language }) => {
   return (
     <AccordionItem value="content-strategy" className="border rounded-lg hover:bg-accent/50 transition-colors">
       <AccordionTrigger className="px-4">
@@ -141,5 +141,3 @@ const DTCContentStrategy: FC<DTCContentStrategyProps> = ({ project, language }) 
     </AccordionItem>
   );
 };
-
-export default DTCContentStrategy;

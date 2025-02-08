@@ -6,14 +6,14 @@ import { Project } from "@/types/projects";
 import { Card } from "@/components/ui/card";
 import { Target, Check } from "lucide-react";
 import { AccordionContent, AccordionItem, AccordionTrigger } from "@/components/ui/accordion";
-import { translations as t } from "./content.it";
+import { translations as t } from "./content";
 
 interface DTCObjectivesAccordionProps {
   project: Project;
   language: Language;
 }
 
-const DTCObjectivesAccordion: FC<DTCObjectivesAccordionProps> = ({ project, language }) => {
+export const AccordionObiettivi: FC<DTCObjectivesAccordionProps> = ({ project, language }) => {
   return (
     <AccordionItem value="objectives" className="border rounded-lg hover:bg-accent/50 transition-colors">
       <AccordionTrigger className="px-4">
@@ -72,4 +72,4 @@ const DTCObjectivesAccordion: FC<DTCObjectivesAccordionProps> = ({ project, lang
   );
 };
 
-export default DTCObjectivesAccordion;
+export default AccordionObiettivi;

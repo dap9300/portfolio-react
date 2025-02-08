@@ -5,14 +5,14 @@ import { Project } from "@/types/projects";
 import { Card } from "@/components/ui/card";
 import { Users, Clock, Zap, Award } from "lucide-react";
 import { AccordionContent, AccordionItem, AccordionTrigger } from "@/components/ui/accordion";
-import { translations as t } from "./content.it";
+import { translations as t } from "./content";
 
 interface DTCTeamManagementProps {
   project: Project;
   language: Language;
 }
 
-const DTCTeamManagement: FC<DTCTeamManagementProps> = ({ project, language }) => {
+export const AccordionTeamManagement: FC<DTCTeamManagementProps> = ({ project, language }) => {
   return (
     <AccordionItem value="team-management" className="border rounded-lg hover:bg-accent/50 transition-colors">
       <AccordionTrigger className="px-4">
@@ -114,5 +114,3 @@ const DTCTeamManagement: FC<DTCTeamManagementProps> = ({ project, language }) =>
     </AccordionItem>
   );
 };
-
-export default DTCTeamManagement;
