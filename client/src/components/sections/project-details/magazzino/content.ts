@@ -119,13 +119,7 @@ const projectData: Project = {
       ]
     }
   },
-  assets: {
-    banner: '/assets/banner-magazzino.webp',
-    analytics: [
-      '/assets/analytics_maga1.png',
-      '/assets/growth.png'
-    ]
-  }
+
 };
 
 export { translations, translations as projectDetailsTranslations, projectData, projectData as projectContent };
