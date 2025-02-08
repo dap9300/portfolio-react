@@ -148,18 +148,16 @@ export const ProjectContent: FC<ProjectContentProps> = ({ project, language }) =
                 }
               </p>
               <div className="grid grid-cols-2 md:grid-cols-3 gap-3">
-                {project.technologies.social?.concat(
-                  project.technologies.web || [],
-                  project.technologies.email || []
-                ).map((tool, index) => (
+                {project.technologies.map((tool, index) => (
                   <div
-                    key={index}
+                    key={tool.name}
                     className="group relative border border-border/50 hover:border-primary/50 transition-all duration-300 hover:shadow-lg hover:shadow-primary/5 rounded-xl overflow-hidden inline-flex"
                   >
                     <div className="absolute inset-0 bg-gradient-to-r from-primary/5 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300" />
                     <div className="px-4 py-3 flex items-center gap-2 whitespace-nowrap">
+                      {tool.Icon && <tool.Icon className="w-4 h-4" />}
                       <span className="font-medium relative z-10">
-                        {tool}
+                        {tool.name}
                       </span>
                     </div>
                   </div>

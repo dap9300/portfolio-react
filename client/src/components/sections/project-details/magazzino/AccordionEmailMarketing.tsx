@@ -27,8 +27,11 @@ export const AccordionEmailMarketing: FC<AccordionEmailMarketingProps> = ({ proj
       <AccordionContent className="px-4">
         <Card className="p-6 mt-4">
           <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
-            {/* Left Column - Bullet Points */}
+            {/* Left Column - Content and Bullet Points */}
             <div className="space-y-4">
+              <p className="text-muted-foreground">
+                {project.detailedSections.emailMarketing.content[language]}
+              </p>
               <h3 className="font-semibold text-lg">Attività Email Marketing</h3>
               <ul className="space-y-2">
                 {project.detailedSections.emailMarketing.metrics.map((item, index) => (

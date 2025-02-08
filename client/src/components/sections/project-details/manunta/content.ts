@@ -1,9 +1,54 @@
-// client/src/components/sections/project-details/manunta/content.en.ts
-
+// client/src/components/sections/project-details/manunta/content.ts
 import { Project } from '@/types';
-import { Users, TrendingUp, Calendar } from 'lucide-react';
+import { Users, TrendingUp, Calendar, MousePointerClick } from 'lucide-react';
+import { 
+  SiMeta,
+  SiInstagram,
+  SiFacebook,
+  SiWordpress,
+  SiGoogleanalytics,
+  SiCanva,
+  SiGooglesearchconsole,
+  SiAdobephotoshop,
+  SiAdobeillustrator
+} from "react-icons/si";
+import { AiOutlineShop } from "react-icons/ai";
 
-export const projectContent: Project = {
+
+const translations = {
+  back: {
+    en: 'Back to Projects',
+    it: 'Torna ai Progetti'
+  },
+  projectDetails: {
+    overview: {
+      en: 'Project Overview',
+      it: 'Panoramica del Progetto'
+    },
+    tools: {
+      en: 'Tools & Platforms',
+      it: 'Strumenti e Piattaforme'
+    },
+    objectives: {
+      en: 'Objectives',
+      it: 'Obiettivi'
+    },
+    socialStrategy: {
+      en: 'Social Media Strategy',
+      it: 'Strategia Social Media'
+    },
+    contentPlanning: {
+      en: 'Content Strategy',
+      it: 'Strategia dei Contenuti'
+    },
+    emailMarketing: {
+      en: 'Email Marketing',
+      it: 'Email Marketing'
+    }
+  }
+};
+
+const projectData: Project = {
   id: 3,
   title: {
     en: "Studi Fisioterapici Manunta - Website & SEO Optimization | Social Media",
@@ -14,21 +59,18 @@ export const projectContent: Project = {
     it: "Gestione delle strategie di marketing digitale per uno studio di fisioterapia, con focus su campagne Facebook, Instagram e Google Ads per aumentare le prenotazioni online e la brand awareness locale"
   },
   image: '/assets/manunta-banner.jpg',
-  technologies: {
-    social: [
-      'Meta Business Suite',
-      'Instagram',
-      'Facebook'
-    ],
-    web: [
-      'WordPress',
-      'Google Analytics',
-      'Google Ads'
-    ],
-    email: [
-      'MailChimp'
-    ]
-  },
+  technologies: [
+    { name: 'WordPress', Icon: SiWordpress },
+    { name: 'Google Search Console', Icon: SiGooglesearchconsole },
+    { name: 'Google Analytics', Icon: SiGoogleanalytics },
+    { name: 'Google My Business', Icon: AiOutlineShop },
+    { name: 'Instagram', Icon: SiInstagram },
+    { name: 'Facebook', Icon: SiFacebook },
+    { name: 'Adobe Photoshop', Icon: SiAdobephotoshop },
+    { name: 'Adobe Illustrator', Icon: SiAdobeillustrator },
+    { name: 'Canva', Icon: SiCanva }
+ 
+  ],
   metrics: [
     {
       icon: Users,
@@ -81,8 +123,8 @@ export const projectContent: Project = {
         it: 'Panoramica del Progetto'
       },
       content: {
-        en: "Digital marketing and web presence optimization for a physiotherapy clinic to boost local visibility and online bookings.",
-        it: "Ottimizzazione del marketing digitale e della presenza web per uno studio di fisioterapia per aumentare la visibilità locale e le prenotazioni online."
+        en: 'Digital marketing and web presence optimization for a physiotherapy clinic to boost local visibility and online bookings.',
+        it: 'Ottimizzazione del marketing digitale e della presenza web per uno studio di fisioterapia per aumentare la visibilità locale e le prenotazioni online.'
       },
       metrics: [
         'Website traffic: +85% YoY',
@@ -177,3 +219,5 @@ export const projectContent: Project = {
     ]
   }
 };
+
+export { translations, translations as projectDetailsTranslations, projectData, projectData as projectContent };

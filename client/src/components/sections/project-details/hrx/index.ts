@@ -1,26 +1,40 @@
 // client/src/components/sections/project-details/hrx/index.ts
 
-// 1. First import projectDetailsTranslations
-import { projectDetailsTranslations, projectContent as importedItalianContent } from './content.it';
-import { projectContent as importedEnglishContent } from './content.en';
+import { projectDetailsTranslations as translations, projectContent } from './content';
 
-// 2. Export translations (both for retrocompatibilità)
-export const translations = projectDetailsTranslations;
-export { projectDetailsTranslations };
+export { translations };
 
-// 3. Export accordion components with their specific names
-export { AccordionEcommerce as HRXEcommerce } from './AccordionEcommerce';
-export { default as HRXEmailMarketing } from './AccordionEmailMarketing';
-export { default as HRXObjectivesAccordion } from './AccordionObiettivi';
-export { default as HRXPianificazioneContenuti } from './AccordionPianificazioneContenuti';
-export { default as HRXSocialMedia } from './AccordionSocialMedia';
+// Import default exports from accordion components
+import AccordionEcommerce from './AccordionEcommerce';
+import AccordionEmailMarketing from './AccordionEmailMarketing';
+import AccordionObiettivi from './AccordionObiettivi';
+import AccordionPianificazioneContenuti from './AccordionPianificazioneContenuti';
+import AccordionSocialMedia from './AccordionSocialMedia';
 
-// 4. Export contents
-export const italianContent = importedItalianContent;
-export const englishContent = importedEnglishContent;
-export const project = importedItalianContent;
+// Re-export accordion components
+export const HRXEcommerce = AccordionEcommerce;
+export const HRXEmailMarketing = AccordionEmailMarketing;
+export const HRXObjectivesAccordion = AccordionObiettivi;
+export const HRXPianificazioneContenuti = AccordionPianificazioneContenuti;
+export const HRXSocialMedia = AccordionSocialMedia;
 
-// 5. Export content function
-export const getContent = (language: 'it' | 'en') => {
-  return language === 'it' ? italianContent : englishContent;
+// Export shared components
+export { ProjectContent } from '../ProjectContent';
+export { ProjectHeader } from '../ProjectHeader';
+export { ProjectLayout } from '../ProjectLayout';
+export { ProjectMetrics } from '../ProjectMetrics';
+
+// Export content
+export const italianContent = projectContent;
+export const englishContent = projectContent;
+
+export const project = {
+  ...projectContent,
+  gallery: [
+    '/assets/hrx-social1.png',
+    '/assets/hrx-social2.png',
+    '/assets/hrx-website.png'
+  ],
 };
+
+export const getContent = (language: 'it' | 'en') => projectContent;

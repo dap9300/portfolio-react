@@ -1,26 +1,30 @@
 // client/src/components/sections/project-details/manunta/index.ts
 
-// 1. First import projectDetailsTranslations and content
-import { projectDetailsTranslations, translations as importedTranslations, projectContent as importedItalianContent } from './content.it';
-import { projectContent as importedEnglishContent } from './content.en';
+import { projectDetailsTranslations as translations, projectContent } from './content';
 
-// 2. Export both translations for retrocompatibilità
-export const translations = importedTranslations;
-export { projectDetailsTranslations };
+export { translations };
 
-// 3. Export accordion components
 export { default as AccordionObiettivi } from './AccordionObiettivi';
 export { default as AccordionSocialMedia } from './AccordionSocialMedia';
 export { default as AccordionPianificazioneContenuti } from './AccordionPianificazioneContenuti';
 export { default as AccordionEmailMarketing } from './AccordionEmailMarketing';
 export { default as AccordionServices } from './AccordionServices';
 
-// 4. Export contents
-export const italianContent = importedItalianContent;
-export const englishContent = importedEnglishContent;
-export const project = importedItalianContent;
+export { ProjectContent } from '../ProjectContent';
+export { ProjectHeader } from '../ProjectHeader';
+export { ProjectLayout } from '../ProjectLayout';
+export { ProjectMetrics } from '../ProjectMetrics';
 
-// 5. Export content function
-export const getContent = (language: 'it' | 'en') => {
-  return language === 'it' ? italianContent : englishContent;
+export const italianContent = projectContent;
+export const englishContent = projectContent;
+
+export const project = {
+  ...projectContent,
+  gallery: [
+    '/assets/manunta-analytics1.png',
+    '/assets/manunta-growth.png',
+    '/assets/manunta-banner.jpg'
+  ],
 };
+
+export const getContent = (language: 'it' | 'en') => projectContent;

@@ -1,4 +1,4 @@
-// ProjectHeader.tsx
+// client/src/components/sections/project-details/ProjectHeader.tsx
 import { FC, useEffect, useState } from "react";
 import { motion } from "framer-motion";
 import { Language } from "@/types";
