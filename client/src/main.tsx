@@ -1,3 +1,4 @@
+
 import { StrictMode } from "react";
 import { createRoot } from "react-dom/client";
 import App from './App';
@@ -9,6 +10,14 @@ if (!root) {
   console.error("Root element not found. Make sure there is a div with id 'root' in index.html");
   throw new Error("Root element not found");
 }
+
+// Prevent runtime error plugin messages
+window.addEventListener('error', (event) => {
+  if (event.message.includes('runtime-error-plugin')) {
+    event.preventDefault();
+    event.stopPropagation();
+  }
+});
 
 try {
   const app = createRoot(root);
