@@ -15,7 +15,8 @@ function Router() {
   const [location] = useLocation();
 
   return (
-    <div className="w-full h-full min-h-screen bg-background">
+    <div className="w-full h-full min-h-screen bg-background relative">
+      <DynamicBackground />
       <Suspense fallback={<div className="flex items-center justify-center min-h-screen">Loading...</div>}>
         <AnimatePresence mode="wait">
           <motion.div
