@@ -1,13 +1,27 @@
-// client/src/components/sections/project-details/magazzino/content.ts
+import React, { lazy, Suspense } from 'react';
 import { Users, TrendingUp, Calendar } from 'lucide-react';
 import { Project } from '@/types/projects';
-import { 
-  SiDavinciresolve, SiMeta, SiInstagram, SiFacebook, 
-  SiTelegram, SiAdobephotoshop, SiAdobeillustrator, 
-  SiWordpress, SiGooglesearchconsole, SiGoogleanalytics, 
-  SiLooker 
-} from "react-icons/si";
-import { TbMailUp } from "react-icons/tb";
+
+// Lazy loading per le icone react-icons
+const SiDavinciresolve = lazy(() => import('react-icons/si').then(mod => ({ default: mod.SiDavinciresolve })));
+const SiMeta = lazy(() => import('react-icons/si').then(mod => ({ default: mod.SiMeta })));
+const SiInstagram = lazy(() => import('react-icons/si').then(mod => ({ default: mod.SiInstagram })));
+const SiFacebook = lazy(() => import('react-icons/si').then(mod => ({ default: mod.SiFacebook })));
+const SiTelegram = lazy(() => import('react-icons/si').then(mod => ({ default: mod.SiTelegram })));
+const SiAdobephotoshop = lazy(() => import('react-icons/si').then(mod => ({ default: mod.SiAdobephotoshop })));
+const SiAdobeillustrator = lazy(() => import('react-icons/si').then(mod => ({ default: mod.SiAdobeillustrator })));
+const SiWordpress = lazy(() => import('react-icons/si').then(mod => ({ default: mod.SiWordpress })));
+const SiGooglesearchconsole = lazy(() => import('react-icons/si').then(mod => ({ default: mod.SiGooglesearchconsole })));
+const SiGoogleanalytics = lazy(() => import('react-icons/si').then(mod => ({ default: mod.SiGoogleanalytics })));
+const SiLooker = lazy(() => import('react-icons/si').then(mod => ({ default: mod.SiLooker })));
+const TbMailUp = lazy(() => import('react-icons/tb').then(mod => ({ default: mod.TbMailUp })));
+
+// Componente wrapper per le icone lazy loaded
+const LazyIcon = ({ Icon }: { Icon: React.LazyExoticComponent<any> }) => (
+  <Suspense fallback={<div className="w-6 h-6 bg-gray-200 animate-pulse rounded"/>}>
+    <Icon />
+  </Suspense>
+);
 
 const translations = {
   back: { en: 'Back to Projects', it: 'Torna ai Progetti' },
@@ -33,18 +47,18 @@ const projectData: Project = {
   },
   image: '/assets/banner-magazzino.webp',
   technologies: [
-    { name: 'Meta Business Suite', Icon: SiMeta },
-    { name: 'Instagram', Icon: SiInstagram },
-    { name: 'Facebook', Icon: SiFacebook },
-    { name: 'WordPress', Icon: SiWordpress },
-    { name: 'Google Search Console', Icon: SiGooglesearchconsole },
-    { name: 'Google Analytics', Icon: SiGoogleanalytics },
-    { name: 'Adobe Photoshop', Icon: SiAdobephotoshop },
-    { name: 'Adobe Illustrator', Icon: SiAdobeillustrator },
-    { name: 'DaVinci Resolve', Icon: SiDavinciresolve },
-    { name: 'Google Looker Studio', Icon: SiLooker },
-    { name: 'MailUp', Icon: TbMailUp },
-    { name: 'Telegram', Icon: SiTelegram }
+    { name: 'Meta Business Suite', Icon: (props) => <LazyIcon Icon={SiMeta} {...props} /> },
+    { name: 'Instagram', Icon: (props) => <LazyIcon Icon={SiInstagram} {...props} /> },
+    { name: 'Facebook', Icon: (props) => <LazyIcon Icon={SiFacebook} {...props} /> },
+    { name: 'WordPress', Icon: (props) => <LazyIcon Icon={SiWordpress} {...props} /> },
+    { name: 'Google Search Console', Icon: (props) => <LazyIcon Icon={SiGooglesearchconsole} {...props} /> },
+    { name: 'Google Analytics', Icon: (props) => <LazyIcon Icon={SiGoogleanalytics} {...props} /> },
+    { name: 'Adobe Photoshop', Icon: (props) => <LazyIcon Icon={SiAdobephotoshop} {...props} /> },
+    { name: 'Adobe Illustrator', Icon: (props) => <LazyIcon Icon={SiAdobeillustrator} {...props} /> },
+    { name: 'DaVinci Resolve', Icon: (props) => <LazyIcon Icon={SiDavinciresolve} {...props} /> },
+    { name: 'Google Looker Studio', Icon: (props) => <LazyIcon Icon={SiLooker} {...props} /> },
+    { name: 'MailUp', Icon: (props) => <LazyIcon Icon={TbMailUp} {...props} /> },
+    { name: 'Telegram', Icon: (props) => <LazyIcon Icon={SiTelegram} {...props} /> }
   ],
   metrics: [
     {
@@ -119,7 +133,6 @@ const projectData: Project = {
       ]
     }
   },
-
 };
 
 export { translations, translations as projectDetailsTranslations, projectData, projectData as projectContent };
