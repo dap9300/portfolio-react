@@ -7,9 +7,11 @@
     "dev": "tsx server/index.ts",
     "build": "vite build && esbuild server/index.ts --platform=node --packages=external --bundle --format=esm --outdir=dist",
     "start": "NODE_ENV=production node dist/index.js",
+    "client": "cd client && npm start",
     "check": "tsc",
     "db:push": "drizzle-kit push"
   },
+  "proxy": "https://4537662a-f129-484e-a445-6e437c3a47c5-00-2ypdx2swfmqm1.kirk.replit.dev:5000",
   "dependencies": {
     "@hookform/resolvers": "^3.9.1",
     "@jridgewell/trace-mapping": "^0.3.25",
@@ -48,8 +50,10 @@
     "class-variance-authority": "^0.7.0",
     "clsx": "^2.1.1",
     "cmdk": "^1.0.0",
+    "concurrently": "^9.1.2",
     "cors": "^2.8.5",
     "date-fns": "^3.6.0",
+    "dotenv": "^16.4.7",
     "drizzle-orm": "^0.38.2",
     "drizzle-zod": "^0.6.0",
     "embla-carousel-react": "^8.3.0",
@@ -63,6 +67,7 @@
     "lottie-web": "^5.12.2",
     "lucide-react": "^0.453.0",
     "memorystore": "^1.6.7",
+    "node-fetch": "^3.3.2",
     "passport": "^0.7.0",
     "passport-local": "^1.0.0",
     "postcss-import": "^16.1.0",
@@ -99,8 +104,9 @@
     "esbuild": "^0.24.0",
     "postcss": "^8.4.47",
     "tailwindcss": "^3.4.1",
+    "ts-node": "^10.9.2",
     "tsx": "^4.19.2",
-    "typescript": "^5.3.3",
+    "typescript": "^5.7.3",
     "vite": "^5.0.12"
   },
   "optionalDependencies": {

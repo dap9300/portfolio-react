@@ -4,19 +4,21 @@ export const queryClient = new QueryClient({
   defaultOptions: {
     queries: {
       queryFn: async ({ queryKey }) => {
-        const res = await fetch(queryKey[0] as string, {
-          credentials: "include",
-        });
+        try {
+          const response = await fetch(queryKey[0] as string, {
+            credentials: "include",
+          });
 
-        if (!res.ok) {
-          if (res.status >= 500) {
-            throw new Error(`${res.status}: ${res.statusText}`);
+          if (!response.ok) {
+            const errorMessage = `${response.status}: ${response.statusText}`;
+            const errorDetails = await response.text();
+            throw new Error(errorDetails ? `${errorMessage} - ${errorDetails}` : errorMessage);
           }
 
-          throw new Error(`${res.status}: ${await res.text()}`);
+          return response.json();
+        } catch (error) {
+          throw new Error(`Fetch failed: ${error.message}`);
         }
-
-        return res.json();
       },
       refetchInterval: false,
       refetchOnWindowFocus: false,
@@ -25,6 +27,6 @@ export const queryClient = new QueryClient({
     },
     mutations: {
       retry: false,
-    }
+    },
   },
 });

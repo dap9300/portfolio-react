@@ -1,3 +1,4 @@
+// db/schema.ts
 import { pgTable, text, serial, integer, boolean } from "drizzle-orm/pg-core";
 import { createInsertSchema, createSelectSchema } from "drizzle-zod";
 

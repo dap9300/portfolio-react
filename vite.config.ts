@@ -1,3 +1,4 @@
+// vite.config.ts
 import { defineConfig } from "vite";
 import react from "@vitejs/plugin-react";
 import themePlugin from "@replit/vite-plugin-shadcn-theme-json";
@@ -7,6 +8,7 @@ import { fileURLToPath } from "url";
 
 const __filename = fileURLToPath(import.meta.url);
 const __dirname = dirname(__filename);
+
 export default defineConfig({
   plugins: [react(), runtimeErrorOverlay(), themePlugin()],
   resolve: {
@@ -19,5 +21,16 @@ export default defineConfig({
   build: {
     outDir: path.resolve(__dirname, "dist/public"),
     emptyOutDir: true,
+  },
+  server: {
+    port: 3000, // Il frontend gira su 3000
+    proxy: {
+      "/api": {
+        target: "http://localhost:5000", // Backend su 5000
+        changeOrigin: true,
+        secure: false,
+        rewrite: (path) => path.replace(/^\/api/, ""), // Rimuove il prefisso /api se necessario
+      },
+    },
   },
 });

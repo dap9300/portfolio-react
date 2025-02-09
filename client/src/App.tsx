@@ -8,10 +8,11 @@ import { DynamicBackground } from "@/components/shared/DynamicBackground";
 import NotFound from "@/pages/not-found";
 import Home from "@/pages/Home";
 import { ProjectDetails } from "@/components/sections/ProjectDetails";
-import { useState, Suspense } from 'react';
+import { useState, Suspense } from "react";
 import { Language } from "@/types";
 import { AnimatePresence, motion } from "framer-motion";
 import { Footer } from "@/components/shared/Footer";
+import { ChatWidget } from "@/components/ui/WebhookChat"; // 👈 Import del widget chat
 
 // ErrorBoundary component
 class ErrorBoundary extends React.Component {
@@ -20,7 +21,7 @@ class ErrorBoundary extends React.Component {
     return { hasError: true };
   }
   componentDidCatch(error: Error) {
-    console.error('App Error:', error);
+    console.error("App Error:", error);
   }
   render() {
     if (this.state.hasError) {
@@ -28,8 +29,8 @@ class ErrorBoundary extends React.Component {
         <div className="flex min-h-screen items-center justify-center p-4">
           <div className="text-center">
             <h2 className="text-xl font-semibold mb-2">Something went wrong</h2>
-            <button 
-              onClick={() => window.location.reload()} 
+            <button
+              onClick={() => window.location.reload()}
               className="px-4 py-2 bg-primary text-white rounded-md"
             >
               Reload page
@@ -43,9 +44,9 @@ class ErrorBoundary extends React.Component {
 }
 
 function Router() {
-  const [language, setLanguage] = useState<Language>('it');
+  const [language, setLanguage] = useState<Language>("it");
   const [location] = useLocation();
-  const isProjectRoute = location.startsWith('/project/');
+  const isProjectRoute = location.startsWith("/project/");
 
   return (
     <div className="w-full min-h-screen bg-background relative flex flex-col">
@@ -65,9 +66,7 @@ function Router() {
                 <Home language={language} onLanguageChange={setLanguage} />
               </Route>
               <Route path="/project/:id">
-                {(params) => (
-                  <ProjectDetails language={language} onLanguageChange={setLanguage} />
-                )}
+                {(params) => <ProjectDetails language={language} onLanguageChange={setLanguage} />}
               </Route>
               <Route>
                 <NotFound />
@@ -88,10 +87,11 @@ export const App = () => {
           <Router />
           <Footer />
           <Toaster />
+          <ChatWidget /> {/* 👈 Aggiunto il widget della chat */}
         </div>
       </QueryClientProvider>
     </ErrorBoundary>
   );
-}
+};
 
 export default App;
