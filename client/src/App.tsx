@@ -12,17 +12,23 @@ import { useState, Suspense } from "react";
 import { Language } from "@/types";
 import { AnimatePresence, motion } from "framer-motion";
 import { Footer } from "@/components/shared/Footer";
-import { ChatWidget } from "@/components/ui/WebhookChat"; // 👈 Import del widget chat
 
 // ErrorBoundary component
-class ErrorBoundary extends React.Component {
+interface ErrorBoundaryProps {
+  children: React.ReactNode;
+}
+
+class ErrorBoundary extends React.Component<ErrorBoundaryProps, { hasError: boolean }> {
   state = { hasError: false };
+
   static getDerivedStateFromError() {
     return { hasError: true };
   }
+
   componentDidCatch(error: Error) {
     console.error("App Error:", error);
   }
+
   render() {
     if (this.state.hasError) {
       return (
@@ -87,7 +93,6 @@ export const App = () => {
           <Router />
           <Footer />
           <Toaster />
-          <ChatWidget /> {/* 👈 Aggiunto il widget della chat */}
         </div>
       </QueryClientProvider>
     </ErrorBoundary>
