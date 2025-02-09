@@ -3,33 +3,24 @@ import express from "express";
 import cors from "cors";
 import dotenv from "dotenv";
 import { registerRoutes } from "./routes";
-import { setupVite } from "./vite";
 
 dotenv.config();
 
 const app = express();
-const PORT = Number(process.env.PORT || 3000);  // Ensure PORT is a number
+const PORT = process.env.PORT || 5000; // Cambiato a 5000
 
 app.use(express.json());
 app.use(cors({
     origin: (origin, callback) => {
-        console.log(`🔍 CORS check for origin: ${origin}`);
+        console.log(`🔍 CORS check per origin: ${origin}`);
 
-        // Development and production origins
         const allowedOrigins = [
-            "http://localhost:5000",
-            "http://0.0.0.0:5000",
-            undefined // Allow requests with no origin (like mobile apps or curl requests)
+            "http://localhost:3000", // La webapp React gira su questa porta
+            "https://dap00.app.n8n.cloud"
         ];
 
-        // Allow all Replit domains
-        if (origin?.includes('.replit.dev')) {
-            console.log(`✅ Replit domain allowed: ${origin}`);
-            return callback(null, true);
-        }
-
-        if (allowedOrigins.includes(origin)) {
-            console.log(`✅ Origin allowed: ${origin}`);
+        if (!origin || allowedOrigins.includes(origin)) {
+            console.log(`✅ Origin permesso: ${origin}`);
             callback(null, true);
         } else {
             console.log(`🚨 CORS Blocked: ${origin}`);
@@ -37,23 +28,18 @@ app.use(cors({
         }
     },
     credentials: true,
-    methods: ['GET', 'POST', 'PUT', 'DELETE', 'OPTIONS'],
+    methods: ['GET', 'POST', 'PUT', 'DELETE'],
     allowedHeaders: ['Content-Type', 'Authorization']
 }));
 
-// 📌 Add routes from routes.ts
-const server = registerRoutes(app);
+// 📌 Aggiunge le rotte dal file routes.ts
+registerRoutes(app);
 
-// Setup Vite in development mode
-if (process.env.NODE_ENV !== 'production') {
-    setupVite(app, server).catch(console.error);
-}
-
-// Health check endpoint
 app.get("/", (req, res) => {
-    res.send("🚀 Server is running!");
+    res.send("🚀 Server is running on port 5000!");
 });
 
-server.listen(PORT, '0.0.0.0', () => {
-    console.log(`🚀 Backend server running on port ${PORT}`);
+// 🚀 Avvia il server sulla porta 5000
+app.listen(PORT, () => {
+    console.log(`🚀 Server running on port ${PORT}`);
 });
