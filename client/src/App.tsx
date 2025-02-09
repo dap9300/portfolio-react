@@ -12,6 +12,7 @@ import { useState, Suspense } from "react";
 import { Language } from "@/types";
 import { AnimatePresence, motion } from "framer-motion";
 import { Footer } from "@/components/shared/Footer";
+import { ChatWidget } from "@/components/shared/ChatWidget";
 
 // ErrorBoundary component
 interface ErrorBoundaryProps {
@@ -93,6 +94,7 @@ export const App = () => {
           <Router />
           <Footer />
           <Toaster />
+          <ChatWidget />
         </div>
       </QueryClientProvider>
     </ErrorBoundary>

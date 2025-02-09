@@ -8,18 +8,25 @@ import { setupVite } from "./vite";
 dotenv.config();
 
 const app = express();
-const PORT = process.env.PORT || 5000;
+const PORT = Number(process.env.PORT || 3000);  // Ensure PORT is a number
 
 app.use(express.json());
 app.use(cors({
     origin: (origin, callback) => {
         console.log(`🔍 CORS check for origin: ${origin}`);
 
+        // Development and production origins
         const allowedOrigins = [
-            "http://localhost:3000",
             "http://localhost:5000",
+            "http://0.0.0.0:5000",
             undefined // Allow requests with no origin (like mobile apps or curl requests)
         ];
+
+        // Allow all Replit domains
+        if (origin?.includes('.replit.dev')) {
+            console.log(`✅ Replit domain allowed: ${origin}`);
+            return callback(null, true);
+        }
 
         if (allowedOrigins.includes(origin)) {
             console.log(`✅ Origin allowed: ${origin}`);
@@ -34,7 +41,7 @@ app.use(cors({
     allowedHeaders: ['Content-Type', 'Authorization']
 }));
 
-// 📌 Aggiunge le rotte dal file routes.ts
+// 📌 Add routes from routes.ts
 const server = registerRoutes(app);
 
 // Setup Vite in development mode
@@ -47,6 +54,6 @@ app.get("/", (req, res) => {
     res.send("🚀 Server is running!");
 });
 
-server.listen(PORT, () => {
-    console.log(`🚀 Server running on port ${PORT}`);
+server.listen(PORT, '0.0.0.0', () => {
+    console.log(`🚀 Backend server running on port ${PORT}`);
 });
