@@ -8,14 +8,14 @@ import { registerRoutes } from "./routes";
 dotenv.config();
 
 const app = express();
-const PORT = parseInt(process.env.PORT || "3000", 10);
+const PORT = 5000; // Backend sulla porta 5000
 
 // Middleware per JSON
 app.use(express.json());
 
 // 🌍 Configurazione CORS
 const allowedOrigins = [
-  `http://localhost:${process.env.VITE_PORT || 5000}`, // Frontend React/Vite in locale
+  "http://localhost:3000", // Frontend React/Vite sulla porta 3000
   "https://dap00.app.n8n.cloud" // Webhook esterno
 ];
 
@@ -36,7 +36,7 @@ app.use(cors({
 }));
 
 // 📌 Registra le API definite in routes.ts
-registerRoutes(app);
+const server = registerRoutes(app);
 
 // 🌟 Rotta principale per verificare lo stato del server
 app.get("/", (req, res) => {
@@ -44,6 +44,6 @@ app.get("/", (req, res) => {
 });
 
 // 🚀 Avvia il server
-app.listen(PORT, "0.0.0.0", () => {
+server.listen(PORT, "0.0.0.0", () => {
   console.log(`🚀 Server running on http://0.0.0.0:${PORT}`);
 });
