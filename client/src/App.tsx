@@ -1,3 +1,4 @@
+// client/src/App.tsx
 import React from "react";
 import { Switch, Route, useLocation } from "wouter";
 import { QueryClientProvider } from "@tanstack/react-query";
@@ -10,14 +11,45 @@ import { ProjectDetails } from "@/components/sections/ProjectDetails";
 import { useState, Suspense } from 'react';
 import { Language } from "@/types";
 import { AnimatePresence, motion } from "framer-motion";
+import { Footer } from "@/components/shared/Footer";
+
+// ErrorBoundary component
+class ErrorBoundary extends React.Component {
+  state = { hasError: false };
+  static getDerivedStateFromError() {
+    return { hasError: true };
+  }
+  componentDidCatch(error: Error) {
+    console.error('App Error:', error);
+  }
+  render() {
+    if (this.state.hasError) {
+      return (
+        <div className="flex min-h-screen items-center justify-center p-4">
+          <div className="text-center">
+            <h2 className="text-xl font-semibold mb-2">Something went wrong</h2>
+            <button 
+              onClick={() => window.location.reload()} 
+              className="px-4 py-2 bg-primary text-white rounded-md"
+            >
+              Reload page
+            </button>
+          </div>
+        </div>
+      );
+    }
+    return this.props.children;
+  }
+}
 
 function Router() {
   const [language, setLanguage] = useState<Language>('it');
   const [location] = useLocation();
+  const isProjectRoute = location.startsWith('/project/');
 
   return (
-    <div className="w-full h-full min-h-screen bg-background relative">
-      <DynamicBackground />
+    <div className="w-full min-h-screen bg-background relative flex flex-col">
+      {!isProjectRoute && <DynamicBackground />}
       <Suspense fallback={<div className="flex items-center justify-center min-h-screen">Loading...</div>}>
         <AnimatePresence mode="wait">
           <motion.div
@@ -26,7 +58,7 @@ function Router() {
             animate={{ opacity: 1 }}
             exit={{ opacity: 0 }}
             transition={{ duration: 0.2 }}
-            className="w-full h-full"
+            className="w-full flex-1 pb-24"
           >
             <Switch location={location}>
               <Route path="/">
@@ -48,59 +80,18 @@ function Router() {
   );
 }
 
-// Footer component
-const Footer = () => {
-  return (
-    <footer className="bg-gray-800 text-white text-center py-4">
-      <p>© Alessandro d’Apolito – 2025 | Proudly created with React & Typescript</p>
-    </footer>
-  );
-};
-
-// ErrorBoundary component
-class ErrorBoundary extends React.Component {
-  state = { hasError: false };
-
-  static getDerivedStateFromError() {
-    return { hasError: true };
-  }
-
-  componentDidCatch(error: Error) {
-    console.error('App Error:', error);
-  }
-
-  render() {
-    if (this.state.hasError) {
-      return (
-        <div className="flex min-h-screen items-center justify-center p-4">
-          <div className="text-center">
-            <h2 className="text-xl font-semibold mb-2">Something went wrong</h2>
-            <button 
-              onClick={() => window.location.reload()} 
-              className="px-4 py-2 bg-primary text-white rounded-md"
-            >
-              Reload page
-            </button>
-          </div>
-        </div>
-      );
-    }
-    return this.props.children;
-  }
-}
-
-// Separate App component
 export const App = () => {
   return (
     <ErrorBoundary>
       <QueryClientProvider client={queryClient}>
-        <Router />
-        <Footer />
-        <Toaster />
+        <div className="flex flex-col min-h-screen">
+          <Router />
+          <Footer />
+          <Toaster />
+        </div>
       </QueryClientProvider>
     </ErrorBoundary>
   );
 }
 
-// Default export
 export default App;

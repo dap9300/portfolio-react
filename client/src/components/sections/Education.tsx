@@ -1,15 +1,11 @@
+import { useState } from "react";
 import { motion } from "framer-motion";
 import { translations } from "@/components/sections/project-details/SiteContent";
 import { Language } from "@/types";
 import { SectionTitle } from "@/components/shared/SectionTitle";
 import { Card, CardContent } from "@/components/ui/card";
-import { fadeInUp, staggerContainer, sectionVariants } from "@/lib/animations";
-import {
-  Accordion,
-  AccordionContent,
-  AccordionItem,
-  AccordionTrigger,
-} from "@/components/ui/accordion";
+import { fadeInUp, staggerContainer } from "@/lib/animations";
+import { ChevronDown } from "lucide-react";
 
 interface EducationProps {
   language: Language;
@@ -65,6 +61,11 @@ const education = [
 
 export function Education({ language }: EducationProps) {
   const t = translations[language].education;
+  const [expandedId, setExpandedId] = useState<number | null>(null);
+
+  const toggleExpanded = (id: number) => {
+    setExpandedId(expandedId === id ? null : id);
+  };
 
   return (
     <motion.section 
@@ -96,61 +97,71 @@ export function Education({ language }: EducationProps) {
               variants={fadeInUp}
               className="mb-6 last:mb-0"
             >
-              <Accordion type="single" collapsible>
-                <AccordionItem value={`item-${item.id}`}>
-                  <Card>
-                    <CardContent className="p-6">
-                      <AccordionTrigger className="hover:no-underline">
-                        <div className="flex flex-col md:flex-row md:items-center md:justify-between w-full text-left">
-                          <div>
-                            <h3 className="text-xl font-semibold">
-                              {item.degree[language]}
-                            </h3>
-                            <p className="text-muted-foreground">
-                              {item.institution[language]}, {item.location}
-                            </p>
-                          </div>
-                          <span className="text-primary mt-2 md:mt-0">
-                            {item.period}
-                          </span>
-                        </div>
-                      </AccordionTrigger>
-                      <AccordionContent>
-                        <div className="mt-4 space-y-4 text-muted-foreground">
-                          <p>
-                            <span className="font-medium text-foreground">
-                              {language === 'en' ? 'Grade' : 'Voto'}:
-                            </span> {item.details.grade}
+              <Card className="w-full">
+                <button
+                  onClick={() => toggleExpanded(item.id)}
+                  className="w-full p-4 hover:bg-muted/30 transition-colors"
+                >
+                  <div className="flex flex-col md:flex-row md:items-center md:justify-between w-full text-left">
+                    <div>
+                      <h3 className="text-xl font-semibold text-foreground">
+                        {item.degree[language]}
+                      </h3>
+                      <p className="text-muted-foreground">
+                        {item.institution[language]}, {item.location}
+                      </p>
+                    </div>
+                    <div className="flex items-center gap-2 mt-2 md:mt-0">
+                      <span className="text-primary">{item.period}</span>
+                      <ChevronDown 
+                        className={`w-5 h-5 transform transition-transform ${
+                          expandedId === item.id ? 'rotate-180' : ''
+                        }`} 
+                      />
+                    </div>
+                  </div>
+                </button>
+
+                <div className={`overflow-hidden transition-all duration-200 ${
+                  expandedId === item.id ? 'opacity-100' : 'opacity-0 h-0'
+                }`}>
+                  <CardContent className="p-4 pt-0">
+                    <div className="mt-4 space-y-4 text-muted-foreground">
+                      <p>
+                        <span className="font-medium text-foreground">
+                          {language === 'en' ? 'Grade' : 'Voto'}:
+                        </span> {item.details.grade}
+                      </p>
+                      <p>
+                        <span className="font-medium text-foreground">
+                          {language === 'en' ? 'Year of completion' : 'A.A. di conseguimento'}:
+                        </span> {item.details.year}
+                      </p>
+                      {item.details.mainSubjects && (
+                        <div>
+                          <p className="font-medium text-foreground mb-2">
+                            {language === 'en' ? 'Main Subjects' : 'Materie principali'}:
                           </p>
-                          <p>
-                            <span className="font-medium text-foreground">
-                              {language === 'en' ? 'Year of completion' : 'A.A. di conseguimento'}:
-                            </span> {item.details.year}
-                          </p>
-                          {item.details.mainSubjects && (
-                            <div>
-                              <p className="font-medium text-foreground mb-2">
-                                {language === 'en' ? 'Main Subjects' : 'Materie principali'}:
-                              </p>
-                              <ul className="list-disc list-inside pl-4">
-                                {item.details.mainSubjects.map((subject, idx) => (
-                                  <li key={idx}>{subject}</li>
-                                ))}
-                              </ul>
-                            </div>
-                          )}
-                          <div>
-                            <p className="font-medium text-foreground mb-2">
-                              {language === 'en' ? 'Thesis' : 'Titolo tesi'}:
-                            </p>
-                            <p>{item.details.thesis}</p>
-                          </div>
+                          <ul className="space-y-2">
+                            {item.details.mainSubjects.map((subject, idx) => (
+                              <li key={idx} className="flex items-start gap-2">
+                                <div className="w-1.5 h-1.5 rounded-full bg-blue-500 mt-2 flex-shrink-0" />
+                                <span>{subject}</span>
+                              </li>
+                            ))}
+                          </ul>
                         </div>
-                      </AccordionContent>
-                    </CardContent>
-                  </Card>
-                </AccordionItem>
-              </Accordion>
+                      )}
+                      <div>
+                        <p className="font-medium text-foreground mb-2">
+                          {language === 'en' ? 'Thesis' : 'Titolo tesi'}:
+                        </p>
+                        <p>{item.details.thesis}</p>
+                      </div>
+                    </div>
+                  </CardContent>
+                </div>
+              </Card>
             </motion.div>
           ))}
         </motion.div>

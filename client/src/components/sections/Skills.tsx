@@ -1,8 +1,9 @@
+import { useState } from "react";
 import { translations } from "@/components/sections/project-details/SiteContent";
 import { Language } from "@/types";
 import { SectionTitle } from "@/components/shared/SectionTitle";
 import { Card, CardContent } from "@/components/ui/card";
-import { ChartBar, Code2, PenTool, Brain, Languages, Heart } from "lucide-react";
+import { ChartBar, Code2, ChevronDown, PenTool, Brain, Languages, Heart } from "lucide-react";
 
 interface SkillsProps {
   language: Language;
@@ -22,15 +23,15 @@ const leftSkillCategories: SkillCategory[] = [
       en: [
         "**Performance Marketing**: Meta Ads, Google Ads, Amazon Ads",
         "**Web & Marketing Analytics**: Meta Business Suite, Google Analytics, Google Search Console, Google Tag Manager, Looker Studio",
-        "**Email Marketing & Marketing Automation**: Mailchimp, MailUp, ConvertKit, MailerLite, Drip",
-        "**SEO & Optimization**: SEO on-page, SEO on-site, Technical SEO, Screaming Frog, Semrush, Rank Math",
+        "**Email Marketing**: Mailchimp & Other ESP",
+        "**SEO & Optimization**: SEO Technical, Screaming Frog, Semrush, Rank Math",
         "**Social Media**: Meta Business Suite, Editorial Strategy & Planning, Community Management"
       ],
       it: [
         "Performance Marketing (Meta Ads, Google Ads, Amazon Ads)",
         "Web & Marketing Analytics (Meta Business Suite, Google Analytics, Google Search Console, Google Tag Manager, Looker Studio)",
-        "Email Marketing & Marketing Automation (Mailchimp, MailUp, ConvertKit, MailerLite, Drip)",
-        "SEO & Optimization (SEO on-page, SEO on-site, Technical SEO, Screaming Frog, Semrush, Rank Math)",
+        "Email Marketing (Mailchimp & Other ESP)",
+        "SEO & Optimization (SEO Technical, Screaming Frog, Semrush, Rank Math)",
         "Social Media (Meta Business Suite, Editorial Strategy & Planning, Community Management)"
       ]
     }
@@ -126,79 +127,177 @@ const rightSkillCategories: SkillCategory[] = [
   }
 ];
 
-export function Skills({ language }: SkillsProps) {
-  const t = translations[language].skills;
+const getSkillLevel = (tool: string): number => {
+  const skillLevels: { [key: string]: number } = {
+    "Meta Ads": 4,
+    "Google Ads": 4,
+    "Amazon Ads": 3,
+    "Meta Business Suite": 4,
+    "Google Analytics": 5,
+    "Google Search Console": 5,
+    "Google Tag Manager": 4,
+    "Looker Studio": 3,
+    "Mailchimp & Other ESP": 4,
+    "SEO Technical": 4,
+    "Screaming Frog": 4,
+    "Semrush": 4,
+    "Rank Math": 4,
+    "Editorial Strategy & Planning": 4,
+    "Community Management": 4,
+    "HTML5": 4,
+    "CSS": 4,
+    "WordPress": 5,
+    "WooCommerce": 4,
+    "Shopify": 3,
+    "Windows": 5,
+    "MacOS": 4,
+    "Office Suite": 5,
+    "Google Workspace": 5,
+    "Slack": 5,
+    "Asana": 4,
+    "Trello": 4,
+    "Adobe Creative Suite": 3,
+    "Canva": 5,
+    "DaVinci Resolve": 3,
+    "CapCut": 4,
+    "Audacity": 3,
+    "ChatGPT": 5,
+    "Claude": 4,
+    "MidJourney": 4,
+    "Cursor": 3,
+    "ElevenLabs": 3,
+  };
+
+  return skillLevels[tool.trim()] || 3;
+};
+
+const DotGradient = ({ level, index }: { level: number; index: number }) => {
+  const gradientColors = [
+    'bg-blue-200',
+    'bg-blue-300',
+    'bg-blue-400',
+    'bg-blue-500',
+    'bg-blue-600',
+  ];
 
   return (
-    <section id="skills" className="min-h-screen relative flex items-center py-20 px-4">
-      <div className="absolute inset-0 bg-gradient-to-b from-background to-muted/30 -z-10" />
-      <div className="container mx-auto">
-        <SectionTitle
-          title={t.title}
-          icon="Brain"
-        />
-        <div className="grid md:grid-cols-2 gap-8 auto-rows-fr">
-          <div className="space-y-8 grid auto-rows-fr">
-            {leftSkillCategories.map((category, index) => (
-              <Card key={index} className="h-full">
-                <CardContent className="p-6 h-full">
-                  <div className="flex items-center gap-4 mb-4">
-                    <category.icon className="w-8 h-8 text-primary" />
-                    <h3 className="text-xl font-semibold">
-                      {category.title[language]}
-                    </h3>
-                  </div>
-                  <ul className="space-y-2">
-                    {category.skills[language].map((skill, skillIndex) => {
-                      const formattedSkill = skill
-                        .replace(/(.+?)\s*\((.*?)\)/g, "**$1**: $2")
-                        .replace(/\s*\((.*?)\)/g, ", $1");
+    <div
+      className={`w-3 h-3 rounded-full transition-colors ${
+        index < level ? gradientColors[index] : 'bg-muted'
+      }`}
+    />
+  );
+};
 
-                      return (
-                        <li
-                          key={skillIndex}
-                          className="text-muted-foreground"
-                          dangerouslySetInnerHTML={{
-                            __html: formattedSkill.replace(/\*\*(.*?)\*\*/g, '<strong>$1</strong>')
-                          }}
-                        />
-                      );
-                    })}
-                  </ul>
-                </CardContent>
-              </Card>
-            ))}
+export function Skills({ language }: SkillsProps) {
+  const t = translations[language].skills;
+  const [expanded, setExpanded] = useState<{ [key: string]: boolean }>({});
+
+  const toggleCategory = (categoryKey: string) => {
+    setExpanded(prev => ({
+      ...prev,
+      [categoryKey]: !prev[categoryKey]
+    }));
+  };
+
+  const renderCategory = (category: SkillCategory, side: 'left' | 'right', index: number) => {
+    const categoryKey = `${side}-${index}`;
+    const isExpanded = expanded[categoryKey] || false;
+
+    return (
+      <Card key={categoryKey} className="w-full">
+        <button
+          onClick={() => toggleCategory(categoryKey)}
+          className="w-full p-4 hover:bg-muted/30 transition-colors"
+        >
+          <div className="flex items-center justify-between gap-3">
+            <div className="flex items-center gap-3">
+              <category.icon className="w-6 h-6 text-primary" />
+              <h3 className="text-lg font-semibold text-foreground text-left">
+                {category.title[language]}
+              </h3>
+            </div>
+            <ChevronDown className={`w-5 h-5 transform transition-transform ${isExpanded ? 'rotate-180' : ''}`} />
           </div>
-          <div className="space-y-8 grid auto-rows-fr">
-            {rightSkillCategories.map((category, index) => (
-              <Card key={index} className="h-full">
-                <CardContent className="p-6 h-full">
-                  <div className="flex items-center gap-4 mb-4">
-                    <category.icon className="w-8 h-8 text-primary" />
-                    <h3 className="text-xl font-semibold">
-                      {category.title[language]}
-                    </h3>
-                  </div>
-                  <ul className="space-y-2">
-                    {category.skills[language].map((skill, skillIndex) => {
-                      const formattedSkill = skill
-                        .replace(/(.+?)\s*\((.*?)\)/g, "**$1**: $2")
-                        .replace(/\s*\((.*?)\)/g, ", $1");
+        </button>
 
-                      return (
-                        <li
-                          key={skillIndex}
-                          className="text-muted-foreground"
-                          dangerouslySetInnerHTML={{
-                            __html: formattedSkill.replace(/\*\*(.*?)\*\*/g, '<strong>$1</strong>')
-                          }}
-                        />
-                      );
-                    })}
-                  </ul>
-                </CardContent>
-              </Card>
-            ))}
+        <div className={`overflow-hidden transition-all duration-200 ${isExpanded ? 'opacity-100' : 'opacity-0 h-0'}`}>
+          <CardContent className="p-4 pt-0">
+            <ul className="space-y-4">
+              {category.skills[language].map((skill, skillIndex) => {
+                if (side === 'left') {
+                  const [title, ...tools] = skill.split(/: |\(/);
+                  const cleanedTitle = title.replace(/\*\*/g, '').trim();
+                  const toolList = tools.join('').split(/,\s*|\)/).filter(Boolean);
+
+                  return (
+                    <li key={skillIndex} className="text-sm">
+                      <strong className="text-foreground">{cleanedTitle}</strong>
+                      <ul className="mt-1.5 space-y-2">
+                        {toolList.map((tool, toolIndex) => {
+                          const level = getSkillLevel(tool);
+                          return (
+                            <li 
+                              key={toolIndex} 
+                              className="flex justify-between items-center"
+                            >
+                              <span className="text-muted-foreground">{tool}</span>
+                              <div className="flex gap-1">
+                                {[...Array(5)].map((_, i) => (
+                                  <DotGradient key={i} level={level} index={i} />
+                                ))}
+                              </div>
+                            </li>
+                          );
+                        })}
+                      </ul>
+                    </li>
+                  );
+                } else {
+                  return (
+                    <li 
+                      key={skillIndex} 
+                      className="text-sm text-muted-foreground flex justify-between items-center"
+                    >
+                      <span>{skill}</span>
+                      {category.title.en === "Languages" && (
+                        <div className="flex gap-1">
+                          {[...Array(5)].map((_, i) => {
+                            const level = skill.includes("Native") || skill.includes("Madrelingua") ? 5 : 4;
+                            return <DotGradient key={i} level={level} index={i} />;
+                          })}
+                        </div>
+                      )}
+                    </li>
+                  );
+                }
+              })}
+            </ul>
+          </CardContent>
+        </div>
+      </Card>
+    );
+  };
+
+  return (
+    <section id="skills" className="relative min-h-screen">
+      <div className="absolute inset-0 bg-gradient-to-b from-background to-muted/30 -z-10" />
+      <div className="absolute inset-0 flex items-center">
+        <div className="w-full px-4 py-16">
+          <div className="container mx-auto max-w-5xl">
+            <SectionTitle title={t.title} icon="https://cdn.lordicon.com/lecprnjb.json" className="mb-8" />
+            <div className="grid md:grid-cols-2 gap-6">
+              <div className="space-y-4">
+                {leftSkillCategories.map((category, index) => 
+                  renderCategory(category, 'left', index)
+                )}
+              </div>
+              <div className="space-y-4">
+                {rightSkillCategories.map((category, index) => 
+                  renderCategory(category, 'right', index)
+                )}
+              </div>
+            </div>
           </div>
         </div>
       </div>

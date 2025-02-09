@@ -1,4 +1,3 @@
-
 import { motion } from "framer-motion";
 import { fadeInUp } from "@/lib/animations";
 
@@ -9,10 +8,10 @@ export function Footer() {
       initial="hidden"
       whileInView="visible"
       viewport={{ once: true }}
-      className="w-full py-6 border-t bg-background/80 backdrop-blur-sm"
+      className="w-full py-6 border-t bg-gray-800 backdrop-blur-sm relative z-50"
     >
       <div className="container mx-auto px-4">
-        <p className="text-center text-sm text-muted-foreground">
+        <p className="text-center text-sm text-white">
           © Alessandro d'Apolito – 2025 | Proudly created with React & Typescript
         </p>
       </div>

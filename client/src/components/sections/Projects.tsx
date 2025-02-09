@@ -1,3 +1,4 @@
+// client/src/components/sections/Projects.tsx
 import { motion } from "framer-motion";
 import { translations } from "@/components/sections/project-details/SiteContent";
 import { Language } from "@/types";
@@ -17,7 +18,7 @@ export function Projects({ language }: ProjectsProps) {
   return (
     <motion.section 
       id="projects" 
-      className="min-h-screen py-20 px-4 bg-muted/30"
+      className="min-h-screen py-20 px-4 bg-muted/30 relative z-10"
       variants={sectionVariants}
       initial="hidden"
       whileInView="visible"
@@ -26,7 +27,7 @@ export function Projects({ language }: ProjectsProps) {
       <div className="container mx-auto">
         <SectionTitle 
           title={t.projects.title}
-          icon="https://cdn.lordicon.com/iltqorsz.json"
+          icon="https://cdn.lordicon.com/zhiiqoue.json"
         />
         <motion.div
           variants={staggerContainer}
