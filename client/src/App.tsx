@@ -12,7 +12,8 @@ import { useState, Suspense } from "react";
 import { Language } from "@/types";
 import { AnimatePresence, motion } from "framer-motion";
 import { Footer } from "@/components/shared/Footer";
-import { ChatWidget } from "@/components/ui/WebhookChat"; // 👈 Import del widget chat
+import WebhookChat from "@/components/ui/WebhookChat";
+ // 👈 Import del widget chat
 
 // ErrorBoundary component
 class ErrorBoundary extends React.Component {
