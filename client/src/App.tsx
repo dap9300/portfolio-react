@@ -13,10 +13,9 @@ import { Language } from "@/types";
 import { AnimatePresence, motion } from "framer-motion";
 import { Footer } from "@/components/shared/Footer";
 import WebhookChat from "@/components/ui/WebhookChat";
- // 👈 Import del widget chat
 
 // ErrorBoundary component
-class ErrorBoundary extends React.Component {
+class ErrorBoundary extends React.Component<{ children: React.ReactNode }> {
   state = { hasError: false };
   static getDerivedStateFromError() {
     return { hasError: true };
@@ -88,7 +87,7 @@ export const App = () => {
           <Router />
           <Footer />
           <Toaster />
-          <ChatWidget /> {/* 👈 Aggiunto il widget della chat */}
+          <WebhookChat />
         </div>
       </QueryClientProvider>
     </ErrorBoundary>
