@@ -1,6 +1,6 @@
 // client/src/App.tsx
 import React, { useEffect } from 'react';
-import { DynamicBackground } from './DynamicBackground';
+import { DynamicBackground } from './components/shared/DynamicBackground';
 import WebhookChat from './WebhookChat';
 
 // Stili globali necessari
