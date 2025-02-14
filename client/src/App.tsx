@@ -1,61 +1,123 @@
-// client/src/App.tsx
-import React, { useEffect } from 'react';
-import { DynamicBackground } from './components/shared/DynamicBackground';
-import WebhookChat from './WebhookChat';
+  // WebhookChat.tsx
+  import { useEffect, useState } from "react";
+  import "@n8n/chat/style.css";
+  import { createChat } from "@n8n/chat";
 
-// Stili globali necessari
-const globalStyles = `
-  * {
-    margin: 0;
-    padding: 0;
-    box-sizing: border-box;
+  // Internal Error Boundary Component
+  class ChatErrorBoundary extends React.Component<
+    { children: React.ReactNode },
+    { hasError: boolean; error: Error | null }
+  > {
+    constructor(props: { children: React.ReactNode }) {
+      super(props);
+      this.state = { hasError: false, error: null };
+    }
+
+    static getDerivedStateFromError(error: Error) {
+      return { hasError: true, error };
+    }
+
+    componentDidCatch(error: Error) {
+      console.error("Chat Error:", error);
+    }
+
+    render() {
+      if (this.state.hasError) {
+        return (
+          <div className="fixed bottom-4 right-4 p-4 bg-white rounded shadow border border-red-200">
+            <h3 className="text-lg font-semibold mb-2">Chat Error</h3>
+            <p className="text-sm text-gray-600 mb-2">
+              {this.state.error?.message || 'An error occurred in the chat component'}
+            </p>
+            <button
+              onClick={() => window.location.reload()}
+              className="px-4 py-2 bg-blue-500 text-white rounded hover:bg-blue-600 transition-colors"
+            >
+              Reload Chat
+            </button>
+          </div>
+        );
+      }
+
+      return this.props.children;
+    }
   }
 
-  html, body, #root {
-    width: 100%;
-    height: 100vh;
-    overflow: hidden;
-    position: fixed;
-    top: 0;
-    left: 0;
-  }
-`;
+  // Chat Component
+  const ChatComponent = () => {
+    const [sessionId, setSessionId] = useState("");
+    const [error, setError] = useState<Error | null>(null);
+    const [isLoading, setIsLoading] = useState(true);
 
-const appStyles: React.CSSProperties = {
-  position: 'fixed',
-  top: 0,
-  left: 0,
-  width: '100vw',
-  height: '100vh',
-  overflow: 'hidden'
-};
+    useEffect(() => {
+      const initializeChat = async () => {
+        try {
+          setIsLoading(true);
+          const storedSessionId = localStorage.getItem("chatSessionId") || `session-${Date.now()}`;
+          localStorage.setItem("chatSessionId", storedSessionId);
+          setSessionId(storedSessionId);
 
-const contentStyles: React.CSSProperties = {
-  position: 'relative',
-  zIndex: 1,
-  height: '100%'
-};
+          console.log("Initializing WebhookChat with sessionId:", storedSessionId);
 
-const App: React.FC = () => {
-  // Inietta gli stili globali
-  useEffect(() => {
-    const style = document.createElement('style');
-    style.textContent = globalStyles;
-    document.head.appendChild(style);
-    return () => {
-      document.head.removeChild(style);
-    };
-  }, []);
+          const controller = new AbortController();
+          const timeoutId = setTimeout(() => controller.abort(), 30000); // 30 second timeout
 
-  return (
-    <div style={appStyles}>
-      <DynamicBackground />
-      <div style={contentStyles}>
-        {/* Altri componenti dell'applicazione */}
-      </div>
-      <WebhookChat />
-    </div>
-  );
-};
+          try {
+            await createChat({
+            webhookUrl: "https://dap00.app.n8n.cloud/webhook/56a1ff7c-ab7d-4f24-8f17-c9af3849ab04",
+            target: "#n8n-chat",
+            mode: "window",
+            showWelcomeScreen: true,
+            method: "POST",
+            body: JSON.stringify({
+              sessionId: storedSessionId,
+              chatInput: "Ciao! Come posso aiutarti?"
+            }),
+            headers: {
+              "Content-Type": "application/json",
+            },
+            signal: controller.signal,
+          });
 
-export default App;
+          setIsLoading(false);
+          clearTimeout(timeoutId);
+        } catch (err) {
+          console.error("WebhookChat Error:", err);
+          setError(err instanceof Error ? err : new Error('Failed to initialize chat'));
+          setIsLoading(false);
+        }
+      };
+
+      initializeChat();
+    }, []);
+
+    if (error) {
+      return (
+        <div className="p-4 text-red-500">
+          Error initializing chat: {error.message}
+        </div>
+      );
+    }
+
+    return (
+      <>
+        <div id="n8n-chat" />
+        {isLoading && (
+          <div className="fixed bottom-4 right-4 p-4 bg-white rounded shadow">
+            Initializing chat...
+          </div>
+        )}
+      </>
+    );
+  };
+
+  // Main WebhookChat component with integrated error boundary
+  const WebhookChat = () => {
+    return (
+      <ChatErrorBoundary>
+        <ChatComponent />
+      </ChatErrorBoundary>
+    );
+  };
+
+  export default WebhookChat;
