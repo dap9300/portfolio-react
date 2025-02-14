@@ -1,6 +1,6 @@
 // server/index.ts
 import express, { type Request, Response, NextFunction } from "express";
-import { registerRoutes } from "./routes";
+import { registerRoutes } from "./routes"; // ✅ Correct import
 import { setupVite, serveStatic, log } from "./vite";
 import cors from "cors";
 import http from "http";
@@ -20,7 +20,6 @@ const corsOptions = {
   origin: [
     `https://${REPLIT_HOST}`,
     "http://localhost:5000",
-    "http://0.0.0.0:5000",
   ],
   credentials: true,
   methods: ["GET", "POST", "PUT", "DELETE", "OPTIONS"],
@@ -34,30 +33,30 @@ app.use(express.urlencoded({ extended: false }));
 // Create an HTTP server
 const server = http.createServer(app);
 
-// Setup Vite in development mode
-async function startServer() {
-    await setupVite(app, server);
+// ✅ Register routes
+registerRoutes(app);
 
-    // Register API routes
-    registerRoutes(app);
+// Logging middleware
+app.use((req, res, next) => {
+  console.log(`Incoming ${req.method} request to ${req.path}`);
+  console.log("Request body:", req.body);
+  next();
+});
 
-    // Error Handling Middleware
-    app.use((err: any, req: Request, res: Response, next: NextFunction) => {
-      console.error("Detailed error:", {
-        message: err.message,
-        stack: err.stack,
-        body: req.body,
-      });
-      res.status(err.status || 500).json({ message: err.message || "Internal Server Error" });
-    });
+// Error Handling Middleware
+app.use((err: any, req: Request, res: Response, next: NextFunction) => {
+  console.error("Detailed error:", {
+    message: err.message,
+    stack: err.stack,
+    body: req.body,
+  });
+  res.status(err.status || 500).json({ message: err.message || "Internal Server Error" });
+});
 
-    // Start Server
-    const PORT = process.env.PORT || 5000;
-    server.listen(Number(PORT), "0.0.0.0", () => {
-      log(`Frontend server running on port ${PORT}`);
-      log(`Replit host: ${REPLIT_HOST}`);
-    });
-}
+// Start Server
+const PORT = process.env.PORT || 5000;
+server.listen(Number(PORT), "0.0.0.0", () => {
+  log(`Frontend server running on port ${PORT}`);
+  log(`Replit host: ${REPLIT_HOST}`);
+});
 
-
-startServer();

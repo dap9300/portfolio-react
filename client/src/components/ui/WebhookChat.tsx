@@ -1,9 +1,10 @@
+// WebhookChat.tsx
 import { useEffect, useState } from "react";
 import "@n8n/chat/style.css";
-import { createChat, ChatOptions } from "@n8n/chat";
+import { createChat } from "@n8n/chat";
 
 const WebhookChat = () => {
-  const [sessionId, setSessionId] = useState<string>("");
+  const [sessionId, setSessionId] = useState("");
 
   useEffect(() => {
     const initializeChat = async () => {
@@ -12,43 +13,42 @@ const WebhookChat = () => {
       setSessionId(storedSessionId);
       console.log("Initializing WebhookChat with sessionId:", storedSessionId);
 
-      try {
-        const chatInstance = await createChat({
-          webhookUrl: "https://dap00.app.n8n.cloud/webhook/56a1ff7c-ab7d-4f24-8f17-c9af3849ab04",
-          target: "#n8n-chat",
-          mode: "window",
-          showWelcomeScreen: true,
-          headers: {
-            "Content-Type": "application/json",
-          },
-          debug: true,
-          timeout: 120000,
-          onError: (error: unknown) => {
-            console.error("Chat Error:", error);
-          },
-          onResponse: (response: unknown) => {
-            try {
-              const parsedResponse = typeof response === 'string' 
-                ? JSON.parse(response) 
-                : response;
-              return (parsedResponse as { response: string }).response;
-            } catch (error) {
-              console.error("Error processing response:", error);
-              return response;
-            }
-          }
-        });
+      createChat({
+        webhookUrl: "https://dap00.app.n8n.cloud/webhook/56a1ff7c-ab7d-4f24-8f17-c9af3849ab04",
+        target: "#n8n-chat",
+        mode: "window",
+        showWelcomeScreen: true,
+        method: "POST",
+        body: JSON.stringify({
+          sessionId: storedSessionId,
+          chatInput: "Ciao! Come posso aiutarti?"
+        }),
+        headers: {
+          "Content-Type": "application/json",
+        },
+        debug: true,
+        timeout: 120000,
+        onError: (error) => {
+          console.error("Chat Error:", error);
+        },
+        onResponse: (response) => {
+          // Trasformare la risposta prima che venga mostrata nella chat
+          try {
+            // Estrarre solo il contenuto della risposta
+            const parsedResponse = typeof response === 'string' 
+              ? JSON.parse(response) 
+              : response;
 
-        // Inizializza la chat con il messaggio di benvenuto
-        if (chatInstance) {
-          chatInstance.send(JSON.stringify({
-            sessionId: storedSessionId,
-            chatInput: "Ciao! Come posso aiutarti?"
-          }));
+            // Restituire solo il testo della risposta
+            return parsedResponse.response;
+          } catch (error) {
+            console.error("Error processing response:", error);
+            return response; // Fallback alla risposta originale in caso di errore
+          }
         }
-      } catch (error) {
+      }).catch(error => {
         console.error("Failed to initialize chat:", error);
-      }
+      });
     };
 
     initializeChat();

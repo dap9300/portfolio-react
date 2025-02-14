@@ -4,7 +4,7 @@ import path from "path";
 import cors from "cors";
 import { log } from "./vite";
 import router from "./routes";
-import { fileURLToPath } from "url";
+import { fileURLToPath } from "url"; // Fix for __dirname in ES module
 
 const app = express();
 
@@ -35,15 +35,6 @@ app.use(cors(corsOptions));
 app.use(express.json());
 app.use(express.urlencoded({ extended: false }));
 
-// Add CSP headers
-app.use((req, res, next) => {
-  res.setHeader(
-    'Content-Security-Policy',
-    "default-src 'self'; style-src 'self' 'unsafe-inline'; script-src 'self' 'unsafe-inline' 'unsafe-eval'; connect-src 'self' https://dap00.app.n8n.cloud; img-src 'self' data: blob:;"
-  );
-  next();
-});
-
 // Log all requests
 app.use((req, res, next) => {
   console.log(`[${new Date().toISOString()}] ${req.method} ${req.url}`);
@@ -51,25 +42,12 @@ app.use((req, res, next) => {
   next();
 });
 
-// API Routes first
-app.use("/api", router);
-
-// Health check endpoint
-app.get("/health", (_, res) => {
-  res.json({
-    status: "ok",
-    service: "backend",
-    timestamp: new Date().toISOString(),
-    host: REPLIT_HOST
-  });
-});
-
-// Serve frontend from /dist/public
+// **Serve frontend from /dist/public**
 const frontendPath = path.join(__dirname, "../dist/public");
 console.log("📂 Serving frontend from:", frontendPath);
 app.use(express.static(frontendPath));
 
-// Serve index.html for all other routes (SPA support)
+// **Serve index.html for React frontend for all unknown routes**
 app.get("*", (req, res) => {
   res.sendFile(path.join(frontendPath, "index.html"), (err) => {
     if (err) {
@@ -79,9 +57,22 @@ app.get("*", (req, res) => {
   });
 });
 
-// Start the backend
+// **API Routes**
+app.use("/api", router);
+
+// **Health check endpoint**
+app.get("/health", (_, res) => {
+  res.json({
+    status: "ok",
+    service: "backend",
+    timestamp: new Date().toISOString(),
+    host: REPLIT_HOST
+  });
+});
+
+// **Start the backend**
 const PORT = process.env.PORT || 3000;
-app.listen(Number(PORT), "0.0.0.0", () => {
+app.listen(PORT, "0.0.0.0", () => {
   log(`🚀 Backend server running on port ${PORT}`, "express");
   log(`📡 Serving frontend from ${frontendPath}`, "express");
   log(`🔗 CORS enabled for React frontend & n8n`, "express");
