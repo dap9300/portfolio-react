@@ -1,4 +1,4 @@
-import React, { useEffect, useRef } from 'react';
+import React, { useLayoutEffect, useRef } from 'react';
 
 const DynamicBackground = () => {
   const canvasRef = useRef<HTMLCanvasElement>(null);
@@ -7,60 +7,45 @@ const DynamicBackground = () => {
   const FPS = 60;
   const frameInterval = 1000 / FPS;
 
-  useEffect(() => {
+  useLayoutEffect(() => {
     const canvas = canvasRef.current;
     if (!canvas) return;
 
     const ctx = canvas.getContext('2d', { alpha: false });
     if (!ctx) return;
 
-    // Funzione per gestire il dimensionamento del canvas
     const setCanvasSize = () => {
       const dpr = window.devicePixelRatio || 1;
-      const displayWidth = window.innerWidth;
-      const displayHeight = window.innerHeight;
+      const rect = document.documentElement.getBoundingClientRect();
+      const vw = rect.width;
+      const vh = rect.height;
 
-      // Imposta le dimensioni CSS del canvas immediatamente
-      canvas.style.width = `${displayWidth}px`;
-      canvas.style.height = `${displayHeight}px`;
-
-      // Imposta le dimensioni del buffer del canvas
-      canvas.width = displayWidth * dpr;
-      canvas.height = displayHeight * dpr;
-
-      // Scala il contesto per supportare schermi Retina
+      canvas.style.width = `${vw}px`;
+      canvas.style.height = `${vh}px`;
+      canvas.width = Math.floor(vw * dpr);
+      canvas.height = Math.floor(vh * dpr);
       ctx.scale(dpr, dpr);
 
-      // Forza un render immediato dello sfondo
       ctx.fillStyle = '#f8f9fa';
-      ctx.fillRect(0, 0, displayWidth, displayHeight);
+      ctx.fillRect(0, 0, vw, vh);
     };
 
-    // Esegui il dimensionamento immediatamente
     setCanvasSize();
 
-    // Crea i punti solo dopo aver impostato le dimensioni corrette
     const points = Array.from({ length: 70 }, () => ({
-      x: Math.random() * (canvas.width / window.devicePixelRatio),
-      y: Math.random() * (canvas.height / window.devicePixelRatio),
+      x: Math.random() * window.innerWidth,
+      y: Math.random() * window.innerHeight,
       radius: Math.random() * 2 + 1,
       vx: (Math.random() - 0.5) * 2.5,
       vy: (Math.random() - 0.5) * 2.5,
       alpha: Math.random() * 0.4 + 0.1
     }));
 
-    // Gestione del resize con throttling invece di debounce
-    let resizeTimeout: ReturnType<typeof setTimeout>;
     const handleResize = () => {
-      if (!resizeTimeout) {
-        resizeTimeout = setTimeout(() => {
-          setCanvasSize();
-          resizeTimeout = undefined;
-        }, 100);
-      }
+      setCanvasSize();
     };
 
-    window.addEventListener('resize', handleResize);
+    window.addEventListener('resize', handleResize, { passive: true });
 
     const animate = (timestamp: number) => {
       if (timestamp - lastFrameTimeRef.current < frameInterval) {
@@ -69,22 +54,18 @@ const DynamicBackground = () => {
       }
       lastFrameTimeRef.current = timestamp;
 
-      const displayWidth = window.innerWidth;
-      const displayHeight = window.innerHeight;
+      const vw = window.innerWidth;
+      const vh = window.innerHeight;
 
       ctx.fillStyle = '#f8f9fa';
-      ctx.fillRect(0, 0, displayWidth, displayHeight);
+      ctx.fillRect(0, 0, vw, vh);
 
       points.forEach((point, i) => {
         point.x += point.vx;
         point.y += point.vy;
 
-        if (point.x < 0 || point.x > displayWidth) {
-          point.vx *= -1;
-        }
-        if (point.y < 0 || point.y > displayHeight) {
-          point.vy *= -1;
-        }
+        if (point.x < 0 || point.x > vw) point.vx *= -1;
+        if (point.y < 0 || point.y > vh) point.vy *= -1;
 
         for (let j = i + 1; j < points.length; j++) {
           const otherPoint = points[j];
@@ -111,7 +92,6 @@ const DynamicBackground = () => {
       animationFrameRef.current = requestAnimationFrame(animate);
     };
 
-    // Avvia l'animazione
     animationFrameRef.current = requestAnimationFrame(animate);
 
     return () => {
@@ -119,15 +99,25 @@ const DynamicBackground = () => {
         cancelAnimationFrame(animationFrameRef.current);
       }
       window.removeEventListener('resize', handleResize);
-      clearTimeout(resizeTimeout);
     };
   }, []);
 
   return (
     <canvas
       ref={canvasRef}
-      className="fixed top-0 left-0 w-full h-full bg-gradient-to-br from-gray-50 to-gray-100"
-      style={{ position: 'fixed', width: '100%', height: '100%' }}
+      style={{
+        position: 'fixed',
+        top: 0,
+        left: 0,
+        width: '100vw',
+        height: '100vh',
+        zIndex: -1,
+        backgroundColor: '#f8f9fa',
+        willChange: 'transform',
+        transform: 'translateZ(0)',
+        opacity: 1,
+        transition: 'none'
+      }}
     />
   );
 };
