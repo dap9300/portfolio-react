@@ -71,23 +71,6 @@ app.get("/health", (_, res) => {
   });
 });
 
-// Serve frontend from /dist/public in production
-if (process.env.NODE_ENV === 'production') {
-  const frontendPath = path.join(__dirname, "../dist/public");
-  log(`📂 Serving frontend from: ${frontendPath}`, "express");
-  app.use(express.static(frontendPath));
-
-  // Serve index.html for all unknown routes in production
-  app.get("*", (req, res) => {
-    res.sendFile(path.join(frontendPath, "index.html"), (err) => {
-      if (err) {
-        log(`❌ Failed to serve frontend: ${err}`, "express");
-        res.status(500).send("Failed to load frontend");
-      }
-    });
-  });
-}
-
 // Start the backend
 const PORT = Number(process.env.PORT) || 3000;
 app.listen(PORT, "0.0.0.0", () => {
