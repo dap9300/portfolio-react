@@ -1,10 +1,9 @@
-// server/backend.ts
 import express from "express";
 import path from "path";
 import cors from "cors";
 import { log } from "./vite";
 import router from "./routes";
-import { fileURLToPath } from "url"; // Fix for __dirname in ES module
+import { fileURLToPath } from "url";
 
 const app = express();
 
@@ -13,18 +12,32 @@ const __filename = fileURLToPath(import.meta.url);
 const __dirname = path.dirname(__filename);
 
 // Set Replit host
-const REPLIT_HOST = process.env.REPL_SLUG || "4537662a-f129-484e-a445-6e437c3a47c5-00-2ypdx2swfmqm1.kirk.replit.dev";
+const REPLIT_HOST = process.env.REPL_SLUG;
+let REPLIT_DOMAIN: string | undefined;
+try {
+  REPLIT_DOMAIN = process.env.REPLIT_DOMAINS ? process.env.REPLIT_DOMAINS.replace(/["[\]]/g, '') : undefined;
+} catch (error) {
+  console.warn("Failed to parse REPLIT_DOMAINS, continuing without it:", error);
+}
 
 // CORS Configuration
 const corsOptions = {
-  origin: [
-    `https://${REPLIT_HOST}`,
-    `http://${REPLIT_HOST}`,
-    "http://localhost:5000",
-    "http://0.0.0.0:5000",
-    `https://${REPLIT_HOST}:8080`,
-    "https://dap00.app.n8n.cloud"
-  ],
+  origin: function(origin: string | undefined, callback: (err: Error | null, allow?: boolean) => void) {
+    const allowedOrigins = [
+      REPLIT_DOMAIN ? `https://${REPLIT_DOMAIN}` : undefined,
+      `https://${REPLIT_HOST}`,
+      `http://${REPLIT_HOST}`,
+      "http://localhost:5000",
+      "http://0.0.0.0:5000",
+      "https://dap00.app.n8n.cloud"
+    ].filter(Boolean) as string[];
+
+    if (!origin || allowedOrigins.indexOf(origin) !== -1) {
+      callback(null, true);
+    } else {
+      callback(new Error('Not allowed by CORS'));
+    }
+  },
   credentials: true,
   methods: ["GET", "POST", "PUT", "DELETE", "OPTIONS"],
   allowedHeaders: ["Content-Type", "Authorization"]
@@ -37,45 +50,49 @@ app.use(express.urlencoded({ extended: false }));
 
 // Log all requests
 app.use((req, res, next) => {
-  console.log(`[${new Date().toISOString()}] ${req.method} ${req.url}`);
-  console.log("Request Body:", req.body);
+  log(`📨 ${req.method} ${req.url}`, "express");
+  if (Object.keys(req.body).length > 0) {
+    log(`📦 Request Body: ${JSON.stringify(req.body)}`, "express");
+  }
   next();
 });
 
-// **Serve frontend from /dist/public**
-const frontendPath = path.join(__dirname, "../dist/public");
-console.log("📂 Serving frontend from:", frontendPath);
-app.use(express.static(frontendPath));
-
-// **Serve index.html for React frontend for all unknown routes**
-app.get("*", (req, res) => {
-  res.sendFile(path.join(frontendPath, "index.html"), (err) => {
-    if (err) {
-      console.error("Failed to serve frontend:", err);
-      res.status(500).send("Failed to load frontend");
-    }
-  });
-});
-
-// **API Routes**
+// API Routes
 app.use("/api", router);
 
-// **Health check endpoint**
+// Health check endpoint
 app.get("/health", (_, res) => {
   res.json({
     status: "ok",
     service: "backend",
     timestamp: new Date().toISOString(),
-    host: REPLIT_HOST
+    host: REPLIT_HOST,
+    domain: REPLIT_DOMAIN
   });
 });
 
-// **Start the backend**
-const PORT = process.env.PORT || 3000;
+// Serve frontend from /dist/public in production
+if (process.env.NODE_ENV === 'production') {
+  const frontendPath = path.join(__dirname, "../dist/public");
+  log(`📂 Serving frontend from: ${frontendPath}`, "express");
+  app.use(express.static(frontendPath));
+
+  // Serve index.html for all unknown routes in production
+  app.get("*", (req, res) => {
+    res.sendFile(path.join(frontendPath, "index.html"), (err) => {
+      if (err) {
+        log(`❌ Failed to serve frontend: ${err}`, "express");
+        res.status(500).send("Failed to load frontend");
+      }
+    });
+  });
+}
+
+// Start the backend
+const PORT = Number(process.env.PORT) || 3000;
 app.listen(PORT, "0.0.0.0", () => {
   log(`🚀 Backend server running on port ${PORT}`, "express");
-  log(`📡 Serving frontend from ${frontendPath}`, "express");
-  log(`🔗 CORS enabled for React frontend & n8n`, "express");
+  log(`🔗 CORS enabled for ${REPLIT_DOMAIN || REPLIT_HOST}`, "express");
   log(`💓 Health check available at /health`, "express");
 });
 
