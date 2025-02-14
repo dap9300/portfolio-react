@@ -1,49 +1,62 @@
 // server/index.ts
-import express from "express";
+import express, { type Request, Response, NextFunction } from "express";
+import { registerRoutes } from "./routes"; // ✅ Correct import
+import { setupVite, serveStatic, log } from "./vite";
 import cors from "cors";
-import dotenv from "dotenv";
-import { registerRoutes } from "./routes";
+import http from "http";
 
-// Carica variabili d'ambiente
-dotenv.config();
+// Get the Replit host from the environment
+const REPLIT_HOST = process.env.REPL_SLUG || "4537662a-f129-484e-a445-6e437c3a47c5-00-2ypdx2swfmqm1.kirk.replit.dev";
+
+// Configure environment variables for Vite
+process.env.VITE_ALLOW_REPLIT_HOST = REPLIT_HOST;
+process.env.VITE_DEV_SERVER_URL = `https://${REPLIT_HOST}`;
+process.env.HOST = "0.0.0.0";
 
 const app = express();
-const PORT = process.env.PORT || 3000; // Backend sulla porta 3000
 
-// Middleware per JSON
-app.use(express.json());
-
-// 🌍 Configurazione CORS
-const allowedOrigins = [
-  "http://localhost:5000", // Frontend React/Vite sulla porta 5000
-  "https://dap00.app.n8n.cloud" // Webhook esterno
-];
-
-app.use(cors({
-  origin: (origin, callback) => {
-    console.log(`🔍 CORS check per origin: ${origin}`);
-    if (!origin || allowedOrigins.includes(origin)) {
-      console.log(`✅ Origin permesso: ${origin}`);
-      callback(null, true);
-    } else {
-      console.log(`🚨 CORS Blocked: ${origin}`);
-      callback(new Error("Not allowed by CORS"));
-    }
-  },
+// Configure CORS
+const corsOptions = {
+  origin: [
+    `https://${REPLIT_HOST}`,
+    "http://localhost:5000",
+  ],
   credentials: true,
-  methods: ["GET", "POST", "PUT", "DELETE"],
-  allowedHeaders: ["Content-Type", "Authorization"]
-}));
+  methods: ["GET", "POST", "PUT", "DELETE", "OPTIONS"],
+  allowedHeaders: ["Content-Type", "Authorization"],
+};
 
-// 📌 Registra le API definite in routes.ts
-const server = registerRoutes(app);
+app.use(cors(corsOptions));
+app.use(express.json());
+app.use(express.urlencoded({ extended: false }));
 
-// 🌟 Rotta principale per verificare lo stato del server
-app.get("/", (req, res) => {
-  res.send(`🚀 Server is running on port ${PORT}!`);
+// Create an HTTP server
+const server = http.createServer(app);
+
+// ✅ Register routes
+registerRoutes(app);
+
+// Logging middleware
+app.use((req, res, next) => {
+  console.log(`Incoming ${req.method} request to ${req.path}`);
+  console.log("Request body:", req.body);
+  next();
 });
 
-// 🚀 Avvia il server
-server.listen(PORT, () => {
-  console.log(`🚀 Server running on http://localhost:${PORT}`);
+// Error Handling Middleware
+app.use((err: any, req: Request, res: Response, next: NextFunction) => {
+  console.error("Detailed error:", {
+    message: err.message,
+    stack: err.stack,
+    body: req.body,
+  });
+  res.status(err.status || 500).json({ message: err.message || "Internal Server Error" });
 });
+
+// Start Server
+const PORT = process.env.PORT || 5000;
+server.listen(Number(PORT), "0.0.0.0", () => {
+  log(`Frontend server running on port ${PORT}`);
+  log(`Replit host: ${REPLIT_HOST}`);
+});
+

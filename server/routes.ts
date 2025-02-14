@@ -1,52 +1,47 @@
 // server/routes.ts
-import { Express } from "express";
-import { createServer } from "http";
-import fetch from "node-fetch";
+import express from "express";
+import axios from "axios";
 
-const n8nWebhookUrl =
-  "https://dap00.app.n8n.cloud/webhook-test/56a1ff7c-ab7d-4f24-8f17-c9af3849ab04/send-message";
+const router = express.Router();
 
-export function registerRoutes(app: Express) {
-  app.post("/api/webhook", async (req, res) => {
-    try {
-      console.log("📩 Webhook ricevuto:", req.body);
-      res.json({ success: true, message: "Webhook ricevuto con successo!" });
-    } catch (error) {
-      console.error("❌ Errore Webhook:", error);
-      res.status(500).json({ error: "Errore nel gestire il webhook." });
+// Health check
+router.get("/health", (_, res) => {
+  res.json({ status: "ok", service: "routes", timestamp: new Date().toISOString() });
+});
+
+// Chat route that forwards requests to n8n
+router.post("/chat", async (req, res) => {
+  try {
+    const { message } = req.body;
+
+    if (!message) {
+      return res.status(400).json({ error: "Message is required" });
     }
-  });
 
-  app.post("/api/send-message", async (req, res) => {
-    try {
-      const { message } = req.body;
-      if (!message) {
-        return res.status(400).json({ error: "Messaggio richiesto." });
-      }
+    console.log("Received message:", message);
 
-      console.log(`📨 Inviando messaggio a n8n: ${message}`);
-      const response = await fetch(n8nWebhookUrl, {
-        method: "POST",
-        headers: { "Content-Type": "application/json" },
-        body: JSON.stringify({ message }),
-      });
+    const webhookUrl = "https://dap00.app.n8n.cloud/webhook/56a1ff7c-ab7d-4f24-8f17-c9af3849ab04";
+    console.log("Forwarding to n8n webhook:", webhookUrl);
 
-      if (!response.ok) {
-        throw new Error(`Errore API n8n: ${response.statusText}`);
-      }
+    const n8nResponse = await axios.post(webhookUrl, { message });
 
-      const data = await response.json();
-      console.log("✅ Risposta n8n:", data);
-      res.json({ success: true, reply: data });
-    } catch (error) {
-      console.error("❌ Errore invio messaggio:", error);
-      res.status(500).json({ error: "Errore nell'inviare il messaggio." });
-    }
-  });
+    console.log("Response from n8n:", n8nResponse.data);
 
-  app.get("/api/health", (_, res) => {
-    res.json({ status: "ok" });
-  });
+    res.json(n8nResponse.data);
+  } catch (error: any) {
+    console.error("Error forwarding request to n8n:", error.message);
+    res.status(500).json({
+      error: "Internal server error",
+      details: error.response?.data || error.message,
+    });
+  }
+});
 
-  return createServer(app);
+// ✅ Function to register routes in Express
+export function registerRoutes(app: express.Express) {
+  app.use("/api", router);
+  console.log("✅ Routes registered successfully");
 }
+
+// ✅ Default export of the router
+export default router;
