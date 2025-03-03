@@ -1,12 +1,9 @@
 import { motion } from 'framer-motion';
 import { useLocation, useParams } from 'wouter';
-import { Language } from '@/types';
-import { ThemeToggle } from '@/components/shared/ThemeToggle';
-import { LanguageSwitch } from '@/components/shared/LanguageSwitch';
 import { ArrowLeft } from 'lucide-react';
 import { fadeInUp, staggerContainer } from '@/lib/animations';
 import { useEffect } from 'react';
-import { projectDetailsTranslations } from './project-details/hrx/content'; // OCCHIO
+import { projectDetailsTranslations } from './project-details/hrx/content';
 import { getProject } from '@/lib/projectsManager';
 import {
   ProjectLayout,
@@ -15,15 +12,7 @@ import {
   ProjectContent
 } from './project-details/magazzino';
 
-interface ProjectDetailsProps {
-  language: Language;
-  onLanguageChange: (lang: Language) => void;
-}
-
-export function ProjectDetails({
-  language,
-  onLanguageChange,
-}: ProjectDetailsProps) {
+export function ProjectDetails() {
   const [, setLocation] = useLocation();
   const params = useParams();
   const id = params?.id ?? '1';
@@ -38,6 +27,8 @@ export function ProjectDetails({
     return null;
   }
 
+  // Temporarily set language to 'it'
+  const language = 'it';
   const t = projectDetailsTranslations;
 
   return (
@@ -45,14 +36,8 @@ export function ProjectDetails({
       <div className="fixed top-4 right-16 z-50">
         <ThemeToggle />
       </div>
-      <div className="fixed top-4 right-4 z-50">
-        <LanguageSwitch
-          currentLanguage={language}
-          onLanguageChange={onLanguageChange}
-        />
-      </div>
+      {/* Removed LanguageSwitch component */}
 
-      {/* Back button positioned above hero section */}
       <div className="absolute top-4 left-4 z-50">
         <motion.button
           variants={fadeInUp}

@@ -1,3 +1,5 @@
+// Temporarily commented out Language Switch functionality
+/*
 import { Button } from "@/components/ui/button";
 import { useCallback } from "react";
 import { Language } from "@/types";
@@ -22,4 +24,10 @@ export function LanguageSwitch({ currentLanguage, onLanguageChange }: LanguageSw
       {currentLanguage.toUpperCase()}
     </Button>
   );
+}
+*/
+
+// Temporary empty component
+export function LanguageSwitch() {
+  return null;
 }
