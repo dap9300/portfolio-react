@@ -1,13 +1,12 @@
+// client/src/components/shared/SectionTitle.tsx
 import { motion } from "framer-motion";
 import { fadeInUp } from "@/lib/animations";
 import { LordIcon } from "./LordIcon";
-
 interface SectionTitleProps {
   title: string;
   subtitle?: string;
   icon?: string;
 }
-
 export function SectionTitle({ title, subtitle, icon }: SectionTitleProps) {
   return (
     <motion.div
@@ -24,12 +23,12 @@ export function SectionTitle({ title, subtitle, icon }: SectionTitleProps) {
             trigger="hover"
             size={48}
             colors={{
-              primary: "var(--primary)",
-              secondary: "var(--primary)"
+              primary: "#D97706",
+              secondary: "#D97706"
             }}
           />
         )}
-        <h2 className="text-3xl md:text-4xl font-bold mb-2">{title}</h2>
+        <h2 className="text-3xl md:text-4xl font-bold mb-2" style={{ color: "#263973" }}>{title}</h2>
       </div>
       {subtitle && (
         <p className="text-muted-foreground text-lg">{subtitle}</p>

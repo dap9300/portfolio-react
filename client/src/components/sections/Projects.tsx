@@ -1,3 +1,4 @@
+// 
 import { useContext, useRef, useEffect } from "react";
 import { motion } from "framer-motion";
 import { translations } from "@/components/sections/project-details/SiteContent";
@@ -7,25 +8,20 @@ import { ProjectCard } from "@/components/shared/ProjectCard";
 import { staggerContainer, sectionVariants } from "@/lib/animations";
 import { getAllProjects } from "@/lib/projectsManager";
 import { ScrollContext } from "@/App";
-
 interface ProjectsProps {
   language: Language;
   sectionIndex: number;
 }
-
 export function Projects({ language, sectionIndex }: ProjectsProps) {
   const { registerSection } = useContext(ScrollContext);
   const sectionRef = useRef<HTMLElement>(null);
-
   useEffect(() => {
     if (sectionRef.current) {
       registerSection(sectionIndex)(sectionRef.current);
     }
   }, [registerSection, sectionIndex]);
-
   const t = translations[language];
   const projects = getAllProjects();
-
   return (
     <motion.section 
       ref={sectionRef}
@@ -40,6 +36,7 @@ export function Projects({ language, sectionIndex }: ProjectsProps) {
         <SectionTitle 
           title={t.projects.title}
           icon="https://cdn.lordicon.com/zhiiqoue.json"
+          titleClassName="text-[#5090f0]"
         />
         <div style={{ transform: 'scale(0.80)', transformOrigin: 'top center' }} className="mt-4">
           <motion.div

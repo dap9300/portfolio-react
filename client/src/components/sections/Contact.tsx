@@ -110,7 +110,7 @@ export function Contact({ language, sectionIndex }: ContactProps) {
                   <div>
                     <h3 className="text-xl font-semibold mb-4">{t.getInTouch}</h3>
                     <p className="text-muted-foreground mb-8">
-                      Feel free to reach out through any of the following channels:
+                      {/* sentiti libero di contattarmi */}
                     </p>
                   </div>
 
@@ -121,7 +121,7 @@ export function Contact({ language, sectionIndex }: ContactProps) {
                     <div>
                       <p className="font-medium">{t.emailLabel}</p>
                       <span className="text-neutral-900 dark:text-neutral-100">
-                        <BlurredText text="mymail@mail.com" />
+                        <BlurredText text="aledap93@gmail.com" />
                       </span>
                     </div>
                   </div>
@@ -133,7 +133,7 @@ export function Contact({ language, sectionIndex }: ContactProps) {
                     <div>
                       <p className="font-medium">{t.phoneLabel}</p>
                       <span className="text-neutral-900 dark:text-neutral-100">
-                        <BlurredText text="+39 1234567890" />
+                        <BlurredText text="+39 3406143529" />
                       </span>
                     </div>
                   </div>
@@ -144,7 +144,7 @@ export function Contact({ language, sectionIndex }: ContactProps) {
                     </div>
                       <div>
                         <p className="font-medium">{t.linkedinLabel}</p>
-                        <BlurredText text="linkedin.com/in/yourprofile" isLink={true} />
+                        <BlurredText text="linkedin.com/in/alessandrodapolito" isLink={true} />
                       </div>
                   </div>
                 </div>

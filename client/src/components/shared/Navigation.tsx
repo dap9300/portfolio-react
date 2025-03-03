@@ -29,17 +29,14 @@ export function Navigation({ language, onSectionClick }: NavigationProps) {
     const handleScroll = () => {
       const sections = document.querySelectorAll('section');
       const scrollPosition = window.scrollY + window.innerHeight / 3;
-
       sections.forEach((section) => {
         const top = section.offsetTop;
         const height = section.offsetHeight;
-
         if (scrollPosition >= top && scrollPosition < top + height) {
           setActiveSection(section.id);
         }
       });
     };
-
     window.addEventListener('scroll', handleScroll);
     return () => window.removeEventListener('scroll', handleScroll);
   }, []);
@@ -51,14 +48,12 @@ export function Navigation({ language, onSectionClick }: NavigationProps) {
       if (activeItem && navRef.current) {
         const navRect = navRef.current.getBoundingClientRect();
         const itemRect = activeItem.getBoundingClientRect();
-
         setDimensions({
           width: itemRect.width + 20, // Make bubble wider than text
           left: itemRect.left - navRect.left - 10, // Center the wider bubble
         });
       }
     };
-
     updateDimensions();
     // Add resize listener to handle window size changes
     window.addEventListener('resize', updateDimensions);
@@ -87,8 +82,8 @@ export function Navigation({ language, onSectionClick }: NavigationProps) {
                 onClick={() => onSectionClick(section.id)}
                 className={`relative py-2 text-sm font-medium transition-colors duration-300 ${
                   activeSection === section.id
-                    ? "text-primary"
-                    : "text-muted-foreground hover:text-primary"
+                    ? "text-amber-600"
+                    : "text-muted-foreground hover:text-amber-600"
                 }`}
               >
                 {section.label}
@@ -102,7 +97,7 @@ export function Navigation({ language, onSectionClick }: NavigationProps) {
               left: `${dimensions.left}px`,
             }}
           >
-            <div className="absolute inset-0 bg-primary/10 rounded-full transform scale-110" />
+            <div className="absolute inset-0 bg-amber-600/10 rounded-full transform scale-110" />
           </div>
         </div>
       </div>

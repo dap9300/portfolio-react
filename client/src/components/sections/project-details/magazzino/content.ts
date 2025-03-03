@@ -28,7 +28,7 @@ const projectData: Project = {
   },
   description: {
     en: "I led the digital transformation of one of Turin’s main cultural hubs, enhancing its online presence by defining brand identity and tone of voice on social media. I managed email marketing campaigns and oversaw the development of the association’s website, implementing an e-ticketing system that optimized the user journey and generated new revenue streams.",
-    it: "Ho guidato la trasformazione digitale di uno dei principali spazi culturali di Torino, rafforzandone la presenza online attraverso la definizione della brand identity e del tone of voice sui social media. Ho gestito campagne di email marketing e curato lo sviluppo del sito web, implementando un sistema di e-ticketing che ha ottimizzato il percorso utente e generato nuovi flussi di revenue per l’associazione."
+    it: "Ho guidato la trasformazione digitale di uno dei principali luoghi di aggregazione culturale di Torino, rafforzandone la presenza online attraverso la definizione della brand identity e del tone of voice sui social media. Ho gestito campagne di email marketing e curato lo sviluppo del sito web, implementando un sistema di e-ticketing che ha generato nuovi flussi di revenue per l’associazione."
   },
   image: '/assets/banner-magazzino.webp',
   technologies: [

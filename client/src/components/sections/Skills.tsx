@@ -32,7 +32,7 @@ const leftSkillCategories: SkillCategory[] = [
       it: [
         "Performance Marketing (Meta Ads, Google Ads, Amazon Ads)",
         "Web & Marketing Analytics (Meta Business Suite, Google Analytics, Google Search Console, Google Tag Manager, Looker Studio)",
-        "Email Marketing (Mailchimp & Other ESP)",
+        "Email Marketing (Mailchimp & Altri ESP)",
         "SEO & Optimization (SEO Technical, Screaming Frog, Semrush, Rank Math)",
         "Social Media (Meta Business Suite, Editorial Strategy & Planning, Community Management)"
       ]
@@ -272,7 +272,14 @@ export function Skills({ language, sectionIndex }: SkillsProps) {
                       key={skillIndex} 
                       className="text-sm text-muted-foreground flex justify-between items-center"
                     >
-                      <span>{skill}</span>
+                      {category.title.en === "Soft Skills" || category.title.en === "Hobbies & Interests" ? (
+                        <div className="flex">
+                          <div className="w-1.5 h-1.5 rounded-full bg-blue-500 mt-2 flex-shrink-0" />
+                          <span className="ml-2">{skill}</span>
+                        </div>
+                      ) : (
+                        <span>{skill}</span>
+                      )}
                       {category.title.en === "Languages" && (
                         <div className="flex gap-1">
                           {[...Array(5)].map((_, i) => {
