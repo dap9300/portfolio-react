@@ -19,7 +19,7 @@ const DynamicBackground = () => {
     if (!ctx) return;
 
     // Creazione array di punti con proprietà casuali
-    const points = Array.from({ length: 70 }, () => ({
+    const points = Array.from({ length: 80 }, () => ({             // Numero totale di punti
       x: Math.random() * canvas.width,                             // Posizione X casuale all'interno del canvas
       y: Math.random() * canvas.height,                            // Posizione Y casuale all'interno del canvas
       radius: Math.random() * 2 + 1,                              // Raggio casuale tra 1 e 3 pixels

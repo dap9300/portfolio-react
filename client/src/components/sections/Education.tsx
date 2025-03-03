@@ -1,4 +1,4 @@
-import { useState } from "react";
+import { useState, useContext, useRef, useEffect } from "react";
 import { motion } from "framer-motion";
 import { translations } from "@/components/sections/project-details/SiteContent";
 import { Language } from "@/types";
@@ -6,9 +6,11 @@ import { SectionTitle } from "@/components/shared/SectionTitle";
 import { Card, CardContent } from "@/components/ui/card";
 import { fadeInUp, staggerContainer } from "@/lib/animations";
 import { ChevronDown } from "lucide-react";
+import { ScrollContext } from "@/App"; // Importa il contesto di scroll
 
 interface EducationProps {
   language: Language;
+  sectionIndex: number; // Aggiungi la prop per l'indice della sezione
 }
 
 const education = [
@@ -59,7 +61,18 @@ const education = [
   }
 ];
 
-export function Education({ language }: EducationProps) {
+export function Education({ language, sectionIndex }: EducationProps) {
+  // Utilizza il context per il sistema di scrolling
+  const { registerSection } = useContext(ScrollContext);
+  const sectionRef = useRef<HTMLElement>(null);
+
+  // Registra questa sezione nel sistema di scrolling
+  useEffect(() => {
+    if (sectionRef.current) {
+      registerSection(sectionIndex)(sectionRef.current);
+    }
+  }, [registerSection, sectionIndex]);
+
   const t = translations[language].education;
   const [expandedId, setExpandedId] = useState<number | null>(null);
 
@@ -69,8 +82,9 @@ export function Education({ language }: EducationProps) {
 
   return (
     <motion.section 
+      ref={sectionRef} // Aggiungi il ref per il sistema di scrolling
       id="education" 
-      className="min-h-screen relative flex items-center py-20 px-4 bg-muted/30"
+      className="min-h-screen relative flex items-center py-20 px-4 bg-muted/30 snap-start" // Aggiungi snap-start
     >
       <motion.div
         className="absolute inset-0 bg-gradient-to-b from-background to-muted/30 -z-10"

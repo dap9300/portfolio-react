@@ -58,7 +58,7 @@ const projectData: Project = {
     en: "Management of digital marketing strategies for a physiotherapy clinic, focusing on Facebook, Instagram, and Google Ads campaigns to increase online bookings and local brand awareness.",
     it: "Gestione delle strategie di marketing digitale per uno studio di fisioterapia, con focus su campagne Facebook, Instagram e Google Ads per aumentare le prenotazioni online e la brand awareness locale"
   },
-  image: '/assets/manunta-banner.jpg',
+  image: '/assets/manunta-banner.webp',
   technologies: [
     { name: 'WordPress', Icon: SiWordpress },
     { name: 'Google Search Console', Icon: SiGooglesearchconsole },

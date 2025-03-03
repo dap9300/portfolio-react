@@ -1,5 +1,4 @@
-import React, { useState } from 'react';
-import { motion } from "framer-motion";
+import React, { useState, useContext, useEffect, useRef } from 'react';
 import { FaEnvelope, FaPhone } from "react-icons/fa";
 import { SiLinkedin } from "react-icons/si";
 import { Send } from "lucide-react";
@@ -11,9 +10,9 @@ import { Card, CardContent } from "@/components/ui/card";
 import { Language } from "@/types";
 import { translations } from "@/components/sections/project-details/SiteContent";
 import { SectionTitle } from "@/components/shared/SectionTitle";
-import { fadeInUp, staggerContainer } from "@/lib/animations";
+import { ScrollContext } from "@/App";
 
-// Nuovo componente per il testo offuscato
+// Componente per il testo offuscato
 const BlurredText = ({ text, isLink = false }) => {
   const [isBlurred, setIsBlurred] = useState(true);
 
@@ -49,6 +48,7 @@ const BlurredText = ({ text, isLink = false }) => {
 
 interface ContactProps {
   language: Language;
+  sectionIndex: number;
 }
 
 interface ContactForm {
@@ -57,21 +57,28 @@ interface ContactForm {
   message: string;
 }
 
-const sectionFadeIn = {
-  hidden: { opacity: 0 },
-  visible: { 
-    opacity: 1,
-    transition: {
-      duration: 0.8,
-      ease: "easeOut",
-      when: "beforeChildren"
-    }
-  }
-};
-
-export function Contact({ language }: ContactProps) {
+export function Contact({ language, sectionIndex }: ContactProps) {
+  const { registerSection } = useContext(ScrollContext);
+  const sectionRef = useRef<HTMLElement>(null);
   const t = translations[language].contact;
   const form = useForm<ContactForm>();
+
+  // Registra questa sezione nel sistema di scrolling
+  useEffect(() => {
+    if (sectionRef.current) {
+      registerSection(sectionIndex)(sectionRef.current);
+    }
+  }, [registerSection, sectionIndex]);
+
+  // Gestione hash URL per navigazione diretta
+  useEffect(() => {
+    const hash = window.location.hash;
+    if (hash === '#contact' && sectionRef.current) {
+      setTimeout(() => {
+        sectionRef.current?.scrollIntoView({ behavior: 'smooth' });
+      }, 200);
+    }
+  }, []);
 
   const onSubmit = (data: ContactForm) => {
     console.log(data);
@@ -79,21 +86,16 @@ export function Contact({ language }: ContactProps) {
   };
 
   return (
-    <motion.section 
+    <section 
       id="contact" 
-      className="min-h-screen relative flex items-center py-20"
-      initial="hidden"
-      whileInView="visible"
-      viewport={{ once: true }}
-      variants={sectionFadeIn}
+      ref={sectionRef}
+      className="min-h-[85vh] flex items-center justify-center py-10 snap-start relative"
+      data-section-index={sectionIndex}
     >
-      <motion.div 
+      <div 
         className="absolute inset-0 bg-gradient-to-b from-background to-muted/30 -z-10"
-        initial={{ opacity: 0 }}
-        animate={{ opacity: 1 }}
-        transition={{ duration: 1.2 }}
       />
-      <div className="container max-w-5xl mx-auto px-8">
+      <div className="container max-w-5xl mx-auto px-8 mb-16">
         <SectionTitle 
           title={t.title} 
           icon="https://cdn.lordicon.com/diihvcfp.json"
@@ -101,21 +103,16 @@ export function Contact({ language }: ContactProps) {
 
         <div className="grid md:grid-cols-2 gap-8">
           {/* Contact Info */}
-          <motion.div
-            variants={staggerContainer}
-            initial="hidden"
-            whileInView="visible"
-            viewport={{ once: true, amount: 0.3 }}
-          >
+          <div>
             <Card className="backdrop-blur-sm bg-background/80 h-full">
               <CardContent className="p-8 md:p-10">
-                <motion.div variants={fadeInUp} className="space-y-6">
-                  <motion.div>
+                <div className="space-y-6">
+                  <div>
                     <h3 className="text-xl font-semibold mb-4">{t.getInTouch}</h3>
                     <p className="text-muted-foreground mb-8">
                       Feel free to reach out through any of the following channels:
                     </p>
-                  </motion.div>
+                  </div>
 
                   <div className="flex items-center gap-4 group">
                     <div className="w-12 h-12 rounded-full bg-primary/10 flex items-center justify-center group-hover:bg-primary/20 transition-colors">
@@ -150,22 +147,16 @@ export function Contact({ language }: ContactProps) {
                         <BlurredText text="linkedin.com/in/yourprofile" isLink={true} />
                       </div>
                   </div>
-                </motion.div>
+                </div>
               </CardContent>
             </Card>
-          </motion.div>
+          </div>
 
           {/* Contact Form */}
-          <motion.div
-            variants={staggerContainer}
-            initial="hidden"
-            whileInView="visible"
-            viewport={{ once: true, amount: 0.3 }}
-          >
+          <div>
             <Card className="backdrop-blur-sm bg-background/80 h-full">
               <CardContent className="p-8 md:p-10">
-                <motion.form 
-                  variants={fadeInUp}
+                <form 
                   onSubmit={form.handleSubmit(onSubmit)} 
                   className="space-y-6"
                 >
@@ -196,12 +187,12 @@ export function Contact({ language }: ContactProps) {
                     <Send className="w-4 h-4 mr-2" />
                     {t.send}
                   </Button>
-                </motion.form>
+                </form>
               </CardContent>
             </Card>
-          </motion.div>
+          </div>
         </div>
       </div>
-    </motion.section>
+    </section>
   );
 }

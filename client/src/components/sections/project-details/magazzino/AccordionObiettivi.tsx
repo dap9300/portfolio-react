@@ -1,10 +1,9 @@
-// client/src/components/sections/project-details/magazzino/AccordionObiettivi.tsx
 import { FC } from "react";
 import { motion } from "framer-motion";
 import { Language } from "@/types";
 import { Project } from "@/types/projects";
 import { Card } from "@/components/ui/card";
-import { Target, Check } from "lucide-react";
+import { Target, Check, Trophy, Sparkles, Megaphone, Globe, Users } from "lucide-react";
 import { AccordionContent, AccordionItem, AccordionTrigger } from "@/components/ui/accordion";
 import { projectDetailsTranslations as t } from "./content";
 
@@ -18,7 +17,7 @@ export const AccordionObiettivi: FC<AccordionObiettiviProps> = ({ project, langu
     <AccordionItem value="objectives" className="border rounded-lg hover:bg-accent/50 transition-colors">
       <AccordionTrigger className="px-4">
         <div className="flex items-center gap-3">
-          <Target className="w-5 h-5 text-primary" />
+          <Trophy className="w-5 h-5 text-primary" />
           <h2 className="text-xl font-semibold">{t.projectDetails.objectives[language]}</h2>
         </div>
       </AccordionTrigger>
@@ -27,33 +26,33 @@ export const AccordionObiettivi: FC<AccordionObiettiviProps> = ({ project, langu
           <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
             {[
               {
-                title: 'Aumentare la visibilità online',
-                icon: '✨',
-                achievement: 'Target raggiunto',
-                details: 'Incremento significativo della presenza sui social media e motori di ricerca'
+                title: 'Aumentare la presenza online',
+                icon: Sparkles,
+                achievement: 'Obiettivo raggiunto',
+                details: 'Creazione dell\'identità digitale dell\'associazione, definendo il tone of voice, la visual identity e una strategia di contenuti chiara ed efficace per il target'
               },
               {
-                title: 'Migliorare l\'efficacia della comunicazione degli eventi',
-                icon: '📢',
-                achievement: 'Superato aspettative',
-                details: 'Aumento del 75% nella partecipazione agli eventi promossi'
+                title: 'Migliorare l\'efficacia della comunicazione degli eventi',  
+                icon: Megaphone,  
+                achievement: 'Superato aspettative',  
+                details: 'Aumento del 45% della partecipazione agli eventi, promossi tramite strategie mirate e attività di sponsorizzazione mirate'  
+              },
+             {
+                title: 'Sviluppare e integrare Sito Web',
+                icon: Globe,
+                achievement: 'Completato',
+                details: 'Restyling del sito web e implementazione di un sistema di e-ticketing che ha generato nuovi flussi di revenue per l\'associazione'
               },
               {
                 title: 'Incrementare il coinvolgimento della community',
-                icon: '🤝',
+                icon: Users,
                 achievement: 'In continua crescita',
-                details: 'Community attiva e engagement rate superiore alla media del settore'
-              },
-              {
-                title: 'Ottimizzare la presenza digitale',
-                icon: '📱',
-                achievement: 'Completato',
-                details: 'Implementazione di una strategia digitale integrata e performante'
+                details: 'Community attiva ed engagement rate superiore alla media del settore'
               }
             ].map((objective, index) => (
               <div key={index} className="bg-accent/50 p-6 rounded-xl hover:shadow-md transition-all duration-300">
                 <div className="flex items-start gap-4">
-                  <div className="text-2xl">{objective.icon}</div>
+                  <objective.icon className="w-6 h-6 text-primary" />
                   <div className="flex-1">
                     <h4 className="font-medium mb-2">{objective.title}</h4>
                     <div className="flex items-center gap-2 mb-2">

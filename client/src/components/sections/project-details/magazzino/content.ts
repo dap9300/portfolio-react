@@ -1,5 +1,4 @@
-// client/src/components/sections/project-details/magazzino/content.ts
-import { Users, TrendingUp, Calendar } from 'lucide-react';
+import { Users, TrendingUp, Calendar, Euro } from 'lucide-react';
 import { Project } from '@/types/projects';
 import { 
   SiDavinciresolve, SiMeta, SiInstagram, SiFacebook, 
@@ -13,7 +12,7 @@ const translations = {
   back: { en: 'Back to Projects', it: 'Torna ai Progetti' },
   projectDetails: {
     overview: { en: 'Project Overview', it: 'Panoramica del Progetto' },
-    objectives: { en: 'Objectives', it: 'Obiettivi' },
+    objectives: { en: 'Results', it: 'Risultati' },
     crowdfunding: { en: 'Crowdfunding Campaign', it: 'Campagna di Crowdfunding' },
     socialMedia: { en: 'Social Media Strategy', it: 'Strategia Social Media' },
     emailMarketing: { en: 'Email Marketing', it: 'Email Marketing' },
@@ -24,12 +23,12 @@ const translations = {
 const projectData: Project = {
   id: 1,
   title: {
-    en: "Magazzino sul Po - Digital Marketing Strategy",
-    it: "Magazzino sul Po - Strategia di Marketing Digitale"
+    en: "Magazzino sul Po – Digital Marketing & Communication",
+    it: "Magazzino sul Po – Digital Marketing & Comunicazione"
   },
   description: {
-    en: "Digital transformation and communication strategy for one of Turin's main cultural venues.",
-    it: "In qualità di Digital Marketing & Communications Specialist presso Magazzino sul Po, ho guidato la trasformazione digitale di uno dei principali luoghi di aggregazione culturale di Torino."
+    en: "I led the digital transformation of one of Turin’s main cultural hubs, enhancing its online presence by defining brand identity and tone of voice on social media. I managed email marketing campaigns and oversaw the development of the association’s website, implementing an e-ticketing system that optimized the user journey and generated new revenue streams.",
+    it: "Ho guidato la trasformazione digitale di uno dei principali spazi culturali di Torino, rafforzandone la presenza online attraverso la definizione della brand identity e del tone of voice sui social media. Ho gestito campagne di email marketing e curato lo sviluppo del sito web, implementando un sistema di e-ticketing che ha ottimizzato il percorso utente e generato nuovi flussi di revenue per l’associazione."
   },
   image: '/assets/banner-magazzino.webp',
   technologies: [
@@ -49,47 +48,47 @@ const projectData: Project = {
   metrics: [
     {
       icon: Users,
-      value: '44,114',
-      label: { en: 'Total Social Followers', it: 'Follower Social Totali' }
+      value: '60.396',
+      label: { en: 'New Website Users', it: 'Nuovi Utenti Sito' }
+    },
+    {
+      icon: Euro,
+      value: '27.206',
+      label: { en: 'eTickets Sold', it: 'Ricavi vendita eTicket' }
     },
     {
       icon: TrendingUp,
-      value: '+550%',
+      value: '+116%',
       label: { en: 'Instagram Growth', it: 'Crescita Instagram' }
     },
     {
       icon: Calendar,
-      value: '37,455',
-      label: { en: 'Annual Users', it: 'Utenti Annuali' }
+      value: '350+',
+      label: { en: 'Promoted Events', it: 'Eventi Promossi' }
     }
   ],
   detailedSections: {
     overview: {
-      title: { en: 'Project Overview', it: 'Panoramica del Progetto' },
+      title: { en: 'Social Media Strategy & Content Creation', it: 'Social Media Strategy & Content Creation' },
       content: {
-        en: "I led the digital transformation and implemented communication strategies for one of Turin's major cultural venues, focusing on social media growth and engagement.",
-        it: "Ho guidato la trasformazione digitale e implementato strategie di comunicazione per uno dei principali luoghi culturali di Torino, concentrandomi sulla crescita e coinvolgimento sui social media."
+        en: "Implementation of an integrated social media strategy focused on community growth and engagement.",
+        it: "Implementazione di una strategia social media integrata focalizzata sulla crescita della community e sull'engagement."
       },
+      metricsTitle: { en: 'Social Metrics', it: 'Metriche Social' },
+      followersTitle: { en: 'Follower Growth', it: 'Crescita Follower' },
+      facebookTitle: { en: 'Facebook', it: 'Facebook' },
+      instagramTitle: { en: 'Instagram', it: 'Instagram' },
+      followersLabel: { en: 'followers', it: 'follower' },
+      facebookGrowth: '+5,1% YoY',
+      instagramGrowth: '+44.2% YoY',
+      facebookFollowers: '31.203',
+      instagramFollowers: '13.133',
+      chartTitle: { en: 'Instagram Page Growth', it: 'Crescita Pagina Instagram' },
       metrics: [
-        'Facebook: Monthly editorial calendar',
-        '- Reach: 545,960 (+97.6%)',
-        '- Visits: 91,723 (+90.6%)',
-        'Instagram: 12,911 followers (+44.2% YoY)',
-        '- Reach: 502,784 (+550.6%)',
-        '- Visits: 66,153 (+93.9%)'
-      ]
-    },
-    socialMedia: {
-      title: { en: 'Social Media Strategy', it: 'Strategia Social Media' },
-      content: {
-        en: 'Implementation of an integrated social media strategy focused on community growth and engagement.',
-        it: 'Implementazione di una strategia social media integrata focalizzata sulla crescita della community e sull\'engagement.'
-      },
-      metrics: [
-        'Instagram: +44.2% follower growth YoY',
-        'Facebook: +3.1% follower growth YoY',
-        'Average engagement rate: 4.8%',
-        'Organic reach: +97.6% YoY'
+        'Copertura (IG): 502.784 {{+550% YoY}}',
+        'Copertura (FB): 545.960 {{+97% YoY}}',
+        'Engagement Rate: {{3%}}',
+        'CTR: {{1,2%}}'
       ]
     },
     emailMarketing: {
@@ -99,27 +98,42 @@ const projectData: Project = {
         it: 'Sviluppo e gestione delle campagne di email marketing per promuovere gli eventi e mantenere il contatto con la community.'
       },
       metrics: [
-        'Weekly newsletter to over 40,000 subscribers',
-        'Average CTR (5%) Open Rate (10%)',
-        'Arci circuit push notifications',
-        'User segmentation and interest-based lists'
+        'Invio newsletter settimanale a oltre 46.000 iscritti',
+        'Segmentazione utenza in liste basate su interessi',
+        'Notifiche push agli utenti su App Arci'
       ]
     },
     contentPlanning: {
-      title: { en: 'Content Planning', it: 'Pianificazione Contenuti' },
+      title: { en: 'Sito Web', it: 'Sito Web' },
       content: {
         en: 'Strategic content planning and creation to maintain consistent brand communication across all channels.',
         it: 'Pianificazione strategica e creazione di contenuti per mantenere una comunicazione del brand coerente su tutti i canali.'
       },
       metrics: [
-        'Monthly editorial plan',
-        'Platform-optimized content',
-        'Content performance analysis',
-        'A/B testing formats and copy'
+        'Restyling completo del sito web dell\’associazione, con focus su usabilità e design moderno',
+        'Implementazione di un sistema di e-ticketing per la gestione e vendita online dei biglietti per gli eventi',
+        'Integrazione avanzata di Google Analytics e Search Console, con ottimizzazione strategica data-driven per il monitoraggio delle performance',
+        'Gestione attiva del sito web, con aggiornamento e caricamento costante di contenuti'
+      ]
+    },
+    socialMediaContent: {
+      title: { en: 'Content Creation', it: 'Content Creation' },
+      metrics: [
+        'Sviluppo e gestione di un piano editoriale strategico su base mensile',
+        'Ottimizzazione delle performance tramite A/B testing su grafiche e copy',
+        'Coordinamento con il reparto grafico per la definizione della brand identity',
+        'Produzione di contenuti video mirati alla promozione di eventi',
+        'Gestione di campagne pubblicitarie Meta in collaborazione con agenzie di comunicazione'
       ]
     }
-  },
-
+  }
 };
 
-export { translations, translations as projectDetailsTranslations, projectData, projectData as projectContent };
+const styles = {
+  metricsContainer: "space-y-3",
+  metricItem: "flex items-start gap-3",
+  bulletPoint: "text-blue-500 text-lg leading-6",
+  metricText: "text-gray-700 dark:text-gray-300"
+};
+
+export { translations, translations as projectDetailsTranslations, projectData, projectData as projectContent, styles };

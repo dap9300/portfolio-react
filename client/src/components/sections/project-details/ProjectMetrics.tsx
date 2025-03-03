@@ -2,7 +2,7 @@ import { FC } from "react";
 import { motion } from "framer-motion";
 import { Language } from "@/types";
 import { Project, ProjectMetric } from "@/types/projects";
-import { Users, TrendingUp, BarChart } from 'lucide-react'; // Aggiungiamo le icone che usiamo in DTC
+import { Users, TrendingUp, BarChart } from 'lucide-react';
 
 interface ProjectMetricsProps {
   metrics: ProjectMetric[];
@@ -19,7 +19,7 @@ export const ProjectMetrics: FC<ProjectMetricsProps> = ({ metrics, language }) =
   console.log("Metrics:", metrics);
 
   return (
-    <div className="grid grid-cols-1 md:grid-cols-3 gap-6 my-8">
+    <div className="grid grid-cols-1 md:grid-cols-4 gap-6 my-8">
       {metrics.map((metric, index) => {
         // Gestione più flessibile delle icone
         let IconToRender;
@@ -37,7 +37,7 @@ export const ProjectMetrics: FC<ProjectMetricsProps> = ({ metrics, language }) =
         return (
           <motion.div
             key={index}
-            className="bg-white dark:bg-card border border-border/50 hover:border-primary/50 p-6 rounded-xl shadow-sm hover:shadow-lg transition-all duration-300"
+            className="bg-white dark:bg-card border border-gray-200 p-6 rounded-xl shadow-sm hover:shadow-md transition-shadow"
             initial={{ opacity: 0, y: 20 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.5, delay: index * 0.1 }}

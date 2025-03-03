@@ -1,12 +1,14 @@
-import { useState } from "react";
+import { useState, useContext, useRef, useEffect } from "react";
 import { translations } from "@/components/sections/project-details/SiteContent";
 import { Language } from "@/types";
 import { SectionTitle } from "@/components/shared/SectionTitle";
 import { Card, CardContent } from "@/components/ui/card";
 import { ChartBar, Code2, ChevronDown, PenTool, Brain, Languages, Heart } from "lucide-react";
+import { ScrollContext } from "@/App";
 
 interface SkillsProps {
   language: Language;
+  sectionIndex: number;
 }
 
 interface SkillCategory {
@@ -23,7 +25,7 @@ const leftSkillCategories: SkillCategory[] = [
       en: [
         "**Performance Marketing**: Meta Ads, Google Ads, Amazon Ads",
         "**Web & Marketing Analytics**: Meta Business Suite, Google Analytics, Google Search Console, Google Tag Manager, Looker Studio",
-        "**Email Marketing**: Mailchimp & Other ESP",
+        "**Email Marketing**: Mailchimp & Altri ESP",
         "**SEO & Optimization**: SEO Technical, Screaming Frog, Semrush, Rank Math",
         "**Social Media**: Meta Business Suite, Editorial Strategy & Planning, Community Management"
       ],
@@ -189,20 +191,31 @@ const DotGradient = ({ level, index }: { level: number; index: number }) => {
   );
 };
 
-export function Skills({ language }: SkillsProps) {
+export function Skills({ language, sectionIndex }: SkillsProps) {
+  const { registerSection } = useContext(ScrollContext);
+  const sectionRef = useRef<HTMLElement>(null);
+
+  useEffect(() => {
+    if (sectionRef.current) {
+      registerSection(sectionIndex)(sectionRef.current);
+    }
+  }, [registerSection, sectionIndex]);
+
   const t = translations[language].skills;
-  const [expanded, setExpanded] = useState<{ [key: string]: boolean }>({});
+
+  // Change the state to a single string instead of an object
+  // This will store only the currently active accordion key
+  const [activeCategory, setActiveCategory] = useState<string | null>(null);
 
   const toggleCategory = (categoryKey: string) => {
-    setExpanded(prev => ({
-      ...prev,
-      [categoryKey]: !prev[categoryKey]
-    }));
+    // If the category is already active, close it
+    // Otherwise, open the new category and close the previous one
+    setActiveCategory(prev => prev === categoryKey ? null : categoryKey);
   };
 
   const renderCategory = (category: SkillCategory, side: 'left' | 'right', index: number) => {
     const categoryKey = `${side}-${index}`;
-    const isExpanded = expanded[categoryKey] || false;
+    const isExpanded = activeCategory === categoryKey;
 
     return (
       <Card key={categoryKey} className="w-full">
@@ -280,7 +293,11 @@ export function Skills({ language }: SkillsProps) {
   };
 
   return (
-    <section id="skills" className="relative min-h-screen">
+    <section 
+      ref={sectionRef}
+      id="skills" 
+      className="relative min-h-screen snap-start"
+    >
       <div className="absolute inset-0 bg-gradient-to-b from-background to-muted/30 -z-10" />
       <div className="absolute inset-0 flex items-center">
         <div className="w-full px-4 py-16">

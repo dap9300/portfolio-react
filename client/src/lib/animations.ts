@@ -1,3 +1,4 @@
+// client/src/lib/animations.ts
 import { Variants } from "framer-motion";
 
 export const fadeInUp: Variants = {

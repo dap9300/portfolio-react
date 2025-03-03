@@ -1,31 +1,40 @@
-// client/src/components/sections/project-details/hrx/content.ts
-
 import { Users, ShoppingCart, MousePointerClick } from "lucide-react";
 import { Project } from "@/types/projects";
 import { 
   SiMeta, 
   SiInstagram, 
   SiFacebook, 
-  SiLinkedin, 
-  SiAdobephotoshop, 
   SiShopify, 
   SiGoogleanalytics, 
   SiGoogleads, 
   SiGooglesearchconsole, 
   SiGoogletagmanager,
   SiMailchimp,
+  SiSemrush,
+  SiLooker
 } from "react-icons/si";
+import { 
+  Users, 
+  ShoppingCart,
+  MousePointerClick,
+  Euro,
+  Percent
+
+} from "lucide-react";
+import { FaTag } from "react-icons/fa6";
+
+
 
 const translationsData = {
   back: { en: 'Back to Projects', it: 'Torna ai Progetti' },
   projectDetails: {
     overview: { en: 'Project Overview', it: 'Panoramica del Progetto' },
     tools: { en: 'Tools & Platforms', it: 'Strumenti e Piattaforme' },
-    objectives: { en: 'Objectives', it: 'Obiettivi' },
+    objectives: { en: 'Results', it: 'Risultati' },
     socialStrategy: { en: 'Digital Marketing Strategy', it: 'Strategia Marketing Digitale' },
-    contentPlanning: { en: 'Content Strategy', it: 'Strategia dei Contenuti' },
+    contentPlanning: { en: 'Social Media', it: 'Social Media' },
     emailMarketing: { en: 'Email Marketing', it: 'Email Marketing' },
-    ecommerce: { en: 'E-commerce Strategy', it: 'Strategia E-commerce' }
+    ecommerce: { en: 'E-commerce Management', it: 'Gestione E-commerce' }
   }
 };
 
@@ -36,8 +45,8 @@ const projectData: Project = {
     it: "HRX - Strategia di Marketing Digitale"
   },
   description: {
-    en: "Led digital transformation as the first digital marketing specialist at HRX SRL, an Italian company specialized in technical clothing and motorsport accessories.",
-    it: "In qualità di prima figura dedicata al marketing digitale in HRX SRL, azienda italiana specializzata nella produzione di abbigliamento tecnico e accessori per il motorsport."
+    en: "I managed the marketing strategy for HRX SRL, an Italian company specializing in technical apparel and accessories for motorsports. I planned and optimized Google Ads campaigns (Search, Display, Shopping) to increase online sales while improving SEO and the UX of the Shopify e-commerce platform to enhance the user experience and conversion rate.",
+    it: "Ho gestito la strategia di marketing per HRX SRL, azienda italiana specializzata in abbigliamento tecnico e accessori per il motorsport. Ho pianificato e ottimizzato campagne Google Ads (Search, Display, Shopping) per aumentare le vendite online, ottimizzando al contempo SEO e UX dell'e-commerce Shopify per migliorare l'esperienza utente e il tasso di conversione."
   },
   image: '/assets/hrx-banner1.jpg',
   technologies: [
@@ -46,54 +55,39 @@ const projectData: Project = {
     { name: 'Google Tag Manager', Icon: SiGoogletagmanager },
     { name: 'Google Analytics', Icon: SiGoogleanalytics },
     { name: 'Google Search Console', Icon: SiGooglesearchconsole },
+    { name: 'Google Merchant Center', Icon: FaTag },
+    { name: 'Google Looker Studio', Icon: SiLooker },
     { name: 'Meta Business Suite', Icon: SiMeta },
     { name: 'Instagram', Icon: SiInstagram },
     { name: 'Facebook', Icon: SiFacebook },
-    { name: 'Mailchimp', Icon: SiMailchimp }
+    { name: 'Mailchimp', Icon: SiMailchimp },
+    { name: 'Semrush', Icon: SiSemrush }
+
   ],
   metrics: [
     {
-      icon: Users,
-      value: '4.2x',
-      label: { en: 'Average ROAS', it: 'ROAS Medio' }
+      icon: Euro,
+      value: '€26,000+',
+      label: { en: 'Total Sales', it: 'Totale Vendite' }
     },
     {
       icon: ShoppingCart,
-      value: '+22%',
-      label: { en: 'E-commerce CRO', it: 'CRO E-commerce' }
+      value: '110+',
+      label: { en: 'Total Orders', it: 'Ordini totali' }
+    },
+    {
+      icon: Percent,
+      value: '320%',
+      label: { en: 'Average ROAS', it: 'ROAS Medio' }
     },
     {
       icon: MousePointerClick,
-      value: '3.5%',
+      value: '2,47%',
       label: { en: 'Average CTR', it: 'CTR Medio' }
     }
   ],
   detailedSections: {
-    overview: {
-      title: { en: 'Project Overview', it: 'Panoramica del Progetto' },
-      content: {
-        en: 'Led digital transformation for HRX SRL, an Italian company specializing in technical clothing and motorsport accessories, focusing on e-commerce optimization and implementation of integrated digital marketing strategies.',
-        it: 'Ho guidato la trasformazione digitale di HRX SRL, azienda italiana specializzata nella produzione di abbigliamento tecnico e accessori per il motorsport, concentrandomi sull\'ottimizzazione dell\'e-commerce e sull\'implementazione di strategie di marketing digitale integrate.'
-      },
-      metrics: [
-        'E-commerce: B2C and B2B sales strategy implementation',
-        '- Conversion: +22% YoY',
-        '- Average ROAS: 4.2x',
-        'Google Ads: Search and Shopping campaign development',
-        '- Average CTR: 3.5%',
-        '- CPA: optimization -35%'
-      ]
-    },
-    objectives: {
-      title: { en: 'Objectives & KPI', it: 'Obiettivi & KPI' },
-      items: [
-        'Increase B2C e-commerce sales',
-        'Optimize advertising ROAS',
-        'Develop international presence',
-        'Improve website conversion rate',
-        'Implement advanced tracking'
-      ]
-    },
+
     ecommerce: {
       title: { en: 'E-commerce Strategy', it: 'Strategia E-commerce' },
       content: {
@@ -160,4 +154,9 @@ const projectData: Project = {
   }
 };
 
-export { translationsData as translations, translationsData as projectDetailsTranslations, projectData, projectData as projectContent };
+export { 
+  translationsData as translations, 
+  translationsData as projectDetailsTranslations, 
+  projectData, 
+  projectData as projectContent 
+};

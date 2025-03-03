@@ -1,12 +1,10 @@
 import { FC } from "react";
-import { motion } from "framer-motion";
 import { Language } from "@/types";
 import { Project } from "@/types/projects";
 import { Card } from "@/components/ui/card";
-import { Target, Check } from "lucide-react";
+import { Trophy, Check, TrendingUp, UserMinus, LineChart, ShoppingCart } from "lucide-react";
 import { AccordionContent, AccordionItem, AccordionTrigger } from "@/components/ui/accordion";
 import { projectDetailsTranslations as t } from "./content";
-
 
 interface HRXObjectivesAccordionProps {
   project: Project;
@@ -18,7 +16,7 @@ const HRXObjectivesAccordion: FC<HRXObjectivesAccordionProps> = ({ project, lang
     <AccordionItem value="objectives" className="border rounded-lg hover:bg-accent/50 transition-colors">
       <AccordionTrigger className="px-4">
         <div className="flex items-center gap-3">
-          <Target className="w-5 h-5 text-primary" />
+          <Trophy className="w-5 h-5 text-primary" />
           <h2 className="text-xl font-semibold">{t.projectDetails.objectives[language]}</h2>
         </div>
       </AccordionTrigger>
@@ -27,33 +25,33 @@ const HRXObjectivesAccordion: FC<HRXObjectivesAccordionProps> = ({ project, lang
           <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
             {[
               {
-                title: 'Incrementare Lead Generation',
-                icon: '✨',
-                achievement: 'Target raggiunto: +22%',
-                details: 'Significativo aumento nella generazione di lead qualificati'
+                title: 'Aumento delle vendite',
+                icon: TrendingUp,
+                achievement: 'Incremento significativo',
+                details: 'Significativo aumento della vendita dei prodotti su E-commerce'
               },
               {
-                title: 'Ottimizzare ROAS',
-                icon: '📢',
-                achievement: 'Superato target: 4.2x',
-                details: 'Return on Ad Spend superiore agli obiettivi prefissati'
+                title: 'Riduzione del tasso di abbandono',
+                icon: UserMinus,
+                achievement: 'Riduzione del 35%',
+                details: 'Grazie al miglioramento dell\' esperienza utente on-site'
               },
               {
-                title: 'Migliorare CTR',
-                icon: '🤝',
-                achievement: 'Raggiunto: +3.5%',
-                details: 'Click-Through Rate ottimizzato su tutte le campagne'
+                title: 'Miglioramento del ROAS',
+                icon: LineChart,
+                achievement: 'ROAS medio del 320%',
+                details: 'Ottimizzazione campagna e riduzione costo acquisizione'
               },
               {
-                title: 'Espandere Presenza Online',
-                icon: '📱',
-                achievement: 'Completato',
-                details: 'Strategia multicanale implementata con successo'
+                title: 'Ottimizzazione eCommerce',
+                icon: ShoppingCart,
+                achievement: 'Risultato raggiunto',
+                details: 'Ottimizzazione SEO, schede prodotto e UX'
               }
             ].map((objective, index) => (
               <div key={index} className="bg-accent/50 p-6 rounded-xl hover:shadow-md transition-all duration-300">
                 <div className="flex items-start gap-4">
-                  <div className="text-2xl">{objective.icon}</div>
+                  <objective.icon className="w-6 h-6 text-primary" />
                   <div className="flex-1">
                     <h4 className="font-medium mb-2">{objective.title}</h4>
                     <div className="flex items-center gap-2 mb-2">

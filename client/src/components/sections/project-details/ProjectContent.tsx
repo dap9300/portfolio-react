@@ -6,7 +6,7 @@ import { Project } from "@/types/projects";
 import { Card } from "@/components/ui/card";
 import { BookOpen, Cog } from "lucide-react";
 import { Accordion } from "@/components/ui/accordion";
-import { ProjectCarousel } from "./ProjectCarousel";
+
 
 // Import Magazzino components
 import { 
@@ -22,7 +22,7 @@ import {
   HRXObjectivesAccordion,
   HRXSocialMedia,
   HRXPianificazioneContenuti,
-  HRXEmailMarketing,
+ // HRXEmailMarketing, >>> commentato questo e pezzo più giù. togli commenti per rimettere accordion marketing
   HRXEcommerce
 } from './hrx';
 
@@ -77,7 +77,7 @@ export const ProjectContent: FC<ProjectContentProps> = ({ project, language }) =
             <HRXObjectivesAccordion project={project} language={language} />
             <HRXSocialMedia project={project} language={language} />
             <HRXPianificazioneContenuti project={project} language={language} />
-            <HRXEmailMarketing project={project} language={language} />
+            {/* <HRXEmailMarketing project={project} language={language} /> */}
             <HRXEcommerce project={project} language={language} />
           </Accordion>
         );
@@ -152,9 +152,8 @@ export const ProjectContent: FC<ProjectContentProps> = ({ project, language }) =
                 {project.technologies.map((tool, index) => (
                   <div
                     key={tool.name}
-                    className="group relative border border-border/50 hover:border-primary/50 transition-all duration-300 hover:shadow-lg hover:shadow-primary/5 rounded-xl overflow-hidden inline-flex"
+                    className="group relative border border-gray-200 transition-shadow shadow-sm hover:shadow-md rounded-xl overflow-hidden inline-flex"
                   >
-                    <div className="absolute inset-0 bg-gradient-to-r from-primary/5 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300" />
                     <div className="px-4 py-3 flex items-center gap-2 whitespace-nowrap">
                       {tool.Icon && <tool.Icon className="w-4 h-4" />}
                       <span className="font-medium relative z-10">
@@ -179,7 +178,7 @@ export const ProjectContent: FC<ProjectContentProps> = ({ project, language }) =
       </motion.div>
 
       {/* Image Carousel Section */}
-      <ProjectCarousel />
+      
     </div>
   );
 };

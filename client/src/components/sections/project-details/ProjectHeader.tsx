@@ -61,7 +61,8 @@ export const ProjectHeader: FC<ProjectHeaderProps> = ({ project, language }) => 
             animate={{ opacity: 1 }}
             transition={{ duration: 0.5, delay: 0.2 }}
           >
-            {project.technologies.map((tech) => (
+            {/* Tools-technologies sotto titolo progetto  */}
+            {/* {project.technologies.map((tech) => (
               <span
                 key={tech.name}
                 className="px-3 py-1 bg-white/10 rounded-full text-sm flex items-center gap-2"
@@ -69,7 +70,7 @@ export const ProjectHeader: FC<ProjectHeaderProps> = ({ project, language }) => 
                 {tech.Icon && <tech.Icon className="w-4 h-4" />}
                 {tech.name}
               </span>
-            ))}
+            ))} */}
           </motion.div>
         </div>
       </div>
