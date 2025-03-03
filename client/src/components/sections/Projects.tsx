@@ -41,7 +41,6 @@ export function Projects({ language, sectionIndex }: ProjectsProps) {
           title={t.projects.title}
           icon="https://cdn.lordicon.com/zhiiqoue.json"
         />
-
         <div style={{ transform: 'scale(0.80)', transformOrigin: 'top center' }} className="mt-4">
           <motion.div
             variants={staggerContainer}
@@ -55,6 +54,7 @@ export function Projects({ language, sectionIndex }: ProjectsProps) {
                 <ProjectCard
                   project={project}
                   language={language}
+                  titleClassName="text-[#5090f0]" // Uso dello stesso blu del grassetto nell'Overview
                 />
               </div>
             ))}

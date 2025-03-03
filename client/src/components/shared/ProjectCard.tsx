@@ -35,7 +35,7 @@ export function ProjectCard({ project, language }: ProjectCardProps) {
           />
         </CardHeader>
         <CardContent className="flex-1 p-6 flex flex-col">
-          <h3 className="text-xl font-semibold mb-2 text-gray-900 dark:text-gray-100">
+          <h3 className="text-xl font-semibold mb-2 text-blue-900 dark:text-gray-100">
             {project.title[language]}
           </h3>
           <p className="text-gray-600 dark:text-gray-300 mb-4 flex-grow">
