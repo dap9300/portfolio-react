@@ -13,7 +13,7 @@ export default defineConfig({
   plugins: [react(), runtimeErrorOverlay(), themePlugin()],
   resolve: {
     alias: {
-      "@db": path.resolve(__dirname, "db"),
+ 
       "@": path.resolve(__dirname, "client", "src"),
     },
   },
