@@ -33,11 +33,6 @@ export function ProjectDetails() {
 
   return (
     <ProjectLayout>
-      <div className="fixed top-4 right-16 z-50">
-        <ThemeToggle />
-      </div>
-      {/* Removed LanguageSwitch component */}
-
       <div className="absolute top-4 left-4 z-50">
         <motion.button
           variants={fadeInUp}
