@@ -1,4 +1,3 @@
-// vite.config.ts
 import { defineConfig } from "vite";
 import react from "@vitejs/plugin-react";
 import themePlugin from "@replit/vite-plugin-shadcn-theme-json";
@@ -8,11 +7,12 @@ export default defineConfig({
   plugins: [react(), themePlugin()],
   resolve: {
     alias: {
-      "@": path.resolve(__dirname, "src"),
+      "@": path.resolve(__dirname, "client/src"), // Assumendo che il codice React sia in client/src
     },
   },
+  root: "client", // Specifica la cartella root corretta
   build: {
-    outDir: "dist", // Vercel si aspetta la cartella dist
+    outDir: "../dist", // Costruisce la build nella cartella dist fuori da client
     emptyOutDir: true,
   },
   server: {
@@ -20,7 +20,7 @@ export default defineConfig({
     strictPort: true,
     host: true,
     hmr: {
-      overlay: false
-    }
+      overlay: false,
+    },
   },
 });
