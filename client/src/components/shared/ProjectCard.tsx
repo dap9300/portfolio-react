@@ -15,6 +15,18 @@ export function ProjectCard({ project, language }: ProjectCardProps) {
   const [, setLocation] = useLocation();
   const comingSoon = isComingSoon(project.id.toString());
 
+  const handleProjectClick = () => {
+    if (comingSoon) return;
+
+    if (project.link) {
+      // Se è un link esterno, naviga direttamente
+      window.location.href = project.link;
+    } else {
+      // Se è un progetto interno, usa il router per navigare
+      setLocation(`/project/${project.id}`);
+    }
+  };
+
   return (
     <motion.div
       initial={{ opacity: 0 }}
@@ -36,7 +48,6 @@ export function ProjectCard({ project, language }: ProjectCardProps) {
               alt={project.title[language]}
               className={`w-full h-48 object-cover rounded-t-lg ${comingSoon ? 'blur-sm' : ''}`}
             />
-
             {/* Overlay "Coming Soon" se necessario */}
             {comingSoon && (
               <div className="absolute inset-0 flex items-center justify-center bg-black/50 z-10">
@@ -63,7 +74,7 @@ export function ProjectCard({ project, language }: ProjectCardProps) {
               transition-colors duration-200
               flex items-center justify-center gap-2
               ${comingSoon ? 'opacity-50 cursor-not-allowed' : ''}`}
-            onClick={() => !comingSoon && window.open(project.link || `/project/${project.id}`, '_blank')}
+            onClick={handleProjectClick}
             disabled={comingSoon}
           >
             {comingSoon 

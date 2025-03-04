@@ -32,10 +32,10 @@ export function Overview({ language, sectionIndex }: OverviewProps) {
     },
     it: {
       title: "Panoramica",
-      introduction: "Sono un **Digital Marketing Specialist** con un approccio a 360° alla strategia digitale. Dalla SEO all'advertising, dal content marketing allo sviluppo web, integro competenze cross-funzionali per creare progetti che generano risultati misurabili.",
-      experience: "La mia esperienza spazia tra **SEO, content strategy, social media marketing, email automation e sviluppo web**, con un focus particolare sull'advertising avanzato su **Meta Ads e Google Ads** per massimizzare il ROI.",
-      technology: "**Tecnologia & Innovazione** Appassionato di innovazione digitale, esploro attivamente il potenziale dell'**AI e degli LLM** per automatizzare processi e ottimizzare strategie di marketing. Questo portfolio stesso è un esempio concreto di collaborazione **uomo-AI**, realizzato sfruttando le potenzialità di Claude nel processo creativo.",
-      vision: "**La mia visione** Credo nella sinergia tra **creatività umana e potenza computazionale** per sviluppare progetti digitali che si distinguono in un mercato sempre più competitivo. Il futuro del marketing appartiene a chi sa integrare strategia, dati e automazione."
+      introduction: "Sono un **Digital Marketing Specialist** con un approccio a 360° alla strategia digitale. Integro competenze cross-funzionali per realizzare progetti ad alto impatto che generano risultati misurabili.",
+      experience: "La mia esperienza spazia tra **SEO, Content Strategy, Social Media Marketing, Email Automation e Sviluppo Web**, con un focus particolare sull'advertising avanzato su **Meta Ads e Google Ads** per massimizzare il ROI delle campagne.",
+      technology: "Sono appassionato di innovazione digitale ed esploro attivamente il potenziale delle **AI** per automatizzare processi e **ottimizzare strategie digitali**. Il sito che stai navigando è un esempio concreto di questa integrazione, realizzato sfruttando strumenti di AI per ottimizzare il workflow creativo.",
+      vision: "Credo nella sinergia tra **creatività umana e automazione intelligente** per sviluppare progetti che si distinguono in un mercato sempre più competitivo. Il futuro del marketing appartiene a chi sa integrare strategia, dati e automazione."
     }
   };
 

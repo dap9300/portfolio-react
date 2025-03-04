@@ -56,7 +56,25 @@ export const AccordionEcommerce: FC<AccordionEcommerceProps> = ({ project, langu
   const [hoverIndex, setHoverIndex] = useState<number | null>(null);
   const [zoomLevel, setZoomLevel] = useState<number>(1);
   const [panPosition, setPanPosition] = useState({ x: 0, y: 0 });
+  const [loadedImages, setLoadedImages] = useState<Set<string>>(new Set());
+  const [accordionExpanded, setAccordionExpanded] = useState<boolean>(false);
   const zoomedImageRef = useRef<HTMLDivElement>(null);
+  const mediaRefs = useRef<(HTMLDivElement | null)[]>([]);
+  const carouselRef = useRef<HTMLDivElement>(null);
+
+  // Precarica tutte le immagini all'avvio del componente
+  useEffect(() => {
+    // Precarica le immagini solo quando l'accordion è espanso
+    if (accordionExpanded) {
+      mediaDetails.forEach((media, index) => {
+        const img = new Image();
+        img.onload = () => {
+          setLoadedImages(prev => new Set([...prev, media.src]));
+        };
+        img.src = media.src;
+      });
+    }
+  }, [accordionExpanded]);
 
   // Reset zoom and pan when media changes
   useEffect(() => {
@@ -65,9 +83,41 @@ export const AccordionEcommerce: FC<AccordionEcommerceProps> = ({ project, langu
     setPanPosition({ x: 0, y: 0 });
   }, [selectedMedia]);
 
-  const handleMediaClick = (media: MediaDetail) => {
+  // Gestione dell'apertura/chiusura dell'accordion
+  const handleAccordionStateChange = (isOpen: boolean) => {
+    setAccordionExpanded(isOpen);
+  };
+
+  // Funzione per precaricare l'immagine a piena risoluzione
+  const preloadFullImage = (media: MediaDetail) => {
+    return new Promise<void>((resolve) => {
+      // Se l'immagine è già stata caricata, risolvi immediatamente
+      if (loadedImages.has(media.src)) {
+        resolve();
+        return;
+      }
+
+      const img = new Image();
+      img.onload = () => {
+        setLoadedImages(prev => new Set([...prev, media.src]));
+        resolve();
+      };
+      img.onerror = () => {
+        // In caso di errore, risolvere comunque per non bloccare l'UI
+        resolve();
+      };
+      img.src = media.src;
+    });
+  };
+
+  const handleMediaClick = async (media: MediaDetail) => {
     document.body.classList.add('react-zoom-container-open');
+
+    // Inizia a mostrare la modalità zoom con un possibile indicatore di caricamento
     setSelectedMedia(media);
+
+    // Precarica l'immagine a piena risoluzione
+    await preloadFullImage(media);
   };
 
   const handleClose = () => {
@@ -94,9 +144,11 @@ export const AccordionEcommerce: FC<AccordionEcommerceProps> = ({ project, langu
 
   const renderMedia = (media: MediaDetail, index: number) => {
     const isHovered = hoverIndex === index;
+    const isLoaded = loadedImages.has(media.src);
 
     return (
       <div 
+        ref={el => mediaRefs.current[index] = el}
         className="relative cursor-zoom-in h-full"
         onMouseEnter={() => setHoverIndex(index)}
         onMouseLeave={() => setHoverIndex(null)}
@@ -106,7 +158,23 @@ export const AccordionEcommerce: FC<AccordionEcommerceProps> = ({ project, langu
           alt={media.title}
           className="w-full h-full object-cover rounded-lg"
           style={{ aspectRatio: "16/9" }}
+          loading="lazy"
+          onLoad={() => {
+            setLoadedImages(prev => new Set([...prev, media.src]));
+          }}
+          width="800" // Dimensioni esplicite per aiutare il browser
+          height="450"
         />
+
+        {!isLoaded && (
+          <div className="absolute inset-0 bg-neutral-200 dark:bg-neutral-700 animate-pulse rounded-lg flex items-center justify-center">
+            <div className="text-center text-neutral-500 dark:text-neutral-400">
+              <div className="w-8 h-8 border-4 border-t-primary border-neutral-300 rounded-full animate-spin mx-auto mb-2"></div>
+              <p className="text-sm">Caricamento...</p>
+            </div>
+          </div>
+        )}
+
         <div 
           className="absolute inset-0 bg-black/50 flex flex-col items-center justify-center transition-opacity duration-300 rounded-lg"
           style={{
@@ -133,7 +201,11 @@ export const AccordionEcommerce: FC<AccordionEcommerceProps> = ({ project, langu
   ];
 
   return (
-    <AccordionItem value="ecommerce" className="border rounded-lg hover:bg-accent/50 transition-colors">
+    <AccordionItem 
+      value="ecommerce" 
+      className="border rounded-lg hover:bg-accent/50 transition-colors"
+      onExpandedChange={handleAccordionStateChange}
+    >
       <AccordionTrigger className="px-4">
         <div className="flex items-center gap-3">
           <ShoppingCart className="w-5 h-5 text-primary" />
@@ -162,7 +234,7 @@ export const AccordionEcommerce: FC<AccordionEcommerceProps> = ({ project, langu
             </div>
 
             {/* Right Column - Carousel with single image */}
-            <div className="h-full min-h-[300px]">
+            <div className="h-full min-h-[300px]" ref={carouselRef}>
               <Carousel className="w-full h-full">
                 <CarouselContent className="h-full">
                   {mediaDetails.map((media, index) => (
@@ -204,7 +276,7 @@ export const AccordionEcommerce: FC<AccordionEcommerceProps> = ({ project, langu
               cursor: 'zoom-out'
             }}
           >
-                          <motion.div
+            <motion.div
               className="relative w-full h-full flex items-center justify-center"
               onClick={handleClose}
             >
@@ -216,18 +288,24 @@ export const AccordionEcommerce: FC<AccordionEcommerceProps> = ({ project, langu
                   className="overflow-hidden relative"
                   ref={zoomedImageRef}
                 >
-                                      <img
-                    src={selectedMedia.src}
-                    alt="Zoomed Media"
-                    className="max-w-[90vw] max-h-[70vh] object-contain"
-                    style={{
-                      transform: `scale(${zoomLevel})`,
-                      transformOrigin: 'center center',
-                      cursor: 'zoom-out'
-                    }}
-                    onClick={handleClose}
-                    draggable="false"
-                  />
+                  {loadedImages.has(selectedMedia.src) ? (
+                    <img
+                      src={selectedMedia.src}
+                      alt="Zoomed Media"
+                      className="max-w-[90vw] max-h-[70vh] object-contain"
+                      style={{
+                        transform: `scale(${zoomLevel})`,
+                        transformOrigin: 'center center',
+                        cursor: 'zoom-out'
+                      }}
+                      onClick={handleClose}
+                      draggable="false"
+                    />
+                  ) : (
+                    <div className="flex items-center justify-center w-[90vw] h-[70vh] bg-neutral-900">
+                      <div className="w-16 h-16 border-4 border-neutral-300 border-t-primary rounded-full animate-spin"></div>
+                    </div>
+                  )}
                 </div>
                 <div className="text-center text-white">
                   <h3 className="text-2xl font-semibold mb-1">
@@ -241,7 +319,21 @@ export const AccordionEcommerce: FC<AccordionEcommerceProps> = ({ project, langu
                 </div>
               </div>
 
-              {/* Rimossi i pulsanti di navigazione nella visualizzazione a schermo intero */}
+              {/* Indicatore di zoom nella visualizzazione a schermo intero */}
+              {loadedImages.has(selectedMedia.src) && zoomLevel > 1 && (
+                <div 
+                  className="absolute text-xs font-medium px-2 py-0.5 rounded-sm bg-white/80 text-gray-800 border border-gray-300 shadow-sm pointer-events-none"
+                  style={{
+                    left: "50%",
+                    bottom: "10%",
+                    transform: "translateX(-50%)",
+                    transition: 'opacity 0.2s ease-in-out',
+                    opacity: 0.8
+                  }}
+                >
+                  {Math.round(zoomLevel * 100)}%
+                </div>
+              )}
 
               <button 
                 className="absolute top-4 right-4 p-2 hover:bg-white/10 rounded-full transition-colors"

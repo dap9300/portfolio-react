@@ -12,6 +12,9 @@ import {
   ProjectContent
 } from './project-details/magazzino';
 
+// Chiave per sessionStorage
+const TARGET_SECTION_KEY = 'target_section';
+
 export function ProjectDetails() {
   const [, setLocation] = useLocation();
   const params = useParams();
@@ -31,6 +34,14 @@ export function ProjectDetails() {
   const language = 'it';
   const t = projectDetailsTranslations;
 
+  const handleBackToProjects = () => {
+    // Salva la sezione target (2 = projects) in sessionStorage
+    sessionStorage.setItem(TARGET_SECTION_KEY, '2');
+
+    // Naviga alla home page
+    setLocation('/');
+  };
+
   return (
     <ProjectLayout>
       <div className="absolute top-4 left-4 z-50">
@@ -38,16 +49,14 @@ export function ProjectDetails() {
           variants={fadeInUp}
           initial="hidden"
           animate="visible"
-          onClick={() => setLocation('/')}
+          onClick={handleBackToProjects}
           className="flex items-center text-white hover:text-white/80 transition-colors"
         >
           <ArrowLeft className="w-4 h-4 mr-2" />
           {t.back[language]}
         </motion.button>
       </div>
-
       <ProjectHeader project={project} language={language} />
-
       <div className="container mx-auto max-w-6xl py-12 px-4">
         <motion.div
           variants={staggerContainer}

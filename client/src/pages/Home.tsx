@@ -1,4 +1,4 @@
-import { useContext } from "react";
+import { useContext, useEffect, useLayoutEffect, useRef } from "react";
 import { Hero } from "@/components/sections/Hero";
 import { Overview } from "@/components/sections/Overview";
 import { Projects } from "@/components/sections/Projects";
@@ -8,8 +8,15 @@ import { Contact } from "@/components/sections/Contact";
 import { Navigation } from "@/components/shared/Navigation";
 import { ScrollContext } from "@/App";
 
+// Stessa chiave usata in ProjectDetails
+const TARGET_SECTION_KEY = 'target_section';
+
 export default function Home() {
   const { scrollToSection, activeSection, isHomePage } = useContext(ScrollContext);
+
+  // Ref per assicurarci di eseguire lo scroll solo una volta
+  const hasScrolledToTarget = useRef(false);
+
   // Temporarily set default language
   const language = 'it';
 
@@ -21,6 +28,44 @@ export default function Home() {
     { id: "education", index: 4 },
     { id: "contact", index: 5 }
   ];
+
+  // Utilizziamo useLayoutEffect che viene eseguito PRIMA del render visibile
+  // Questo è cruciale per evitare il flash della hero section
+  useLayoutEffect(() => {
+    // Controlla se c'è una sezione target in sessionStorage
+    const targetSectionIndex = sessionStorage.getItem(TARGET_SECTION_KEY);
+
+    if (targetSectionIndex && !hasScrolledToTarget.current) {
+      // Converti in numero
+      const sectionIndex = parseInt(targetSectionIndex, 10);
+
+      // Verifica che l'indice sia valido
+      if (!isNaN(sectionIndex) && sectionIndex >= 0 && sectionIndex < sections.length) {
+        // Piccolo timeout per assicurarsi che il DOM sia pronto
+        setTimeout(() => {
+          // Prima di fare lo scroll, trova la sezione nel DOM
+          const sectionElement = document.getElementById(sections[sectionIndex].id);
+
+          if (sectionElement) {
+            // Scroll immediato (non smooth) alla sezione
+            window.scrollTo({
+              top: sectionElement.offsetTop,
+              behavior: 'auto'
+            });
+
+            // Aggiorna l'active section nel contesto
+            scrollToSection(sectionIndex);
+          }
+
+          // Imposta il flag per evitare scroll multipli
+          hasScrolledToTarget.current = true;
+
+          // Rimuovi l'item da sessionStorage dopo l'uso
+          sessionStorage.removeItem(TARGET_SECTION_KEY);
+        }, 0);
+      }
+    }
+  }, [scrollToSection]); // Dipende solo da scrollToSection
 
   const handleScrollToSection = (sectionId: string) => {
     const section = sections.find(s => s.id === sectionId);
@@ -52,9 +97,7 @@ export default function Home() {
         language={language}
         onSectionClick={handleScrollToSection}
       />
-
       {isHomePage && <SectionIndicator />}
-
       <Hero
         language={language}
         onContactClick={() => handleScrollToSection("contact")}

@@ -1,4 +1,5 @@
-import { Users, ShoppingCart, MousePointerClick } from "lucide-react";
+// client/src/components/sections/project-details/hrx/content.ts
+import { Users, ShoppingCart, MousePointerClick, Calendar } from "lucide-react";
 import { Project } from "@/types/projects";
 import { 
   SiMeta, 
@@ -18,8 +19,8 @@ import {
   ShoppingCart,
   MousePointerClick,
   Euro,
-  Percent
-
+  Percent,
+  Calendar
 } from "lucide-react";
 import { FaTag } from "react-icons/fa6";
 
@@ -34,7 +35,8 @@ const translationsData = {
     socialStrategy: { en: 'Digital Marketing Strategy', it: 'Strategia Marketing Digitale' },
     contentPlanning: { en: 'Social Media', it: 'Social Media' },
     emailMarketing: { en: 'Email Marketing', it: 'Email Marketing' },
-    ecommerce: { en: 'E-commerce Management', it: 'Gestione E-commerce' }
+    ecommerce: { en: 'E-commerce Management', it: 'Gestione E-commerce' },
+    projectPeriod: { en: 'Project Period', it: 'Durata Progetto' }
   }
 };
 
@@ -44,11 +46,15 @@ const projectData: Project = {
     en: "HRX - Digital Marketing Strategy",
     it: "HRX - Strategia di Marketing Digitale"
   },
+  period: {
+    en: "Nov 2020 - Apr 2021",
+    it: "Nov 2020 - Apr 2021"
+  },
   description: {
     en: "I managed the marketing strategy for HRX SRL, an Italian company specializing in technical apparel and accessories for motorsports. I planned and optimized Google Ads campaigns (Search, Display, Shopping) to increase online sales while improving SEO and the UX of the Shopify e-commerce platform to enhance the user experience and conversion rate.",
     it: "Ho gestito la strategia di marketing per HRX SRL, azienda italiana specializzata in abbigliamento tecnico e accessori per il motorsport. Ho pianificato e ottimizzato campagne Google Ads (Search, Display, Shopping) per aumentare le vendite online, ottimizzando al contempo SEO e UX dell'e-commerce Shopify per migliorare l'esperienza utente e il tasso di conversione."
   },
-  image: '/assets/hrx-banner1.jpg',
+  image: '/assets/hrx-banner1.webp',
   technologies: [
     { name: 'Shopify', Icon: SiShopify },
     { name: 'Google Ads', Icon: SiGoogleads },
@@ -146,7 +152,7 @@ const projectData: Project = {
     }
   },
   assets: {
-    banner: '/assets/hrx-banner1.jpg',
+    banner: '/assets/hrx-banner1.webp',
     analytics: [
       '/assets/hrx-analytics1.png',
       '/assets/hrx-growth.png'
@@ -154,9 +160,18 @@ const projectData: Project = {
   }
 };
 
+const styles = {
+  metricsContainer: "space-y-3",
+  metricItem: "flex items-start gap-3",
+  bulletPoint: "text-blue-500 text-lg leading-6",
+  metricText: "text-gray-700 dark:text-gray-300",
+  periodLabel: "inline-flex items-center px-3 py-1 rounded-full text-sm font-medium bg-blue-100 text-blue-800 dark:bg-blue-900 dark:text-blue-200"
+};
+
 export { 
   translationsData as translations, 
   translationsData as projectDetailsTranslations, 
   projectData, 
-  projectData as projectContent 
+  projectData as projectContent,
+  styles
 };

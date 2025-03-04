@@ -20,22 +20,22 @@ export interface ProjectAssets {
   analytics?: string[];
 }
 
-  export interface DetailedSections {
-    overview: {
-      title: LocalizedContent<string>;
-      content: LocalizedContent<string>;
-      metrics: string[];
-    };
-    objectives: {
-      title: LocalizedContent<string>;
-      content: LocalizedContent<string>;
-      metrics: string[];
-    };
-    tools: {
-      title: LocalizedContent<string>;
-      content: LocalizedContent<string>;
-      items: Tool[];
-    };
+export interface DetailedSections {
+  overview: {
+    title: LocalizedContent<string>;
+    content: LocalizedContent<string>;
+    metrics: string[];
+  };
+  objectives: {
+    title: LocalizedContent<string>;
+    content: LocalizedContent<string>;
+    metrics: string[];
+  };
+  tools: {
+    title: LocalizedContent<string>;
+    content: LocalizedContent<string>;
+    items: Tool[];
+  };
   ecommerce?: {
     title: LocalizedContent<string>;
     content: LocalizedContent<string>;
@@ -45,6 +45,7 @@ export interface ProjectAssets {
 export interface Project {
   id: number;
   title: LocalizedContent<string>;
+  period?: LocalizedContent<string>; // Aggiunta del periodo del progetto
   description: LocalizedContent<string>;
   image: string;
   technologies: Tool[];

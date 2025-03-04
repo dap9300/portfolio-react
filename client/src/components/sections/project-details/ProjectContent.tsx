@@ -4,7 +4,7 @@ import { motion } from "framer-motion";
 import { Language } from "@/types";
 import { Project } from "@/types/projects";
 import { Card } from "@/components/ui/card";
-import { BookOpen, Cog } from "lucide-react";
+import { BookOpen, Cog, Calendar } from "lucide-react";
 import { Accordion } from "@/components/ui/accordion";
 
 
@@ -49,9 +49,21 @@ interface ProjectContentProps {
   language: Language;
 }
 
+interface ImageDetail {
+  src: string;
+  alt?: string;
+}
+
 export const ProjectContent: FC<ProjectContentProps> = ({ project, language }) => {
   const [selectedImage, setSelectedImage] = useState<ImageDetail | null>(null);
   const [clickedPosition, setClickedPosition] = useState({ x: 0, y: 0 });
+
+  const translations = {
+    projectPeriod: {
+      en: 'Project Period',
+      it: 'Durata Progetto'
+    }
+  };
 
   const handleImageClick = (image: ImageDetail, event: React.MouseEvent) => {
     const rect = event.currentTarget.getBoundingClientRect();
@@ -127,6 +139,15 @@ export const ProjectContent: FC<ProjectContentProps> = ({ project, language }) =
             </h2>
           </div>
           <Card className="p-6">
+            {/* Project period badge */}
+            {project.period && (
+              <div className="mb-4 flex items-center">
+                
+                <span className="inline-flex items-center px-2.5 py-0.5 rounded-full text-xs font-medium bg-primary/10 text-primary">
+                  {translations.projectPeriod[language]}: {project.period[language]}
+                </span>
+              </div>
+            )}
             <p className="text-muted-foreground whitespace-pre-line">
               {project.description[language]}
             </p>
@@ -178,7 +199,7 @@ export const ProjectContent: FC<ProjectContentProps> = ({ project, language }) =
       </motion.div>
 
       {/* Image Carousel Section */}
-      
+
     </div>
   );
 };

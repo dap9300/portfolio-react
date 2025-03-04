@@ -118,7 +118,7 @@ export function Education({ language, sectionIndex }: EducationProps) {
                 >
                   <div className="flex flex-col md:flex-row md:items-center md:justify-between w-full text-left">
                     <div>
-                      <h3 className="text-xl font-semibold text-foreground">
+                      <h3 className="text-xl font-semibold" style={{ color: "#263973" }}>
                         {item.degree[language]}
                       </h3>
                       <p className="text-muted-foreground">
@@ -126,7 +126,7 @@ export function Education({ language, sectionIndex }: EducationProps) {
                       </p>
                     </div>
                     <div className="flex items-center gap-2 mt-2 md:mt-0">
-                      <span className="text-[#D97706] font-semibold">{item.period}</span>
+                      <span className="text-gray-500 font-semibold">{item.period}</span>
                       <ChevronDown 
                         className={`w-5 h-5 transform transition-transform ${
                           expandedId === item.id ? 'rotate-180' : ''

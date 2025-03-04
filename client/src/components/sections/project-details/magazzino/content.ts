@@ -1,3 +1,4 @@
+// client/src/components/sections/project-details/magazzino/content.ts
 import { Users, TrendingUp, Calendar, Euro } from 'lucide-react';
 import { Project } from '@/types/projects';
 import { 
@@ -16,7 +17,8 @@ const translations = {
     crowdfunding: { en: 'Crowdfunding Campaign', it: 'Campagna di Crowdfunding' },
     socialMedia: { en: 'Social Media Strategy', it: 'Strategia Social Media' },
     emailMarketing: { en: 'Email Marketing', it: 'Email Marketing' },
-    contentPlanning: { en: 'Content Planning', it: 'Pianificazione Contenuti' }
+    contentPlanning: { en: 'Content Planning', it: 'Pianificazione Contenuti' },
+    projectPeriod: { en: 'Project Period', it: 'Durata Progetto' } // Aggiunta traduzione per la durata
   }
 };
 
@@ -26,11 +28,15 @@ const projectData: Project = {
     en: "Magazzino sul Po – Digital Marketing & Communication",
     it: "Magazzino sul Po – Digital Marketing & Comunicazione"
   },
-  description: {
-    en: "I led the digital transformation of one of Turin’s main cultural hubs, enhancing its online presence by defining brand identity and tone of voice on social media. I managed email marketing campaigns and oversaw the development of the association’s website, implementing an e-ticketing system that optimized the user journey and generated new revenue streams.",
-    it: "Ho guidato la trasformazione digitale di uno dei principali luoghi di aggregazione culturale di Torino, rafforzandone la presenza online attraverso la definizione della brand identity e del tone of voice sui social media. Ho gestito campagne di email marketing e curato lo sviluppo del sito web, implementando un sistema di e-ticketing che ha generato nuovi flussi di revenue per l’associazione."
+  period: {
+    en: "Oct 2021 - Dec 2023",
+    it: "Ott 2021 - Dic 2023"
   },
-  image: '/assets/banner-magazzino.webp',
+  description: {
+    en: "I led the digital transformation of one of Turin's main cultural hubs, enhancing its online presence by defining brand identity and tone of voice on social media. I managed email marketing campaigns and oversaw the development of the association's website, implementing an e-ticketing system that optimized the user journey and generated new revenue streams.",
+    it: "Ho guidato la trasformazione digitale di uno dei principali luoghi di aggregazione culturale di Torino, rafforzandone la presenza online attraverso la definizione della brand identity e del tone of voice sui social media. Ho gestito campagne di email marketing e curato lo sviluppo del sito web, implementando un sistema di e-ticketing che ha generato nuovi flussi di revenue per l'associazione."
+  },
+  image: '/assets/magazzino-banner.webp',
   technologies: [
     { name: 'Meta Business Suite', Icon: SiMeta },
     { name: 'Instagram', Icon: SiInstagram },
@@ -110,7 +116,7 @@ const projectData: Project = {
         it: 'Pianificazione strategica e creazione di contenuti per mantenere una comunicazione del brand coerente su tutti i canali.'
       },
       metrics: [
-        'Restyling completo del sito web dell\’associazione, con focus su usabilità e design moderno',
+        'Restyling completo del sito web dell\'associazione, con focus su usabilità e design moderno',
         'Implementazione di un sistema di e-ticketing per la gestione e vendita online dei biglietti per gli eventi',
         'Integrazione avanzata di Google Analytics e Search Console, con ottimizzazione strategica data-driven per il monitoraggio delle performance',
         'Gestione attiva del sito web, con aggiornamento e caricamento costante di contenuti'
@@ -133,7 +139,8 @@ const styles = {
   metricsContainer: "space-y-3",
   metricItem: "flex items-start gap-3",
   bulletPoint: "text-blue-500 text-lg leading-6",
-  metricText: "text-gray-700 dark:text-gray-300"
+  metricText: "text-gray-700 dark:text-gray-300",
+  periodLabel: "inline-flex items-center px-3 py-1 rounded-full text-sm font-medium bg-blue-100 text-blue-800 dark:bg-blue-900 dark:text-blue-200"
 };
 
 export { translations, translations as projectDetailsTranslations, projectData, projectData as projectContent, styles };

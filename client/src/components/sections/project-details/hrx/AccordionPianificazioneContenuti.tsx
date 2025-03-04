@@ -48,9 +48,14 @@ const HRXPianificazioneContenuti: FC<HRXPianificazioneContenutiProps> = ({ proje
   const [selectedMedia, setSelectedMedia] = useState<MediaDetail | null>(null);
   const [hoverIndex, setHoverIndex] = useState<number | null>(null);
   const [zoomLevel, setZoomLevel] = useState<number>(1);
-  // Remove all drag-related functionality
   const [panPosition, setPanPosition] = useState({ x: 0, y: 0 });
   const zoomedImageRef = useRef<HTMLDivElement>(null);
+  const accordionExpandedRef = useRef<boolean>(false);
+  const [loadedImages, setLoadedImages] = useState<Set<string>>(new Set());
+  const [visibleItems, setVisibleItems] = useState<number[]>([]); // Inizialmente non caricare nessuna immagine
+  const mediaRefs = useRef<(HTMLDivElement | null)[]>([]);
+  const observerRef = useRef<IntersectionObserver | null>(null);
+  const carouselRef = useRef<HTMLDivElement>(null);
 
   // Reset zoom and pan when media changes
   useEffect(() => {
@@ -58,9 +63,86 @@ const HRXPianificazioneContenuti: FC<HRXPianificazioneContenutiProps> = ({ proje
     setPanPosition({ x: 0, y: 0 });
   }, [selectedMedia]);
 
-  const handleMediaClick = (media: MediaDetail) => {
+  // Inizializza il caricamento di tutte le immagini al mount del componente
+  useEffect(() => {
+    // Precarica tutte le immagini del carosello in background
+    mediaDetails.forEach((media, index) => {
+      const img = new Image();
+      img.onload = () => {
+        setLoadedImages(prev => new Set([...prev, media.src]));
+      };
+      img.src = media.src;
+    });
+
+    // Imposta tutte le immagini come visibili
+    const allIndices = Array.from({ length: mediaDetails.length }, (_, i) => i);
+    setVisibleItems(allIndices);
+  }, []);
+
+  // Gestione del prefetch delle immagini
+  useEffect(() => {
+    const prefetchNextItems = () => {
+      // Prefetch delle prossime immagini che non sono ancora state caricate
+      visibleItems.forEach(index => {
+        // Carica l'immagine successiva in sequenza
+        const nextIndex = (index + 1) % mediaDetails.length;
+        const media = mediaDetails[nextIndex];
+
+        if (!loadedImages.has(media.src)) {
+          const img = new Image();
+          img.onload = () => {
+            setLoadedImages(prev => new Set([...prev, media.src]));
+          };
+          img.src = media.src;
+        }
+      });
+    };
+
+    prefetchNextItems();
+  }, [visibleItems, loadedImages]);
+
+  // Gestire l'espansione dell'accordion per caricare le immagini
+  const handleAccordionStateChange = (isOpen: boolean) => {
+    accordionExpandedRef.current = isOpen;
+
+    // Se l'accordion è aperto, caricare tutte le immagini
+    if (isOpen) {
+      // Carica tutti gli elementi immediatamente
+      const allIndices = Array.from({ length: mediaDetails.length }, (_, i) => i);
+      setVisibleItems(allIndices);
+    }
+  };
+
+  // Funzione per precaricare l'immagine a piena risoluzione
+  const preloadFullImage = (media: MediaDetail) => {
+    return new Promise<void>((resolve) => {
+      // Se l'immagine è già stata caricata, risolvi immediatamente
+      if (loadedImages.has(media.src)) {
+        resolve();
+        return;
+      }
+
+      const img = new Image();
+      img.onload = () => {
+        setLoadedImages(prev => new Set([...prev, media.src]));
+        resolve();
+      };
+      img.onerror = () => {
+        // In caso di errore, risolvere comunque per non bloccare l'UI
+        resolve();
+      };
+      img.src = media.src;
+    });
+  };
+
+  const handleMediaClick = async (media: MediaDetail) => {
     document.body.classList.add('react-zoom-container-open');
+
+    // Inizia a mostrare la modalità zoom con un possibile indicatore di caricamento
     setSelectedMedia(media);
+
+    // Precarica l'immagine a piena risoluzione
+    await preloadFullImage(media);
   };
 
   const handleClose = () => {
@@ -90,7 +172,6 @@ const HRXPianificazioneContenuti: FC<HRXPianificazioneContenutiProps> = ({ proje
       setZoomLevel(2);
 
       // Calcola lo spostamento per centrare il punto cliccato
-      // Nota: dividiamo per zoomLevel per compensare l'effetto dello scale sulla posizione
       setPanPosition({
         x: (centerX - x),
         y: (centerY - y)
@@ -102,7 +183,6 @@ const HRXPianificazioneContenuti: FC<HRXPianificazioneContenutiProps> = ({ proje
     }
   };
 
-  // We'll keep the double click handler, but remove all drag functionality
   const handleDoubleClick = (e: React.MouseEvent) => {
     e.stopPropagation();
     setZoomLevel(1);
@@ -111,9 +191,11 @@ const HRXPianificazioneContenuti: FC<HRXPianificazioneContenutiProps> = ({ proje
 
   const renderMedia = (media: MediaDetail, index: number) => {
     const isHovered = hoverIndex === index;
+    const isLoaded = loadedImages.has(media.src);
 
     return (
       <div 
+        ref={el => mediaRefs.current[index] = el}
         className="relative cursor-zoom-in h-full"
         onMouseEnter={() => setHoverIndex(index)}
         onMouseLeave={() => setHoverIndex(null)}
@@ -122,7 +204,23 @@ const HRXPianificazioneContenuti: FC<HRXPianificazioneContenutiProps> = ({ proje
           src={media.src}
           alt={media.title}
           className="w-full h-full object-cover rounded-lg"
+          loading="lazy"
+          onLoad={() => {
+            setLoadedImages(prev => new Set([...prev, media.src]));
+          }}
+          width="400" // Dimensioni esplicite per aiutare il browser
+          height="400"
         />
+
+        {!isLoaded && (
+          <div className="absolute inset-0 bg-neutral-200 dark:bg-neutral-700 animate-pulse rounded-lg flex items-center justify-center">
+            <div className="text-center text-neutral-500 dark:text-neutral-400">
+              <div className="w-8 h-8 border-4 border-t-primary border-neutral-300 rounded-full animate-spin mx-auto mb-2"></div>
+              <p className="text-sm">Caricamento...</p>
+            </div>
+          </div>
+        )}
+
         <div 
           className="absolute inset-0 bg-black/50 flex flex-col items-center justify-center transition-opacity duration-300 rounded-lg"
           style={{
@@ -140,7 +238,11 @@ const HRXPianificazioneContenuti: FC<HRXPianificazioneContenutiProps> = ({ proje
   };
 
   return (
-    <AccordionItem value="content-planning" className="border rounded-lg hover:bg-accent/50 transition-colors">
+    <AccordionItem 
+      value="content-planning" 
+      className="border rounded-lg hover:bg-accent/50 transition-colors"
+      onExpandedChange={handleAccordionStateChange}
+    >
       <AccordionTrigger className="px-4">
         <div className="flex items-center gap-3">
           <FileEdit className="w-5 h-5 text-primary" />
@@ -174,25 +276,25 @@ const HRXPianificazioneContenuti: FC<HRXPianificazioneContenutiProps> = ({ proje
             </div>
 
             {/* Carousel section at right 50% width */}
-            <div className="w-1/2 pl-4">
-            <Carousel className="w-full h-full">
-              <CarouselContent className="px-2 h-full">
-                {mediaDetails.map((media, index) => (
-                  <CarouselItem key={index} className="basis-1/2 pl-1 pr-1 h-full">
-                    <motion.div
-                      layoutId={`media-${media.src}`}
-                      onClick={() => handleMediaClick(media)}
-                      className="relative rounded-lg overflow-hidden flex justify-center items-center h-full"
-                    >
-                      {renderMedia(media, index)}
-                    </motion.div>
-                  </CarouselItem>
-                ))}
-              </CarouselContent>
-              <CarouselPrevious className="left-0" />
-              <CarouselNext className="right-0" />
-            </Carousel>
-          </div>
+            <div className="w-1/2 pl-4" ref={carouselRef}>
+              <Carousel className="w-full h-full">
+                <CarouselContent className="px-2 h-full">
+                  {mediaDetails.map((media, index) => (
+                    <CarouselItem key={index} className="basis-1/2 pl-1 pr-1 h-full">
+                      <motion.div
+                        layoutId={`media-${media.src}`}
+                        onClick={() => handleMediaClick(media)}
+                        className="relative rounded-lg overflow-hidden flex justify-center items-center h-full"
+                      >
+                        {renderMedia(media, index)}
+                      </motion.div>
+                    </CarouselItem>
+                  ))}
+                </CarouselContent>
+                <CarouselPrevious className="left-0" />
+                <CarouselNext className="right-0" />
+              </Carousel>
+            </div>
           </div>
         </Card>
       </AccordionContent>
@@ -228,19 +330,25 @@ const HRXPianificazioneContenuti: FC<HRXPianificazioneContenutiProps> = ({ proje
                   className="overflow-hidden relative"
                   ref={zoomedImageRef}
                 >
-                  <img
-                    src={selectedMedia.src}
-                    alt="Zoomed Media"
-                    className="max-w-[90vw] max-h-[70vh] object-contain"
-                    style={{
-                      transform: `scale(${zoomLevel}) translate(${panPosition.x / zoomLevel}px, ${panPosition.y / zoomLevel}px)`,
-                      transformOrigin: 'center center',
-                      cursor: zoomLevel > 1 ? 'zoom-out' : 'zoom-in'
-                    }}
-                    onClick={handleImageClick}
-                    onDoubleClick={handleDoubleClick}
-                    draggable="false"
-                  />
+                  {loadedImages.has(selectedMedia.src) ? (
+                    <img
+                      src={selectedMedia.src}
+                      alt="Zoomed Media"
+                      className="max-w-[90vw] max-h-[70vh] object-contain"
+                      style={{
+                        transform: `scale(${zoomLevel}) translate(${panPosition.x / zoomLevel}px, ${panPosition.y / zoomLevel}px)`,
+                        transformOrigin: 'center center',
+                        cursor: zoomLevel > 1 ? 'zoom-out' : 'zoom-in'
+                      }}
+                      onClick={handleImageClick}
+                      onDoubleClick={handleDoubleClick}
+                      draggable="false"
+                    />
+                  ) : (
+                    <div className="flex items-center justify-center w-[90vw] h-[70vh] bg-neutral-900">
+                      <div className="w-16 h-16 border-4 border-neutral-300 border-t-primary rounded-full animate-spin"></div>
+                    </div>
+                  )}
                 </div>
                 <div className="text-center text-white">
                   <h3 className="text-2xl font-semibold mb-1">
@@ -255,19 +363,21 @@ const HRXPianificazioneContenuti: FC<HRXPianificazioneContenutiProps> = ({ proje
               </div>
 
               {/* Indicatore di zoom modificato: centrato sopra l'immagine con sfondo bianco crema */}
-              <div 
-                className="absolute text-xs font-medium px-2 py-0.5 rounded-sm bg-cream text-gray-800 border border-gray-300 shadow-sm backdrop-blur-sm pointer-events-none"
-                style={{
-                  left: "50%",
-                  top: `calc(44% - ${zoomedImageRef.current?.offsetHeight ? (zoomedImageRef.current.offsetHeight / 2) + 20 : 160}px)`,
-                  transform: "translateX(-50%)",
-                  transition: 'opacity 0.2s ease-in-out',
-                  opacity: zoomLevel > 1 ? 0.95 : 0.7,
-                  backgroundColor: "#fffaf0" // sfondo bianco crema
-                }}
-              >
-                {Math.round(zoomLevel * 100)}%
-              </div>
+              {loadedImages.has(selectedMedia.src) && (
+                <div 
+                  className="absolute text-xs font-medium px-2 py-0.5 rounded-sm bg-cream text-gray-800 border border-gray-300 shadow-sm backdrop-blur-sm pointer-events-none"
+                  style={{
+                    left: "50%",
+                    top: `calc(44% - ${zoomedImageRef.current?.offsetHeight ? (zoomedImageRef.current.offsetHeight / 2) + 20 : 160}px)`,
+                    transform: "translateX(-50%)",
+                    transition: 'opacity 0.2s ease-in-out',
+                    opacity: zoomLevel > 1 ? 0.95 : 0.7,
+                    backgroundColor: "#fffaf0" // sfondo bianco crema
+                  }}
+                >
+                  {Math.round(zoomLevel * 100)}%
+                </div>
+              )}
 
               {/* Close button moved to the top right */}
               <button 

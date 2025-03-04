@@ -3,7 +3,7 @@ import { translations } from "@/components/sections/project-details/SiteContent"
 import { Language } from "@/types";
 import { SectionTitle } from "@/components/shared/SectionTitle";
 import { Card, CardContent } from "@/components/ui/card";
-import { ChartBar, Code2, ChevronDown, PenTool, Brain, Languages, Heart } from "lucide-react";
+import { ChartBar, Code2, ChevronDown, PenTool, Brain, Languages, Heart, BarChart, BarChart2, ChartNoAxesCombined, Globe, Share2, Smartphone, Monitor, Palette, Video, Bot, Laptop, FileText, Briefcase } from "lucide-react";
 import { ScrollContext } from "@/App";
 
 interface SkillsProps {
@@ -23,18 +23,16 @@ const leftSkillCategories: SkillCategory[] = [
     icon: ChartBar,
     skills: {
       en: [
-        "**Performance Marketing**: Meta Ads, Google Ads, Amazon Ads",
-        "**Web & Marketing Analytics**: Meta Business Suite, Google Analytics, Google Search Console, Google Tag Manager, Looker Studio",
+        "**Performance Marketing**: Meta Ads | Google Ads | Amazon Ads",
+        "**Web & Marketing Analytics**: Meta Business Suite, Google Analytics & Google Looker Studio, Google Tag Manager",
         "**Email Marketing**: Mailchimp & Altri ESP",
-        "**SEO & Optimization**: SEO Technical, Screaming Frog, Semrush, Rank Math",
-        "**Social Media**: Meta Business Suite, Editorial Strategy & Planning, Community Management"
+        "**SEO & Optimization**: Technical SEO , Screaming Frog, Semrush, Rank Math"
       ],
       it: [
-        "Performance Marketing (Meta Ads, Google Ads, Amazon Ads)",
-        "Web & Marketing Analytics (Meta Business Suite, Google Analytics, Google Search Console, Google Tag Manager, Looker Studio)",
+        "Performance Marketing (Meta Ads | Google Ads | Amazon Ads)",
+        "Web & Marketing Analytics (Meta Business Suite, Google Analytics & Google Looker Studio, Google Search Console, Google Tag Manager)",
         "Email Marketing (Mailchimp & Altri ESP)",
-        "SEO & Optimization (SEO Technical, Screaming Frog, Semrush, Rank Math)",
-        "Social Media (Meta Business Suite, Editorial Strategy & Planning, Community Management)"
+        "SEO & Optimization (Technical SEO, Screaming Frog & Semrush, Rank Math & Yoast SEO)"
       ]
     }
   },
@@ -43,30 +41,31 @@ const leftSkillCategories: SkillCategory[] = [
     icon: Code2,
     skills: {
       en: [
-        "Programming & CMS (HTML5, CSS, WordPress, WooCommerce, Shopify)",
-        "Operating Systems (Windows, MacOS)",
-        "Office Productivity (Office Suite, Google Workspace, Slack, Asana, Trello)"
+        "**Programming & CMS**: HTML5 & CSS, WordPress, Shopify",
+        "**Office Productivity**: Office Suite, Google Workspace, Slack | Asana | Trello"
       ],
       it: [
-        "Programmazione & CMS (HTML5, CSS, WordPress, WooCommerce, Shopify)",
-        "Sistemi Operativi (Windows, MacOS)",
-        "Produttività Office (Office Suite, Google Workspace, Slack, Asana, Trello)"
+        "**Programmazione & CMS**: HTML5 & CSS, JavaScript, Python, WordPress, Shopify",
+        "**Produttività Office**: Office Suite, Google Workspace, Slack | Asana | Trello",
+        "**Tools & Framework AI/LLM**: PyTorch | TensorFlow | Hugging Face Transformers, Cursor"
       ]
     }
   },
   {
-    title: { en: "Content Creation & Media Editing", it: "Content Creation & Media Editing" },
+    title: { en: "Content Creation & Social Media", it: "Content Creation & Social Media" },
     icon: PenTool,
     skills: {
       en: [
-        "Graphic Design (Adobe Creative Suite, Canva)",
-        "Video/Audio Editing (DaVinci Resolve, CapCut, Audacity)",
-        "AI Tools (ChatGPT, Claude, MidJourney, Cursor, ElevenLabs)"
+        "**Social Media**: Meta Business Suite, Editorial Strategy & Planning, Community Management",
+        "**Graphic Design**: Adobe Creative Suite, Canva",
+        "**Video/Audio Editing**: DaVinci Resolve, CapCut, Audacity",
+        "**AI Tools**: ChatGPT & Claude, MidJourney, ElevenLabs"
       ],
       it: [
-        "Graphic Design (Adobe Creative Suite, Canva)",
-        "Video/Audio Editing (DaVinci Resolve, CapCut, Audacity)",
-        "Strumenti AI (ChatGPT, Claude, MidJourney, Cursor, ElevenLabs)"
+        "**Social Media**: Editorial Strategy & Planning, Community Management, Content Creation",
+        "**Graphic Design**: Adobe Creative Suite, Canva",
+        "**Video/Audio Editing**: DaVinci Resolve, CapCut, Audacity",
+        "**Tools AI**: ChatGPT & Claude, MidJourney, ElevenLabs"
       ]
     }
   }
@@ -88,7 +87,7 @@ const rightSkillCategories: SkillCategory[] = [
       it: [
         "Pensiero analitico e basato sui dati",
         "Gestione delle priorità e delle scadenze",
-        "Collaborazione interfunzionale",
+        "Collaborazione cross-funzionale",
         "Approccio incentrato sul cliente",
         "Capacità di tradurre concetti tecnici per un pubblico non tecnico",
         "Capacità di apprendimento rapido"
@@ -131,43 +130,37 @@ const rightSkillCategories: SkillCategory[] = [
 
 const getSkillLevel = (tool: string): number => {
   const skillLevels: { [key: string]: number } = {
-    "Meta Ads": 4,
-    "Google Ads": 4,
-    "Amazon Ads": 3,
+    "Meta Ads | Google Ads | Amazon Ads": 4,
     "Meta Business Suite": 4,
-    "Google Analytics": 5,
+    "Google Analytics & Google Looker Studio": 5,
     "Google Search Console": 5,
     "Google Tag Manager": 4,
-    "Looker Studio": 3,
-    "Mailchimp & Other ESP": 4,
-    "SEO Technical": 4,
-    "Screaming Frog": 4,
-    "Semrush": 4,
-    "Rank Math": 4,
-    "Editorial Strategy & Planning": 4,
-    "Community Management": 4,
-    "HTML5": 4,
-    "CSS": 4,
+    "Mailchimp & Altri ESP": 4,
+    "Technical SEO": 4,
+    "Screaming Frog & Semrush": 4,
+    "Rank Math & Yoast SEO": 5,
+    "Editorial Strategy & Planning": 5,
+    "Community Management": 5,
+    "HTML5 & CSS": 4,
+    "JavaScript": 3,
+    "Python": 2,
     "WordPress": 5,
     "WooCommerce": 4,
-    "Shopify": 3,
-    "Windows": 5,
-    "MacOS": 4,
+    "Shopify": 4,
     "Office Suite": 5,
     "Google Workspace": 5,
-    "Slack": 5,
-    "Asana": 4,
-    "Trello": 4,
+    "Slack | Asana | Trello": 4,
     "Adobe Creative Suite": 3,
     "Canva": 5,
     "DaVinci Resolve": 3,
     "CapCut": 4,
     "Audacity": 3,
-    "ChatGPT": 5,
-    "Claude": 4,
-    "MidJourney": 4,
+    "ChatGPT & Claude": 5,
     "Cursor": 3,
-    "ElevenLabs": 3,
+    "MidJourney": 5,
+    "ElevenLabs": 4,
+    "Content Creation": 3,
+    "PyTorch | TensorFlow | Hugging Face Transformers": 2
   };
 
   return skillLevels[tool.trim()] || 3;
@@ -189,6 +182,24 @@ const DotGradient = ({ level, index }: { level: number; index: number }) => {
       }`}
     />
   );
+};
+
+// Oggetto che mappa i titoli delle sezioni alle icone Lucide React
+const skillIcons: { [key: string]: any } = {
+  "Performance Marketing": ChartNoAxesCombined,
+  "Web & Marketing Analytics": BarChart2,
+  "Email Marketing": Share2,
+  "SEO & Optimization": Globe,
+  "Social Media": Smartphone,
+  "Programming & CMS": Laptop,
+  "Office Productivity": Briefcase,
+  "Produttività Office": Briefcase,
+  "Tools & Framework AI/LLM": Bot,
+  "Programmazione & CMS": Laptop,
+  "Graphic Design": Palette,
+  "Video/Audio Editing": Video,
+  "AI Tools": Bot,
+  "Tools AI": Bot
 };
 
 export function Skills({ language, sectionIndex }: SkillsProps) {
@@ -243,9 +254,15 @@ export function Skills({ language, sectionIndex }: SkillsProps) {
                   const cleanedTitle = title.replace(/\*\*/g, '').trim();
                   const toolList = tools.join('').split(/,\s*|\)/).filter(Boolean);
 
+                  // Ottieni l'icona appropriata per questo titolo di competenza
+                  const SkillIcon = skillIcons[cleanedTitle];
+
                   return (
                     <li key={skillIndex} className="text-sm">
-                      <strong className="text-foreground">{cleanedTitle}</strong>
+                      <div className="flex items-center gap-2">
+                        {SkillIcon && <SkillIcon className="w-4 h-4 text-[#D97706]" />}
+                        <strong className="text-foreground">{cleanedTitle}</strong>
+                      </div>
                       <ul className="mt-1.5 space-y-2">
                         {toolList.map((tool, toolIndex) => {
                           const level = getSkillLevel(tool);

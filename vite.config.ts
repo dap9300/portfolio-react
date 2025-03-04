@@ -1,18 +1,25 @@
+// vite.config.ts 
 import { defineConfig } from "vite";
 import react from "@vitejs/plugin-react";
 import themePlugin from "@replit/vite-plugin-shadcn-theme-json";
-import path from "path";
+import path, { dirname } from "path";
+import runtimeErrorOverlay from "@replit/vite-plugin-runtime-error-modal";
+import { fileURLToPath } from "url";
+
+const __filename = fileURLToPath(import.meta.url);
+const __dirname = dirname(__filename);
 
 export default defineConfig({
-  plugins: [react(), themePlugin()],
+  plugins: [react(), runtimeErrorOverlay(), themePlugin()],
   resolve: {
     alias: {
-      "@": path.resolve(__dirname, "client/src"), // Assumendo che il codice React sia in client/src
+ 
+      "@": path.resolve(__dirname, "client", "src"),
     },
   },
-  root: "client", // Specifica la cartella root corretta
+  root: path.resolve(__dirname, "client"),
   build: {
-    outDir: "../dist", // Costruisce la build nella cartella dist fuori da client
+    outDir: path.resolve(__dirname, "dist/public"),
     emptyOutDir: true,
   },
   server: {
@@ -20,7 +27,12 @@ export default defineConfig({
     strictPort: true,
     host: true,
     hmr: {
-      overlay: false,
-    },
+      overlay: false
+    }
   },
+  preview: {
+    port: 5000,
+    strictPort: true,
+    host: true,
+  }
 });

@@ -15,11 +15,8 @@ export const ProjectMetrics: FC<ProjectMetricsProps> = ({ metrics, language }) =
     return null;
   }
 
-  // Console log per debugging
-  console.log("Metrics:", metrics);
-
   return (
-    <div className="grid grid-cols-1 md:grid-cols-4 gap-6 my-8">
+    <div className="grid grid-cols-1 md:grid-cols-4 gap-6 pb-4">
       {metrics.map((metric, index) => {
         // Gestione più flessibile delle icone
         let IconToRender;
