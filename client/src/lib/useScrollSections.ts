@@ -1,6 +1,7 @@
-// src/lib/useScrollSections.ts
 import { useEffect, useRef, useState } from "react";
 import { useLocation } from "wouter";
+
+const easeInOutCubic = (t: number) => t < 0.5 ? 4 * t * t * t : 1 - Math.pow(-2 * t + 2, 3) / 2;
 
 export function useScrollSections() {
   const sectionsRef = useRef<(HTMLElement | null)[]>([]);
@@ -8,7 +9,6 @@ export function useScrollSections() {
   const [location] = useLocation();
   const isScrollingRef = useRef(false);
   const lastScrollTime = useRef(0);
-  const touchStartY = useRef(0);
 
   const isHomePage = location === "/";
 
@@ -17,111 +17,60 @@ export function useScrollSections() {
   };
 
   const scrollToSection = (index: number) => {
-    if (!isHomePage) return;
-    if (index < 0 || index >= sectionsRef.current.length) return;
-    if (isScrollingRef.current) return;
+    if (!isHomePage || isScrollingRef.current || index < 0 || index >= sectionsRef.current.length) return;
 
     const section = sectionsRef.current[index];
     if (section) {
       isScrollingRef.current = true;
-      section.scrollIntoView({ behavior: 'smooth' });
-      setActiveSection(index);
+      const targetScroll = section.getBoundingClientRect().top + window.scrollY;
+      const startScroll = window.scrollY;
+      const distance = targetScroll - startScroll;
 
-      const handleScrollEnd = () => {
-        isScrollingRef.current = false;
-        window.removeEventListener('scrollend', handleScrollEnd);
-        clearTimeout(timer);
+      const minDuration = 550;
+      const maxDuration = 800;
+      const duration = Math.min(Math.max(Math.abs(distance) / 3, minDuration), maxDuration);
+      let startTime: number | null = null;
+
+      // Imposta il cooldown iniziale basato sulla durata dell'animazione
+      lastScrollTime.current = Date.now() + duration;
+
+      const animation = (currentTime: number) => {
+        if (startTime === null) startTime = currentTime;
+        const timeElapsed = currentTime - startTime;
+        const progress = Math.min(timeElapsed / duration, 1);
+        const easedProgress = easeInOutCubic(progress);
+        window.scrollTo(0, startScroll + distance * easedProgress);
+
+        if (timeElapsed < duration) {
+          requestAnimationFrame(animation);
+        } else {
+          isScrollingRef.current = false;
+          setActiveSection(index);
+          // Aggiungi un cooldown aggiuntivo dopo il completamento
+          const cooldown = 650; // 600ms di blocco dopo l'animazione
+          lastScrollTime.current = Date.now() + cooldown;
+        }
       };
 
-      // Timeout di fallback per browser senza supporto scrollend
-      const timer = setTimeout(handleScrollEnd, 1000);
-      window.addEventListener('scrollend', handleScrollEnd);
+      requestAnimationFrame(animation);
     }
   };
 
   useEffect(() => {
     if (!isHomePage) return;
 
-    document.body.classList.add('disable-scroll');
-
-    const handleScroll = () => {
-      if (isScrollingRef.current) return;
-
-      const scrollPosition = window.scrollY;
-      let closestSectionIndex = 0;
-      let minDistance = Infinity;
-
-      sectionsRef.current.forEach((section, index) => {
-        if (!section) return;
-        const distance = Math.abs(section.offsetTop - scrollPosition);
-        if (distance < minDistance) {
-          minDistance = distance;
-          closestSectionIndex = index;
-        }
-      });
-
-      if (closestSectionIndex !== activeSection) {
-        setActiveSection(closestSectionIndex);
-      }
-    };
-
     const handleWheel = (e: WheelEvent) => {
       e.preventDefault();
-
-      // Tempo da aspettare prima di scrolling su un'altra sezione
       const now = Date.now();
-      if (now - lastScrollTime.current < 400) return;
+      // Blocca gli eventi durante l'animazione e il cooldown
+      if (now < lastScrollTime.current || Math.abs(e.deltaY) < 6) return;
 
-      // Ignora micro-scroll accidentali
-      if (Math.abs(e.deltaY) < 15) return;
-
-      lastScrollTime.current = now;
       const direction = e.deltaY > 0 ? 1 : -1;
       scrollToSection(activeSection + direction);
     };
 
-    const handleKeyDown = (e: KeyboardEvent) => {
-      if (e.key === "ArrowDown" || e.key === "PageDown") {
-        e.preventDefault();
-        scrollToSection(activeSection + 1);
-      } else if (e.key === "ArrowUp" || e.key === "PageUp") {
-        e.preventDefault();
-        scrollToSection(activeSection - 1);
-      }
-    };
-
-    const handleTouchStart = (e: TouchEvent) => {
-      touchStartY.current = e.touches[0].clientY;
-    };
-
-    const handleTouchEnd = (e: TouchEvent) => {
-      const touchEndY = e.changedTouches[0].clientY;
-      const deltaY = touchStartY.current - touchEndY;
-
-      if (Math.abs(deltaY) < 50) return;
-
-      const now = Date.now();
-      if (now - lastScrollTime.current < 1000) return;
-
-      lastScrollTime.current = now;
-      const direction = deltaY > 0 ? 1 : -1;
-      scrollToSection(activeSection + direction);
-    };
-
     window.addEventListener("wheel", handleWheel, { passive: false });
-    window.addEventListener("scroll", handleScroll, { passive: true });
-    window.addEventListener("keydown", handleKeyDown);
-    window.addEventListener("touchstart", handleTouchStart, { passive: true });
-    window.addEventListener("touchend", handleTouchEnd, { passive: false });
-
-    return () => {
-      window.removeEventListener("wheel", handleWheel);
-      window.removeEventListener("scroll", handleScroll);
-      window.removeEventListener("keydown", handleKeyDown);
-      window.removeEventListener("touchstart", handleTouchStart);
-      window.removeEventListener("touchend", handleTouchEnd);
-      document.body.classList.remove('disable-scroll');
-    };
+    return () => window.removeEventListener("wheel", handleWheel);
   }, [activeSection, isHomePage]);
 
   return { registerSection, scrollToSection, activeSection, isHomePage };
