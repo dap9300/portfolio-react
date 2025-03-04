@@ -25,7 +25,7 @@ export function Projects({ language, sectionIndex }: ProjectsProps) {
   return (
     <motion.section 
       ref={sectionRef}
-      id="projects" 
+      id="projects"
       className="min-h-screen flex items-center justify-center bg-muted/30 relative z-10 snap-start pt-20"
       variants={sectionVariants}
       initial="hidden"

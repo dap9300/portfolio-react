@@ -105,9 +105,9 @@
                 <GalleryHorizontalEnd className="w-5 h-5 text-primary" />
                 {project.detailedSections.socialMediaContent.title[language]}
               </h3>
-              <div className="grid grid-cols-1 md:grid-cols-4 gap-6">
+              <div className="grid grid-cols-1 md:grid-cols-5 gap-6">
                 {/* Left Column - Bullet Points */}
-                <div className="md:col-span-1 space-y-2">
+                <div className="md:col-span-2 space-y-2">
                   {project.detailedSections.socialMediaContent.metrics.map((metric, index) => (
                     <div key={index} className="flex items-start gap-2">
                       <div className="w-1.5 h-1.5 rounded-full bg-blue-500 mt-2 shrink-0" />

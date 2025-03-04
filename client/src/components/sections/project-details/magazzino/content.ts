@@ -117,19 +117,19 @@ const projectData: Project = {
       },
       metrics: [
         'Restyling completo del sito web dell\'associazione, con focus su usabilità e design moderno',
-        'Implementazione di un sistema di e-ticketing per la gestione e vendita online dei biglietti per gli eventi',
-        'Integrazione avanzata di Google Analytics e Search Console, con ottimizzazione strategica data-driven per il monitoraggio delle performance',
-        'Gestione attiva del sito web, con aggiornamento e caricamento costante di contenuti'
+        'Implementazione di un sistema di e-ticketing per vendita e gestione online dei biglietti degli eventi.',
+        'Integrazione di Google Analytics e Search Console, con ottimizzazione strategica data-driven per il monitoraggio e il miglioramento delle performance.',
+        'Gestione attiva del sito web, con aggiornamento costante dei contenuti'
       ]
     },
     socialMediaContent: {
       title: { en: 'Content Creation', it: 'Content Creation' },
       metrics: [
-        'Sviluppo e gestione di un piano editoriale strategico su base mensile',
-        'Ottimizzazione delle performance tramite A/B testing su grafiche e copy',
-        'Coordinamento con il reparto grafico per la definizione della brand identity',
-        'Produzione di contenuti video mirati alla promozione di eventi',
-        'Gestione di campagne pubblicitarie Meta in collaborazione con agenzie di comunicazione'
+        'Ideazione, sviluppo e gestione di un piano editoriale strategico su base mensile',
+        'Ottimizzazione delle performance dei post tramite A/B testing su grafiche e copy',
+        'Collaborazione con il team grafico per definire e consolidare la brand identity',
+        'Produzione di contenuti video strategici per l\'engagement e la promozione di eventi',
+        'Gestione e coordinamento delle campagne Ads su Meta in sinergia con un\'agenzia di comunicazione specializzata'
       ]
     }
   }

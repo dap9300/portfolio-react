@@ -20,7 +20,7 @@ export const ProjectHeader: FC<ProjectHeaderProps> = ({ project, language }) => 
 
   return (
     <motion.div 
-      className="h-[60vh] relative w-full mb-12 overflow-hidden"
+      className="h-[60vh] relative w-full mb-2 overflow-hidden"
       initial={{ opacity: 0 }}
       animate={{ opacity: 1 }}
       transition={{ duration: 0.3 }}

@@ -42,4 +42,28 @@
   .animate-slide-down {
     animation: slide-down 0.3s ease-out;
   }
+  html {
+    scrollbar-gutter: stable;
+  }
+
+  /* Per browser che non supportano scrollbar-gutter */
+  @supports not (scrollbar-gutter: stable) {
+    body {
+      overflow-y: scroll;
+    }
+  }
+
+  /* Stile scrollbar sottile */
+  ::-webkit-scrollbar {
+    width: 8px;
+  }
+
+  ::-webkit-scrollbar-track {
+    background: transparent;
+  }
+
+  ::-webkit-scrollbar-thumb {
+    background-color: rgba(0, 0, 0, 0.2);
+    border-radius: 4px;
+  }
 }
