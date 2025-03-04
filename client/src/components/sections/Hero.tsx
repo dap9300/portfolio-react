@@ -383,7 +383,7 @@ export function Hero({ language, onContactClick, sectionIndex }: HeroProps) {
               whileHover="hover"
             >
               <motion.img
-                src="/assets/2f.png"
+                src="/assets/2f.webp"
                 alt="Alessandro d'Apolito"
                 className="w-48 h-48 md:w-64 md:h-64 rounded-full object-cover border-4 border-background shadow-lg"
                 animate={{ opacity: 1 }}

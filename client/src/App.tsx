@@ -1,4 +1,4 @@
-import React, { Suspense } from "react";
+import React, { Suspense, useEffect, useState } from "react";
 import { Switch, Route, useLocation } from "wouter";
 import { QueryClientProvider } from "@tanstack/react-query";
 import { queryClient } from "./lib/queryClient";
@@ -9,6 +9,30 @@ import { ProjectDetails } from "@/components/sections/ProjectDetails";
 import { AnimatePresence, motion } from "framer-motion";
 import { Footer } from "@/components/shared/Footer";
 import { useScrollSections } from "./lib/useScrollSections";
+
+// Componente per il messaggio di blocco dispositivi mobili
+const MobileBlocker = () => {
+  return (
+    <div className="flex min-h-screen flex-col items-center justify-center p-6 text-center relative">
+      {/* Immagine di sfondo che copre l'intero schermo */}
+      <div 
+        className="absolute inset-0 z-0 bg-cover bg-center bg-no-repeat opacity-55" 
+        style={{ backgroundImage: 'url("/assets/workinprogress2.svg")' }}
+      />
+
+      {/* Contenuto in sovrapposizione all'immagine */}
+      <div className="relative z-10 max-w-md rounded-lg border border-gray-200 bg-white/90 p-8 shadow-lg backdrop-blur-sm">
+        <h1 className="mb-4 text-2xl font-bold text-gray-900">Coming Soon</h1>
+        <p className="mb-6 text-gray-700">
+          Al momento il sito è in fase di sviluppo e visualizzabile solo da desktop.
+        </p>
+        <div className="text-sm text-gray-600">
+          <p>Grazie per la comprensione!</p>
+        </div>
+      </div>
+    </div>
+  );
+};
 
 class ErrorBoundary extends React.Component {
   state = { hasError: false };
@@ -48,8 +72,6 @@ export const ScrollContext = React.createContext<{
 });
 
 function Router() {
-  // Temporarily commented out language state
-  // const [language, setLanguage] = useState<Language>("it");
   const [location] = useLocation();
   const isProjectRoute = location.startsWith("/project/");
   const scrollControls = useScrollSections();
@@ -87,6 +109,27 @@ function Router() {
 }
 
 export const App = () => {
+  const [isMobileOrTablet, setIsMobileOrTablet] = useState(false);
+
+  useEffect(() => {
+    const checkDevice = () => {
+      // Controllo per dispositivi mobili e tablet basato sulla larghezza dello schermo
+      const isMobileOrTabletDevice = window.innerWidth < 1024;
+      setIsMobileOrTablet(isMobileOrTabletDevice);
+    };
+
+    // Controlla al caricamento e ad ogni ridimensionamento
+    checkDevice();
+    window.addEventListener('resize', checkDevice);
+
+    return () => window.removeEventListener('resize', checkDevice);
+  }, []);
+
+  // Mostra il blocco per dispositivi mobili e tablet
+  if (isMobileOrTablet) {
+    return <MobileBlocker />;
+  }
+
   return (
     <ErrorBoundary>
       <QueryClientProvider client={queryClient}>
