@@ -52,11 +52,11 @@ const projectData: Project = {
   id: 3,
   title: {
     en: "Studi Fisioterapici Manunta - Website & SEO Optimization | Social Media",
-    it: "Studi Fisioterapici Manunta - Sito Web & Ottimizzazione SEO | Social Media"
+    it: "Studi Fisioterapici Manunta - Web Development & Social Media Content"
   },
   description: {
     en: "Management of digital marketing strategies for a physiotherapy clinic, focusing on Facebook, Instagram, and Google Ads campaigns to increase online bookings and local brand awareness.",
-    it: "Gestione delle strategie di marketing digitale per uno studio di fisioterapia, con focus su campagne Facebook, Instagram e Google Ads per aumentare le prenotazioni online e la brand awareness locale"
+    it: "Ho sviluppato e gestito la presenza digitale per uno studio di fisioterapia, con focus su web development in ottica SEO e creazione di contenuti per i social media."
   },
   image: '/assets/manunta-banner.webp',
   technologies: [
