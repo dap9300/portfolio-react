@@ -25,7 +25,7 @@ const BlurredText = ({ text, isLink = false }) => {
         }
       }}>
         <a
-          href="https://www.linkedin.com/in/yourprofile"
+          href="linkedin.com/in/alessandrodapolito"
           target="_blank"
           rel="noopener noreferrer"
           className={`cursor-pointer transition-all duration-300 ${isBlurred ? 'pointer-events-none filter blur-md select-none' : 'hover:underline'}`}
