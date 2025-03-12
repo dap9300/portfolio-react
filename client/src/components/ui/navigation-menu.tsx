@@ -1,42 +1,149 @@
 import * as React from "react"
 import * as NavigationMenuPrimitive from "@radix-ui/react-navigation-menu"
 import { cva } from "class-variance-authority"
-import { ChevronDown } from "lucide-react"
+import { ChevronDown, Menu } from "lucide-react"
 
 import { cn } from "@/lib/utils"
+import * as DropdownMenuPrimitive from "@radix-ui/react-dropdown-menu"
 
+// Parti originali del NavigationMenu
 const NavigationMenu = React.forwardRef<
   React.ElementRef<typeof NavigationMenuPrimitive.Root>,
-  React.ComponentPropsWithoutRef<typeof NavigationMenuPrimitive.Root>
->(({ className, children, ...props }, ref) => (
-  <NavigationMenuPrimitive.Root
-    ref={ref}
-    className={cn(
-      "relative z-10 flex max-w-max flex-1 items-center justify-center",
-      className
-    )}
-    {...props}
-  >
-    {children}
-    <NavigationMenuViewport />
-  </NavigationMenuPrimitive.Root>
-))
-NavigationMenu.displayName = NavigationMenuPrimitive.Root.displayName
+  React.ComponentPropsWithoutRef<typeof NavigationMenuPrimitive.Root> & {
+    mobileBreakpoint?: string;
+  }
+>(({ className, children, mobileBreakpoint = "md", ...props }, ref) => {
+  const [isMobile, setIsMobile] = React.useState(false);
 
+  // Funzione per verificare se la visualizzazione è mobile
+  React.useEffect(() => {
+    const checkIfMobile = () => {
+      // Converti il breakpoint in pixel (valori comuni)
+      const breakpoints = {
+        sm: 640,
+        md: 768,
+        lg: 1024,
+        xl: 1280,
+        "2xl": 1536
+      };
+
+      const pixelBreakpoint = breakpoints[mobileBreakpoint as keyof typeof breakpoints] || 768;
+      setIsMobile(window.innerWidth < pixelBreakpoint);
+    };
+
+    // Verifica all'inizio
+    checkIfMobile();
+
+    // Aggiungi listener per il ridimensionamento
+    window.addEventListener("resize", checkIfMobile);
+
+    // Cleanup
+    return () => {
+      window.removeEventListener("resize", checkIfMobile);
+    };
+  }, [mobileBreakpoint]);
+
+  // Se è mobile, visualizza il menu hamburger
+  if (isMobile) {
+    return (
+      <MobileNavigationMenu 
+        ref={ref as React.Ref<HTMLDivElement>}
+        className={className}
+        {...props}
+      >
+        {children}
+      </MobileNavigationMenu>
+    );
+  }
+
+  // Altrimenti, visualizza il normale NavigationMenu
+  return (
+    <NavigationMenuPrimitive.Root
+      ref={ref}
+      className={cn(
+        "relative z-10 flex max-w-max flex-1 items-center justify-center",
+        className
+      )}
+      {...props}
+    >
+      {children}
+      <NavigationMenuViewport />
+    </NavigationMenuPrimitive.Root>
+  );
+})
+NavigationMenu.displayName = "NavigationMenu";
+
+// Componente per il menu mobile (hamburger)
+const MobileNavigationMenu = React.forwardRef<
+  HTMLDivElement,
+  React.HTMLAttributes<HTMLDivElement> & {
+    children: React.ReactNode;
+  }
+>(({ className, children, ...props }, ref) => {
+  const [open, setOpen] = React.useState(false);
+
+  return (
+    <div 
+      ref={ref} 
+      className={cn("relative z-10", className)}
+      {...props}
+    >
+      {/* Pulsante hamburger */}
+      <button 
+        className="p-2 text-foreground hover:bg-accent rounded-md"
+        onClick={() => setOpen(!open)}
+        aria-label="Toggle Menu"
+      >
+        <Menu className="h-5 w-5" />
+      </button>
+
+      {/* Menu a discesa */}
+      {open && (
+        <div className="absolute top-full left-0 right-0 mt-2 p-2 bg-background border rounded-md shadow-md">
+          <div className="flex flex-col space-y-2">
+            {children}
+          </div>
+        </div>
+      )}
+    </div>
+  );
+});
+MobileNavigationMenu.displayName = "MobileNavigationMenu";
+
+// Adattiamo il NavigationMenuList per supportare sia desktop che mobile
 const NavigationMenuList = React.forwardRef<
   React.ElementRef<typeof NavigationMenuPrimitive.List>,
   React.ComponentPropsWithoutRef<typeof NavigationMenuPrimitive.List>
->(({ className, ...props }, ref) => (
-  <NavigationMenuPrimitive.List
-    ref={ref}
-    className={cn(
-      "group flex flex-1 list-none items-center justify-center space-x-1",
-      className
-    )}
-    {...props}
-  />
-))
-NavigationMenuList.displayName = NavigationMenuPrimitive.List.displayName
+>(({ className, ...props }, ref) => {
+  // Il NavigationMenuPrimitive.Root genitore determinerà se siamo in modalità mobile
+  const isMobile = props.children && React.isValidElement(props.children) && 
+                  props.children.type === MobileNavigationMenu;
+
+  if (isMobile) {
+    return (
+      <div
+        ref={ref as React.Ref<HTMLDivElement>}
+        className={cn(
+          "flex flex-col gap-2",
+          className
+        )}
+        {...props}
+      />
+    );
+  }
+
+  return (
+    <NavigationMenuPrimitive.List
+      ref={ref}
+      className={cn(
+        "group flex flex-1 list-none items-center justify-center space-x-1",
+        className
+      )}
+      {...props}
+    />
+  );
+})
+NavigationMenuList.displayName = "NavigationMenuList";
 
 const NavigationMenuItem = NavigationMenuPrimitive.Item
 
@@ -115,6 +222,25 @@ const NavigationMenuIndicator = React.forwardRef<
 NavigationMenuIndicator.displayName =
   NavigationMenuPrimitive.Indicator.displayName
 
+// Adattiamo un collegamento mobile per i sottomenu
+const MobileNavLink = React.forwardRef<
+  HTMLAnchorElement,
+  React.AnchorHTMLAttributes<HTMLAnchorElement> & {
+    active?: boolean;
+  }
+>(({ className, active, ...props }, ref) => (
+  <a
+    ref={ref}
+    className={cn(
+      "block px-4 py-2 text-sm rounded-md transition-colors",
+      active ? "bg-accent text-accent-foreground" : "hover:bg-accent hover:text-accent-foreground",
+      className
+    )}
+    {...props}
+  />
+))
+MobileNavLink.displayName = "MobileNavLink"
+
 export {
   navigationMenuTriggerStyle,
   NavigationMenu,
@@ -125,4 +251,5 @@ export {
   NavigationMenuLink,
   NavigationMenuIndicator,
   NavigationMenuViewport,
+  MobileNavLink
 }

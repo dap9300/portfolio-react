@@ -3,7 +3,7 @@ import { motion, animate } from "framer-motion";
 import { Language } from "@/types";
 import { Project } from "@/types/projects";
 import { Card } from "@/components/ui/card";
-import { HandCoins, PiggyBank, ChartNoAxesGantt } from "lucide-react";
+import { HandCoins, PiggyBank, ChartNoAxesGantt, ExternalLink } from "lucide-react";
 import { AccordionContent, AccordionItem, AccordionTrigger } from "@/components/ui/accordion";
 import { projectDetailsTranslations as t } from "./content";
 
@@ -76,7 +76,7 @@ export const AccordionCrowdfunding: FC<AccordionCrowdfundingProps> = ({ project,
                 FIUMEDENTRO: Una campagna di crowdfunding per rigenerare lo spazio pubblico dei Murazzi
               </h3>
               <p className="text-muted-foreground mt-2 leading-relaxed">
-                Ho coordinato e gestito la campagna di crowdfunding <a href="https://www.produzionidalbasso.com/project/fiumedentro-lo-spazio-pubblico-che-pensa-con-il-fiume/" target="_blank" rel="noopener noreferrer" className="text-blue-500 hover:text-blue-600 transition-colors">FIUMEDENTRO</a>, un'iniziativa promossa 
+                Ho coordinato e gestito la campagna di crowdfunding <a href="https://www.produzionidalbasso.com/project/fiumedentro-lo-spazio-pubblico-che-pensa-con-il-fiume/" target="_blank" rel="noopener noreferrer" className="text-blue-500 hover:text-blue-600 transition-colors inline-flex items-center">FIUMEDENTRO<ExternalLink className="w-3.5 h-3.5 ml-1" /></a>, un'iniziativa promossa 
                 da Magazzino sul Po e Terzo Paesaggio, volta a raccogliere fondi per trasformare gli 
                 spazi abbandonati dei Murazzi del Po in un luogo pubblico inclusivo e multispecie. 
                 Il progetto ha integrato rigenerazione urbana, sostenibilità e cultura partecipativa.
@@ -86,13 +86,13 @@ export const AccordionCrowdfunding: FC<AccordionCrowdfundingProps> = ({ project,
             <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
               {/* Prima Card - Fondi Raccolti */}
               <div className="bg-gradient-to-br from-accent/50 to-accent/30 p-8 rounded-lg shadow-md">
-                <div className="flex items-center justify-between mb-4">
-                  <div className="flex items-center gap-2">
-                    <PiggyBank className="w-5 h-5 text-primary" />
-                    <span className="text-lg font-medium">Fondi Raccolti</span>
+                <div className="flex flex-col mb-4">
+                  <div className="flex items-center gap-2 flex-nowrap mb-2">
+                    <PiggyBank className="w-5 h-5 shrink-0 text-primary" />
+                    <span className="text-lg font-medium whitespace-nowrap">Fondi Raccolti</span>
                   </div>
                   <motion.span 
-                    className="text-4xl font-bold text-green-600"
+                    className="text-3xl font-bold text-green-600"
                     initial={{ opacity: 0 }}
                     animate={{ opacity: 1 }}
                     transition={{ duration: 0.5 }}
@@ -110,13 +110,13 @@ export const AccordionCrowdfunding: FC<AccordionCrowdfundingProps> = ({ project,
                 </div>
                 <div className="bg-background/50 p-4 rounded-lg">
                   <motion.p 
-                    className="text-4xl font-bold text-blue-500"
+                    className="text-3xl font-bold text-blue-500"
                     initial={{ opacity: 0 }}
                     animate={{ opacity: 1 }}
                     transition={{ duration: 0.5 }}
                   >
                     {supportersCount}
-                    <span className="text-2xl">+</span>
+                    <span className="text-xl">+</span>
                   </motion.p>
                   <p className="text-sm text-muted-foreground mt-1">Sostenitori Individuali</p>
                 </div>

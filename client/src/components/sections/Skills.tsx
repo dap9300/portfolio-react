@@ -29,10 +29,10 @@ const leftSkillCategories: SkillCategory[] = [
         "**SEO & Optimization**: Technical SEO , Screaming Frog, Semrush, Rank Math"
       ],
       it: [
-        "Performance Marketing (Meta Ads | Google Ads | Amazon Ads)",
-        "Web & Marketing Analytics (Meta Business Suite, Google Analytics & Google Looker Studio, Google Search Console, Google Tag Manager)",
-        "Email Marketing (Mailchimp & Altri ESP)",
-        "SEO & Optimization (Technical SEO, Screaming Frog & Semrush, Rank Math & Yoast SEO)"
+        "**Performance Marketing**: Meta Ads | Google Ads | Amazon Ads",
+        "**Web & Marketing Analytics**: Meta Business Suite, Google Analytics & Google Looker Studio, Google Search Console, Google Tag Manager",
+        "**Email Marketing**: Mailchimp & Altri ESP",
+        "**SEO & Optimization**: Technical SEO, Screaming Frog & Semrush, Rank Math & Yoast SEO"
       ]
     }
   },
@@ -205,6 +205,7 @@ const skillIcons: { [key: string]: any } = {
 export function Skills({ language, sectionIndex }: SkillsProps) {
   const { registerSection } = useContext(ScrollContext);
   const sectionRef = useRef<HTMLElement>(null);
+  const contentRef = useRef<HTMLDivElement>(null);
 
   useEffect(() => {
     if (sectionRef.current) {
@@ -218,11 +219,41 @@ export function Skills({ language, sectionIndex }: SkillsProps) {
   // This will store only the currently active accordion key
   const [activeCategory, setActiveCategory] = useState<string | null>(null);
 
+  // Aggiungi uno stato per tenere traccia dell'altezza del contenuto
+  const [contentHeight, setContentHeight] = useState<number>(0);
+
   const toggleCategory = (categoryKey: string) => {
     // If the category is already active, close it
     // Otherwise, open the new category and close the previous one
     setActiveCategory(prev => prev === categoryKey ? null : categoryKey);
   };
+
+  // Usa useEffect per aggiornare l'altezza dinamica del contenuto
+  useEffect(() => {
+    if (contentRef.current) {
+      const updateHeight = () => {
+        const newHeight = contentRef.current?.scrollHeight || 0;
+        setContentHeight(newHeight);
+      };
+
+      updateHeight();
+
+      // Aggiungi un listener per window resize
+      window.addEventListener('resize', updateHeight);
+
+      // Aggiungi un listener per gli elementi che cambiano altezza
+      const resizeObserver = new ResizeObserver(updateHeight);
+      resizeObserver.observe(contentRef.current);
+
+      return () => {
+        window.removeEventListener('resize', updateHeight);
+        if (contentRef.current) {
+          resizeObserver.unobserve(contentRef.current);
+        }
+        resizeObserver.disconnect();
+      };
+    }
+  }, [activeCategory]);
 
   const renderCategory = (category: SkillCategory, side: 'left' | 'right', index: number) => {
     const categoryKey = `${side}-${index}`;
@@ -245,7 +276,7 @@ export function Skills({ language, sectionIndex }: SkillsProps) {
           </div>
         </button>
 
-        <div className={`overflow-hidden transition-all duration-200 ${isExpanded ? 'opacity-100' : 'opacity-0 h-0'}`}>
+        <div className={`overflow-hidden transition-all duration-300 ${isExpanded ? 'max-h-[500px]' : 'max-h-0'}`}>
           <CardContent className="p-4 pt-0">
             <ul className="space-y-4">
               {category.skills[language].map((skill, skillIndex) => {
@@ -320,27 +351,29 @@ export function Skills({ language, sectionIndex }: SkillsProps) {
     <section 
       ref={sectionRef}
       id="skills" 
-      className="relative min-h-screen snap-start"
+      className="relative min-h-screen snap-start py-10 overflow-hidden md:pb-10"
     >
       <div className="absolute inset-0 bg-gradient-to-b from-background to-muted/30 -z-10" />
-      <div className="absolute inset-0 flex items-center">
-        <div className="w-full px-4 py-16">
-          <div className="container mx-auto max-w-5xl">
-            <SectionTitle title={t.title} icon="https://cdn.lordicon.com/lecprnjb.json" className="mb-8" />
-            <div className="grid md:grid-cols-2 gap-6">
-              <div className="space-y-4">
-                {leftSkillCategories.map((category, index) => 
-                  renderCategory(category, 'left', index)
-                )}
-              </div>
-              <div className="space-y-4">
-                {rightSkillCategories.map((category, index) => 
-                  renderCategory(category, 'right', index)
-                )}
-              </div>
-            </div>
+
+      {/* Struttura ottimizzata con meno spazio in eccesso solo per mobile */}
+      <div className="container mx-auto max-w-5xl px-4 pt-8">
+        <SectionTitle title={t.title} icon="https://cdn.lordicon.com/lecprnjb.json" className="mb-6" />
+
+        <div ref={contentRef} className="grid md:grid-cols-2 gap-6">
+          <div className="space-y-4">
+            {leftSkillCategories.map((category, index) => 
+              renderCategory(category, 'left', index)
+            )}
+          </div>
+          <div className="space-y-4">
+            {rightSkillCategories.map((category, index) => 
+              renderCategory(category, 'right', index)
+            )}
           </div>
         </div>
+
+        {/* Rimosso spazio extra sul mobile */}
+        <div className="hidden md:block h-12"></div>
       </div>
     </section>
   );

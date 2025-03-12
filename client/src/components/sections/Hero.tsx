@@ -86,7 +86,7 @@ const RoleSelector = ({ roles, language, className = "" }) => {
   }, [controls, roles.length]);
 
   return (
-    <div className="h-8 flex items-center justify-center overflow-hidden">
+          <div className="h-5 md:h-8 flex items-center justify-center overflow-visible relative z-20">
       <motion.span
         className={`text-xl md:text-2xl font-medium inline-block ${className}`}
         animate={controls}
@@ -204,12 +204,12 @@ export function Hero({ language, onContactClick, sectionIndex }: HeroProps) {
 
   return (
     <motion.section
-      ref={sectionRef} // Aggiungi il ref per il sistema di scrolling
+      ref={sectionRef}
       id="hero"
       variants={staggerContainer}
       initial="hidden"
       animate="visible"
-      className="relative min-h-screen flex items-center justify-center px-4 overflow-hidden snap-start" // Aggiungi snap-start
+      className="relative min-h-screen flex items-center justify-center px-4 pt-12 md:pt-0 overflow-hidden snap-start"
     >
       {/* Minimal background */}
       <MinimalDotsBackground />
@@ -223,18 +223,18 @@ export function Hero({ language, onContactClick, sectionIndex }: HeroProps) {
         >
           <AnimatedText 
             text="Ciao, sono" 
-            className="text-3xl md:text-4xl font-light mb-2" 
+            className="text-3xl md:text-4xl font-light mb-0 md:mb-2" 
           />
           <AnimatedText 
             text="Alessandro d'Apolito" 
-            className="text-4xl md:text-6xl font-bold mb-6 text-primary" 
+            className="text-4xl md:text-6xl font-bold mb-2 md:mb-6 text-primary" 
           />
 
           <motion.div 
             variants={fadeInUp}
             className="mb-8"
           >
-            <div className="flex items-center mb-4">
+            <div className="flex items-center mb-3 md:mb-4 py-0 md:py-2 relative z-20">
               <motion.div 
                 className="w-8 h-8 mr-3 flex items-center justify-center text-amber-600"
               >
@@ -299,7 +299,7 @@ export function Hero({ language, onContactClick, sectionIndex }: HeroProps) {
           </motion.div>
 
           <motion.div
-            className="flex flex-wrap gap-4 mt-8"
+            className="flex flex-row gap-3 mt-4 md:mt-8 pb-4 md:pb-0"
             initial={{ opacity: 0 }}
             animate={{ 
               opacity: 1,
@@ -307,6 +307,7 @@ export function Hero({ language, onContactClick, sectionIndex }: HeroProps) {
             }}
           >
             <motion.div
+              className="flex-1 md:flex-initial"
               initial={{ scale: 1, boxShadow: "0px 0px 0px rgba(0,0,0,0)" }}
               whileHover={{ 
                 scale: 1.03, 
@@ -329,11 +330,11 @@ export function Hero({ language, onContactClick, sectionIndex }: HeroProps) {
               <Button
                 size="lg"
                 onClick={onContactClick}
-                className="text-lg font-medium px-8 py-6 bg-amber-600 hover:bg-amber-700 text-white"
+                className="text-base md:text-lg font-medium px-3 md:px-6 py-3 md:py-5 bg-amber-600 hover:bg-amber-700 text-white w-full md:w-auto"
               >
                 {t.cta || "Contattami"}
                 <motion.span 
-                  className="ml-2"
+                  className="ml-1 md:ml-2"
                   initial={{ x: 0 }}
                   animate={{ x: [0, 5, 0] }}
                   transition={{ 
@@ -349,6 +350,7 @@ export function Hero({ language, onContactClick, sectionIndex }: HeroProps) {
             </motion.div>
 
             <motion.div
+              className="flex-1 md:flex-initial"
               variants={buttonVariants}
               whileHover="hover"
               whileTap="tap"
@@ -357,7 +359,7 @@ export function Hero({ language, onContactClick, sectionIndex }: HeroProps) {
               <Button
                 size="lg"
                 variant="outline"
-                className="text-lg font-medium px-8 py-6 border-amber-600 text-amber-600 hover:bg-amber-600/10"
+                className="text-base md:text-lg font-medium px-3 md:px-6 py-3 md:py-5 border-amber-600 text-amber-600 hover:bg-amber-600/10 w-full md:w-auto"
                 onClick={() => {
                   // Usa il sistema di scroll per andare alla sezione progetti
                   const projectsIndex = 2; // Assumi che progetti sia la sezione con indice 2
@@ -372,7 +374,7 @@ export function Hero({ language, onContactClick, sectionIndex }: HeroProps) {
 
         {/* Right column: Profile image - very minimal */}
         <motion.div 
-          className="order-1 md:order-2 flex justify-center items-center relative"
+          className="order-1 md:order-2 flex justify-center items-center relative pt-6 md:pt-0" // Ridotto padding-top per mobile
           variants={fadeInUp}
         >
           <div className="relative">
@@ -383,7 +385,7 @@ export function Hero({ language, onContactClick, sectionIndex }: HeroProps) {
               whileHover="hover"
             >
               <motion.img
-                src="/assets/2f.webp"
+                src="/assets/2p.png"
                 alt="Alessandro d'Apolito"
                 className="w-48 h-48 md:w-64 md:h-64 rounded-full object-cover border-4 border-background shadow-lg"
                 animate={{ opacity: 1 }}

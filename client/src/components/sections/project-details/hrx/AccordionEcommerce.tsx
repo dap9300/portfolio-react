@@ -2,7 +2,7 @@ import { FC, useState, useRef, useEffect } from "react";
 import { Language } from "@/types";
 import { Project } from "@/types/projects";
 import { Card } from "@/components/ui/card";
-import { ShoppingCart, Store, Search, X } from "lucide-react";
+import { ShoppingCart, Store, Search, X, ChevronLeft, ChevronRight } from "lucide-react";
 import { AccordionContent, AccordionItem, AccordionTrigger } from "@/components/ui/accordion";
 import { projectDetailsTranslations as t } from "./content";
 import {
@@ -149,20 +149,20 @@ export const AccordionEcommerce: FC<AccordionEcommerceProps> = ({ project, langu
     return (
       <div 
         ref={el => mediaRefs.current[index] = el}
-        className="relative cursor-zoom-in h-full"
+        className="relative cursor-zoom-in h-full w-full"
         onMouseEnter={() => setHoverIndex(index)}
         onMouseLeave={() => setHoverIndex(null)}
       >
         <img
           src={media.src}
           alt={media.title}
-          className="w-full h-full object-cover rounded-lg"
-          style={{ aspectRatio: "16/9" }}
+          className="w-full h-full object-contain md:object-cover rounded-lg"
+          style={{ objectPosition: "center" }}
           loading="lazy"
           onLoad={() => {
             setLoadedImages(prev => new Set([...prev, media.src]));
           }}
-          width="800" // Dimensioni esplicite per aiutare il browser
+          width="800"
           height="450"
         />
 
@@ -213,8 +213,8 @@ export const AccordionEcommerce: FC<AccordionEcommerceProps> = ({ project, langu
         </div>
       </AccordionTrigger>
       <AccordionContent className="px-4">
-        <Card className="p-6 mt-4">
-          <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
+        <Card className="p-4 md:p-6 mt-4">
+          <div className="grid grid-cols-1 md:grid-cols-2 gap-6 md:gap-8">
             {/* Left Column - Title and Bullet Points */}
             <div className="space-y-4">
               <h3 className="font-semibold text-lg">
@@ -223,22 +223,22 @@ export const AccordionEcommerce: FC<AccordionEcommerceProps> = ({ project, langu
                   <span>Ottimizzazione E-commerce</span>
                 </div>
               </h3>
-              <ul className="space-y-2 text-muted-foreground">
+              <ul className="space-y-3 text-muted-foreground">
                 {bulletPoints.map((point, index) => (
                   <li key={index} className="flex items-start gap-2">
-                    <div className="w-1.5 h-1.5 rounded-full bg-blue-500 mt-2" />
-                    {point}
+                    <div className="min-w-1.5 h-1.5 rounded-full bg-blue-500 mt-2 flex-shrink-0" />
+                    <span className="text-sm md:text-base">{point}</span>
                   </li>
                 ))}
               </ul>
             </div>
 
             {/* Right Column - Carousel with single image */}
-            <div className="h-full min-h-[300px]" ref={carouselRef}>
+            <div className="h-72 md:h-80 lg:h-96 relative" ref={carouselRef}>
               <Carousel className="w-full h-full">
                 <CarouselContent className="h-full">
                   {mediaDetails.map((media, index) => (
-                    <CarouselItem key={index} className="h-full">
+                    <CarouselItem key={index} className="h-full p-0">
                       <motion.div
                         layoutId={`media-${media.src}`}
                         onClick={() => handleMediaClick(media)}
@@ -281,7 +281,7 @@ export const AccordionEcommerce: FC<AccordionEcommerceProps> = ({ project, langu
               onClick={handleClose}
             >
               <div 
-                className="flex flex-col items-center gap-4"
+                className="flex flex-col items-center gap-4 px-4 w-full"
                 onClick={e => e.stopPropagation()}
               >
                 <div 
@@ -307,16 +307,18 @@ export const AccordionEcommerce: FC<AccordionEcommerceProps> = ({ project, langu
                     </div>
                   )}
                 </div>
-                <div className="text-center text-white">
-                  <h3 className="text-2xl font-semibold mb-1">
-                    {selectedMedia.title}
-                  </h3>
-                  {selectedMedia.subtitle && (
-                    <p className="text-lg text-white/70">
-                      {selectedMedia.subtitle}
-                    </p>
-                  )}
-                </div>
+                <div 
+                className="text-center text-white"
+              >
+                <h3 className="text-2xl font-semibold mb-1 px-6">
+                  {selectedMedia.title}
+                </h3>
+                {selectedMedia.subtitle && (
+                  <p className="text-lg text-white/70 px-6">
+                    {selectedMedia.subtitle}
+                  </p>
+                )}
+              </div>
               </div>
 
               {/* Indicatore di zoom nella visualizzazione a schermo intero */}

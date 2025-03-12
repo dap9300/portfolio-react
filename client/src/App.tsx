@@ -11,16 +11,17 @@ import { Footer } from "@/components/shared/Footer";
 import { useScrollSections } from "./lib/useScrollSections";
 
 // Componente per il messaggio di blocco dispositivi mobili
+/*
 const MobileBlocker = () => {
   return (
     <div className="flex min-h-screen flex-col items-center justify-center p-6 text-center relative">
-      {/* Immagine di sfondo che copre l'intero schermo */}
+      // Immagine di sfondo che copre l'intero schermo
       <div 
         className="absolute inset-0 z-0 bg-cover bg-center bg-no-repeat opacity-55" 
         style={{ backgroundImage: 'url("/assets/workinprogress2.svg")' }}
       />
 
-      {/* Contenuto in sovrapposizione all'immagine */}
+      // Contenuto in sovrapposizione all'immagine
       <div className="relative z-10 max-w-md rounded-lg border border-gray-200 bg-white/90 p-8 shadow-lg backdrop-blur-sm">
         <h1 className="mb-4 text-2xl font-bold text-gray-900">Coming Soon</h1>
         <p className="mb-6 text-gray-700">
@@ -33,6 +34,7 @@ const MobileBlocker = () => {
     </div>
   );
 };
+*/
 
 class ErrorBoundary extends React.Component {
   state = { hasError: false };
@@ -109,8 +111,10 @@ function Router() {
 }
 
 export const App = () => {
+  // Mantengo lo stato ma commento la funzionalità di blocco mobile
   const [isMobileOrTablet, setIsMobileOrTablet] = useState(false);
 
+  /*
   useEffect(() => {
     const checkDevice = () => {
       // Controllo per dispositivi mobili e tablet basato sulla larghezza dello schermo
@@ -129,6 +133,27 @@ export const App = () => {
   if (isMobileOrTablet) {
     return <MobileBlocker />;
   }
+  */
+
+  // Aggiungi un effetto per impostare lo stile direttamente sul body
+  useEffect(() => {
+    // Salva gli stili originali
+    const originalOverflowX = document.body.style.overflowX;
+    const originalPosition = document.body.style.position;
+    const originalWidth = document.body.style.width;
+
+    // Imposta gli stili per prevenire lo scorrimento orizzontale
+    document.body.style.overflowX = 'hidden';
+    document.body.style.position = 'relative';
+    document.body.style.width = '100%';
+
+    // Ripristina gli stili originali al termine
+    return () => {
+      document.body.style.overflowX = originalOverflowX;
+      document.body.style.position = originalPosition;
+      document.body.style.width = originalWidth;
+    };
+  }, []);
 
   return (
     <ErrorBoundary>

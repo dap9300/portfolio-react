@@ -162,22 +162,35 @@ export const ProjectContent: FC<ProjectContentProps> = ({ project, language }) =
                 {language === 'it' ? 'Strumenti e Piattaforme' : 'Tools & Platforms'}
               </h2>
             </div>
+            {/* Soluzione ibrida che mantiene layout desktop e risolve troncamento su mobile */}
             <Card className="p-6">
-              {/* <p className="text-muted-foreground mb-6">
-                {language === 'it' 
-                  ? '/* Tecnologie e piattaforme utilizzate in questo progetto ' 
-                  : 'Technologies and platforms used in this project'
-                }
-              </p> */}
-              <div className="grid grid-cols-2 md:grid-cols-3 gap-3">
-                {project.technologies.map((tool, index) => (
+              {/* Visualizzazione desktop - mantiene griglia a 3 colonne con altezza standard */}
+              <div className="hidden md:grid md:grid-cols-3 gap-3">
+                {project.technologies.map((tool) => (
                   <div
-                    key={tool.name}
-                    className="group relative border border-gray-200 transition-shadow shadow-sm hover:shadow-md rounded-xl overflow-hidden inline-flex"
+                    key={`desktop-${tool.name}`}
+                    className="group relative border border-gray-200 transition-shadow shadow-sm hover:shadow-md rounded-xl overflow-hidden h-12"
                   >
-                    <div className="px-4 py-3 flex items-center gap-2 whitespace-nowrap">
-                      {tool.Icon && <tool.Icon className="w-4 h-4" />}
-                      <span className="font-medium relative z-10">
+                    <div className="px-4 h-full flex items-center gap-2">
+                      {tool.Icon && <tool.Icon className="w-4 h-4 flex-shrink-0" />}
+                      <span className="font-medium whitespace-nowrap">
+                        {tool.name}
+                      </span>
+                    </div>
+                  </div>
+                ))}
+              </div>
+
+              {/* Visualizzazione mobile - 2 colonne con adattamento */}
+              <div className="md:hidden grid grid-cols-2 gap-3">
+                {project.technologies.map((tool) => (
+                  <div
+                    key={`mobile-${tool.name}`}
+                    className="group relative border border-gray-200 transition-shadow shadow-sm hover:shadow-md rounded-xl overflow-hidden"
+                  >
+                    <div className="px-2 py-3 flex flex-col items-center text-center gap-1">
+                      {tool.Icon && <tool.Icon className="w-5 h-5 mb-1 text-primary" />}
+                      <span className="font-medium text-xs leading-tight">
                         {tool.name}
                       </span>
                     </div>

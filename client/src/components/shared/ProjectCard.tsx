@@ -1,10 +1,10 @@
 import { Card, CardContent, CardHeader } from "@/components/ui/card";
 import { Button } from "@/components/ui/button";
 import { Project, Language } from "@/types";
-import { ExternalLink, Clock } from "lucide-react";
+import { ExternalLink, Clock, Globe } from "lucide-react";
 import { useLocation } from "wouter";
 import { motion } from "framer-motion";
-import { isComingSoon } from "@/lib/projectsManager";
+import { isComingSoon, hasExternalWebsite, getExternalWebsiteUrl } from "@/lib/projectsManager";
 
 interface ProjectCardProps {
   project: Project;
@@ -14,8 +14,19 @@ interface ProjectCardProps {
 export function ProjectCard({ project, language }: ProjectCardProps) {
   const [, setLocation] = useLocation();
   const comingSoon = isComingSoon(project.id.toString());
+  const hasExternal = hasExternalWebsite(project.id.toString());
 
   const handleProjectClick = () => {
+    // Se è un progetto coming soon con sito esterno (come Manunta), apri il sito
+    if (comingSoon && hasExternal) {
+      const externalUrl = getExternalWebsiteUrl(project.id.toString());
+      if (externalUrl) {
+        window.open(externalUrl, '_blank');
+      }
+      return;
+    }
+
+    // Per altri progetti coming soon, non fare nulla
     if (comingSoon) return;
 
     if (project.link) {
@@ -46,10 +57,10 @@ export function ProjectCard({ project, language }: ProjectCardProps) {
             <img
               src={project.image}
               alt={project.title[language]}
-              className={`w-full h-48 object-cover rounded-t-lg ${comingSoon ? 'blur-sm' : ''}`}
+              className={`w-full h-48 object-cover rounded-t-lg ${comingSoon && !hasExternal ? 'blur-sm' : ''}`}
             />
-            {/* Overlay "Coming Soon" se necessario */}
-            {comingSoon && (
+            {/* Overlay "Coming Soon" solo per progetti coming soon che non hanno sito esterno */}
+            {comingSoon && !hasExternal && (
               <div className="absolute inset-0 flex items-center justify-center bg-black/50 z-10">
                 <div className="bg-black/80 px-4 py-2 rounded-lg flex items-center gap-2">
                   <Clock className="w-4 h-4 text-white" />
@@ -63,7 +74,7 @@ export function ProjectCard({ project, language }: ProjectCardProps) {
           <h3 className="text-xl font-semibold mb-2 text-blue-900 dark:text-gray-100">
             {project.title[language]}
           </h3>
-          <p className={`text-gray-600 dark:text-gray-300 mb-4 flex-grow ${comingSoon ? 'select-none' : ''}`}>
+          <p className={`text-gray-600 dark:text-gray-300 mb-4 flex-grow ${comingSoon && !hasExternal ? 'select-none' : ''}`}>
             {project.description[language].split('\n')[0]}
           </p>
           <Button
@@ -73,16 +84,19 @@ export function ProjectCard({ project, language }: ProjectCardProps) {
               text-gray-900 dark:text-gray-100
               transition-colors duration-200
               flex items-center justify-center gap-2
-              ${comingSoon ? 'opacity-50 cursor-not-allowed' : ''}`}
+              ${comingSoon && !hasExternal ? 'opacity-50 cursor-not-allowed' : ''}`}
             onClick={handleProjectClick}
-            disabled={comingSoon}
+            disabled={comingSoon && !hasExternal}
           >
             {comingSoon 
-              ? (language === 'en' ? 'Coming Soon' : 'In Arrivo') 
+              ? (hasExternal
+                  ? (language === 'en' ? 'Visit Website' : 'Vai al Sito') 
+                  : (language === 'en' ? 'Coming Soon' : 'In Arrivo'))
               : (language === 'en' ? 'View Project' : 'Vai al Progetto')
             }
             {!comingSoon && <ExternalLink className="w-4 h-4" />}
-            {comingSoon && <Clock className="w-4 h-4" />}
+            {comingSoon && !hasExternal && <Clock className="w-4 h-4" />}
+            {comingSoon && hasExternal && <Globe className="w-4 h-4" />}
           </Button>
         </CardContent>
       </Card>

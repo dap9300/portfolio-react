@@ -30,13 +30,16 @@ const MetricCard: FC<MetricCardProps> = ({
   iconBgColor,
   valueColor 
 }) => (
-  <Card className={`p-6 flex-1 ${bgColor}`}>
+  <Card className={`p-6 ${bgColor}`}>
     <div className="flex flex-col gap-4">
-      <div className="flex items-center justify-between">
-        <div className={`p-3 rounded-full ${iconBgColor}`}>
+      {/* Row for icon and change percentage - con layout migliorato */}
+      <div className="grid grid-cols-2">
+        <div className={`p-3 rounded-full ${iconBgColor} w-fit`}>
           {icon}
         </div>
-        <div className="text-sm font-medium text-green-600">{change}</div>
+        <div className="text-sm font-medium text-green-600 text-right">
+          {change}
+        </div>
       </div>
       <div className="space-y-1">
         <div className={`text-2xl font-semibold ${valueColor}`}>{value}</div>
@@ -91,9 +94,12 @@ export const AccordionPianificazioneContenuti: FC<AccordionPianificazioneContenu
         </div>
       </AccordionTrigger>
       <AccordionContent className="px-4">
-        <div className="flex gap-4 mb-6">
+        {/* Grid per metrics su mobile (2 colonne) e flex normale su desktop */}
+        <div className="grid grid-cols-2 sm:grid-cols-3 gap-4 mb-6">
           {metrics.map((metric, index) => (
-            <MetricCard key={index} {...metric} />
+            <div key={index} className={`${index === 2 ? 'col-span-2 sm:col-span-1' : ''}`}>
+              <MetricCard {...metric} />
+            </div>
           ))}
         </div>
         <div className="flex flex-col md:flex-row gap-6">
@@ -107,7 +113,7 @@ export const AccordionPianificazioneContenuti: FC<AccordionPianificazioneContenu
               ))}
             </ul>
           </Card>
-          <div className="w-full md:w-2/3">
+          <div className="w-full md:w-2/3 overflow-hidden">
             <CarouselSitoWeb />
           </div>
         </div>

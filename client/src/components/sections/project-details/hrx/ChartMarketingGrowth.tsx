@@ -1,4 +1,4 @@
-import { FC } from "react";
+import { FC, useState } from "react";
 import { Language } from "@/types";
 import { 
   LineChart,
@@ -20,8 +20,11 @@ import {
   MousePointerClick,
   Euro,
   PieChart as PieChartIcon,
-  Share2
+  Share2,
+  Maximize2,
+  X
 } from 'lucide-react';
+import { Dialog, DialogContent, DialogTrigger } from "@/components/ui/dialog";
 
 interface ChartMarketingGrowthProps {
   language: Language;
@@ -145,29 +148,73 @@ const customTooltipFormatter = (value: number, name: string) => {
   }
 };
 
-const ChartContainer: FC<{ title: string; icon: React.ReactNode; children: React.ReactNode }> = ({ 
+interface ExpandableChartContainerProps {
+  title: string;
+  icon: React.ReactNode;
+  children: React.ReactNode;
+  language: Language;
+}
+
+// Versione mobile-friendly del ChartContainer
+const ExpandableChartContainer: FC<ExpandableChartContainerProps> = ({ 
   title, 
   icon, 
-  children 
-}) => (
-  <div className="border border-gray-200 rounded-lg p-4 bg-white shadow-sm">
-    <div className="flex items-center gap-2 mb-2">
-      {icon}
-      <h3 className="font-semibold text-lg">{title}</h3>
+  children,
+  language
+}) => {
+  const expandText = language === 'en' ? 'Expand' : 'Espandi';
+
+  return (
+    <div className="border border-gray-200 rounded-lg p-3 md:p-4 bg-white shadow-sm">
+      <div className="flex items-center justify-between mb-3">
+        <div className="flex items-center gap-2 flex-shrink">
+          {icon}
+          <h3 className="font-semibold text-lg leading-tight">{title}</h3>
+        </div>
+
+        {/* Pulsante Espandi su dispositivi mobili */}
+        <div className="block md:hidden flex-shrink-0">
+          <Dialog>
+            <DialogTrigger asChild>
+              <button className="text-primary hover:text-primary/80 flex items-center gap-1 text-sm font-medium whitespace-nowrap">
+                <Maximize2 className="w-4 h-4" />
+                <span>{expandText}</span>
+              </button>
+            </DialogTrigger>
+            <DialogContent className="sm:max-w-[90vw] max-h-[90vh] overflow-y-auto p-1 sm:p-6">
+              <div className="p-4">
+                <h2 className="text-xl font-semibold mb-6">{title}</h2>
+                <div className="h-[65vh]">
+                  {children}
+                </div>
+              </div>
+
+              <button 
+                className="absolute top-4 right-4 p-2 hover:bg-white/10 rounded-full transition-colors"
+                onClick={() => document.querySelector('[data-radix-dialog-close]')?.click()}
+              >
+                <X className="w-8 h-8 text-white" />
+              </button>
+            </DialogContent>
+          </Dialog>
+        </div>
+      </div>
+
+      <div className="h-64 md:h-80 w-full">
+        {children}
+      </div>
     </div>
-    <div className="h-80">
-      {children}
-    </div>
-  </div>
-);
+  );
+};
 
 const ChartMarketingGrowth: FC<ChartMarketingGrowthProps> = ({ language }) => {
   return (
-    <div className="mt-8">
-      <div className="grid grid-cols-1 md:grid-cols-2 gap-8 mb-8 overflow-visible">
-        <ChartContainer 
+    <div className="mt-6">
+      <div className="grid grid-cols-1 md:grid-cols-2 gap-3 md:gap-8 mb-3 md:mb-8 overflow-visible">
+        <ExpandableChartContainer 
           title={language === 'en' ? 'ROAS & CTR Evolution' : 'Evoluzione ROAS e CTR'}
           icon={<TrendingUp className="w-5 h-5 text-primary" />}
+          language={language}
         >
           <ResponsiveContainer width="100%" height="100%">
             <LineChart
@@ -198,11 +245,12 @@ const ChartMarketingGrowth: FC<ChartMarketingGrowthProps> = ({ language }) => {
               />
             </LineChart>
           </ResponsiveContainer>
-        </ChartContainer>
+        </ExpandableChartContainer>
 
-        <ChartContainer 
-          title={language === 'en' ? 'CPA & Conversion Rate Trends' : 'Andamento CPA e Tasso di Conversione'}
+        <ExpandableChartContainer 
+          title={language === 'en' ? 'CPA & CVR Trends' : 'Andamento CPA e CVR'}
           icon={<MousePointerClick className="w-5 h-5 text-primary" />}
+          language={language}
         >
           <ResponsiveContainer width="100%" height="100%">
             <LineChart
@@ -227,29 +275,30 @@ const ChartMarketingGrowth: FC<ChartMarketingGrowthProps> = ({ language }) => {
                 yAxisId="right"
                 type="monotone"
                 dataKey="cr"
-                name={language === 'en' ? 'Conversion Rate %' : 'Tasso di Conversione %'}
+                name={language === 'en' ? 'Conversion Rate %' : 'CVR %'}
                 stroke={metricColors.cr}
                 strokeWidth={2}
               />
             </LineChart>
           </ResponsiveContainer>
-        </ChartContainer>
+        </ExpandableChartContainer>
       </div>
 
-      <div className="grid grid-cols-1 md:grid-cols-2 gap-8 pt-4 overflow-visible">
-        <ChartContainer 
+      <div className="grid grid-cols-1 md:grid-cols-2 gap-3 md:gap-8 pt-0 md:pt-4 overflow-visible">
+        <ExpandableChartContainer 
           title={language === 'en' ? 'Budget Allocation' : 'Distribuzione Budget'}
           icon={<PieChartIcon className="w-5 h-5 text-primary" />}
+          language={language}
         >
           <ResponsiveContainer width="100%" height="100%">
-            <PieChart>
+                  <PieChart margin={{ top: 35, bottom: 20 }}>
               <Pie
                 data={budgetData}
                 dataKey="value"
                 nameKey="name"
                 cx="50%"
-                cy="45%"
-                outerRadius={75}
+                cy="40%"
+                outerRadius={65}
                 label={({ value }) => `${value}%`}
               >
                 {budgetData.map((entry, index) => (
@@ -257,14 +306,15 @@ const ChartMarketingGrowth: FC<ChartMarketingGrowthProps> = ({ language }) => {
                 ))}
               </Pie>
               <Tooltip formatter={(value) => `${value}%`} />
-              <Legend verticalAlign="bottom" height={36} />
+              <Legend verticalAlign="bottom" height={40} />
             </PieChart>
           </ResponsiveContainer>
-        </ChartContainer>
+        </ExpandableChartContainer>
 
-        <ChartContainer 
+        <ExpandableChartContainer 
           title={language === 'en' ? 'Total Sales' : 'Totale Vendite'}
           icon={<Euro className="w-5 h-5 text-primary" />}
+          language={language}
         >
           <ResponsiveContainer width="100%" height="100%">
             <AreaChart
@@ -286,7 +336,7 @@ const ChartMarketingGrowth: FC<ChartMarketingGrowthProps> = ({ language }) => {
               />
             </AreaChart>
           </ResponsiveContainer>
-        </ChartContainer>
+        </ExpandableChartContainer>
       </div>
     </div>
   );

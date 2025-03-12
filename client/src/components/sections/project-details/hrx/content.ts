@@ -44,7 +44,7 @@ const projectData: Project = {
   id: 2,
   title: {
     en: "HRX - Digital Marketing Strategy",
-    it: "HRX - Strategia di Marketing Digitale"
+    it: "Hrx Srl - Strategia di Marketing Digitale"
   },
   period: {
     en: "Nov 2020 - Apr 2021",
@@ -52,7 +52,7 @@ const projectData: Project = {
   },
   description: {
     en: "I managed the marketing strategy for HRX SRL, an Italian company specializing in technical apparel and accessories for motorsports. I planned and optimized Google Ads campaigns (Search, Display, Shopping) to increase online sales while improving SEO and the UX of the Shopify e-commerce platform to enhance the user experience and conversion rate.",
-    it: "Ho gestito la strategia di marketing per HRX SRL, azienda italiana specializzata in abbigliamento tecnico e accessori per il motorsport. Ho pianificato e ottimizzato campagne Google Ads (Search, Display, Shopping) per aumentare le vendite online, ottimizzando al contempo SEO e UX dell'e-commerce Shopify per migliorare l'esperienza utente e il tasso di conversione."
+    it: "Ho gestito la strategia di marketing per Hrx Srl, azienda italiana specializzata in abbigliamento tecnico e accessori per il motorsport. Ho pianificato e ottimizzato campagne Google Ads (Search, Display, Shopping) per aumentare le vendite online, ottimizzando al contempo SEO e UX dell'e-commerce Shopify per migliorare l'esperienza utente e il tasso di conversione."
   },
   image: '/assets/hrx-banner1.webp',
   technologies: [

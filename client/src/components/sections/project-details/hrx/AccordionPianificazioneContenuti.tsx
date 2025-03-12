@@ -1,4 +1,3 @@
-// Accordion Social Media
 import { FC, useState, useRef, useEffect } from "react";
 import { Language } from "@/types";
 import { Project } from "@/types/projects";
@@ -251,9 +250,10 @@ const HRXPianificazioneContenuti: FC<HRXPianificazioneContenutiProps> = ({ proje
       </AccordionTrigger>
       <AccordionContent className="px-4">
         <Card className="p-6 mt-4">
-          <div className="flex flex-wrap">
-            {/* Left section with bullet points at 50% width */}
-            <div className="w-1/2 pr-4">
+          {/* Layout responsive: flex-col su mobile, flex-row su desktop */}
+          <div className="flex flex-col md:flex-row flex-wrap">
+            {/* Left section with bullet points at full width on mobile, 50% on desktop */}
+            <div className="w-full md:w-1/2 md:pr-4 mb-6 md:mb-0">
               {/* Title with icon */}
               <div className="flex items-center gap-2 mb-4">
                 <ClipboardList className="w-5 h-5 text-primary" />
@@ -275,24 +275,25 @@ const HRXPianificazioneContenuti: FC<HRXPianificazioneContenutiProps> = ({ proje
               </ul>
             </div>
 
-            {/* Carousel section at right 50% width */}
-            <div className="w-1/2 pl-4" ref={carouselRef}>
+            {/* Carousel section at full width on mobile, 50% on desktop */}
+            <div className="w-full md:w-1/2 md:pl-4" ref={carouselRef}>
               <Carousel className="w-full h-full">
-                <CarouselContent className="px-2 h-full">
+                <CarouselContent className="h-full">
                   {mediaDetails.map((media, index) => (
-                    <CarouselItem key={index} className="basis-1/2 pl-1 pr-1 h-full">
+                    <CarouselItem key={index} className="basis-full h-full p-0">
                       <motion.div
                         layoutId={`media-${media.src}`}
                         onClick={() => handleMediaClick(media)}
-                        className="relative rounded-lg overflow-hidden flex justify-center items-center h-full"
+                        className="relative rounded-lg overflow-hidden flex justify-center items-center h-full mx-auto"
+                        style={{ width: "98%" }}
                       >
                         {renderMedia(media, index)}
                       </motion.div>
                     </CarouselItem>
                   ))}
                 </CarouselContent>
-                <CarouselPrevious className="left-0" />
-                <CarouselNext className="right-0" />
+                <CarouselPrevious className="left-1" />
+                <CarouselNext className="right-1" />
               </Carousel>
             </div>
           </div>

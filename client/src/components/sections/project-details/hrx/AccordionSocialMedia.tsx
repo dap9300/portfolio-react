@@ -1,4 +1,3 @@
-// Accordion Digital Marketing Hrx - ignora nome component
 import { FC } from "react";
 import { Language } from "@/types";
 import { Project } from "@/types/projects";
@@ -180,16 +179,14 @@ const HRXMarketing: FC<HRXMarketingProps> = ({ project, language }) => {
         </div>
       </AccordionTrigger>
       <AccordionContent className="px-4">
-        <Card className="p-6 mt-4">
+        <Card className="p-4 md:p-6 mt-4">
           {/* Overview Section */}
-          <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
+          <div className="grid grid-cols-1 md:grid-cols-2 gap-6 md:gap-8">
             <div className="space-y-4">
-              <h3 className="font-semibold text-lg">
-                <div className="flex items-center gap-2">
-                  <BarChart4 className="w-5 h-5 text-primary" />
-                  <span>{content.overview.title[language]}</span>
-                </div>
-              </h3>
+              <div className="flex items-center gap-2 mb-4">
+                <BarChart4 className="w-5 h-5 text-primary flex-shrink-0" />
+                <h3 className="font-semibold text-lg">{content.overview.title[language]}</h3>
+              </div>
               <div className="text-muted-foreground leading-relaxed">
                 <p dangerouslySetInnerHTML={{ 
                   __html: content.overview.description[language].replace(
@@ -200,9 +197,9 @@ const HRXMarketing: FC<HRXMarketingProps> = ({ project, language }) => {
               </div>
               <ul className="space-y-3 text-muted-foreground leading-relaxed">
                 {Object.values(content.overview.keyStrategies).map((strategy, index) => (
-                  <li key={index} className="flex items-start gap-2">
-                    <div className="w-1.5 h-1.5 rounded-full bg-blue-500 mt-2" />
-                    {strategy[language]}
+                  <li key={index} className="flex gap-2">
+                    <div className="w-1.5 h-1.5 rounded-full bg-blue-500 mt-2 flex-shrink-0" />
+                    <span>{strategy[language]}</span>
                   </li>
                 ))}
               </ul>
@@ -213,7 +210,7 @@ const HRXMarketing: FC<HRXMarketingProps> = ({ project, language }) => {
                 <Target className="w-5 h-5 text-primary" />
                 <h3 className="font-semibold text-lg">{content.metrics.title[language]}</h3>
               </div>
-              <div className="grid grid-cols-2 gap-4">
+              <div className="grid grid-cols-2 gap-3 md:gap-4">
                 {Object.entries(content.metrics.improvements).map(([key, improvement]) => {
                   // Determine which icon to use based on the key
                   let icon;
@@ -235,13 +232,13 @@ const HRXMarketing: FC<HRXMarketingProps> = ({ project, language }) => {
                   }
 
                   return (
-                    <div key={key} className="bg-white p-4 rounded-lg border border-gray-200 shadow-sm hover:shadow-md transition-shadow">
+                    <div key={key} className="bg-white p-3 md:p-4 rounded-lg border border-gray-200 shadow-sm hover:shadow-md transition-shadow">
                       <div className="flex items-center gap-2">
                         {icon}
                         <h4 className="font-semibold text-sm text-gray-600">{improvement.title[language]}</h4>
                       </div>
-                      <p className="text-2xl font-bold text-primary mt-1">{improvement.value[language]}</p>
-                      <p className="text-sm text-muted-foreground mt-1">{improvement.description[language]}</p>
+                      <p className="text-xl md:text-2xl font-bold text-primary mt-1">{improvement.value[language]}</p>
+                      <p className="text-xs md:text-sm text-muted-foreground mt-1">{improvement.description[language]}</p>
                     </div>
                   );
                 })}
@@ -253,30 +250,30 @@ const HRXMarketing: FC<HRXMarketingProps> = ({ project, language }) => {
           <ChartMarketingGrowth language={language} />
 
           {/* Key Actions Section */}
-          <div className="mt-8 pt-8">
+          <div className="mt-6 md:mt-8 pt-4 md:pt-8">
             <div className="flex items-center gap-2 mb-4">
               <Activity className="w-5 h-5 text-primary" />
               <h3 className="font-semibold text-lg">{content.keyActions.title[language]}</h3>
             </div>
-            <div className="grid grid-cols-1 md:grid-cols-3 gap-4">
-              {/* Original strategy items */}
+            <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-4">
+              {/* Strategy items with better mobile spacing */}
               <div className="bg-white p-4 rounded-lg border border-gray-200 shadow-sm hover:shadow-md transition-shadow">
                 <div className="flex items-center gap-2">
-                  <Users className="w-5 h-5 text-primary" />
+                  <Users className="w-5 h-5 text-primary flex-shrink-0" />
                   <h4 className="font-semibold text-sm text-gray-600">{content.keyActions.items.segmentation.title[language]}</h4>
                 </div>
                 <p className="text-sm text-muted-foreground mt-2">{content.keyActions.items.segmentation.description[language]}</p>
               </div>
               <div className="bg-white p-4 rounded-lg border border-gray-200 shadow-sm hover:shadow-md transition-shadow">
                 <div className="flex items-center gap-2">
-                  <Settings className="w-5 h-5 text-primary" />
+                  <Settings className="w-5 h-5 text-primary flex-shrink-0" />
                   <h4 className="font-semibold text-sm text-gray-600">{content.keyActions.items.optimization.title[language]}</h4>
                 </div>
                 <p className="text-sm text-muted-foreground mt-2">{content.keyActions.items.optimization.description[language]}</p>
               </div>
               <div className="bg-white p-4 rounded-lg border border-gray-200 shadow-sm hover:shadow-md transition-shadow">
                 <div className="flex items-center gap-2">
-                  <RefreshCw className="w-5 h-5 text-primary" />
+                  <RefreshCw className="w-5 h-5 text-primary flex-shrink-0" />
                   <h4 className="font-semibold text-sm text-gray-600">{content.keyActions.items.remarketing.title[language]}</h4>
                 </div>
                 <p className="text-sm text-muted-foreground mt-2">{content.keyActions.items.remarketing.description[language]}</p>
@@ -285,21 +282,21 @@ const HRXMarketing: FC<HRXMarketingProps> = ({ project, language }) => {
               {/* New strategy items based on the context file */}
               <div className="bg-white p-4 rounded-lg border border-gray-200 shadow-sm hover:shadow-md transition-shadow">
                 <div className="flex items-center gap-2">
-                  <BarChart className="w-5 h-5 text-primary" />
+                  <BarChart className="w-5 h-5 text-primary flex-shrink-0" />
                   <h4 className="font-semibold text-sm text-gray-600">{content.keyActions.items.setup.title[language]}</h4>
                 </div>
                 <p className="text-sm text-muted-foreground mt-2">{content.keyActions.items.setup.description[language]}</p>
               </div>
               <div className="bg-white p-4 rounded-lg border border-gray-200 shadow-sm hover:shadow-md transition-shadow">
                 <div className="flex items-center gap-2">
-                  <LineChart className="w-5 h-5 text-primary" />
+                  <LineChart className="w-5 h-5 text-primary flex-shrink-0" />
                   <h4 className="font-semibold text-sm text-gray-600">{content.keyActions.items.keywords.title[language]}</h4>
                 </div>
                 <p className="text-sm text-muted-foreground mt-2">{content.keyActions.items.keywords.description[language]}</p>
               </div>
               <div className="bg-white p-4 rounded-lg border border-gray-200 shadow-sm hover:shadow-md transition-shadow">
                 <div className="flex items-center gap-2">
-                  <TimerReset className="w-5 h-5 text-primary" />
+                  <TimerReset className="w-5 h-5 text-primary flex-shrink-0" />
                   <h4 className="font-semibold text-sm text-gray-600">{content.keyActions.items.expansion.title[language]}</h4>
                 </div>
                 <p className="text-sm text-muted-foreground mt-2">{content.keyActions.items.expansion.description[language]}</p>

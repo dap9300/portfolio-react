@@ -142,17 +142,17 @@ export const AccordionEmailMarketing: FC<AccordionEmailMarketingProps> = ({
               <p className="text-muted-foreground leading-relaxed">
                 {project.detailedSections.emailMarketing.content[language]}
               </p>
-              <h3 className="font-semibold text-lg">{activitiesTitle[language]}</h3>
-              <ul className="space-y-2">
+              <h3 className="font-semibold text-lg mb-3">{activitiesTitle[language]}</h3>
+              <ul className="space-y-3">
                 {project.detailedSections.emailMarketing.metrics.map((item, index) => (
-                  <li key={index} className="flex items-start gap-2">
-                    <div className="w-1.5 h-1.5 rounded-full bg-blue-500 mt-2" />
+                  <li key={index} className="flex items-start gap-3">
+                    <div className="min-w-2 h-2 rounded-full bg-blue-500 mt-2" />
                     <span className="text-muted-foreground">{item}</span>
                   </li>
                 ))}
               </ul>
             </div>
-            <div className="grid grid-cols-2 gap-4">
+            <div className="grid grid-cols-1 sm:grid-cols-2 gap-4 mt-6 md:mt-0">
               {metrics.map((metric, index) => (
                 <MetricCard
                   key={index}

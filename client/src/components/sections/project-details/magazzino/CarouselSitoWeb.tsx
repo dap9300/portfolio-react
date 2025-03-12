@@ -37,7 +37,7 @@ export const CarouselSitoWeb: FC = () => {
   const [selectedMedia, setSelectedMedia] = useState<MediaDetail | null>(null);
   const [hoverIndex, setHoverIndex] = useState<number | null>(null);
   const [loadedImages, setLoadedImages] = useState<Set<string>>(new Set());
-  const [visibleItems, setVisibleItems] = useState<number[]>([0]); // Inizialmente carica solo il primo elemento
+  const [visibleItems, setVisibleItems] = useState<number[]>([0]);
   const carouselRef = useRef<HTMLDivElement>(null);
   const observerRef = useRef<IntersectionObserver | null>(null);
   const mediaRefs = useRef<(HTMLDivElement | null)[]>([]);
@@ -55,11 +55,10 @@ export const CarouselSitoWeb: FC = () => {
       });
     }, {
       root: null,
-      rootMargin: '200px', // Precarica gli elementi quando sono vicini a 200px dalla viewport
+      rootMargin: '200px',
       threshold: 0.1
     });
 
-    // Osserva tutti gli elementi media
     mediaRefs.current.forEach((ref) => {
       if (ref) observerRef.current?.observe(ref);
     });
@@ -74,9 +73,7 @@ export const CarouselSitoWeb: FC = () => {
   // Gestione del prefetch delle immagini
   useEffect(() => {
     const prefetchNextItems = () => {
-      // Prefetch delle prossime immagini che non sono ancora state caricate
       visibleItems.forEach(index => {
-        // Carica l'immagine successiva in sequenza
         const nextIndex = (index + 1) % mediaDetails.length;
         const media = mediaDetails[nextIndex];
 
@@ -92,11 +89,6 @@ export const CarouselSitoWeb: FC = () => {
 
     prefetchNextItems();
   }, [visibleItems, loadedImages]);
-
-  const handleMediaClick = (media: MediaDetail) => {
-    document.body.classList.add('react-zoom-container-open');
-    setSelectedMedia(media);
-  };
 
   const handleClose = () => {
     document.body.classList.remove('react-zoom-container-open');
@@ -119,12 +111,12 @@ export const CarouselSitoWeb: FC = () => {
             <img
               src={media.src}
               alt={media.title}
-              className="w-full h-full object-contain"
-              loading="lazy" // HTML native lazy loading
+              className="w-full h-full object-contain max-w-full"
+              loading="lazy"
               onLoad={() => {
                 setLoadedImages(prev => new Set([...prev, media.src]));
               }}
-              width="800" // Dimensioni esplicite per aiutare il browser a calcolare lo spazio richiesto
+              width="800"
               height="400"
             />
             <div 
@@ -141,7 +133,6 @@ export const CarouselSitoWeb: FC = () => {
             </div>
           </>
         ) : (
-          // Placeholder per le immagini non ancora caricate
           <div className="w-full h-full bg-neutral-200 dark:bg-neutral-700 animate-pulse flex flex-col items-center justify-center">
             <div className="w-12 h-12 rounded-full bg-neutral-300 dark:bg-neutral-600 mb-4"></div>
             <div className="h-4 bg-neutral-300 dark:bg-neutral-600 rounded w-1/3 mb-2"></div>
@@ -165,19 +156,13 @@ export const CarouselSitoWeb: FC = () => {
 
   // Gestione modalità di zoom con precaricamento
   const handleZoomClick = async (media: MediaDetail) => {
-    // Prima attiva l'overlay di caricamento
     document.body.classList.add('react-zoom-container-open');
     setSelectedMedia(media);
-
-    // Quindi precarica l'immagine a piena risoluzione in background
     await preloadFullImage(media);
-
-    // L'immagine è pronta, aggiorna lo stato (se necessario)
-    // Questo passaggio potrebbe essere usato per disattivare un indicatore di caricamento
   };
 
   return (
-    <div className="w-full" ref={carouselRef}>
+    <div className="w-full overflow-hidden" ref={carouselRef}>
       <Carousel 
         className="w-full"
         opts={{
@@ -185,13 +170,13 @@ export const CarouselSitoWeb: FC = () => {
           loop: true
         }}
       >
-        <CarouselContent>
+        <CarouselContent className="max-w-full">
           {mediaDetails.map((media, index) => (
             <CarouselItem key={index} className="w-full pl-0">
               <motion.div
                 layoutId={`media-${media.src}`}
                 onClick={() => handleZoomClick(media)}
-                className="relative rounded-lg overflow-hidden flex justify-center items-center bg-neutral-100 dark:bg-neutral-800 h-[400px]"
+                className="relative rounded-lg overflow-hidden flex justify-center items-center bg-neutral-100 dark:bg-neutral-800 h-[300px] sm:h-[400px]"
               >
                 {renderMedia(media, index)}
               </motion.div>
@@ -223,7 +208,7 @@ export const CarouselSitoWeb: FC = () => {
               className="relative w-full h-full flex items-center justify-center"
               onClick={handleClose}
             >
-              <div className="flex flex-col items-center gap-4">
+              <div className="flex flex-col items-center gap-4 px-4">
                 <img
                   src={selectedMedia.src}
                   alt="Zoomed Media"

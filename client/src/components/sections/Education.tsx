@@ -6,11 +6,11 @@ import { SectionTitle } from "@/components/shared/SectionTitle";
 import { Card, CardContent } from "@/components/ui/card";
 import { fadeInUp, staggerContainer } from "@/lib/animations";
 import { ChevronDown } from "lucide-react";
-import { ScrollContext } from "@/App"; // Importa il contesto di scroll
+import { ScrollContext } from "@/App";
 
 interface EducationProps {
   language: Language;
-  sectionIndex: number; // Aggiungi la prop per l'indice della sezione
+  sectionIndex: number;
 }
 
 const education = [
@@ -62,11 +62,9 @@ const education = [
 ];
 
 export function Education({ language, sectionIndex }: EducationProps) {
-  // Utilizza il context per il sistema di scrolling
   const { registerSection } = useContext(ScrollContext);
   const sectionRef = useRef<HTMLElement>(null);
 
-  // Registra questa sezione nel sistema di scrolling
   useEffect(() => {
     if (sectionRef.current) {
       registerSection(sectionIndex)(sectionRef.current);
@@ -82,9 +80,9 @@ export function Education({ language, sectionIndex }: EducationProps) {
 
   return (
     <motion.section 
-      ref={sectionRef} // Aggiungi il ref per il sistema di scrolling
+      ref={sectionRef}
       id="education" 
-      className="min-h-screen relative flex items-center py-20 px-4 bg-muted/30 snap-start" // Aggiungi snap-start
+      className="min-h-auto md:min-h-screen relative md:flex md:items-center pt-8 pb-2 md:py-20 px-4 bg-muted/30 snap-start"
     >
       <motion.div
         className="absolute inset-0 bg-gradient-to-b from-background to-muted/30 -z-10"
@@ -94,10 +92,12 @@ export function Education({ language, sectionIndex }: EducationProps) {
         transition={{ duration: 1.2 }}
       />
       <div className="container mx-auto">
-        <SectionTitle 
-          title={t.title} 
-          icon="https://cdn.lordicon.com/kipaqhoz.json"
-        />
+        <div className="md:mt-0">
+          <SectionTitle 
+            title={t.title} 
+            icon="https://cdn.lordicon.com/kipaqhoz.json"
+          />
+        </div>
         <motion.div
           variants={staggerContainer}
           initial="hidden"
@@ -109,7 +109,7 @@ export function Education({ language, sectionIndex }: EducationProps) {
             <motion.div
               key={item.id}
               variants={fadeInUp}
-              className="mb-6 last:mb-0"
+              className="mb-4 md:mb-6 last:mb-0"
             >
               <Card className="w-full">
                 <button
